@@ -6,6 +6,7 @@ import {
 } from "./../../common/convert/renderConvert";
 import { Card, Divider } from "antd";
 import PDFPrint from "./../../common/pdf_print";
+import TableHoaDon from "./tableHoaDon";
 function HoaDon({ onEdit, hoanTatThanhToan }) {
   const dataHoaDon = useSelector((state) => state.quanlybanhang.itemHoaDon);
   let totalTien = 0;
@@ -17,17 +18,17 @@ function HoaDon({ onEdit, hoanTatThanhToan }) {
     });
   return (
     <>
-      <Card hoverable style={{ width: "55%", margin: "70px  20%" }}>
-        <PDFPrint>
-          <div class="container mt-5 m-0 p-0">
+      <PDFPrint>
+        <Card hoverable>
+          <div class="container">
             <div class="d-flex justify-content-center row ">
               <div class="col-md-12">
-                <div class="p-3 bg-white rounded">
+                <div class=" bg-white rounded">
                   <div class="row">
                     <div class="col-md-6">
-                      <h1 class="text-uppercase text-danger">Ngọc Châu</h1>
+                      <h5 class="text-uppercase text-danger">Ngọc Châu</h5>
                       <div class="billed">
-                        <span class="font-weight-bold  d-flex justify-content-start">
+                        <span class="font-weight-bold d-flex justify-content-start">
                           Thông tin người bán :{" "}
                         </span>
                       </div>
@@ -60,7 +61,7 @@ function HoaDon({ onEdit, hoanTatThanhToan }) {
                         <li>
                           <div class="billed">
                             <span class=" d-flex justify-content-start">
-                              Tên khách hàng :{" "}
+                              Tên :{" "}
                               {dataHoaDon &&
                                 dataHoaDon.thongTinNguoiMua &&
                                 dataHoaDon.thongTinNguoiMua.tenKhachHang}
@@ -92,56 +93,17 @@ function HoaDon({ onEdit, hoanTatThanhToan }) {
                     </div>
                   </div>
                   <div class="mt-5">
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th>STT</th>
-                            <th>Sản phẩm</th>
-                            <th>Số lượng</th>
-                            <th>Đơn giá</th>
-                            <th>Tổng cộng</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {dataHoaDon &&
-                            Array.isArray(dataHoaDon.sanPham) &&
-                            dataHoaDon.sanPham.length > 0 &&
-                            dataHoaDon.sanPham.map((item, index) => {
-                              return (
-                                <tr>
-                                  <td>{index + 1}</td>
-                                  <td>{item.tenThuoc}</td>
-                                  <td>
-                                    {renderConvertSoLuongTheoDonVi(
-                                      item.soLuongMua,
-                                      item.donViTinh
-                                    )}
-                                  </td>
-                                  <td>{renderTien(item.giaTien)}</td>
-                                  <td>
-                                    {renderTien(item.giaTien * item.soLuongMua)}
-                                  </td>
-                                </tr>
-                              );
-                            })}
-                          <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Thành tiền</td>
-                            <td>{renderTien(totalTien)}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                    <TableHoaDon
+                      dataHoaDon={dataHoaDon && dataHoaDon.sanPham}
+                    />
+                    <span>Tổng tiền : {renderTien(totalTien)}</span>
                   </div>
 
                   {
                     dataHoaDon && Array.isArray(dataHoaDon.sanPham) && (
                       // dataHoaDon.sanPham.length > 0 && (
                       <div class="text-right mb-3">
-                        <a
+                        {/* <a
                           className="mr-3"
                           onClick={() => {
                             onEdit(dataHoaDon && dataHoaDon.id);
@@ -151,7 +113,7 @@ function HoaDon({ onEdit, hoanTatThanhToan }) {
                             class="fa fa-pencil-square-o"
                             aria-hidden="true"
                           ></i>
-                        </a>
+                        </a> */}
                         <a
                           className="mr-3 text-success"
                           onClick={() => {
@@ -177,8 +139,8 @@ function HoaDon({ onEdit, hoanTatThanhToan }) {
               </p>
             </Divider>
           </div>
-        </PDFPrint>
-      </Card>
+        </Card>
+      </PDFPrint>
     </>
   );
 }

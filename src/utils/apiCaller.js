@@ -6,6 +6,5 @@ export default function callApi(url, method = "GET", body) {
     method: method,
     url: `${Config.API_URL}/${url}`,
     data: body,
-  })
-    
+  });
 }

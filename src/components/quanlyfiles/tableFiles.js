@@ -1,87 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Divider, Radio, Popconfirm, message, Button } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import * as Message from "../../constants/Message";
-
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import * as actQuanLyFiles from "../../actions/quanlyfiles/actQuanLyFiles";
 function TableNhaCungCap({ match, data, onDelete, onEdit }) {
   const [selectionType, setSelectionType] = useState();
+  const dataListFiles = useSelector((state) => state.quanly_files.list);
+  const dispatch = useDispatch();
+
   const columns = [
     {
-      title: "File của ",
-      width: 200,
-      dataIndex: "tenThuoc",
+      title: "STT",
+      width: 50,
+      dataIndex: "STT",
+      render: (data, record, index) => <span>{index + 1}</span>,
     },
     {
       title: "Tên file",
-      width: 200,
+      width: 250,
       dataIndex: "tenFile",
-      render: (data, record) =>
-        record &&
-        record.fileDinhKem &&
-        Array.isArray(record.fileDinhKem) &&
-        record.fileDinhKem.map((item) => <div>{item.tenFile}</div>),
+      render: (data, record) => <a href={record.url}>{record.name}</a>,
     },
     {
-      title: "Link",
-      dataIndex: "urlfiles",
+      title: "Type",
+      dataIndex: "type",
       width: 200,
-      render: (data, record) => renderLinkFile(record),
     },
-    // {
-    //   title: "Chức năng",
-    //   dataIndex: "action",
-    //   fixed: "right",
-    //   width: 100,
-    //   render: (data, record) => actionRender(record),
-    // },
+    {
+      title: "Size",
+      dataIndex: "size",
+      width: 200,
+    },
+    {
+      // title: "Chức năng",
+      dataIndex: "action",
+      fixed: "right",
+      width: 30,
+      render: (data, record) => actionRender(record),
+    },
   ];
-
-  const renderLinkFile = (record) => {
-    if (record && record.fileDinhKem && Array.isArray(record.fileDinhKem)) {
-      return record.fileDinhKem.map((item) => (
-        <>
-          <a href={item.urlfiles} target="_blank">
-            <i
-              class="fa fa-paperclip"
-              style={{ color: "black" }}
-              aria-hidden="true"
-            ></i>{" "}
-            {item.urlfiles}
-          </a>
-          <br />
-        </>
-      ));
-    }
-  };
-
-  function renderDetail(record) {
-    return (
-      <NavLink to={`${url}/${record.id}`}>{record.thongTinNhaCungCap}</NavLink>
-    );
-  }
 
   function confirm(id) {
     onDelete(id);
-    message.warning(Message.XOA_THANH_CONG);
+    // message.warning(Message.XOA_THANH_CONG);
   }
 
   function actionRender(record) {
     return (
       <>
         <div className="row">
-          <div className="col-md-2">
-            <a>
-              <i
-                className="fa fa-pencil-square-o"
-                style={{ color: "green", fontSize: "20px" }}
-                onClick={() => {
-                  onEdit(record.id);
-                }}
-              ></i>
-            </a>
-          </div>
-
           <div className="col-md-2">
             <Popconfirm
               placement="topRight"
@@ -103,20 +72,24 @@ function TableNhaCungCap({ match, data, onDelete, onEdit }) {
       </>
     );
   }
-  var url = match.url;
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {},
   };
+
+  useEffect(() => {
+    dispatch(actQuanLyFiles.actFetchfilesRequest());
+  }, []);
+
   return (
     <div>
       <Divider />
       <Table
-        rowSelection={{
-          type: selectionType,
-          ...rowSelection,
-        }}
+        // rowSelection={{
+        //   type: selectionType,
+        //   ...rowSelection,
+        // }}
         columns={columns}
-        dataSource={data}
+        dataSource={dataListFiles}
         bordered
         scroll={{ x: "calc(700px + 50%)", y: 240 }}
         pagination={{

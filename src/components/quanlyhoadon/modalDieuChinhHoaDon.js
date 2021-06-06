@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button } from "antd";
 import FormDieuChinhHoaDon from "./formDieuChinhHoaDon";
 
-function ModalDieuChinhHoaDon({ isVisible, onCancel, onSave, checkEdit }) {
+function ModalDieuChinhHoaDon({
+  isVisible,
+  onCancel,
+  onSave,
+  checkEdit,
+  setCheckSubmitForm,
+}) {
   return (
     <>
       <Modal
@@ -19,6 +25,7 @@ function ModalDieuChinhHoaDon({ isVisible, onCancel, onSave, checkEdit }) {
             cancel={onCancel}
             onSave={onSave}
             checkEdit={checkEdit}
+            setCheckSubmitForm={setCheckSubmitForm}
           />
         </div>
       </Modal>

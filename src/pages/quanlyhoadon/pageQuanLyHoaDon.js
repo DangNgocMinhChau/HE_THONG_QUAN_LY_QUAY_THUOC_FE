@@ -3,10 +3,11 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import * as actBanHang from "../../actions/quanlybanhang/actQuanLyBanHang";
 import * as actNhapKho from "../../actions/quanlykho/actQuanLyKho";
 import * as actHoaDonHoaDonDaHoanTat from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
-import { renderDateTheoHeThong } from "../../common/convert/renderConvert";
 import HoaDon from "../../components/quanlyhoadon/hoaDon";
 import ModalDieuChinhHoaDon from "./../../components/quanlyhoadon/modalDieuChinhHoaDon";
 import CalendarHoaDon from "../../components/quanlyhoadon/calendarHoaDon";
+import { thongBao } from "../../constants/message/thongBao";
+
 function PageQuanLyHoaDon({ match, location }) {
   const [checkFormThemMoi, setCheckFormThemMoi] = useState(false);
   const [checkDanhSach, setCheckDanhSach] = useState(false);
@@ -14,6 +15,7 @@ function PageQuanLyHoaDon({ match, location }) {
   const [valueDate, setValueDate] = useState();
   const [checkEdit, setCheckEdit] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [checkSubmitForm, setCheckSubmitForm] = useState(false);
   const dispatch = useDispatch();
   function cancel() {
     setCheckDanhSach(true);
@@ -21,84 +23,93 @@ function PageQuanLyHoaDon({ match, location }) {
     setIsVisible(false);
   }
   function onSave(value) {
-    if (value.id) {
-      let sanPham = [];
-      let totalTien = 0;
-      value.sanPham.map((item, index) => {
-        // if (item.tenThuoc) {
-        //   sanPham.push(item);
-        //   console.log("vaoday");
-        // } else {
-        if (
-          Array.isArray(
-            listThuoc.filter((itemThuoc) => itemThuoc.id === item.idThuoc)
-          ) &&
-          listThuoc.filter((itemThuoc) => itemThuoc.id === item.idThuoc)
-            .length >= 1 &&
-          listThuoc.filter((itemThuoc) => itemThuoc.id === item.idThuoc)
-        ) {
-          let sanPhamItem = {
-            ...listThuoc.filter(
-              (itemThuoc) => itemThuoc.id === item.idThuoc
-            )[0],
-            soLuongMua2: item.soLuongMua2,
-            soLuongMua: item.soLuongMua2,
-            soLuongMuaBanDau: item.soLuongMua,
-            idThuoc: item.id,
-          };
-          sanPham.push(sanPhamItem);
-        }
-      });
-      sanPham.map((item, index) => {
-        totalTien += item.giaTien * item.soLuongMua;
-      });
-      value = {
-        ...value,
-        sanPham: sanPham,
-        tongTien: totalTien,
-        ngayChinhSua: renderDateTheoHeThong(),
-      };
-      dispatch(actHoaDonHoaDonDaHoanTat.actUpdateHoaDonDaHoanTatRequest(value));
-      capNhatLaiKhoThuocSauKhiBan(value);
+    if (checkSubmitForm) {
+      thongBao("Thông báo", "Hoá đơn chưa được tối ưu ! vui lòng kiểm tra lại");
+    } else {
+      if (value.id) {
+        dispatch(
+          actHoaDonHoaDonDaHoanTat.actUpdateHoaDonDaHoanTatRequest(value)
+        );
+        capNhatLaiKhoThuocSauKhiBan(value);
+      }
+      cancel();
     }
-    cancel();
   }
 
   const capNhatLaiKhoThuocSauKhiBan = (value) => {
-    let soLuongDaBanSauKhiTinhToan = 0;
     value &&
       Array.isArray(value.sanPham) &&
       value.sanPham.length > 0 &&
       value.sanPham.map((item, index) => {
+        let soLuongDaBanSauKhiTinhToan = 0;
         if (item.soLuongMua2 > item.soLuongMuaBanDau) {
           soLuongDaBanSauKhiTinhToan =
             item.soLuongDaBan + (item.soLuongMua2 - item.soLuongMuaBanDau);
         } else if (item.soLuongMua2 < item.soLuongMuaBanDau) {
           soLuongDaBanSauKhiTinhToan =
             item.soLuongDaBan + (item.soLuongMua2 - item.soLuongMuaBanDau);
+        } else if ((item.soLuongMua2 = item.soLuongMuaBanDau)) {
+          soLuongDaBanSauKhiTinhToan = item.soLuongMua2;
         }
-        item = {
-          id: item.id ? item.id : "",
-          tenThuoc: item.tenThuoc,
-          ten: item.tenThuoc,
-          ma: item.ma,
-          donViTinh: item.donViTinh,
-          tongTienTruocThue: parseFloat(item.tongTienTruocThue),
-          phanTramThue: item.phanTramThue,
-          chietKhau: item.chietKhau,
-          giaTien: parseFloat(item.giaTien),
-          thanhToan: item.thanhToan,
-          soLuongNhap: item.soLuongNhap,
-          ngayNhapThuoc: item.ngayNhapThuoc,
-          idNhaCungCap: item.idNhaCungCap ? item.idNhaCungCap : "",
-          ngayTaoBanGhi: item.ngayTaoBanGhi ? item.ngayTaoBanGhi : "",
-          soLuongDaBan: soLuongDaBanSauKhiTinhToan,
-          fileDinhKem: item.fileDinhKem ? item.fileDinhKem : "",
-          thongTinNguoiTao: item.thongTinNguoiTao ? item.thongTinNguoiTao : "",
-          khuVuc: item.khuVuc,
-          phanLoaiThuoc: item.phanLoaiThuoc,
-        };
-        dispatch(actNhapKho.actUpdateThuocRequest(item));
+        if (item.soLuongMuaBanDau == undefined) {
+          soLuongDaBanSauKhiTinhToan = item.soLuongDaBan + item.soLuongMua;
+        }
+        if (item.id) {
+          item = {
+            id: item.id ? item.idThuoc : "",
+            tenThuoc: item.tenThuoc,
+            ma: item.ma,
+            donViTinh: item.donViTinh,
+            tongTienTruocThue: parseFloat(item.tongTienTruocThue),
+            phanTramThue: item.phanTramThue,
+            chietKhau: item.chietKhau,
+            giaTien: parseFloat(item.giaTien),
+            thanhToan: item.thanhToan,
+            soLuongNhap: item.soLuongNhap,
+            ngayNhapThuoc: item.ngayNhapThuoc,
+            nhaCungCapId: item.nhaCungCapId ? item.nhaCungCapId : "",
+            ngayTaoBanGhi: item.ngayTaoBanGhi ? item.ngayTaoBanGhi : "",
+            soLuongDaBan: soLuongDaBanSauKhiTinhToan,
+            soLuongMua: item.soLuongMua2,
+            hanSuDungThuoc: item.hanSuDungThuoc,
+            // fileDinhKem: item.fileDinhKem ? item.fileDinhKem : "",
+            nguoiTaoId: item.nguoiTaoId ? item.nguoiTaoId : "",
+            khuVuc: item.khuVuc,
+            phanLoaiThuoc: item.phanLoaiThuoc,
+          };
+          dispatch(actNhapKho.actUpdateThuocRequest(item));
+        } else {
+          let itemDetailThuoc = listThuoc.filter(
+            (itemThuoc) => itemThuoc.id === item.idThuoc
+          )[0];
+          item = {
+            id: itemDetailThuoc.id,
+            tenThuoc: itemDetailThuoc.tenThuoc,
+            ma: itemDetailThuoc.ma,
+            donViTinh: itemDetailThuoc.donViTinh,
+            tongTienTruocThue: parseFloat(itemDetailThuoc.tongTienTruocThue),
+            phanTramThue: itemDetailThuoc.phanTramThue,
+            chietKhau: itemDetailThuoc.chietKhau,
+            giaTien: parseFloat(itemDetailThuoc.giaTien),
+            thanhToan: itemDetailThuoc.thanhToan,
+            soLuongNhap: itemDetailThuoc.soLuongNhap,
+            ngayNhapThuoc: itemDetailThuoc.ngayNhapThuoc,
+            nhaCungCapId: itemDetailThuoc.nhaCungCapId
+              ? itemDetailThuoc.nhaCungCapId
+              : "",
+            ngayTaoBanGhi: itemDetailThuoc.ngayTaoBanGhi
+              ? itemDetailThuoc.ngayTaoBanGhi
+              : "",
+            soLuongDaBan: soLuongDaBanSauKhiTinhToan,
+            soLuongMua: item.soLuongMua,
+            hanSuDungThuoc: itemDetailThuoc.hanSuDungThuoc,
+            // fileDinhKem: item.fileDinhKem ? item.fileDinhKem : "",
+            nguoiTaoId: itemDetailThuoc.thongTinNguoiTao.id,
+            khuVuc: itemDetailThuoc.khuVuc,
+            phanLoaiThuoc: itemDetailThuoc.phanLoaiThuoc,
+          };
+          dispatch(actNhapKho.actUpdateThuocRequest(item));
+        }
       });
   };
 
@@ -115,7 +126,6 @@ function PageQuanLyHoaDon({ match, location }) {
     // });
     // dispatch(actBanHang.actDeleteBanHang(id));
   }
-
   function onEdit(id) {
     dispatch(actHoaDonHoaDonDaHoanTat.actGetHoaDonDaHoanTatByIdRequest(id));
     setCheckEdit(true);
@@ -165,22 +175,29 @@ function PageQuanLyHoaDon({ match, location }) {
                 </a>
               )}
             </div>
-            {checkDanhSach && <HoaDon onEdit={onEdit} valueDate={valueDate} />}
+            {/* {checkDanhSach && ( */}
+            <HoaDon
+              onEdit={onEdit}
+              valueDate={valueDate}
+              setValueDate={setValueDate}
+            />
+            {/* )} */}
 
             <ModalDieuChinhHoaDon
               isVisible={isVisible}
               onCancel={onCancel}
               onSave={onSave}
               checkEdit={checkEdit}
+              setCheckSubmitForm={setCheckSubmitForm}
             />
-            {!checkDanhSach && (
+            {/* {!checkDanhSach && (
               <div className="custom-calendar">
                 <CalendarHoaDon
                   setCheckDanhSach={setCheckDanhSach}
                   setValueDate={setValueDate}
                 />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>

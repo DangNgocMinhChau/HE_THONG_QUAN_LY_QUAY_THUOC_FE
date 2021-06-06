@@ -7,22 +7,36 @@ import * as actKhoThuoc from "../../actions/quanlykho/actQuanLyKho";
 import * as message from "../../constants/Message";
 import * as noidung from "../../constants/noiDungThongBao";
 import { thongBao } from "../../constants/message/thongBao";
+import * as actHoaDonHoaDonDaHoanTat from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
 import {
   RenderInput,
   RenderInputNumber,
   RenderInputSelectSearch,
 } from "../../common/renderForm/inputForm";
-function FormBanHang({ onSave, cancel, checkEdit, isVisible }) {
+function FormBanHang({
+  onSave,
+  cancel,
+  checkEdit,
+  isVisible,
+  setCheckSubmitForm,
+}) {
   const listThuoc = useSelector((state) => state.khothuoc.list);
   const itemThuoc = useSelector((state) => state.khothuoc.item);
   const itemHoaDonThanhCong = useSelector(
     (state) => state.quanly_hoadon_ban_thanhcong.item
+  );
+  const itemThongTinKhachHang = useSelector(
+    (state) => state.quanlythongtinkhachhang.item
   );
   const [form] = useForm();
   const dispatch = useDispatch();
   const initialValue = useSelector(
     (state) => state.quanly_hoadon_ban_thanhcong.item
   );
+  const account_current = useSelector(
+    (state) => state.quanlylogin.account_current
+  );
+
   if (initialValue !== null) {
     var dataInitialValue = {};
     if (initialValue) {
@@ -35,35 +49,59 @@ function FormBanHang({ onSave, cancel, checkEdit, isVisible }) {
   }
   const onFinish = (value) => {
     if (value.id) {
+      let idXoa = [];
+      let idSanPhamDangCo = [];
+      initialValue.sanPham.map((item) => {
+        idXoa.push(item.id);
+      });
+
+      value.sanPham.map((item, index) => {
+        idSanPhamDangCo.push(item.id);
+      });
+
+      for (let i = 0; i < idXoa.length; i++) {
+        if (!idSanPhamDangCo.includes(idXoa[i])) {
+          dispatch(
+            actHoaDonHoaDonDaHoanTat.actDeleteSanPhamThanhCongRequest(idXoa[i])
+          );
+        } else {
+        }
+      }
+
+      let sanPham = [];
+      value.sanPham.map((item, index) => {
+        if (item.id) {
+          item = { ...item, soLuongMua: item.soLuongMua2 };
+          sanPham.push(item);
+        } else {
+          item = {
+            ...item,
+            soLuongMua: item.soLuongMua2,
+            soLuongDaBan: listThuoc.filter(
+              (itemThuoc) => itemThuoc.id === item.idThuoc
+            )[0].soLuongDaBan,
+            id: null,
+          };
+          sanPham.push(item);
+        }
+      });
       value = {
-        ...itemHoaDonThanhCong,
-        sanPham: value.sanPham,
+        ...value,
+        sanPham: sanPham,
+        soDienThoaiKhachHang: dataInitialValue.soDienThoaiKhachHang,
+        idKhachHang: dataInitialValue.idKhachHang,
+        tenKhachHang: dataInitialValue.tenKhachHang,
+        nguoiTaoId: dataInitialValue.nguoiTaoId,
       };
       onSave(value);
     } else {
-      let sanPham = [];
-      value.sanPham.map((item, index) => {
-        if (
-          Array.isArray(
-            listThuoc.filter((itemThuoc) => itemThuoc.id === item.idThuoc)
-          ) &&
-          listThuoc.filter((itemThuoc) => itemThuoc.id === item.idThuoc)
-            .length >= 1 &&
-          listThuoc.filter((itemThuoc) => itemThuoc.id === item.idThuoc)
-        ) {
-          let sanPhamItem = {
-            ...listThuoc.filter(
-              (itemThuoc) => itemThuoc.id === item.idThuoc
-            )[0],
-            ...item,
-          };
-          sanPham.push(sanPhamItem);
-        }
-        value = {
-          ...value,
-          sanPham: sanPham,
-        };
-      });
+      value = {
+        ...value,
+        soDienThoaiKhachHang: itemThongTinKhachHang.soDienThoai,
+        idKhachHang: itemThongTinKhachHang.id,
+        tenKhachHang: itemThongTinKhachHang.tenKhachHang,
+        nguoiTaoId: account_current.id,
+      };
       onSave(value);
     }
   };
@@ -81,9 +119,18 @@ function FormBanHang({ onSave, cancel, checkEdit, isVisible }) {
     form.resetFields();
   }, [form]);
 
-  const onShowValue = (value) => {
-    dispatch(actKhoThuoc.actGetKhoThuocByIdRequest(value));
-    dataListThuoc = dataListThuoc.filter((item) => item.id !== value);
+  const onShowValue = (idThuoc) => {
+    dispatch(actKhoThuoc.actGetKhoThuocByIdRequest(idThuoc));
+    dataListThuoc = dataListThuoc.filter((item) => item.id !== idThuoc);
+
+    itemHoaDonThanhCong.sanPham.map((item, index) => {
+      if (item.idThuoc === idThuoc) {
+        thongBao(message.THONG_BAO, noidung.THUOC_DA_DUOC_CHON);
+        setCheckSubmitForm(true);
+      } else {
+        setCheckSubmitForm(false);
+      }
+    });
   };
   const onShowSoLuong = (e, value) => {
     if (e.target.value > itemThuoc.soLuongNhap - itemThuoc.soLuongDaBan) {

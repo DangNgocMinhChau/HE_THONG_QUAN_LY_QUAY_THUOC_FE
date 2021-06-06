@@ -20,3 +20,4 @@ export const TAI_KHOAN_KHONG_DUNG =
   "Tài khoản hoặc mật khẩu không đúng . Vui lòng kiểm tra lại !";
 
 export const KHONG_DU_THUOC = "Không đủ thuốc trong kho !";
+export const THUOC_DA_DUOC_CHON = "Thuốc này đã có trong hoá đơn !";

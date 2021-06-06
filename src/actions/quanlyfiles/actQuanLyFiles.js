@@ -9,10 +9,9 @@ import { renderDateTheoHeThong } from "./../../common/convert/renderConvert";
 
 export function actFetchfilesRequest() {
   return (dispatch) => {
-    return callApi("upload-file-gdriver", "GET", null).then((res) => {
+    return callApi("files", "GET", null).then((res) => {
       if (res) {
-        const data = res.data.filter((item) => item.flag !== false);
-        dispatch(actFetchfiles(data));
+        dispatch(actFetchfiles(res.data));
       }
     });
   };
@@ -27,10 +26,10 @@ export const actFetchfiles = (data) => {
 
 export function actDeletefilesRequest(id) {
   return (dispatch) => {
-    return callApi(`upload-file-gdriver/${id}`, "DELETE", null).then((res) => {
-      if (res) {
-        dispatch(actDeletefiles(id));
-      }
+    dispatch(actDeletefiles(id));
+    return callApi(`files/${id}`, "DELETE", null).then((res) => {
+      console.log(res);
+      dispatch(actDeletefiles(id));
     });
   };
 }

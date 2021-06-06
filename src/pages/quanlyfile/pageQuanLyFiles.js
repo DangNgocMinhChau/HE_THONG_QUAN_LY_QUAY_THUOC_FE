@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import * as actQuanLyFiles from "../../actions/quanlyfiles/actQuanLyFiles";
 import * as actQuanLyKho from "../../actions/quanlykho/actQuanLyKho";
-
+import FormFiles from "./../../components/quanlyfiles/formFiles";
 import TableFiles from "./../../components/quanlyfiles/tableFiles";
+
 function PageQuanLyFiles({ match, location }) {
   const [checkFormThemMoi, setCheckFormThemMoi] = useState(false);
   const [checkDanhSach, setCheckDanhSach] = useState(true);
@@ -35,25 +36,30 @@ function PageQuanLyFiles({ match, location }) {
     setCheckFormThemMoi(false);
   }
 
+  const onDelete = (id) => {
+    dispatch(actQuanLyFiles.actDeletefilesRequest(id));
+  };
+
   useEffect(() => {
     dispatch(actQuanLyFiles.actFetchfilesRequest());
     dispatch(actQuanLyKho.actFetchKhoThuocRequest());
   }, []);
 
+  const openForm = () => {};
   return (
     <div className="container-fluid">
       {/* <!-- Page Heading --> */}
-      {/* <div className="d-sm-flex align-items-center justify-content-between mb-4">
+      <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h5 className=" mb-0 text-gray-800">File</h5>
-        <Button
+        {/* <Button
           type="primary"
           onClick={() => {
             openForm();
           }}
         >
           Thêm mới
-        </Button>
-      </div> */}
+        </Button> */}
+      </div>
 
       <div className="row">
         {/* <!-- Area Chart --> */}
@@ -62,8 +68,16 @@ function PageQuanLyFiles({ match, location }) {
             {/* <!-- Card Header - Dropdown --> */}
             <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 className="m-0 font-weight-bold ">File</h6>
+              <a
+                onClick={() => setCheckDanhSach(!checkDanhSach)}
+                className="m-0 font-weight-bold "
+              >
+                Xem danh sách
+              </a>
             </div>
-            {checkDanhSach && <TableFiles data={dataShowFiles} match={match} />}
+            {/* {checkDanhSach && <TableFiles data={dataShowFiles} match={match} />} */}
+            <FormFiles setCheckDanhSach={setCheckDanhSach} />
+            {checkDanhSach && <TableFiles onDelete={onDelete} />}
           </div>
         </div>
       </div>

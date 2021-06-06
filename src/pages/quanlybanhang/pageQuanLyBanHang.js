@@ -6,21 +6,21 @@ import * as actNhapKho from "../../actions/quanlykho/actQuanLyKho";
 import * as actHoaDonHoaDonDaHoanTat from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
 import * as actQuanLyThongTinKhachHang from "../../actions/quanlythongtinkhachhang/actQuanLyThongTinKhachHang";
 import FormBanHang from "../../components/quanlybanhang/formBanHang";
-import HoaDon from "../../components/quanlybanhang/hoaDon";
 import { renderDateTheoHeThong } from "./../../common/convert/renderConvert";
 import ModalBanHang from "../../components/quanlybanhang/modalBanHang";
 import FormThongTinKhachHang from "../../components/quanlythongtinkhachhang/formThongTinKhachHang";
 function PageQuanLyBanHang({ match, location }) {
   const [checkFormThemMoi, setCheckFormThemMoi] = useState(false);
   const [checkDanhSach, setCheckDanhSach] = useState(true);
-  const listThuoc = useSelector((state) => state.khothuoc.list);
   const account_current = useSelector(
     (state) => state.quanlylogin.account_current
   );
   const listHoaDonBanHangTam = useSelector((state) => state.quanlybanhang.list);
   const [checkEdit, setCheckEdit] = useState(false);
+  const [checkSubmitHoanThanh, setCheckSubmitHoanThanh] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [checkSubmitForm, setCheckSubmitForm] = useState(false);
   const [checkFormThemMoiKhachHang, setCheckFormThemMoiKhachHang] =
     useState(false);
   const dispatch = useDispatch();
@@ -51,8 +51,9 @@ function PageQuanLyBanHang({ match, location }) {
       };
       dispatch(actBanHang.actCreateBanHangRequest(value));
     }
-    cancel();
+    // cancel();
   }
+
   const handleHuyDonDatHangTam = () => {
     dispatch(actBanHang.actDeleteBanHangRequest(1));
   };
@@ -101,16 +102,12 @@ function PageQuanLyBanHang({ match, location }) {
   }
 
   function openForm() {
-    // if (listHoaDonBanHangTam.length > 0) {
-    //   setShowAlert(true);
-    // } else {
     resetForm();
     setCheckFormThemMoi(true);
     setCheckDanhSach(false);
     setCheckEdit(false);
     setIsVisible(false);
     dispatch(actBanHang.actHoaDonBanHang(null));
-    // }
   }
   const hoanTatThanhToan = (value) => {
     dispatch(
@@ -123,41 +120,7 @@ function PageQuanLyBanHang({ match, location }) {
   };
 
   const hoaDonDaHoanTat = (value) => {
-    console.log(value);
     let idHoaDonBanHang = value.id;
-    let totalTien = 0;
-    let arraySanPham = [];
-    // value.sanPham.map((item, index) => {
-    //   totalTien += item.giaTien * item.soLuongMua;
-    // });
-
-    // value.sanPham.map((item, index) => {
-    //   item = {
-    //     id: item.id ? item.id : "",
-    //     idThuoc: item.id ? item.id : "",
-    //     tenThuoc: item.tenThuoc,
-    //     ten: item.tenThuoc,
-    //     ma: item.ma,
-    //     donViTinh: item.donViTinh,
-    //     tongTienTruocThue: parseFloat(item.tongTienTruocThue),
-    //     phanTramThue: item.phanTramThue,
-    //     chietKhau: item.chietKhau,
-    //     giaTien: parseFloat(item.giaTien),
-    //     thanhToan: item.thanhToan,
-    //     soLuongNhap: item.soLuongNhap,
-    //     ngayNhapThuoc: item.ngayNhapThuoc,
-    //     idNhaCungCap: item.idNhaCungCap ? item.idNhaCungCap : "",
-    //     ngayTaoBanGhi: item.ngayTaoBanGhi ? item.ngayTaoBanGhi : "",
-    //     soLuongDaBan: item.soLuongDaBan + item.soLuongMua,
-    //     soLuongMua: item.soLuongMua,
-    //     fileDinhKem: item.fileDinhKem ? item.fileDinhKem : "",
-    //     thongTinNguoiTao: item.thongTinNguoiTao ? item.thongTinNguoiTao : "",
-    //     khuVuc: item.khuVuc,
-    //     phanLoaiThuoc: item.phanLoaiThuoc,
-    //   };
-    //   arraySanPham.push(item);
-    // });
-
     value = {
       sanPham: value.sanPham,
       idKhachHang: value.idKhachHang,
@@ -168,7 +131,9 @@ function PageQuanLyBanHang({ match, location }) {
     };
     dispatch(actHoaDonHoaDonDaHoanTat.actCreateHoaDonDaHoanTatRequest(value));
     dispatch(actBanHang.actDeleteBanHangRequest(value.id));
-    dispatch(actBanHang.actHoaDonBanHang(null));
+    dispatch(actBanHang.actHoaDonBanHang({}));
+    dispatch(actBanHang.actGetBanHangById({}));
+    setCheckSubmitHoanThanh(true);
     onDelete(idHoaDonBanHang);
   };
 
@@ -209,14 +174,15 @@ function PageQuanLyBanHang({ match, location }) {
   useEffect(() => {
     dispatch(actBanHang.actFetchBanHangRequest());
     if (listHoaDonBanHangTam.length > 0) {
-      dispatch(actBanHang.actGetBanHangByIdRequest(1));
+      dispatch(actBanHang.actGetBanHangByIdRequest(listHoaDonBanHangTam[0].id));
     }
     dispatch(actQuanLyThongTinKhachHang.actFetchThongTinKhachHangRequest());
   }, []);
+
   return (
     <div className="container-fluid ">
       {/* <!-- Page Heading --> */}
-      {showAlert ? (
+      {/* {showAlert ? (
         <Alert
           message="Thông báo"
           description="Vui lòng xử lý đơn hàng !"
@@ -236,7 +202,7 @@ function PageQuanLyBanHang({ match, location }) {
             Tạo phiếu ghi
           </Button>
         </div>
-      )}
+      )} */}
 
       <div className="row">
         {/* <!-- Area Chart --> */}
@@ -288,14 +254,17 @@ function PageQuanLyBanHang({ match, location }) {
                 </Tooltip>
               )}
             </div>
-            {checkFormThemMoi && (
-              <FormBanHang
-                onSave={onSave}
-                cancel={cancel}
-                checkEdit={checkEdit}
-                checkFormThemMoiKhachHang={checkFormThemMoiKhachHang}
-              />
-            )}
+            {/* {checkFormThemMoi && ( */}
+            <FormBanHang
+              onSave={onSave}
+              cancel={cancel}
+              checkEdit={checkEdit}
+              checkFormThemMoiKhachHang={checkFormThemMoiKhachHang}
+              setCheckSubmitForm={setCheckSubmitForm}
+              onEdit={onEdit}
+              hoanTatThanhToan={hoanTatThanhToan}
+            />
+            {/* )} */}
             {/* {checkDanhSach && (
               <TableBanHang
                 data={dataListBanHang}
@@ -304,9 +273,9 @@ function PageQuanLyBanHang({ match, location }) {
                 onEdit={onEdit}
               />
             )} */}
-            {checkDanhSach && (
+            {/* {checkDanhSach && (
               <HoaDon onEdit={onEdit} hoanTatThanhToan={hoanTatThanhToan} />
-            )}
+            )} */}
             <ModalBanHang
               isVisible={isVisible}
               onCancel={onCancel}

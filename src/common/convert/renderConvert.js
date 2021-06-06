@@ -24,18 +24,18 @@ export const renderDateTime = (value) => {
 
 export const renderConverLoaiThanhToan = (value) => {
   if ("CongNo") {
-    return <p>Công nợ</p>;
+    return <span>Công nợ</span>;
   } else if ("TienMat") {
-    return <p>Tiền mặt</p>;
+    return <span>Tiền mặt</span>;
   }
 };
 export const renderConvertSoLuongTheoDonVi = (value, donViTinh) => {
   if ("Hop") {
-    return <p>{value}/Hộp</p>;
+    return <span>{value}/Hộp</span>;
   } else if ("Vien") {
-    return <p>{value}/Viên</p>;
+    return <span>{value}/Viên</span>;
   } else if ("Tuyp") {
-    return <p>{value}/Tuýp</p>;
+    return <span>{value}/Tuýp</span>;
   }
 };
 export const renderDateTheoHeThong = () => {

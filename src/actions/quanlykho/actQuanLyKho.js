@@ -114,7 +114,14 @@ export function actUpdateThuocRequest(value) {
     return callApi(`quanlykho/${value.id}`, "PUT", value).then((res) => {
       if (res) {
         thongBao(message.SUA_THANH_CONG);
-        dispatch(actUpdateThuoc(res.data.result));
+        console.log(res.data.result);
+        let data = {
+          ...res.data.result,
+          key: res.data.result.id,
+          value: res.data.result.id,
+          ten: res.data.result.tenThuoc,
+        };
+        dispatch(actUpdateThuoc(data));
       }
     });
   };

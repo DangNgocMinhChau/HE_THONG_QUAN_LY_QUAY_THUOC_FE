@@ -32,6 +32,17 @@ export function actDeleteHoaDonDaHoanTatRequest(id) {
   };
 }
 
+export function actDeleteSanPhamThanhCongRequest(id) {
+  return (dispatch) => {
+    return callApi(`sanphamthanhcong/${id}`, "DELETE", null).then((res) => {
+      if (res) {
+        // dispatch(actDeleteBanHang(id));
+        // dispatch(actHoaDonBanHang(null));
+      }
+    });
+  };
+}
+
 export const actDeleteHoaDonDaHoanTat = (id) => {
   return {
     type: Types.DELETE_HOADONDAHOANTAT,
@@ -60,7 +71,7 @@ export function actGetHoaDonDaHoanTatByIdRequest(id) {
   return (dispatch) => {
     return callApi(`quanlybanhangthanhcong/${id}`, "GET", null).then((res) => {
       if (res) {
-        dispatch(actGetHoaDonDaHoanTatById(res.data));
+        dispatch(actGetHoaDonDaHoanTatById(res.data.result));
       }
     });
   };
@@ -103,7 +114,7 @@ export function actUpdateHoaDonDaHoanTatRequest(value) {
       (res) => {
         if (res) {
           message.success(Message.SUA_THANH_CONG);
-          dispatch(actUpdateHoaDonDaHoanTat(res.data));
+          dispatch(actUpdateHoaDonDaHoanTat(res.data.result));
         }
       }
     );

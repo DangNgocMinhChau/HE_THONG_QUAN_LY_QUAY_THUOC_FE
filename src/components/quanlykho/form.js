@@ -29,6 +29,8 @@ function FormNhapThuoc({
   const dispatch = useDispatch();
   const initialValue = useSelector((state) => state.khothuoc.item);
   const itemNhaCungCap = useSelector((state) => state.quanlynhacungcap.item);
+  const dataListFile = useSelector((state) => state.quanly_files.list);
+  console.log(dataListFile);
   const [checkIdNCC, setCheckIdNCC] = useState(false);
   const [valueForm, setValueForm] = useState({});
   const [checkInputNhaCungCapCoSan, setCheckInputNhaCungCapCoSan] =
@@ -447,25 +449,18 @@ function FormNhapThuoc({
                         >
                           <div className="row">
                             <div className="col-md-10">
-                              <RenderInput
+                              <RenderInputSelectSearch
                                 {...restField}
-                                label="Tên file"
-                                name={[name, "tenFile"]}
-                                fieldKey={[fieldKey, "tenFile"]}
+                                label="File"
+                                name={[name, "fileDinhKem"]}
+                                fieldKey={[fieldKey, "fileDinhKem"]}
+                                style={{ width: "660px" }}
+                                //  onChange={onShowValue}
+                                options={dataListFile}
                                 validate={true}
-                                style={{ width: "300px" }}
                               />
                             </div>
                           </div>
-
-                          <RenderInput
-                            {...restField}
-                            name={[name, "urlfiles"]}
-                            fieldKey={[fieldKey, "urlfiles"]}
-                            style={{ width: "300px" }}
-                            validate={true}
-                            label="url"
-                          />
 
                           <MinusCircleOutlined onClick={() => remove(name)} />
                         </Space>

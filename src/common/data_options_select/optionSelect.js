@@ -1,7 +1,7 @@
 export const optionPhanQuyenAdmin = [
-  { id: "1", ten: "Quản Trị Viên" },
-  { id: "2", ten: "Nhân viên" },
-  { id: "3", ten: "Khách hàng" },
+  { value: "1", ten: "Quản Trị Viên" },
+  { value: "2", ten: "Nhân viên" },
+  { value: "3", ten: "Khách hàng" },
 ];
 
 export const optionPhanQuyenNoAdmin = [
@@ -44,7 +44,7 @@ export const valueRadioGioiTinh = [
 ];
 
 export const valueRadioDonViTinh = [
-  { ma: "Vien", ten: "Viên" },
-  { ma: "Hop", ten: "Hộp" },
-  { ma: "Tuyp", ten: "Tuýp" },
+  { value: "Vien", ten: "Viên" },
+  { value: "Hop", ten: "Hộp" },
+  { value: "Tuyp", ten: "Tuýp" },
 ];

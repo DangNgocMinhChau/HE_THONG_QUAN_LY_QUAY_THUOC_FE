@@ -193,7 +193,7 @@ export function RenderInputRadio({
           value.length > 0 &&
           value.map((item, index) => {
             return (
-              <Radio key={index} value={item.ma}>
+              <Radio key={index} value={item.value}>
                 {item.ten}
               </Radio>
             );
@@ -246,6 +246,7 @@ export function RenderInputSelect({
           Array.isArray(options) &&
           options.length > 0 &&
           options.map((item, index) => {
+            console.log(item);
             return <Select.Option value={item.value}>{item.ten}</Select.Option>;
           })}
       </Select>

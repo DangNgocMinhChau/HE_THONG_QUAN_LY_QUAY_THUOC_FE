@@ -21,12 +21,13 @@ const list = (state = initialState, action) => {
         data.map((item, index) => {
           item = {
             ...item,
-            key: item.thuocId,
+            key: item.id,
+            value: item.id,
+            ten: item.name,
           };
           arayNew.push(item);
         });
       }
-
       state = arayNew;
       return [...state];
     case Types.CREATE_FILES:

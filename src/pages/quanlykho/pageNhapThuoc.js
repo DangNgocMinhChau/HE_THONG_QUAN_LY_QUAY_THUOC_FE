@@ -31,25 +31,6 @@ function PageNhapThuoc({ match, location, history }) {
   const dataListNhaCungCap = useSelector(
     (state) => state.quanlynhacungcap.list
   );
-  // let dataTable = [];
-
-  // dataListThuoc.map((item, index) => {
-  //   if (
-  //     dataListNhaCungCap.filter(
-  //       (itemNhaCungCap) => itemNhaCungCap.id === item.idNhaCungCap
-  //     ).length > 0
-  //   ) {
-  //     item = {
-  //       ...item,
-  //       ...dataListNhaCungCap.filter(
-  //         (itemNhaCungCap) => itemNhaCungCap.id === item.idNhaCungCap
-  //       )[0],
-  //       id: item.id,
-  //       key: item.id,
-  //     };
-  //     dataTable.push(item);
-  //   }
-  // });
 
   const dispatch = useDispatch();
 
@@ -60,6 +41,17 @@ function PageNhapThuoc({ match, location, history }) {
   }
 
   function onSave(value) {
+    let file = value.fileDinhKem;
+    let strFile = "";
+    file.map((item, index) => {
+      if (index == file.length - 1) {
+        strFile += item.fileDinhKem;
+      } else {
+        strFile += item.fileDinhKem + "/";
+      }
+    });
+    console.log(file);
+
     let dataThuoc = {
       id: value.id ? value.id : "",
       tenThuoc: value.tenThuoc,
@@ -80,6 +72,7 @@ function PageNhapThuoc({ match, location, history }) {
       ngayTaoBanGhi: value.ngayTaoBanGhi ? value.ngayTaoBanGhi : "",
       phanLoaiThuoc: value.phanLoaiThuoc,
       khuVuc: value.khuVuc,
+      fileDinhKem: strFile,
       nguoiTaoId: account_current.id,
     };
 

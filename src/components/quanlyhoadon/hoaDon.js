@@ -6,8 +6,9 @@ import {
 } from "../../common/convert/renderConvert";
 import PDFPrint from "../../common/pdf_print";
 import { Tabs, Divider, Alert } from "antd";
+import CalendarHoaDon from "./calendarHoaDon";
 const { TabPane } = Tabs;
-function HoaDon({ onEdit, valueDate }) {
+function HoaDon({ onEdit, valueDate, setValueDate }) {
   const dataListTatCaHoaDon = useSelector(
     (state) => state.quanly_hoadon_ban_thanhcong.list
   );
@@ -37,6 +38,8 @@ function HoaDon({ onEdit, valueDate }) {
 
   return (
     <>
+      <CalendarHoaDon setValueDate={setValueDate} />
+      <hr />
       <Tabs tabPosition="left" style={{ textAlign: "center" }}>
         {dataListTatCaHoaDon &&
         Array.isArray(
@@ -186,7 +189,7 @@ function HoaDon({ onEdit, valueDate }) {
                                 </table>
                               </div>
                             </div>
-                            {account_current.quyen === "QuanTri" && (
+                            {account_current.maQuyen === "ADMIN" && (
                               <div class="text-right mb-3">
                                 <a
                                   onClick={() => {

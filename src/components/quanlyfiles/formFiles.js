@@ -1,171 +1,145 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Form, Divider, Button } from "antd";
-import { useForm } from "antd/lib/form/Form";
-import { RenderInput } from "../../common/renderForm/inputForm";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import UploadService from "./../../utils/upload-files.service";
+class FormFiles extends Component {
+  constructor(props) {
+    super(props);
+    this.selectFiles = this.selectFiles.bind(this);
+    this.upload = this.upload.bind(this);
+    this.uploadFiles = this.uploadFiles.bind(this);
 
-function FormNhaCungCap({ onSave, cancel, checkEdit }) {
-  const [form] = useForm();
-  const dispatch = useDispatch();
-  const initialValue = useSelector((state) => state.quanlynhacungcap.item);
-  if (initialValue !== null) {
-    var dataInitialValue = {};
-    if (initialValue) {
-      dataInitialValue = {
-        ...initialValue,
-      };
-    } else {
-      dataInitialValue = initialValue;
-    }
+    this.state = {
+      selectedFiles: undefined,
+      progressInfos: [],
+      message: [],
+      fileInfos: [],
+    };
   }
 
-  const onFinishFailed = (errorInfo) => {};
-
-  const onFinish = (value) => {
-    onSave(value);
+  selectFiles = (event) => {
+    this.setState({
+      progressInfos: [],
+      selectedFiles: event.target.files,
+    });
   };
 
-  useEffect(() => {
-    form.setFieldsValue(dataInitialValue);
-  }, [initialValue, form]);
+  upload(idx, file) {
+    let _progressInfos = [...this.state.progressInfos];
 
-  useEffect(() => {
-    form.resetFields();
-  }, [form]);
-  return (
-    <>
-      <Form
-        form={form}
-        name="basic"
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        className="test-alight"
-      >
-        <div className="row m-0 p-0 ">
-          <div className="col-md-12 ">
-            <Divider plain>Nhà cung cấp</Divider>
+    UploadService.upload(file, (event) => {
+      _progressInfos[idx].percentage = Math.round(
+        (100 * event.loaded) / event.total
+      );
+      this.setState({
+        _progressInfos,
+      });
+    })
+      .then((response) => {
+        this.setState((prev) => {
+          let nextMessage = [
+            ...prev.message,
+            "Tải file thành công: " + file.name,
+          ];
+          return {
+            message: nextMessage,
+          };
+        });
 
-            <RenderInput label="id" name="id" hidden={true} />
+        return UploadService.getFiles();
+      })
+      .then((files) => {
+        this.props.setCheckDanhSach(true);
+      })
+      .catch(() => {
+        _progressInfos[idx].percentage = 0;
+        this.setState((prev) => {
+          let nextMessage = [
+            ...prev.message,
+            "Could not upload the file: " + file.name,
+          ];
+          return {
+            progressInfos: _progressInfos,
+            message: nextMessage,
+          };
+        });
+      });
+  }
 
-            <div className="row">
-              <div className="col-md-2">
-                <p>Mã</p>
-              </div>
-              <div className="col-md-10">
-                <RenderInput
-                  showLabel={false}
-                  label="Mã"
-                  name="ma"
-                  validate={true}
-                />
+  uploadFiles() {
+    const selectedFiles = this.state.selectedFiles;
+    this.props.setCheckDanhSach(false);
+    let _progressInfos = [];
+
+    for (let i = 0; i < selectedFiles.length; i++) {
+      _progressInfos.push({ percentage: 0, fileName: selectedFiles[i].name });
+    }
+
+    this.setState(
+      {
+        progressInfos: _progressInfos,
+        message: [],
+      },
+      () => {
+        for (let i = 0; i < selectedFiles.length; i++) {
+          this.upload(i, selectedFiles[i]);
+        }
+      }
+    );
+  }
+  render() {
+    const { selectedFiles, progressInfos, message } = this.state;
+
+    return (
+      <div>
+        {progressInfos &&
+          progressInfos.map((progressInfo, index) => (
+            <div className="mb-2" key={index}>
+              <span>{progressInfo.fileName}</span>
+              <div className="progress">
+                <div
+                  className="progress-bar progress-bar-info"
+                  role="progressbar"
+                  aria-valuenow={progressInfo.percentage}
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style={{ width: progressInfo.percentage + "%" }}
+                >
+                  {progressInfo.percentage}%
+                </div>
               </div>
             </div>
+          ))}
 
-            <div className="row">
-              <div className="col-md-2">
-                <p>Tên nhà cung cấp</p>
-              </div>
-              <div className="col-md-10">
-                <RenderInput
-                  showLabel={false}
-                  label="Tên nhà cung cấp"
-                  name="tenNhaCungCap"
-                  validate={true}
-                />
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-md-2">
-                <p>Địa chỉ</p>
-              </div>
-              <div className="col-md-10">
-                <RenderInput
-                  showLabel={false}
-                  label="Địa chỉ"
-                  validate={true}
-                  name="diaChiNhaCungCap"
-                />
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-md-2">
-                <p>Mã số thuế</p>
-              </div>
-              <div className="col-md-10">
-                <RenderInput
-                  showLabel={false}
-                  label="Mã số thuế"
-                  validate={true}
-                  name="mstNhaCungCap"
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-2">
-                <p>Số điện thoại nhà cung cấp (Nếu có)</p>
-              </div>
-              <div className="col-md-10">
-                <RenderInput
-                  showLabel={false}
-                  label="Số điện thoại"
-                  name="soDienThoaiNhaCungCap"
-                  validate={true}
-                  addonBefore="+84"
-                />
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-md-2">
-                <p>Zalo</p>
-              </div>
-              <div className="col-md-10">
-                <RenderInput showLabel={false} label="Zalo" name="zalo" />
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-md-2">
-                <p>Gmail</p>
-              </div>
-              <div className="col-md-10">
-                <RenderInput showLabel={false} label="Email" name="email" />
-              </div>
-            </div>
+        <div className="row my-3">
+          <div className="col-8">
+            <label className="btn btn-default p-0">
+              <input type="file" multiple onChange={this.selectFiles} />
+            </label>
           </div>
-          <RenderInput name="ngayTaoBanGhi" hidden={true} />
+
+          <div className="col-4">
+            <button
+              className="btn btn-primary btn-sm"
+              disabled={!selectedFiles}
+              onClick={this.uploadFiles}
+            >
+              Upload <i class="fa fa-upload" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
-        <Form.Item>
-          <div className="row">
-            <div className="col-md-12  ">
-              <div className="col-md-12 d-flex justify-content-end">
-                <Button
-                  className="ml-2"
-                  type="primary "
-                  size="small"
-                  htmlType="submit"
-                >
-                  {checkEdit ? "Sửa" : "Thêm"}
-                </Button>
-                <Button
-                  onClick={() => {
-                    cancel();
-                  }}
-                  className="ml-2"
-                  type="seconed"
-                  size="small"
-                >
-                  Đóng
-                </Button>
-              </div>
-            </div>
+
+        {message.length > 0 && (
+          <div className="alert alert-success" role="alert">
+            <ul>
+              {message.map((item, i) => {
+                return <li key={i}>{item}</li>;
+              })}
+            </ul>
           </div>
-        </Form.Item>
-      </Form>
-    </>
-  );
+        )}
+      </div>
+    );
+  }
 }
 
-export default FormNhaCungCap;
+export default connect(null, null)(FormFiles);

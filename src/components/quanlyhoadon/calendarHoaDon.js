@@ -1,27 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Calendar } from "antd";
 export default function CalendarHoaDon({ setValueDate, setCheckDanhSach }) {
-  function onChange(value) {
-    setValueDate(value.format("DD/MM/YYYY"));
-    setCheckDanhSach(true);
+  function onChange(value, mode) {
+    if (arr.length <= 0) {
+      setValueDate(value.format("DD/MM/YYYY"));
+      // setCheckDanhSach(true);
+    } else {
+      arr = [];
+    }
   }
-
+  let arr = [];
   function onPanelChange(value, mode) {
-    console.log(value.format("YYYY-MM-DD"), mode);
-  }
-  function onClick(value) {
-    setValueDate(value.format("DD/MM/YYYY"));
-    setCheckDanhSach(true);
+    if (mode != undefined) {
+      arr = [];
+      arr.push(mode);
+    }
+    if (arr.length > 0) {
+      // setCheckDanhSach(false);
+    }
   }
 
   return (
     <>
-      <div className="site-calendar-demo-card">
+      <div>
         <Calendar
           fullscreen={false}
-          onChange={onChange}
+          onChange={(value, mode) => onChange(value, mode)}
           onPanelChange={onPanelChange}
-          onSelect={onClick}
+          onSelect={(value, mode) => onChange(value, mode)}
         />
       </div>
     </>
