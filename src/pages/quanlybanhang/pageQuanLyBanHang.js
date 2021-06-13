@@ -16,6 +16,7 @@ function PageQuanLyBanHang({ match, location }) {
     (state) => state.quanlylogin.account_current
   );
   const listHoaDonBanHangTam = useSelector((state) => state.quanlybanhang.list);
+  const itemHoaDon = useSelector((state) => state.quanlybanhang.itemHoaDon);
   const [checkEdit, setCheckEdit] = useState(false);
   const [checkSubmitHoanThanh, setCheckSubmitHoanThanh] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -23,6 +24,7 @@ function PageQuanLyBanHang({ match, location }) {
   const [checkSubmitForm, setCheckSubmitForm] = useState(false);
   const [checkFormThemMoiKhachHang, setCheckFormThemMoiKhachHang] =
     useState(false);
+
   const dispatch = useDispatch();
 
   function cancel() {
@@ -55,7 +57,7 @@ function PageQuanLyBanHang({ match, location }) {
   }
 
   const handleHuyDonDatHangTam = () => {
-    dispatch(actBanHang.actDeleteBanHangRequest(1));
+    dispatch(actBanHang.actDeleteBanHangRequest(itemHoaDon && itemHoaDon.id));
   };
   function onSaveQuanLyThongTinKhachHang(value) {
     if (value.id) {
@@ -130,7 +132,6 @@ function PageQuanLyBanHang({ match, location }) {
       ngayTaoBanGhi: renderDateTheoHeThong(),
     };
     dispatch(actHoaDonHoaDonDaHoanTat.actCreateHoaDonDaHoanTatRequest(value));
-    dispatch(actBanHang.actDeleteBanHangRequest(value.id));
     dispatch(actBanHang.actHoaDonBanHang({}));
     dispatch(actBanHang.actGetBanHangById({}));
     setCheckSubmitHoanThanh(true);
@@ -181,80 +182,74 @@ function PageQuanLyBanHang({ match, location }) {
 
   return (
     <div className="container-fluid ">
-      {/* <!-- Page Heading --> */}
-      {/* {showAlert ? (
-        <Alert
-          message="Thông báo"
-          description="Vui lòng xử lý đơn hàng !"
-          type="error"
-          closable
-          onClose={onClose}
-        />
-      ) : (
-        <div className="d-sm-flex align-items-center justify-content-between mb-4">
-          <h5 className=" mb-0 text-gray-800">Bàn hàng</h5>
-          <Button
-            type="primary"
-            onClick={() => {
-              openForm();
-            }}
-          >
-            Tạo phiếu ghi
-          </Button>
-        </div>
-      )} */}
-
       <div className="row">
         {/* <!-- Area Chart --> */}
         <div className="col-xl-12 col-lg-12">
           <div className="card shadow mb-4">
             {/* <!-- Card Header - Dropdown --> */}
-            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between pb-0 pt-0 ">
               <h6 className="m-0 font-weight-bold ">Bán hàng</h6>
-              {listHoaDonBanHangTam.length > 0 && (
-                <Tooltip placement="bottom" title="Hủy" key="red">
-                  <a
-                    className="m-0 p-0 "
-                    size="small"
-                    onClick={() => {
-                      handleHuyDonDatHangTam();
-                    }}
-                    type="dashed"
-                    danger={true}
+              <div className=" d-flex flex-row align-items-center  ">
+                {listHoaDonBanHangTam.length > 0 && (
+                  <Tooltip placement="bottom" title="Hủy" key="red">
+                    <a
+                      className="m-0 p-0 "
+                      size="small"
+                      onClick={() => {
+                        handleHuyDonDatHangTam();
+                      }}
+                      type="dashed"
+                      danger={true}
+                    >
+                      <i
+                        class="fa fa-times-circle-o"
+                        style={{ color: "red" }}
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                  </Tooltip>
+                )}
+                {checkFormThemMoi && (
+                  <Tooltip
+                    placement="bottom"
+                    title="Tạo mới khách hàng"
+                    key="red"
                   >
-                    <i
-                      class="fa fa-times-circle-o"
-                      style={{ color: "red" }}
-                      aria-hidden="true"
-                    ></i>
-                  </a>
-                </Tooltip>
-              )}
-              {checkFormThemMoi && (
-                <Tooltip
-                  placement="bottom"
-                  title="Tạo mới khách hàng"
-                  key="red"
-                >
-                  <a
-                    className="m-0 p-0 "
-                    size="small"
-                    onClick={() => {
-                      handleCreteKhachHang(!checkFormThemMoiKhachHang);
-                    }}
-                    type="dashed"
-                    danger={true}
+                    <a
+                      className="m-0 p-0 "
+                      size="small"
+                      onClick={() => {
+                        handleCreteKhachHang(!checkFormThemMoiKhachHang);
+                      }}
+                      type="dashed"
+                      danger={true}
+                    >
+                      <i
+                        class="fa fa-address-card"
+                        style={{ color: "indigo" }}
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                  </Tooltip>
+                )}
+                {itemHoaDon && Array.isArray(itemHoaDon.sanPham) && (
+                  <Tooltip
+                    placement="bottom"
+                    title="Tạo mới khách hàng"
+                    key="red"
                   >
-                    <i
-                      class="fa fa-address-card"
-                      style={{ color: "indigo" }}
-                      aria-hidden="true"
-                    ></i>
-                  </a>
-                </Tooltip>
-              )}
+                    <a
+                      className="ml-3 text-success"
+                      onClick={() => {
+                        hoanTatThanhToan(itemHoaDon.id);
+                      }}
+                    >
+                      <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                    </a>
+                  </Tooltip>
+                )}
+              </div>
             </div>
-            {/* {checkFormThemMoi && ( */}
             <FormBanHang
               onSave={onSave}
               cancel={cancel}
@@ -262,20 +257,7 @@ function PageQuanLyBanHang({ match, location }) {
               checkFormThemMoiKhachHang={checkFormThemMoiKhachHang}
               setCheckSubmitForm={setCheckSubmitForm}
               onEdit={onEdit}
-              hoanTatThanhToan={hoanTatThanhToan}
             />
-            {/* )} */}
-            {/* {checkDanhSach && (
-              <TableBanHang
-                data={dataListBanHang}
-                match={match}
-                onDelete={onDelete}
-                onEdit={onEdit}
-              />
-            )} */}
-            {/* {checkDanhSach && (
-              <HoaDon onEdit={onEdit} hoanTatThanhToan={hoanTatThanhToan} />
-            )} */}
             <ModalBanHang
               isVisible={isVisible}
               onCancel={onCancel}

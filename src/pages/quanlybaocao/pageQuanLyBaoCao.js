@@ -1,4 +1,5 @@
 import React from "react";
+import QrCode from "../../components/QrCode";
 import Darboard from "../../components/quanlybaocao/darboard";
 
 function PageQuanLyBaoCao(props) {
@@ -6,7 +7,8 @@ function PageQuanLyBaoCao(props) {
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-12">
-          <Darboard />
+          {/* <Darboard /> */}
+          <QrCode />
         </div>
       </div>
     </div>

@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import TableNhapThuoc from "../../components/quanlykho/table";
-import { Button, Tooltip } from "antd";
+import { Button, Tooltip, Switch } from "antd";
 import * as act from "../../actions/quanlykho/actQuanLyKho";
 import * as actQuanLyFiles from "../../actions/quanlyfiles/actQuanLyFiles";
 import * as actNhaCungCap from "../../actions/quanlynhacungcap/actQuanLyNhaCungCap";
 import FormKhoThuoc from "../../components/quanlykho/form";
 import { renderDateTheoHeThong } from "./../../common/convert/renderConvert";
 import DetailKhoThuoc from "../../components/quanlykho/detailKhoThuoc";
+import ModalFile from "../../components/quanlyfiles/modalFiles";
+import ModalQRCode from "../../components/quanlykho/modalQRCode";
 
 function PageNhapThuoc({ match, location, history }) {
   const [checkFormThemMoi, setCheckFormThemMoi] = useState(false);
   const [checkDanhSach, setCheckDanhSach] = useState(true);
   const [checkEdit, setCheckEdit] = useState(false);
   const [checkShowDetail, setCheckShowDetail] = useState(false);
-
+  const [visibleModalFile, setVisibleModalFile] = useState(false);
+  const [recordTableThuoc, setRecordTableThuoc] = useState();
+  const [isVisibleQrCode, setIsVisibleQrCode] = useState(false);
+  const [valueRecordTable, setValueRecordTable] = useState();
   const [idXoa, setIdXoa] = useState([]);
 
   const { dataListThuoc, dataListFile, account_current, itemKhoThuoc } =
@@ -45,13 +50,11 @@ function PageNhapThuoc({ match, location, history }) {
     let strFile = "";
     file.map((item, index) => {
       if (index == file.length - 1) {
-        strFile += item.fileDinhKem;
+        strFile += item.idFile;
       } else {
-        strFile += item.fileDinhKem + "/";
+        strFile += item.idFile + "/";
       }
     });
-    console.log(file);
-
     let dataThuoc = {
       id: value.id ? value.id : "",
       tenThuoc: value.tenThuoc,
@@ -90,20 +93,20 @@ function PageNhapThuoc({ match, location, history }) {
     if (value.id) {
       dataThuoc = {
         ...dataThuoc,
-        fileDinhKem: value.fileDinhKem,
+        fileDinhKem: strFile,
       };
-      if (
-        value &&
-        value.fileDinhKem &&
-        dataListFile &&
-        dataListFile.length > 0
-      ) {
-        let dataFiles = {
-          ...dataListFile.filter((item) => item.idThuoc === value.id)[0],
-          fileDinhKem: value.fileDinhKem ? value.fileDinhKem : "",
-        };
-        dispatch(actQuanLyFiles.actUpdatefilesRequest(dataFiles));
-      }
+      // if (
+      //   value &&
+      //   value.fileDinhKem &&
+      //   dataListFile &&
+      //   dataListFile.length > 0
+      // ) {
+      //   let dataFiles = {
+      //     ...dataListFile.filter((item) => item.idThuoc === value.id)[0],
+      //     fileDinhKem: value.fileDinhKem ? value.fileDinhKem : "",
+      //   };
+      //   dispatch(actQuanLyFiles.actUpdatefilesRequest(dataFiles));
+      // }
 
       if (value.nhaCungCapId) {
         dispatch(act.actUpdateThuocRequest(dataThuoc));
@@ -221,8 +224,9 @@ function PageNhapThuoc({ match, location, history }) {
     dispatch(act.actGetKhoThuocByIdRequest(id));
   };
 
-  function onEdit(id) {
-    dispatch(act.actGetKhoThuocByIdRequest(id));
+  function onEdit(record) {
+    setRecordTableThuoc(record);
+    dispatch(act.actGetKhoThuocByIdRequest(record.id));
     setCheckFormThemMoi(true);
     setCheckDanhSach(false);
     setCheckEdit(true);
@@ -245,6 +249,15 @@ function PageNhapThuoc({ match, location, history }) {
       message: `Thuốc: ${value.tenThuoc} đã gần hết , số lượng còn trong kho : ${value.soLuongBanDau}`,
       idThuoc: value.id,
     };
+  };
+
+  const handleUploadFile = () => {
+    setVisibleModalFile(true);
+  };
+
+  const onHandleQRCode = (record) => {
+    setIsVisibleQrCode(true);
+    setValueRecordTable(record);
   };
 
   useEffect(() => {
@@ -271,6 +284,29 @@ function PageNhapThuoc({ match, location, history }) {
               <i class="fa fa-plus-square" aria-hidden="true"></i>
             </Button>
 
+            <Tooltip
+              placement="bottom"
+              title="Thêm file"
+              color="green"
+              key="red"
+            >
+              <Button
+                className="m-2 "
+                size="small"
+                onClick={() => {
+                  handleUploadFile();
+                }}
+                type="dashed"
+                danger={true}
+              >
+                <i
+                  class="fa fa-cloud-upload"
+                  aria-hidden="true"
+                  style={{ color: "green" }}
+                ></i>
+              </Button>
+            </Tooltip>
+
             <Tooltip placement="bottom" title="Xoá nhiều" color="red" key="red">
               <Button
                 className="m-2 "
@@ -289,7 +325,12 @@ function PageNhapThuoc({ match, location, history }) {
               </Button>
             </Tooltip>
 
-            <Tooltip placement="bottom" title="Xoá nhiều" color="red" key="red">
+            <Tooltip
+              placement="bottom"
+              title="Xoá vĩnh viễn"
+              color="red"
+              key="red"
+            >
               <Button
                 className="m-2 mr-5 "
                 size="small"
@@ -330,6 +371,7 @@ function PageNhapThuoc({ match, location, history }) {
             </div>
             {checkFormThemMoi && (
               <FormKhoThuoc
+                recordTableThuoc={recordTableThuoc}
                 onSave={onSave}
                 cancel={cancel}
                 checkEdit={checkEdit}
@@ -347,6 +389,7 @@ function PageNhapThuoc({ match, location, history }) {
                 setIdXoa={setIdXoa}
                 deleteFiles={deleteFiles}
                 onDetail={onDetail}
+                onHandleQRCode={onHandleQRCode}
               />
             )}
             {checkShowDetail && (
@@ -356,6 +399,17 @@ function PageNhapThuoc({ match, location, history }) {
                 itemKhoThuoc={itemKhoThuoc}
               />
             )}
+
+            <ModalFile
+              isVisible={visibleModalFile}
+              handleCancel={() => setVisibleModalFile(false)}
+            />
+
+            <ModalQRCode
+              visible={isVisibleQrCode}
+              handleCancel={() => setIsVisibleQrCode(false)}
+              valueRecordTable={valueRecordTable}
+            />
           </div>
         </div>
       </div>

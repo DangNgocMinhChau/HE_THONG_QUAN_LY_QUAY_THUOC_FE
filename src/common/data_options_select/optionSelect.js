@@ -1,12 +1,12 @@
 export const optionPhanQuyenAdmin = [
-  { value: "1", ten: "Quản Trị Viên" },
-  { value: "2", ten: "Nhân viên" },
-  { value: "3", ten: "Khách hàng" },
+  { value: 1, ten: "Quản Trị Viên" },
+  { value: 2, ten: "Nhân viên" },
+  { value: 3, ten: "Khách hàng" },
 ];
 
 export const optionPhanQuyenNoAdmin = [
-  { value: "2", ten: "Nhân viên" },
-  { value: "3", ten: "Khách hàng" },
+  { value: 2, ten: "Nhân viên" },
+  { value: 3, ten: "Khách hàng" },
 ];
 
 export const optionHinhThucThanhToan = [

@@ -1,114 +1,132 @@
 import React from "react";
+import PDFPrint from "./../../common/pdf_print";
+import TableHoaDon from "./tableHoaDon";
+import { Card, Divider } from "antd";
+import { useSelector } from "react-redux";
+import {
+  renderConvertSoLuongTheoDonVi,
+  renderTien,
+} from "./../../common/convert/renderConvert";
+export default function HoaDonBanHangTamThoi({ onEdit }) {
+  const dataHoaDon = useSelector((state) => state.quanlybanhang.itemHoaDon);
+  let totalTien = 0;
+  dataHoaDon &&
+    Array.isArray(dataHoaDon.sanPham) &&
+    dataHoaDon.sanPham.length > 0 &&
+    dataHoaDon.sanPham.map((item, index) => {
+      totalTien += item.giaTien * item.soLuongMua;
+    });
 
-export default function HoaDonBanHangTamThoi(props) {
+  const renderDataTable = (data) => {
+    return (
+      data &&
+      data.map((item, index) => {
+        return (
+          <>
+            <tr className="content">
+              <td>{index + 1}</td>
+              <td>{item.tenThuoc}</td>
+              <td>
+                {renderConvertSoLuongTheoDonVi(item.soLuongMua, item.donViTinh)}
+              </td>
+              <td>{renderTien(item.giaTien)}</td>
+              <td className="text-center">
+                {renderTien(item.soLuongMua * item.giaTien)}
+              </td>
+            </tr>
+          </>
+        );
+      })
+    );
+  };
+
   return (
-    <div>
-      <div class="container mt-5 mb-3">
-        <div class="row d-flex justify-content-center">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="d-flex flex-row p-2">
+    <PDFPrint>
+      <div className="container mt-5 mb-3">
+        <div className="row d-flex justify-content-center">
+          <div className="col-md-12">
+            <div className="card">
+              <div className="d-flex flex-row p-2">
                 {" "}
-                <img src="https://i.imgur.com/vzlPPh3.png" width="48" />
-                <div class="d-flex flex-column">
+                <img src="https://i.imgur.com/vzlPPh3.png" width="40" />
+                <div className="d-flex flex-column">
                   {" "}
-                  <span class="font-weight-bold">Tax Invoice</span>{" "}
-                  <small>INV-001</small>{" "}
+                  {/* <span className="font-weight-bold">Mã hoá đơn</span>
+                  <small>1222123</small> */}
+                  <small> Email: chaungoc@gmail.com</small>
+                  <small> Đ/C: h18/16 K96 Điện Biên Phủ</small>
+                  <small> SĐT: 0905315214</small>
                 </div>
               </div>
               <hr />
-              <div class="table-responsive p-2">
-                <table class="table table-borderless">
+              <div className="table-responsive"></div>
+              <div className="products">
+                <small className=" d-flex justify-content-start">
+                  Tên người bán :{" "}
+                  {dataHoaDon && dataHoaDon?.thongTinNguoiBan?.tenNguoiDung}
+                </small>
+                <small className=" d-flex justify-content-start">
+                  Thời gian: {dataHoaDon && dataHoaDon?.ngayTaoBanGhi}
+                </small>
+                <br></br>
+                <small className=" d-flex justify-content-start">
+                  Tên khách hàng :{" "}
+                  {dataHoaDon &&
+                    dataHoaDon.thongTinNguoiMua &&
+                    dataHoaDon.thongTinNguoiMua.tenKhachHang}
+                </small>
+                <small className=" d-flex justify-content-start">
+                  SĐT :{" "}
+                  {dataHoaDon &&
+                    dataHoaDon.thongTinNguoiMua &&
+                    dataHoaDon.thongTinNguoiMua.soDienThoai}
+                </small>
+                <hr />
+                <table className="table table-borderless">
                   <tbody>
-                    <tr class="add">
-                      <td>To</td>
-                      <td>From</td>
+                    <tr className="add">
+                      <td>STT</td>
+                      <td>Sản phẩm</td>
+                      <td>Số lượng</td>
+                      <td>Đơn giá</td>
+                      <td className="text-center">Thành tiền</td>
                     </tr>
-                    <tr class="content">
-                      <td class="font-weight-bold">
-                        Google <br />
-                        Attn: John Smith Pymont <br />
-                        Australia
-                      </td>
-                      <td class="font-weight-bold">
-                        Facebook <br /> Attn: John Right Polymont <br /> USA
-                      </td>
-                    </tr>
+                    {renderDataTable(dataHoaDon && dataHoaDon.sanPham)}
                   </tbody>
                 </table>
               </div>
               <hr />
-              <div class="products p-2">
-                <table class="table table-borderless">
+              <div className="products p-0">
+                <table className="table table-borderless">
                   <tbody>
-                    <tr class="add">
-                      <td>Description</td>
-                      <td>Days</td>
-                      <td>Price</td>
-                      <td class="text-center">Total</td>
-                    </tr>
-                    <tr class="content">
-                      <td>Website Redesign</td>
-                      <td>15</td>
-                      <td>$1,500</td>
-                      <td class="text-center">$22,500</td>
-                    </tr>
-                    <tr class="content">
-                      <td>Logo Identity</td>
-                      <td>10</td>
-                      <td>$1,500</td>
-                      <td class="text-center">$15,000</td>
-                    </tr>
-                    <tr class="content">
-                      <td>Marketing Collateral</td>
-                      <td>3</td>
-                      <td>$1,500</td>
-                      <td class="text-center">$4,500</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <hr />
-              <div class="products p-2">
-                <table class="table table-borderless">
-                  <tbody>
-                    <tr class="add">
+                    <tr className="content">
                       <td></td>
-                      <td>Subtotal</td>
-                      <td>GST(10%)</td>
-                      <td class="text-center">Total</td>
-                    </tr>
-                    <tr class="content">
                       <td></td>
-                      <td>$40,000</td>
-                      <td>2,500</td>
-                      <td class="text-center">$42,500</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <hr />
-              {/* <div class="address p-2">
-                <table class="table table-borderless">
-                  <tbody>
-                    <tr class="add">
-                      <td>Bank Details</td>
-                    </tr>
-                    <tr class="content">
-                      <td>
-                        {" "}
-                        Bank Name : ADS BANK <br /> Swift Code : ADS1234Q <br />{" "}
-                        Account Holder : Jelly Pepper <br /> Account Number :
-                        5454542WQR <br />{" "}
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td className="text-center">
+                        Tổng tiền : {renderTien(totalTien)}
                       </td>
                     </tr>
                   </tbody>
                 </table>
-              </div> */}
+                <Divider orientation="center">
+                  {" "}
+                  <p className="custom-text" style={{ fontSize: "small" }}>
+                    Cảm ơn quý khách và hẹn gặp lại !
+                  </p>
+                </Divider>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </PDFPrint>
   );
 }

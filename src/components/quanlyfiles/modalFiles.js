@@ -1,48 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "antd";
-import FormKhoThuoc from "./form";
-import { useForm } from "antd/lib/form/Form";
-import { useSelector } from "react-redux";
-import moment from "moment";
-
-function ModalNhapThuoc({ isVisible, handleCancel, onSave }) {
-  const [form] = useForm();
-  const initialValue = useSelector((state) => state.khothuoc.item);
-  if (initialValue !== null) {
-    var dataInitialValue = {};
-    if (initialValue) {
-      dataInitialValue = {
-        ...initialValue,
-        ngayHoaDonNhaCungCap: moment(initialValue.ngayHoaDonNhaCungCap),
-      };
-    } else {
-      dataInitialValue = initialValue;
-    }
-  }
-
-  useEffect(() => {
-    form.resetFields();
-    form.setFieldsValue(dataInitialValue);
-  }, [isVisible, initialValue, form]);
-
+import { FormFile } from "react-bootstrap";
+import PageQuanLyFiles from "./../../pages/quanlyfile/pageQuanLyFiles";
+function ModalFile({ isVisible, handleCancel, onSave }) {
   return (
     <>
       <Modal
-        title="Thêm mới"
+        title="Upload file"
         visible={isVisible}
         onCancel={handleCancel}
         width={1000}
         footer={[
           <Button onClick={handleCancel}>Hủy</Button>,
-          <Button onClick={() => form.submit()}>OK</Button>,
+          // <Button onClick={() => form.submit()}>OK</Button>,
         ]}
       >
-        <div style={{ textAlign: "left" }}>
-          <FormKhoThuoc onSave={onSave} form={form} />
-        </div>
+        {/* <div style={{ textAlign: "left" }}></div> */}
+        <PageQuanLyFiles />
       </Modal>
     </>
   );
 }
 
-export default ModalNhapThuoc;
+export default ModalFile;

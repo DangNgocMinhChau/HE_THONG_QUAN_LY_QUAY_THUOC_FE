@@ -17,6 +17,16 @@ export function actFetchfilesRequest() {
   };
 }
 
+export function actFetchfilesToTypeRequest(type) {
+  return (dispatch) => {
+    return callApi(`files/${type}`, "GET", null).then((res) => {
+      if (res) {
+        dispatch(actFetchfiles(res.data));
+      }
+    });
+  };
+}
+
 export const actFetchfiles = (data) => {
   return {
     type: Types.FETCH_FILES,

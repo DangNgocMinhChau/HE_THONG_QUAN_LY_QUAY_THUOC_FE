@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Descriptions, Button, Divider } from "antd";
+import { Descriptions, Divider, Image } from "antd";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import * as actQuanLyNhaCungCap from "../../actions/quanlynhacungcap/actQuanLyNhaCungCap";
 import {
@@ -10,29 +10,63 @@ import {
 } from "./../../common/convert/renderConvert";
 function DetailKhoThuoc({ match, history, itemKhoThuoc }) {
   const dispatch = useDispatch();
-  const itemNhaCungCap = useSelector((state) => state.quanlynhacungcap.item);
-  useEffect(() => {
-    dispatch(
-      actQuanLyNhaCungCap.actGetNhaCungCapByIdRequest(
-        itemKhoThuoc && itemKhoThuoc.idNhaCungCap
-      )
-    );
-  });
+  // const itemNhaCungCap = useSelector((state) => state.quanlynhacungcap.item);
+  // useEffect(() => {
+  //   dispatch(
+  //     actQuanLyNhaCungCap.actGetNhaCungCapByIdRequest(
+  //       itemKhoThuoc && itemKhoThuoc.idNhaCungCap
+  //     )
+  //   );
+  // });
 
   const renderFile = (value) => {
     if (value && Array.isArray(value)) {
       return value.map((item, index) => {
-        return (
-          <a href={item.urlfiles} target="_blank">
-            {" "}
-            <i
-              class="fa fa-paperclip"
-              style={{ color: "black" }}
-              aria-hidden="true"
-            ></i>{" "}
-            {item.tenFile}
-          </a>
-        );
+        if (item.type == "image/jpeg") {
+          return (
+            <>
+              <div className="row">
+                <div className="col-md-3">
+                  <Image width={60} src={`/filedinhkem/${item.name}`} />
+                </div>
+                <div className="col-md-6">
+                  <a href={item.url}>
+                    {" "}
+                    <i
+                      class="fa fa-paperclip"
+                      style={{ color: "black" }}
+                      aria-hidden="true"
+                    ></i>{" "}
+                    {item.name}
+                  </a>
+                </div>
+              </div>
+              <br></br>
+            </>
+          );
+        } else {
+          return (
+            <>
+              <div className="row">
+                <div className="col-md-3">
+                  <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                </div>
+                <div className="col-md-6">
+                  <a href={item.url}>
+                    {" "}
+                    <i
+                      class="fa fa-paperclip"
+                      style={{ color: "black" }}
+                      aria-hidden="true"
+                    ></i>{" "}
+                    {item.name}
+                  </a>
+                </div>
+              </div>
+              <br></br>
+            </>
+          );
+        }
       });
     }
   };
@@ -44,25 +78,37 @@ function DetailKhoThuoc({ match, history, itemKhoThuoc }) {
           <Divider orientation="left">Nhà cung cấp</Divider>
           <Descriptions size="small" layout="horizontal" bordered>
             <Descriptions.Item label="Nhà cung cấp" span={2}>
-              {itemNhaCungCap && itemNhaCungCap.tenNhaCungCap}
+              {itemKhoThuoc &&
+                itemKhoThuoc.quanLyNhaCungCap &&
+                itemKhoThuoc.quanLyNhaCungCap.tenNhaCungCap}
             </Descriptions.Item>
             <Descriptions.Item label="Địa chỉ" span={2}>
-              {itemNhaCungCap && itemNhaCungCap.diaChiNhaCungCap}
+              {itemKhoThuoc &&
+                itemKhoThuoc.quanLyNhaCungCap &&
+                itemKhoThuoc.quanLyNhaCungCap.diaChiNhaCungCap}
             </Descriptions.Item>
             <Descriptions.Item label="Mã số thuế" span={2}>
-              {itemNhaCungCap && itemNhaCungCap.mstNhaCungCap}
+              {itemKhoThuoc &&
+                itemKhoThuoc.quanLyNhaCungCap &&
+                itemKhoThuoc.quanLyNhaCungCap.mstNhaCungCap}
             </Descriptions.Item>
 
             <Descriptions.Item label="Số điện thoại" span={2}>
-              {itemNhaCungCap && itemNhaCungCap.soDienThoaiNhaCungCap}
+              {itemKhoThuoc &&
+                itemKhoThuoc.quanLyNhaCungCap &&
+                itemKhoThuoc.quanLyNhaCungCap.soDienThoaiNhaCungCap}
             </Descriptions.Item>
 
             <Descriptions.Item label="Zalo" span={2}>
-              {itemNhaCungCap && itemNhaCungCap.zalo}
+              {itemKhoThuoc &&
+                itemKhoThuoc.quanLyNhaCungCap &&
+                itemKhoThuoc.quanLyNhaCungCap.zalo}
             </Descriptions.Item>
 
             <Descriptions.Item label="Email" span={2}>
-              {itemNhaCungCap && itemNhaCungCap.email}
+              {itemKhoThuoc &&
+                itemKhoThuoc.quanLyNhaCungCap &&
+                itemKhoThuoc.quanLyNhaCungCap.email}
             </Descriptions.Item>
           </Descriptions>
 
@@ -84,7 +130,10 @@ function DetailKhoThuoc({ match, history, itemKhoThuoc }) {
             </Descriptions.Item>
             <Descriptions.Item label="Số lượng còn lại trong kho" span={2}>
               {itemKhoThuoc &&
-                itemKhoThuoc.soLuongBanDau + "/" + itemKhoThuoc.donViTinh}
+                itemKhoThuoc.soLuongNhap -
+                  itemKhoThuoc.soLuongDaBan +
+                  "/" +
+                  itemKhoThuoc.donViTinh}
             </Descriptions.Item>
             <Descriptions.Item label="Số lượng đã bán" span={2}>
               {itemKhoThuoc &&
@@ -113,7 +162,7 @@ function DetailKhoThuoc({ match, history, itemKhoThuoc }) {
               {itemKhoThuoc && renderDateTime(itemKhoThuoc.ngayNhapThuoc)}
             </Descriptions.Item>
             <Descriptions.Item label="File đính kèm">
-              {renderFile(itemKhoThuoc && itemKhoThuoc.fileDinhKem)}
+              {renderFile(itemKhoThuoc && itemKhoThuoc.fileDBArrayList)}
             </Descriptions.Item>
           </Descriptions>
           <Divider orientation="left">Thông tin người nhập hàng</Divider>

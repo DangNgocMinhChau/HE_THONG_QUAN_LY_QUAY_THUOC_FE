@@ -41,7 +41,7 @@ function PageQuanLyFiles({ match, location }) {
   };
 
   useEffect(() => {
-    dispatch(actQuanLyFiles.actFetchfilesRequest());
+    // dispatch(actQuanLyFiles.actFetchfilesRequest());
     dispatch(actQuanLyKho.actFetchKhoThuocRequest());
   }, []);
 
@@ -49,17 +49,6 @@ function PageQuanLyFiles({ match, location }) {
   return (
     <div className="container-fluid">
       {/* <!-- Page Heading --> */}
-      <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 className=" mb-0 text-gray-800">File</h5>
-        {/* <Button
-          type="primary"
-          onClick={() => {
-            openForm();
-          }}
-        >
-          Thêm mới
-        </Button> */}
-      </div>
 
       <div className="row">
         {/* <!-- Area Chart --> */}

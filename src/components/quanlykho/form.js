@@ -24,13 +24,13 @@ function FormNhapThuoc({
   checkEdit,
   dataListNhaCungCap,
   setCheckEdit,
+  recordTableThuoc,
 }) {
   const [form] = useForm();
   const dispatch = useDispatch();
   const initialValue = useSelector((state) => state.khothuoc.item);
   const itemNhaCungCap = useSelector((state) => state.quanlynhacungcap.item);
   const dataListFile = useSelector((state) => state.quanly_files.list);
-  console.log(dataListFile);
   const [checkIdNCC, setCheckIdNCC] = useState(false);
   const [valueForm, setValueForm] = useState({});
   const [checkInputNhaCungCapCoSan, setCheckInputNhaCungCapCoSan] =
@@ -39,8 +39,18 @@ function FormNhapThuoc({
   if (initialValue !== null) {
     var dataInitialValue = {};
     if (initialValue) {
+      let converFileDinhKemEdit = [];
+      recordTableThuoc.fileDBArrayList.map((item, index) => {
+        let itemFile = {
+          ...item,
+          idFile: item.id,
+        };
+        converFileDinhKemEdit.push(itemFile);
+      });
+
       dataInitialValue = {
         ...initialValue,
+        fileDinhKem: converFileDinhKemEdit,
         idNhaCungCap: checkIdNCC
           ? itemNhaCungCap && itemNhaCungCap.id
           : initialValue.idNhaCungCap,
@@ -54,7 +64,20 @@ function FormNhapThuoc({
         hanSuDungThuoc: moment(initialValue.hanSuDungThuoc),
       };
     } else {
-      dataInitialValue = initialValue;
+      let converFileDinhKemEdit = [];
+      recordTableThuoc.fileDBArrayList.map((item, index) => {
+        let itemFile = {
+          ...item,
+          ten: item.name,
+          value: item.id,
+        };
+        converFileDinhKemEdit.push(itemFile);
+      });
+
+      dataInitialValue = {
+        ...initialValue,
+        fileDinhKem: converFileDinhKemEdit,
+      };
     }
   } else {
     dataInitialValue = {
@@ -452,9 +475,9 @@ function FormNhapThuoc({
                               <RenderInputSelectSearch
                                 {...restField}
                                 label="File"
-                                name={[name, "fileDinhKem"]}
-                                fieldKey={[fieldKey, "fileDinhKem"]}
-                                style={{ width: "660px" }}
+                                name={[name, "idFile"]}
+                                fieldKey={[fieldKey, "idFile"]}
+                                style={{ width: "630px" }}
                                 //  onChange={onShowValue}
                                 options={dataListFile}
                                 validate={true}

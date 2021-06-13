@@ -25,7 +25,11 @@ export function actFetchBanHangRequest() {
         // const data = res.data.filter((item) => item.flag !== false);
         dispatch(actFetchBanHang(res.data.result));
         dispatch(
-          actHoaDonBanHang(res.data.result.length > 0 && res.data.result[0])
+          actHoaDonBanHang(
+            Array.isArray(res.data.result) &&
+              res.data.result.length > 0 &&
+              res.data.result[0]
+          )
         );
       }
     });

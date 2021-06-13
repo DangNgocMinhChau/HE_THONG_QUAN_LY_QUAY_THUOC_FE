@@ -246,7 +246,6 @@ export function RenderInputSelect({
           Array.isArray(options) &&
           options.length > 0 &&
           options.map((item, index) => {
-            console.log(item);
             return <Select.Option value={item.value}>{item.ten}</Select.Option>;
           })}
       </Select>

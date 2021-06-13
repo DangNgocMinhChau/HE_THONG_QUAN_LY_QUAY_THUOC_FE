@@ -81,10 +81,6 @@ export function actGetTaiKhoanByIdRequest(id) {
 }
 
 export const actGetTaiKhoanById = (value) => {
-  value = {
-    ...value,
-    quyenId: value?.tenQuyen ? value.tenQuyen : "",
-  };
   return {
     type: Types.EDIT_TAIKHOAN,
     value,

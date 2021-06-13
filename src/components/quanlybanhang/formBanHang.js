@@ -14,6 +14,7 @@ import {
   RenderInputSelectSearch,
 } from "../../common/renderForm/inputForm";
 import HoaDon from "./hoaDon";
+import HoaDonBanHangTamThoi from "./hoaDonBanHangTamThoi";
 function FormBanHang({
   onSave,
   cancel,
@@ -41,6 +42,7 @@ function FormBanHang({
   if (initialValue !== null) {
     var dataInitialValue = {};
     if (initialValue) {
+      console.log(initialValue);
       dataInitialValue = {
         ...initialValue,
       };
@@ -318,7 +320,8 @@ function FormBanHang({
         </div>
         <div className="col-md-6">
           {/* <HoaDonBanHangTamThoi /> */}
-          <HoaDon onEdit={onEdit} hoanTatThanhToan={resetFieldSauKhiHoanTat} />
+          {/* <HoaDon onEdit={onEdit} hoanTatThanhToan={resetFieldSauKhiHoanTat} /> */}
+          <HoaDonBanHangTamThoi onEdit={onEdit} />
         </div>
       </div>
     </>

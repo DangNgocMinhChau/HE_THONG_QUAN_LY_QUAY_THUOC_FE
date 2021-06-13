@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Table, Divider, Radio, Popconfirm, message, Button } from "antd";
+import {
+  Table,
+  Divider,
+  Radio,
+  Popconfirm,
+  message,
+  Button,
+  Switch,
+} from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import * as Message from "../../constants/Message";
@@ -19,8 +27,10 @@ function TableNhaCungCap({
   onThongBaoHetHang,
   deleteFiles,
   onDetail,
+  onHandleQRCode,
 }) {
   const [selectionType, setSelectionType] = useState();
+  const [showQRCode, setShowQRCode] = useState(false);
   const columns = [
     {
       title: "STT",
@@ -146,7 +156,7 @@ function TableNhaCungCap({
         {
           title: "File đính kèm",
           dataIndex: "filedinhkem",
-          width: 200,
+          width: 300,
           render: (data, record) => renderLinkFile(record),
         },
       ],
@@ -179,32 +189,35 @@ function TableNhaCungCap({
   };
 
   function renderDetail(record) {
-    return <a onClick={() => onDetail(record.id)}>{record.tenThuoc}</a>;
+    return (
+      <a style={{ color: "Highlight" }} onClick={() => onDetail(record.id)}>
+        {record.tenThuoc}
+      </a>
+    );
   }
 
   function confirm(id) {
     onDelete(id);
   }
 
+  const onChangeSwitch = (value) => {
+    setShowQRCode(value);
+  };
+
   const renderLinkFile = (record) => {
     return (
-      record.fileDinhKem &&
-      Array.isArray(record.fileDinhKem) &&
-      record.fileDinhKem.map((item, index) => (
+      record.fileDBArrayList &&
+      Array.isArray(record.fileDBArrayList) &&
+      record.fileDBArrayList.map((item, index) => (
         <>
-          <a href={item.urlfiles} target="_blank">
+          <a href={item.url} target="_blank">
             <i
               class="fa fa-paperclip"
               style={{ color: "black" }}
               aria-hidden="true"
             ></i>{" "}
-            {item.tenFile}
+            {item.name}
           </a>
-          <i
-            onClick={() => deleteFiles(item, record)}
-            className="fa fa-times ml-5"
-            aria-hidden="true"
-          ></i>
           <br />
         </>
       ))
@@ -232,22 +245,23 @@ function TableNhaCungCap({
                 className="fa fa-pencil-square-o"
                 style={{ color: "green", fontSize: "20px" }}
                 onClick={() => {
-                  onEdit(record.id);
+                  onEdit(record);
                 }}
               ></i>
             </a>
           </div>
-          {/* <div className="col-md-2">
+          <div className="col-md-2">
             <a>
               <i
-                className="fa fa-info"
-                style={{ color: "green", fontSize: "20px" }}
+                className="fa fa-qrcode"
+                aria-hidden="true"
+                style={{ color: "black", fontSize: "20px" }}
                 onClick={() => {
-                  onDetail(record.id);
+                  onHandleQRCode(record);
                 }}
               ></i>
             </a>
-          </div> */}
+          </div>
           <div className="col-md-2">
             <Popconfirm
               placement="topRight"
@@ -272,9 +286,9 @@ function TableNhaCungCap({
   var url = match.url;
   return (
     <div>
-      <Divider />
+      <br></br>
       <Table
-        scroll={{ x: "calc(700px + 50%)", y: 470 }}
+        scroll={{ x: "calc(700px + 50%)", y: 1000 }}
         rowSelection={{
           type: selectionType,
           ...rowSelection,

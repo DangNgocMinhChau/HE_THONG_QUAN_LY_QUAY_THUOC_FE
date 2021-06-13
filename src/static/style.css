@@ -202,8 +202,8 @@ a {
 
 .custom-print {
     position: absolute !important;
-    margin-top: 230px;
-    margin-left: 170px;
+    margin-top: 90px;
+    margin-left: 330px;
     z-index: 1;
 }
 
@@ -275,3 +275,10 @@ Licence: <a href="https://www.os-templates.com/template-terms">Website Template 
         font-family: Verdana, Geneva, Tahoma, sans-serif !important;
     }
 /* ......................End.................. */
+
+
+/* custom css Table antd  */
+
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td {
+    padding: 5px 16px !important;
+}

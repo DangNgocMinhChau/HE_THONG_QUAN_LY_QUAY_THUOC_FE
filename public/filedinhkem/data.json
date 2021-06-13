@@ -1,0 +1,499 @@
+{
+    "result": {
+        "entities": [
+            {
+                "id": 57,
+                "tenduan": "Đang quy hoạch để xâybbbbbb",
+                "diadiemdautu": "Thành Phố Đà Nẵng",
+                "loaihinh": "",
+                "nhadautu": "123",
+                "tinhtrang": "dangnghiencuu",
+                "quymo": "13123",
+                "tongvon": "13123",
+                "tiendodangky": "123123",
+                "giayphepdautu": "123",
+                "quyetdinhdieuchinhduan": null,
+                "tinhhinhs": {
+                    "id": 12,
+                    "idduan": 57,
+                    "tinhhinhthuchien": "1232",
+                    "hoatdongdautu": "123",
+                    "nhanxetkiennghi": "123123",
+                    "macoquan": "2132",
+                    "quyhoachxaydung": "12323",
+                    "datdaimoitruong": "123",
+                    "vondautudathuchien": "13123",
+                    "nopngansach": "1123",
+                    "laodong": "123"
+                },
+                "ykiens": null,
+                "listvanbandto": [
+                    {
+                        "vanban": {
+                            "id": 52,
+                            "sokyhieu": "13123",
+                            "ngaybanhanh": "2002-04-30T17:00:00Z",
+                            "trichyeu": "123123",
+                            "coquanbanhanh": "12312",
+                            "loaivanban": "QUYETDINH",
+                            "phanloaivanban": "DIADIEMQUYHOACH",
+                            "linkvanban": "123123",
+                            "idduan": 57
+                        },
+                        "listfilevanbans": [
+                            {
+                                "id": 47,
+                                "urldowload": "/api/filedinhkemvanban/file/47",
+                                "ngaytao": "2021-05-18T10:09:16.117Z",
+                                "filename": "ace8e3daa78f4b728cff786715fd6e50_vanbanchutruongito.filevanbans-VPN_Settings.docx"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 60,
+                "tenduan": "Đang quy hoạch để xây dựng",
+                "diadiemdautu": "Thành Phố Đà Nẵng",
+                "loaihinh": "",
+                "nhadautu": "131222",
+                "tinhtrang": "dangnghiencuu",
+                "quymo": "13123",
+                "tongvon": "3123",
+                "tiendodangky": "123123",
+                "giayphepdautu": "123",
+                "quyetdinhdieuchinhduan": null,
+                "tinhhinhs": null,
+                "ykiens": null,
+                "listvanbandto": [
+                    {
+                        "vanban": {
+                            "id": 55,
+                            "sokyhieu": "12312312311",
+                            "ngaybanhanh": "2021-04-24T17:00:00Z",
+                            "trichyeu": "123123",
+                            "coquanbanhanh": "sdf",
+                            "loaivanban": "QUYETDINH",
+                            "phanloaivanban": "DIADIEMQUYHOACH",
+                            "linkvanban": "sdf",
+                            "idduan": 60
+                        },
+                        "listfilevanbans": [
+                            {
+                                "id": 50,
+                                "urldowload": "/api/filedinhkemvanban/file/50",
+                                "ngaytao": "2021-05-18T10:11:16.417Z",
+                                "filename": "df7a6a38127d44d2af8eeb3618e3c121_vanbanchutruongito.filevanbans-VPN_Settings.docx"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 61,
+                "tenduan": "Đang quy hoạch để xây dựng",
+                "diadiemdautu": "Thành Phố Đà Nẵng",
+                "loaihinh": "",
+                "nhadautu": "123",
+                "tinhtrang": "dangnghiencuu",
+                "quymo": "13123",
+                "tongvon": "3123",
+                "tiendodangky": "123123",
+                "giayphepdautu": "123",
+                "quyetdinhdieuchinhduan": null,
+                "tinhhinhs": null,
+                "ykiens": null,
+                "listvanbandto": [
+                    {
+                        "vanban": {
+                            "id": 56,
+                            "sokyhieu": "13123",
+                            "ngaybanhanh": "2002-01-04T17:00:00Z",
+                            "trichyeu": "123123",
+                            "coquanbanhanh": "12312",
+                            "loaivanban": "QUYETDINH",
+                            "phanloaivanban": "DIADIEMQUYHOACH",
+                            "linkvanban": "123123",
+                            "idduan": 61
+                        },
+                        "listfilevanbans": [
+                            {
+                                "id": 51,
+                                "urldowload": "/api/filedinhkemvanban/file/51",
+                                "ngaytao": "2021-05-18T10:11:53.423Z",
+                                "filename": "6a9613306d784b9097d0994f735fb80b_vanbanchutruongito.filevanbans-VPN_Settings.docx"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 62,
+                "tenduan": "Đang quy hoạch để xây dựng",
+                "diadiemdautu": "Thành Phố Đà Nẵng",
+                "loaihinh": "",
+                "nhadautu": "123",
+                "tinhtrang": "dangnghiencuu",
+                "quymo": "13123",
+                "tongvon": "3123",
+                "tiendodangky": "123123",
+                "giayphepdautu": "123",
+                "quyetdinhdieuchinhduan": null,
+                "tinhhinhs": null,
+                "ykiens": null,
+                "listvanbandto": [
+                    {
+                        "vanban": {
+                            "id": 57,
+                            "sokyhieu": "13123",
+                            "ngaybanhanh": "2002-04-30T17:00:00Z",
+                            "trichyeu": "123123",
+                            "coquanbanhanh": "sdf",
+                            "loaivanban": "QUYETDINH",
+                            "phanloaivanban": "DIADIEMQUYHOACH",
+                            "linkvanban": "123123",
+                            "idduan": 62
+                        },
+                        "listfilevanbans": [
+                            {
+                                "id": 52,
+                                "urldowload": "/api/filedinhkemvanban/file/52",
+                                "ngaytao": "2021-05-18T10:12:32.366Z",
+                                "filename": "535f88ff19394eba813eb0a410a5e697_vanbanchutruongito.filevanbans-VPN_Settings.docx"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 63,
+                "tenduan": "Đang quy hoạch để xây dựng",
+                "diadiemdautu": "Thành Phố Đà Nẵng",
+                "loaihinh": "",
+                "nhadautu": "123",
+                "tinhtrang": "dangnghiencuu",
+                "quymo": "13123",
+                "tongvon": "3123",
+                "tiendodangky": "123123",
+                "giayphepdautu": "123",
+                "quyetdinhdieuchinhduan": null,
+                "tinhhinhs": null,
+                "ykiens": null,
+                "listvanbandto": [
+                    {
+                        "vanban": {
+                            "id": 58,
+                            "sokyhieu": "13123",
+                            "ngaybanhanh": "2021-05-24T17:00:00Z",
+                            "trichyeu": "123123",
+                            "coquanbanhanh": "12312",
+                            "loaivanban": "QUYETDINH",
+                            "phanloaivanban": "DIADIEMQUYHOACH",
+                            "linkvanban": "123123",
+                            "idduan": 63
+                        },
+                        "listfilevanbans": [
+                            {
+                                "id": 53,
+                                "urldowload": "/api/filedinhkemvanban/file/53",
+                                "ngaytao": "2021-05-18T10:13:15.189Z",
+                                "filename": "3236289ede5f46089179e0aec32e9109_vanbanchutruongito.filevanbans-VPN_Settings.docx"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 64,
+                "tenduan": "Đang quy hoạch để xây dựng 2",
+                "diadiemdautu": "Thành Phố Đà Nẵng",
+                "loaihinh": "",
+                "nhadautu": "123",
+                "tinhtrang": "dangnghiencuu",
+                "quymo": "13123",
+                "tongvon": "3123",
+                "tiendodangky": "123123",
+                "giayphepdautu": "123",
+                "quyetdinhdieuchinhduan": null,
+                "tinhhinhs": {
+                    "id": 10,
+                    "idduan": 64,
+                    "tinhhinhthuchien": "2133",
+                    "hoatdongdautu": "123",
+                    "nhanxetkiennghi": "123",
+                    "macoquan": "2132",
+                    "quyhoachxaydung": "Đã hoàn thành",
+                    "datdaimoitruong": "123",
+                    "vondautudathuchien": null,
+                    "nopngansach": "1123",
+                    "laodong": "123"
+                },
+                "ykiens": {
+                    "id": 7,
+                    "idduan": 64,
+                    "ykien": "1232dfdfdf",
+                    "macoquan": null,
+                    "quyhoachxaydung": null,
+                    "datdaimoitruong": null,
+                    "vondautudathuchien": null,
+                    "nopngansach": null,
+                    "laodong": null
+                },
+                "listvanbandto": [
+                    {
+                        "vanban": {
+                            "id": 59,
+                            "sokyhieu": "13123",
+                            "ngaybanhanh": "2021-05-03T17:00:00Z",
+                            "trichyeu": "123123",
+                            "coquanbanhanh": "12312",
+                            "loaivanban": "QUYETDINH",
+                            "phanloaivanban": "DIADIEMQUYHOACH",
+                            "linkvanban": "123123",
+                            "idduan": 64
+                        },
+                        "listfilevanbans": [
+                            {
+                                "id": 54,
+                                "urldowload": "/api/filedinhkemvanban/file/54",
+                                "ngaytao": "2021-05-18T10:13:45.351Z",
+                                "filename": "4ef802ed70944c52a72dcf2ef975a4a9_vanbanchutruongito.filevanbans-VPN_Settings.docx"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 65,
+                "tenduan": "Đang quy hoạch để xây dựng",
+                "diadiemdautu": "Thành Phố Đà Nẵng",
+                "loaihinh": "",
+                "nhadautu": "123",
+                "tinhtrang": "dangnghiencuu",
+                "quymo": "13123",
+                "tongvon": "3123",
+                "tiendodangky": "123123",
+                "giayphepdautu": "123",
+                "quyetdinhdieuchinhduan": null,
+                "tinhhinhs": null,
+                "ykiens": null,
+                "listvanbandto": [
+                    {
+                        "vanban": {
+                            "id": 60,
+                            "sokyhieu": "13123",
+                            "ngaybanhanh": "2002-01-04T17:00:00Z",
+                            "trichyeu": "123123",
+                            "coquanbanhanh": "12312",
+                            "loaivanban": "QUYETDINH",
+                            "phanloaivanban": "DIADIEMQUYHOACH",
+                            "linkvanban": "123123",
+                            "idduan": 65
+                        },
+                        "listfilevanbans": [
+                            {
+                                "id": 55,
+                                "urldowload": "/api/filedinhkemvanban/file/55",
+                                "ngaytao": "2021-05-18T10:14:15.521Z",
+                                "filename": "cefa121bc9e14324b7f372d9dd08fd4c_vanbanchutruongito.filevanbans-VPN_Settings.docx"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 67,
+                "tenduan": "Đang quy hoạch để xây dựng",
+                "diadiemdautu": "Thành Phố Đà Nẵng",
+                "loaihinh": "",
+                "nhadautu": "131222",
+                "tinhtrang": "dangnghiencuu",
+                "quymo": "13123",
+                "tongvon": "3123",
+                "tiendodangky": "123123",
+                "giayphepdautu": "123",
+                "quyetdinhdieuchinhduan": null,
+                "tinhhinhs": null,
+                "ykiens": null,
+                "listvanbandto": [
+                    {
+                        "vanban": {
+                            "id": 62,
+                            "sokyhieu": "13123",
+                            "ngaybanhanh": "2002-01-04T17:00:00Z",
+                            "trichyeu": "123123",
+                            "coquanbanhanh": "12312",
+                            "loaivanban": "QUYETDINH",
+                            "phanloaivanban": "DIADIEMQUYHOACH",
+                            "linkvanban": "123123",
+                            "idduan": 67
+                        },
+                        "listfilevanbans": [
+                            {
+                                "id": 57,
+                                "urldowload": "/api/filedinhkemvanban/file/57",
+                                "ngaytao": "2021-05-19T06:22:04.800Z",
+                                "filename": "adf7910b9af44bc2a2782321292e424c_vanbanchutruongito.filevanbans-response_1621389240774.json"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 69,
+                "tenduan": "Đang quy hoạch để xây dựng",
+                "diadiemdautu": "Thành Phố Đà Nẵng",
+                "loaihinh": "",
+                "nhadautu": "131222",
+                "tinhtrang": "dangnghiencuu",
+                "quymo": "13123",
+                "tongvon": "3123",
+                "tiendodangky": "123123",
+                "giayphepdautu": "123",
+                "quyetdinhdieuchinhduan": null,
+                "tinhhinhs": null,
+                "ykiens": null,
+                "listvanbandto": [
+                    {
+                        "vanban": {
+                            "id": 64,
+                            "sokyhieu": "13123",
+                            "ngaybanhanh": "2002-01-04T17:00:00Z",
+                            "trichyeu": "sdf",
+                            "coquanbanhanh": "12312",
+                            "loaivanban": "QUYETDINH",
+                            "phanloaivanban": "DIADIEMQUYHOACH",
+                            "linkvanban": "123123",
+                            "idduan": 69
+                        },
+                        "listfilevanbans": [
+                            {
+                                "id": 59,
+                                "urldowload": "/api/filedinhkemvanban/file/59",
+                                "ngaytao": "2021-05-19T06:23:47.957Z",
+                                "filename": "dadc804b9e654b82938a1b5246cb6e4f_vanbanchutruongito.filevanbans-response_1621389240774.json"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 70,
+                "tenduan": "Đang quy hoạch để xây dựng",
+                "diadiemdautu": "Thành Phố Đà Nẵng",
+                "loaihinh": "",
+                "nhadautu": "123",
+                "tinhtrang": "dangnghiencuu",
+                "quymo": "13123",
+                "tongvon": "3123",
+                "tiendodangky": null,
+                "giayphepdautu": null,
+                "quyetdinhdieuchinhduan": null,
+                "tinhhinhs": null,
+                "ykiens": null,
+                "listvanbandto": [
+                    {
+                        "vanban": {
+                            "id": 65,
+                            "sokyhieu": "13123",
+                            "ngaybanhanh": "2002-04-30T17:00:00Z",
+                            "trichyeu": "123123",
+                            "coquanbanhanh": "12312",
+                            "loaivanban": "QUYETDINH",
+                            "phanloaivanban": "DIADIEMQUYHOACH",
+                            "linkvanban": "123123",
+                            "idduan": 70
+                        },
+                        "listfilevanbans": [
+                            {
+                                "id": 60,
+                                "urldowload": "/api/filedinhkemvanban/file/60",
+                                "ngaytao": "2021-05-19T06:24:21.007Z",
+                                "filename": "066bbc5024724d9f9247a849e7588a2f_vanbanchutruongito.filevanbans-response_1621389240774.json"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 71,
+                "tenduan": "Đang quy hoạch để xây dựng",
+                "diadiemdautu": "Thành Phố Đà Nẵng",
+                "loaihinh": "",
+                "nhadautu": "123",
+                "tinhtrang": "dangnghiencuu",
+                "quymo": "Lơn",
+                "tongvon": "3123",
+                "tiendodangky": null,
+                "giayphepdautu": null,
+                "quyetdinhdieuchinhduan": null,
+                "tinhhinhs": null,
+                "ykiens": null,
+                "listvanbandto": [
+                    {
+                        "vanban": {
+                            "id": 66,
+                            "sokyhieu": "13123",
+                            "ngaybanhanh": "2002-01-04T17:00:00Z",
+                            "trichyeu": "123123",
+                            "coquanbanhanh": "12312",
+                            "loaivanban": "QUYETDINH",
+                            "phanloaivanban": "DIADIEMQUYHOACH",
+                            "linkvanban": "123123",
+                            "idduan": 71
+                        },
+                        "listfilevanbans": [
+                            {
+                                "id": 61,
+                                "urldowload": "/api/filedinhkemvanban/file/61",
+                                "ngaytao": "2021-05-19T06:24:47.512Z",
+                                "filename": "3e4b06f68828427396055c196365d97e_vanbanchutruongito.filevanbans-response_1621389240774.json"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 72,
+                "tenduan": "Đang quy hoạch để xây dựng",
+                "diadiemdautu": "Thành Phố Đà Nẵng",
+                "loaihinh": "",
+                "nhadautu": "123",
+                "tinhtrang": "dangnghiencuu",
+                "quymo": "13123",
+                "tongvon": "3123",
+                "tiendodangky": "123123",
+                "giayphepdautu": "123",
+                "quyetdinhdieuchinhduan": null,
+                "tinhhinhs": null,
+                "ykiens": null,
+                "listvanbandto": [
+                    {
+                        "vanban": {
+                            "id": 67,
+                            "sokyhieu": "13123",
+                            "ngaybanhanh": "2002-04-30T17:00:00Z",
+                            "trichyeu": "123123",
+                            "coquanbanhanh": "12312",
+                            "loaivanban": "QUYETDINH",
+                            "phanloaivanban": "DIADIEMQUYHOACH",
+                            "linkvanban": "123123",
+                            "idduan": 72
+                        },
+                        "listfilevanbans": [
+                            {
+                                "id": 62,
+                                "urldowload": "/api/filedinhkemvanban/file/62",
+                                "ngaytao": "2021-05-19T06:25:17.225Z",
+                                "filename": "0341578302ab4948aaa3a5f3a625b344_vanbanchutruongito.filevanbans-response_1621389240774.json"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "totalCount": 12
+    },
+    "errorMessage": "DuAn.findDuAnByDiaDiem",
+    "errorCode": "200 OK"
+}

@@ -30,14 +30,26 @@ export const renderConverLoaiThanhToan = (value) => {
   }
 };
 export const renderConvertSoLuongTheoDonVi = (value, donViTinh) => {
-  if ("Hop") {
+  if (donViTinh == "Hop") {
     return <span>{value}/Hộp</span>;
-  } else if ("Vien") {
+  } else if (donViTinh == "Vien") {
     return <span>{value}/Viên</span>;
-  } else if ("Tuyp") {
+  } else if (donViTinh == "Tuyp") {
     return <span>{value}/Tuýp</span>;
   }
 };
+
+export const renderConvertSoLuongTheoDonViReturnString = (value, donViTinh) => {
+  let string = "";
+  if (donViTinh == "Hop") {
+    return (string = `${value}/Hộp`);
+  } else if (donViTinh == "Vien") {
+    return (string = `${value}/Viên`);
+  } else if (donViTinh == "Tuyp") {
+    return (string = `${value}/Tuýp`);
+  }
+};
+
 export const renderDateTheoHeThong = () => {
   return moment().format("DD/MM/yyyy HH:mm:ss ");
 };

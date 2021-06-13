@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import UploadService from "./../../utils/upload-files.service";
+import { Image } from "antd";
 class FormFiles extends Component {
   constructor(props) {
     super(props);
     this.selectFiles = this.selectFiles.bind(this);
     this.upload = this.upload.bind(this);
     this.uploadFiles = this.uploadFiles.bind(this);
-
     this.state = {
       selectedFiles: undefined,
       progressInfos: [],
@@ -88,7 +88,9 @@ class FormFiles extends Component {
   }
   render() {
     const { selectedFiles, progressInfos, message } = this.state;
-
+    var path = process.env.PUBLIC_URL;
+    var image =
+      "./../../filedinhkem/165795191_752897252079681_377850001677792219_n.jpg";
     return (
       <div>
         {progressInfos &&

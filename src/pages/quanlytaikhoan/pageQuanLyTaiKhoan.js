@@ -42,6 +42,7 @@ function PageQuanLyTaiKhoan({ match, location }) {
       thongBao("Thông báo", "Vui lòng kiểm tra lại thông tin");
     } else {
       if (value.id) {
+        console.log(value);
         value = {
           ...value,
           matKhau: md5(`${value.matKhau}`),

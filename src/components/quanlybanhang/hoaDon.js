@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import {
-  renderConvertSoLuongTheoDonVi,
-  renderTien,
-} from "./../../common/convert/renderConvert";
+import { renderTien } from "./../../common/convert/renderConvert";
 import { Card, Divider } from "antd";
 import PDFPrint from "./../../common/pdf_print";
 import TableHoaDon from "./tableHoaDon";
