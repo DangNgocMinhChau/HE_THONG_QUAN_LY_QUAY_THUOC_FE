@@ -114,7 +114,6 @@ export function actUpdateThuocRequest(value) {
     return callApi(`quanlykho/${value.id}`, "PUT", value).then((res) => {
       if (res) {
         thongBao(message.SUA_THANH_CONG);
-        console.log(res.data.result);
         let data = {
           ...res.data.result,
           key: res.data.result.id,

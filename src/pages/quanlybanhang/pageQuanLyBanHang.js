@@ -191,7 +191,7 @@ function PageQuanLyBanHang({ match, location }) {
               <h6 className="m-0 font-weight-bold ">Bán hàng</h6>
               <div className=" d-flex flex-row align-items-center  ">
                 {listHoaDonBanHangTam.length > 0 && (
-                  <Tooltip placement="bottom" title="Hủy" key="red">
+                  <Tooltip placement="bottom" title="Hủy hoá đơn" key="red">
                     <a
                       className="m-0 p-0 "
                       size="small"
@@ -209,33 +209,11 @@ function PageQuanLyBanHang({ match, location }) {
                     </a>
                   </Tooltip>
                 )}
-                {checkFormThemMoi && (
-                  <Tooltip
-                    placement="bottom"
-                    title="Tạo mới khách hàng"
-                    key="red"
-                  >
-                    <a
-                      className="m-0 p-0 "
-                      size="small"
-                      onClick={() => {
-                        handleCreteKhachHang(!checkFormThemMoiKhachHang);
-                      }}
-                      type="dashed"
-                      danger={true}
-                    >
-                      <i
-                        class="fa fa-address-card"
-                        style={{ color: "indigo" }}
-                        aria-hidden="true"
-                      ></i>
-                    </a>
-                  </Tooltip>
-                )}
+
                 {itemHoaDon && Array.isArray(itemHoaDon.sanPham) && (
                   <Tooltip
                     placement="bottom"
-                    title="Tạo mới khách hàng"
+                    title="Hoàn tất hoá đơn"
                     key="red"
                   >
                     <a
@@ -248,8 +226,37 @@ function PageQuanLyBanHang({ match, location }) {
                     </a>
                   </Tooltip>
                 )}
+
+                <Tooltip
+                  placement="bottom"
+                  title="Tạo mới khách hàng"
+                  key="red"
+                >
+                  <a
+                    className="m-0 p-0 "
+                    size="small"
+                    onClick={() => {
+                      handleCreteKhachHang(!checkFormThemMoiKhachHang);
+                    }}
+                    type="dashed"
+                    danger={true}
+                  >
+                    <i
+                      class="fa fa-address-card"
+                      style={{ color: "indigo" }}
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </Tooltip>
               </div>
             </div>
+            {checkFormThemMoiKhachHang && (
+              <FormThongTinKhachHang
+                onSave={onSaveQuanLyThongTinKhachHang}
+                cancel={cancelSauKhiThemThongTinKhachHang}
+                checkEdit={checkEdit}
+              />
+            )}
             <FormBanHang
               onSave={onSave}
               cancel={cancel}
@@ -264,13 +271,6 @@ function PageQuanLyBanHang({ match, location }) {
               onSave={onSave}
               checkEdit={checkEdit}
             />
-            {checkFormThemMoiKhachHang && (
-              <FormThongTinKhachHang
-                onSave={onSaveQuanLyThongTinKhachHang}
-                cancel={cancelSauKhiThemThongTinKhachHang}
-                checkEdit={checkEdit}
-              />
-            )}
           </div>
         </div>
       </div>

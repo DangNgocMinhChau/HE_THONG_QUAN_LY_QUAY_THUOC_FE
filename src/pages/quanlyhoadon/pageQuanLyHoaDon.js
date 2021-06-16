@@ -149,19 +149,6 @@ function PageQuanLyHoaDon({ match, location }) {
   }, []);
   return (
     <div className="container-fluid ">
-      {/* <!-- Page Heading --> */}
-      {/* <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 className=" mb-0 text-gray-800">Hoá đơn</h5>
-        <Button
-          type="primary"
-          onClick={() => {
-            openForm();
-          }}
-        >
-          Lập hoá đơn
-        </Button>
-      </div> */}
-
       <div className="row">
         {/* <!-- Area Chart --> */}
         <div className="col-xl-12 col-lg-12">
@@ -175,13 +162,11 @@ function PageQuanLyHoaDon({ match, location }) {
                 </a>
               )}
             </div>
-            {/* {checkDanhSach && ( */}
             <HoaDon
               onEdit={onEdit}
               valueDate={valueDate}
               setValueDate={setValueDate}
             />
-            {/* )} */}
 
             <ModalDieuChinhHoaDon
               isVisible={isVisible}
@@ -190,14 +175,6 @@ function PageQuanLyHoaDon({ match, location }) {
               checkEdit={checkEdit}
               setCheckSubmitForm={setCheckSubmitForm}
             />
-            {/* {!checkDanhSach && (
-              <div className="custom-calendar">
-                <CalendarHoaDon
-                  setCheckDanhSach={setCheckDanhSach}
-                  setValueDate={setValueDate}
-                />
-              </div>
-            )} */}
           </div>
         </div>
       </div>

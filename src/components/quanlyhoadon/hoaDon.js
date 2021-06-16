@@ -7,6 +7,7 @@ import {
 import PDFPrint from "../../common/pdf_print";
 import { Tabs, Divider, Alert } from "antd";
 import CalendarHoaDon from "./calendarHoaDon";
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
 const { TabPane } = Tabs;
 function HoaDon({ onEdit, valueDate, setValueDate }) {
   const dataListTatCaHoaDon = useSelector(
@@ -54,7 +55,10 @@ function HoaDon({ onEdit, valueDate, setValueDate }) {
             .filter((item) => item.ngayTaoBanGhi.split(" ")[0] === valueDate)
             .map((itemHoaDon, indexHoaDon) => {
               return (
-                <TabPane tab={itemHoaDon.ngayTaoBanGhi} key={indexHoaDon + 1}>
+                <TabPane
+                  tab={`${indexHoaDon + 1} . ${itemHoaDon.ngayTaoBanGhi}`}
+                  key={indexHoaDon + 1}
+                >
                   <PDFPrint stylePrint={true}>
                     <div class="container mt-5 custom-border ">
                       <div class="d-flex justify-content-center row">
@@ -102,17 +106,30 @@ function HoaDon({ onEdit, valueDate, setValueDate }) {
                                     <div class="billed">
                                       <span class=" d-flex justify-content-start">
                                         Tên khách hàng :{" "}
-                                        {itemHoaDon &&
-                                          itemHoaDon.thongTinNguoiMua &&
-                                          itemHoaDon.thongTinNguoiMua
-                                            .tenKhachHang}
+                                        <NavLink
+                                          to={{
+                                            pathname: `hoadontheokhachhang/${
+                                              itemHoaDon &&
+                                              itemHoaDon.thongTinNguoiMua &&
+                                              itemHoaDon.thongTinNguoiMua.id
+                                            }`,
+                                            dataKhachHang:
+                                              itemHoaDon &&
+                                              itemHoaDon.thongTinNguoiMua,
+                                          }}
+                                        >
+                                          {itemHoaDon &&
+                                            itemHoaDon.thongTinNguoiMua &&
+                                            itemHoaDon.thongTinNguoiMua
+                                              .tenKhachHang}
+                                        </NavLink>
                                       </span>
                                     </div>
                                   </li>
                                   <li>
                                     <div class="billed">
                                       <span class=" d-flex justify-content-start">
-                                        số điện thoại :{" "}
+                                        SĐT :{" "}
                                         {itemHoaDon &&
                                           itemHoaDon.thongTinNguoiMua &&
                                           itemHoaDon.thongTinNguoiMua

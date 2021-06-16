@@ -13,16 +13,8 @@ import {
   RenderInputNumber,
   RenderInputSelectSearch,
 } from "../../common/renderForm/inputForm";
-import HoaDon from "./hoaDon";
-import HoaDonBanHangTamThoi from "./hoaDonBanHangTamThoi";
-function FormBanHang({
-  onSave,
-  cancel,
-  checkEdit,
-  isVisible,
-  onEdit,
-  hoanTatThanhToan,
-}) {
+import HoadonBanHangCustom from "./hoadonBanHangCustom";
+function FormBanHang({ onSave, cancel, checkEdit, isVisible, onEdit }) {
   const listThuoc = useSelector((state) => state.khothuoc.list);
   const itemThuoc = useSelector((state) => state.khothuoc.item);
   const itemThongTinKhachHang = useSelector(
@@ -34,6 +26,9 @@ function FormBanHang({
   const account_current = useSelector(
     (state) => state.quanlylogin.account_current
   );
+
+  const dataHoaDon = useSelector((state) => state.quanlybanhang.itemHoaDon);
+
   const formRef = useRef();
   const [form] = useForm();
   const dispatch = useDispatch();
@@ -42,7 +37,6 @@ function FormBanHang({
   if (initialValue !== null) {
     var dataInitialValue = {};
     if (initialValue) {
-      console.log(initialValue);
       dataInitialValue = {
         ...initialValue,
       };
@@ -52,7 +46,6 @@ function FormBanHang({
   }
 
   const resetFieldSauKhiHoanTat = (value) => {
-    hoanTatThanhToan(value);
     form.resetFields();
   };
 
@@ -92,36 +85,41 @@ function FormBanHang({
       if (value.id) {
         let idXoa = [];
         let idSanPhamDangCo = [];
-        initialValue.sanPham.map((item) => {
-          idXoa.push(item.id);
-        });
+        console.log(initialValue);
+        if (initialValue !== null) {
+          initialValue.sanPham.map((item) => {
+            idXoa.push(item.id);
+          });
 
-        value.sanPham.map((item, index) => {
-          idSanPhamDangCo.push(item.id);
-        });
+          value.sanPham.map((item, index) => {
+            idSanPhamDangCo.push(item.id);
+          });
 
-        for (let i = 0; i < idXoa.length; i++) {
-          if (!idSanPhamDangCo.includes(idXoa[i])) {
-            dispatch(actQuanLyBanHang.actDeleteSanPhamRequest(idXoa[i]));
-          } else {
+          for (let i = 0; i < idXoa.length; i++) {
+            if (!idSanPhamDangCo.includes(idXoa[i])) {
+              dispatch(actQuanLyBanHang.actDeleteSanPhamRequest(idXoa[i]));
+            } else {
+            }
           }
+
+          let sanPham = [];
+          value.sanPham.map((item, index) => {
+            if (item.id) {
+              item = { ...item };
+              sanPham.push(item);
+            } else {
+              item = { ...item, id: null };
+              sanPham.push(item);
+            }
+          });
+          value = {
+            ...value,
+            sanPham: sanPham,
+          };
+          onSave(value);
+        } else {
+          thongBao("Thông báo !", "Vui lòng reset lại form để thêm hoá đơn !");
         }
-
-        let sanPham = [];
-        value.sanPham.map((item, index) => {
-          if (item.id) {
-            item = { ...item };
-            sanPham.push(item);
-          } else {
-            item = { ...item, id: null };
-            sanPham.push(item);
-          }
-        });
-        value = {
-          ...value,
-          sanPham: sanPham,
-        };
-        onSave(value);
       } else {
         value = {
           ...value,
@@ -158,6 +156,10 @@ function FormBanHang({
     changeValue();
   }, [itemThongTinKhachHang]);
 
+  // useEffect(() => {
+  //   dispatch(actQuanLyThongTinKhachHang.actFetchThongTinKhachHangRequest());
+  // }, [listThongTinKhachHang]);
+
   const onChangeSDTKhachHang = (value) => {
     dispatch(
       actQuanLyThongTinKhachHang.actGetThongTinKhachHangByIdRequest(value)
@@ -180,7 +182,7 @@ function FormBanHang({
   return (
     <>
       <div className="row m-0 p-0 ">
-        <div className="col-md-6">
+        <div className="col-md-9">
           <Form
             form={form}
             name="basic"
@@ -304,13 +306,13 @@ function FormBanHang({
                     </Button>
                     <Button
                       onClick={() => {
-                        cancel();
+                        resetFieldSauKhiHoanTat();
                       }}
                       className="ml-2"
                       type="seconed"
                       size="small"
                     >
-                      Đóng
+                      Reset from
                     </Button>
                   </div>
                 </div>
@@ -318,10 +320,8 @@ function FormBanHang({
             </Form.Item>
           </Form>
         </div>
-        <div className="col-md-6">
-          {/* <HoaDonBanHangTamThoi /> */}
-          {/* <HoaDon onEdit={onEdit} hoanTatThanhToan={resetFieldSauKhiHoanTat} /> */}
-          <HoaDonBanHangTamThoi onEdit={onEdit} />
+        <div className="col-md-3">
+          <HoadonBanHangCustom dataHoaDon={dataHoaDon} onEdit={onEdit} />
         </div>
       </div>
     </>

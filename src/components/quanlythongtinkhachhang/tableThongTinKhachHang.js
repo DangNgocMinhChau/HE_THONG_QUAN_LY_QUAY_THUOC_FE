@@ -4,8 +4,14 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import * as Message from "../../constants/Message";
 
-function TableThongTinKhachHang({ match, data, onDelete, onEdit, setIdXoa }) {
-  console.log(data);
+function TableThongTinKhachHang({
+  match,
+  data,
+  onDelete,
+  onEdit,
+  setIdXoa,
+  onHandleHoaDonCuaKhachHang,
+}) {
   const [selectionType, setSelectionType] = useState();
   const columns = [
     {
@@ -22,7 +28,7 @@ function TableThongTinKhachHang({ match, data, onDelete, onEdit, setIdXoa }) {
       title: "Chức năng",
       dataIndex: "action",
       fixed: "right",
-      width: 100,
+      width: 50,
       render: (data, record) => actionRender(record),
     },
   ];
@@ -56,6 +62,23 @@ function TableThongTinKhachHang({ match, data, onDelete, onEdit, setIdXoa }) {
                 }}
               ></i>
             </a>
+          </div>
+
+          <div className="col-md-2">
+            <NavLink
+              to={{
+                pathname: `hoadontheokhachhang/${record.id}`,
+                dataKhachHang: record,
+              }}
+            >
+              <i
+                className="fa fa-sticky-note-o"
+                style={{ color: "gray", fontSize: "20px" }}
+                // onClick={() => {
+                //   onHandleHoaDonCuaKhachHang(record);
+                // }}
+              ></i>
+            </NavLink>
           </div>
 
           <div className="col-md-2">

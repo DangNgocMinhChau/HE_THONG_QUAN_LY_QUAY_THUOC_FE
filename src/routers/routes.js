@@ -10,6 +10,7 @@ import PageQuanLyHoaDon from "../pages/quanlyhoadon/pageQuanLyHoaDon";
 import PageQuanLyFiles from "../pages/quanlyfile/pageQuanLyFiles";
 import PageQuanLyBaoCao from "../pages/quanlybaocao/pageQuanLyBaoCao";
 import PageQuanLyThongTinKhachHang from "../pages/quanlythongtinkhachhang/pageQuanLyThongTinKhachHang.js";
+import PageQuanLyHoaDonTheoKhachHang from "../pages/quanlythongtinkhachhang/pageQuanLyHoaDonTheoKhachHang";
 
 const routes = [
   {
@@ -81,6 +82,17 @@ const routes = [
     exact: true,
     main: ({ match, location }) => (
       <PageQuanLyThongTinKhachHang location={location} match={match} />
+    ),
+  },
+  {
+    path: "/hoadontheokhachhang/:id",
+    exact: true,
+    main: ({ match, location, history }) => (
+      <PageQuanLyHoaDonTheoKhachHang
+        location={location}
+        match={match}
+        history={history}
+      />
     ),
   },
   {

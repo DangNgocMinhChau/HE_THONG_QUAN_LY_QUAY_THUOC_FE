@@ -139,3 +139,30 @@ export const actUpdateHoaDonDaHoanTat = (value) => {
     value,
   };
 };
+
+export function actGetHoaDonTheoKhachHangRequest(id) {
+  return (dispatch) => {
+    return callApi(
+      `quanlybanhangthanhcong/getAllHoaDonByKhachHang/${id}`,
+      "GET",
+      null
+    ).then((res) => {
+      if (res) {
+        let arr = [];
+        res.data.result &&
+          Array.isArray(res.data.result) &&
+          res.data.result.map((item, index) => {
+            arr.push(item.result);
+          });
+        dispatch(actGetHoaDonTheoKhachHang(arr));
+      }
+    });
+  };
+}
+
+export const actGetHoaDonTheoKhachHang = (value) => {
+  return {
+    type: Types.HOADONDAHOANTAT_THEO_KHACHHANG,
+    value,
+  };
+};

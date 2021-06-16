@@ -2,14 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Button, Tooltip } from "antd";
 import * as actQuanLyThongTinKhachHang from "../../actions/quanlythongtinkhachhang/actQuanLyThongTinKhachHang";
+import * as actQuanLyBanHangThanhCong from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
 import TableThongTinKhachHang from "../../components/quanlythongtinkhachhang/tableThongTinKhachHang";
 import FormThongTinKhachHang from "../../components/quanlythongtinkhachhang/formThongTinKhachHang";
+import HoaDonTheoKhachHang from "../../components/quanlythongtinkhachhang/hoaDonTheoKhachHang";
+
 import { renderDateTheoHeThong } from "./../../common/convert/renderConvert";
 
 function PageQuanLyThongTinKhachHang({ match, location }) {
   const [checkFormThemMoi, setCheckFormThemMoi] = useState(false);
   const [checkDanhSach, setCheckDanhSach] = useState(true);
   const [checkEdit, setCheckEdit] = useState(false);
+  const [
+    checkShowDanhSachHoaDonTheoKhachHang,
+    setCheckShowDanhSachHoaDonTheoKhachHang,
+  ] = useState(false);
   const [idXoa, setIdXoa] = useState([]);
   const { dataListThongTinKhachHang } = useSelector(
     (state) => ({
@@ -22,6 +29,7 @@ function PageQuanLyThongTinKhachHang({ match, location }) {
   function cancel() {
     setCheckDanhSach(true);
     setCheckFormThemMoi(false);
+    setCheckShowDanhSachHoaDonTheoKhachHang(false);
   }
 
   function onSave(value) {
@@ -94,6 +102,14 @@ function PageQuanLyThongTinKhachHang({ match, location }) {
     });
   };
 
+  const onHandleHoaDonCuaKhachHang = (value) => {
+    dispatch(
+      actQuanLyBanHangThanhCong.actGetHoaDonTheoKhachHangRequest(value.id)
+    );
+    setCheckShowDanhSachHoaDonTheoKhachHang(true);
+    setCheckDanhSach(false);
+  };
+
   useEffect(() => {
     dispatch(actQuanLyThongTinKhachHang.actFetchThongTinKhachHangRequest());
   }, []);
@@ -144,6 +160,22 @@ function PageQuanLyThongTinKhachHang({ match, location }) {
               <h6 className="m-0 font-weight-bold ">
                 Danh sách thông tin khách hàng
               </h6>
+              {checkShowDanhSachHoaDonTheoKhachHang && (
+                <Tooltip
+                  placement="bottom"
+                  title="Quay lại"
+                  color="gray"
+                  key="red"
+                >
+                  <a
+                    onClick={() => {
+                      cancel();
+                    }}
+                  >
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  </a>
+                </Tooltip>
+              )}
             </div>
             {checkFormThemMoi && (
               <FormThongTinKhachHang
@@ -159,8 +191,10 @@ function PageQuanLyThongTinKhachHang({ match, location }) {
                 onDelete={onDelete}
                 onEdit={onEdit}
                 setIdXoa={setIdXoa}
+                onHandleHoaDonCuaKhachHang={onHandleHoaDonCuaKhachHang}
               />
             )}
+            {checkShowDanhSachHoaDonTheoKhachHang && <HoaDonTheoKhachHang />}
           </div>
         </div>
       </div>
