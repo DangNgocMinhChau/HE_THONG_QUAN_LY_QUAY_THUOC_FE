@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Input, Divider, Button, Space } from "antd";
+import { Form, Input, Divider, Button, Space, Tooltip } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import * as actKhoThuoc from "./../../actions/quanlykho/actQuanLyKho";
@@ -13,7 +13,9 @@ import {
   RenderInputNumber,
   RenderInputSelectSearch,
 } from "../../common/renderForm/inputForm";
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import HoadonBanHangCustom from "./hoadonBanHangCustom";
+import { SearchOutlined } from "@ant-design/icons";
 function FormBanHang({ onSave, cancel, checkEdit, isVisible, onEdit }) {
   const listThuoc = useSelector((state) => state.khothuoc.list);
   const itemThuoc = useSelector((state) => state.khothuoc.item);
@@ -156,10 +158,6 @@ function FormBanHang({ onSave, cancel, checkEdit, isVisible, onEdit }) {
     changeValue();
   }, [itemThongTinKhachHang]);
 
-  // useEffect(() => {
-  //   dispatch(actQuanLyThongTinKhachHang.actFetchThongTinKhachHangRequest());
-  // }, [listThongTinKhachHang]);
-
   const onChangeSDTKhachHang = (value) => {
     dispatch(
       actQuanLyThongTinKhachHang.actGetThongTinKhachHangByIdRequest(value)
@@ -178,7 +176,6 @@ function FormBanHang({ onSave, cancel, checkEdit, isVisible, onEdit }) {
       );
     }
   };
-
   return (
     <>
       <div className="row m-0 p-0 ">
@@ -201,15 +198,30 @@ function FormBanHang({ onSave, cancel, checkEdit, isVisible, onEdit }) {
                   <div className="col-md-4">
                     <p>Tên khách hàng</p>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-md-6">
                     <RenderInput label="Tên khách hàng" name="tenKhachHang" />
+                  </div>
+                  <div className="col-md-2">
+                    <Tooltip title="search">
+                      <NavLink
+                        to={{
+                          pathname: `hoadontheokhachhang/${
+                            itemThongTinKhachHang && itemThongTinKhachHang.id
+                          }`,
+                          dataKhachHang:
+                            itemThongTinKhachHang && itemThongTinKhachHang,
+                        }}
+                      >
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                      </NavLink>
+                    </Tooltip>
                   </div>
                 </div>
               </div>
               <div className="col-md-6">
                 <div className="row">
                   <div className="col-md-4">
-                    <p>số điện thoại khách hàng</p>
+                    <p>SĐT</p>
                   </div>
                   <div className="col-md-8">
                     <RenderInputSelectSearch
@@ -284,6 +296,21 @@ function FormBanHang({ onSave, cancel, checkEdit, isVisible, onEdit }) {
                   )}
                 </Form.List>
               </div>
+
+              <div className="col-md-6">
+                <div className="row">
+                  <div className="col-md-4">
+                    <p>Tiền nhận</p>
+                  </div>
+                  <div className="col-md-8">
+                    <RenderInputNumber
+                      label="Tiền nhận"
+                      name="tienNhan"
+                      style={{ width: "1000px" }}
+                    />
+                  </div>
+                </div>
+              </div>
               <Form.Item
                 label="ngày tao bản ghi"
                 name="ngayTaoBanGhi"
@@ -302,7 +329,7 @@ function FormBanHang({ onSave, cancel, checkEdit, isVisible, onEdit }) {
                       size="small"
                       htmlType="submit"
                     >
-                      {checkEdit ? "Sửa" : "Thêm"}
+                      {checkEdit ? "Sửa" : "Lưu"}
                     </Button>
                     <Button
                       onClick={() => {
@@ -312,7 +339,7 @@ function FormBanHang({ onSave, cancel, checkEdit, isVisible, onEdit }) {
                       type="seconed"
                       size="small"
                     >
-                      Reset from
+                      Reset
                     </Button>
                   </div>
                 </div>

@@ -45,7 +45,8 @@ export const actDeleteThongTinKhachHang = (id) => {
 
 export function actCreateThongTinKhachHangRequest(
   dataThongTinKhachHang,
-  dataThuoc
+  dataThuoc,
+  callRequestThongTinKhachHang
 ) {
   dataThongTinKhachHang = {
     ...dataThongTinKhachHang,
@@ -58,6 +59,7 @@ export function actCreateThongTinKhachHangRequest(
       dataThongTinKhachHang
     ).then((res) => {
       if (res) {
+        callRequestThongTinKhachHang();
         thongBao(message.THEM_THANH_CONG);
         if (dataThuoc && dataThuoc.id) {
           dataThuoc = {

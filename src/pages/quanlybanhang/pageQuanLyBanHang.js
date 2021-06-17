@@ -59,7 +59,8 @@ function PageQuanLyBanHang({ match, location }) {
   const handleHuyDonDatHangTam = () => {
     dispatch(actBanHang.actDeleteBanHangRequest(itemHoaDon && itemHoaDon.id));
   };
-  function onSaveQuanLyThongTinKhachHang(value) {
+
+  const onSaveQuanLyThongTinKhachHang = (value) => {
     if (value.id) {
       value = {
         ...value,
@@ -76,12 +77,17 @@ function PageQuanLyBanHang({ match, location }) {
         ngayTaoBanGhi: renderDateTheoHeThong(),
       };
       dispatch(
-        actQuanLyThongTinKhachHang.actCreateThongTinKhachHangRequest(value)
+        actQuanLyThongTinKhachHang.actCreateThongTinKhachHangRequest(
+          value,
+          callRequestThongTinKhachHang
+        )
       );
     }
     cancelSauKhiThemThongTinKhachHang();
-  }
-
+  };
+  const callRequestThongTinKhachHang = () => {
+    dispatch(actQuanLyThongTinKhachHang.actFetchThongTinKhachHangRequest());
+  };
   function onDelete(id) {
     dispatch(actBanHang.actDeleteBanHangRequest(id));
   }
@@ -129,6 +135,7 @@ function PageQuanLyBanHang({ match, location }) {
       soDienThoaiKhachHang: value.soDienThoaiKhachHang,
       tenKhachHang: value.tenKhachHang,
       nguoiTaoId: value.nguoiTaoId,
+      tienNhan: value.tienNhan,
       ngayTaoBanGhi: renderDateTheoHeThong(),
     };
     dispatch(actHoaDonHoaDonDaHoanTat.actCreateHoaDonDaHoanTatRequest(value));
@@ -233,7 +240,7 @@ function PageQuanLyBanHang({ match, location }) {
                   key="red"
                 >
                   <a
-                    className="m-0 p-0 "
+                    className="m-0 p-0 ml-3"
                     size="small"
                     onClick={() => {
                       handleCreteKhachHang(!checkFormThemMoiKhachHang);

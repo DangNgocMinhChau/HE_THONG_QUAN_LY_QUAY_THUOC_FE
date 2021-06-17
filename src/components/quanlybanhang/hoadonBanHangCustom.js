@@ -97,6 +97,24 @@ function HoadonBanHangCustom({ onEdit, dataHoaDon }) {
                 <td>{renderTien(totalTien)}</td>
               </tr>
             </tbody>
+            <tbody>
+              <tr className="tr-custom-table-hoadon">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Tiền nhận : </td>
+                <td>{renderTien(dataHoaDon && dataHoaDon.tienNhan)}</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Tiền thừa : </td>
+                <td>
+                  {renderTien(dataHoaDon && dataHoaDon.tienNhan - totalTien)}
+                </td>
+              </tr>
+            </tbody>
           </table>
           <hr />
           <p class="centered">
