@@ -23,9 +23,9 @@ export const renderDateTime = (value) => {
 };
 
 export const renderConverLoaiThanhToan = (value) => {
-  if ("CongNo") {
+  if (value === "CongNo") {
     return <span>Công nợ</span>;
-  } else if ("TienMat") {
+  } else if (value === "TienMat") {
     return <span>Tiền mặt</span>;
   }
 };

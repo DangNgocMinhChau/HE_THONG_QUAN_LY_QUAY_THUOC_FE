@@ -34,6 +34,16 @@ export function actFetchKhoThuocRequest() {
   };
 }
 
+export function actFetchThungRacKhoThuocRequest() {
+  return (dispatch) => {
+    return callApi("quanlykho/thungrackhothuoc", "GET", null).then((res) => {
+      if (res) {
+        dispatch(actFetchNhapKhoThuoc(res.data.result));
+      }
+    });
+  };
+}
+
 export const actFetchNhapKhoThuoc = (data) => {
   return {
     type: Types.FETCH_NHAPKHOTHUOC,
@@ -53,6 +63,14 @@ export function actDeleteNhapKhoThuocRequest(id) {
 
 export const actDeleteNhapKhoThuoc = (id) => {
   openMessageLoading(message.XOA_THANH_CONG);
+  return {
+    type: Types.DELETE_NHAPKHOTHUOC,
+    id,
+  };
+};
+
+export const actPhucHoiDuLieuKhoThuoc = (id) => {
+  openMessageLoading(message.PHUC_HOI_DU_LIEU_THANH_CONG);
   return {
     type: Types.DELETE_NHAPKHOTHUOC,
     id,
@@ -126,11 +144,40 @@ export function actUpdateThuocRequest(value) {
   };
 }
 
-export function actUpdateSetFlagRequest(value) {
+export function actUpdateSetFlagRequest(value, checkPhucHoiDuLieu = false) {
   return (dispatch) => {
     return callApi(`quanlykho/${value.id}`, "PUT", value).then((res) => {
       if (res) {
-        dispatch(actUpdateThuoc(res.data.result));
+        dispatch(actUpdateThuoc(value.id));
+        if (checkPhucHoiDuLieu) {
+          dispatch(actPhucHoiDuLieuKhoThuoc(value.id));
+        } else {
+          dispatch(actDeleteNhapKhoThuoc(value.id));
+        }
+      }
+    });
+  };
+}
+
+export function actDeleteKhothuocRequest(value) {
+  return (dispatch) => {
+    return callApi(`quanlykho`, "DELETE", value).then((res) => {
+      if (res) {
+        res.data.listId.map((id, index) => {
+          dispatch(actDeleteNhapKhoThuoc(id));
+        });
+      }
+    });
+  };
+}
+
+export function actDeleteKhothuocVinhVienRequest(value) {
+  return (dispatch) => {
+    return callApi(`quanlykho/xoavinhvien`, "DELETE", value).then((res) => {
+      if (res) {
+        res.data.listId.map((id, index) => {
+          dispatch(actDeleteNhapKhoThuoc(id));
+        });
       }
     });
   };

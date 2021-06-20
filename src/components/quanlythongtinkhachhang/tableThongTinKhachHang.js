@@ -15,6 +15,11 @@ function TableThongTinKhachHang({
   const [selectionType, setSelectionType] = useState();
   const columns = [
     {
+      title: "STT",
+      width: 20,
+      render: (data, record, index) => <p>{index + 1}</p>,
+    },
+    {
       title: "Tên khách hàng",
       width: 200,
       dataIndex: "tenKhachHang",
@@ -114,11 +119,11 @@ function TableThongTinKhachHang({
         columns={columns}
         dataSource={data}
         bordered
-        scroll={{ x: "calc(700px + 50%)", y: 240 }}
+        scroll={{ x: "calc(700px + 50%)", y: "100%" }}
         pagination={{
           defaultPageSize: 10,
           showSizeChanger: true,
-          pageSizeOptions: ["10", "20", "30"],
+          pageSizeOptions: ["10", "20", "30", "40", "50", "60"],
         }}
       />
     </div>

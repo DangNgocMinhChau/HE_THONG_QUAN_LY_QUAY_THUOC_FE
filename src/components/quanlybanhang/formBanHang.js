@@ -16,7 +16,17 @@ import {
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import HoadonBanHangCustom from "./hoadonBanHangCustom";
 import { SearchOutlined } from "@ant-design/icons";
-function FormBanHang({ onSave, cancel, checkEdit, isVisible, onEdit }) {
+function FormBanHang({
+  onSave,
+  cancel,
+  checkEdit,
+  isVisible,
+  onEdit,
+  hoanTatThanhToan,
+  itemHoaDon,
+  handleHuyDonDatHangTam,
+  listHoaDonBanHangTam,
+}) {
   const listThuoc = useSelector((state) => state.khothuoc.list);
   const itemThuoc = useSelector((state) => state.khothuoc.item);
   const itemThongTinKhachHang = useSelector(
@@ -87,7 +97,6 @@ function FormBanHang({ onSave, cancel, checkEdit, isVisible, onEdit }) {
       if (value.id) {
         let idXoa = [];
         let idSanPhamDangCo = [];
-        console.log(initialValue);
         if (initialValue !== null) {
           initialValue.sanPham.map((item) => {
             idXoa.push(item.id);
@@ -198,24 +207,30 @@ function FormBanHang({ onSave, cancel, checkEdit, isVisible, onEdit }) {
                   <div className="col-md-4">
                     <p>Tên khách hàng</p>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-7">
                     <RenderInput label="Tên khách hàng" name="tenKhachHang" />
                   </div>
-                  <div className="col-md-2">
-                    <Tooltip title="search">
-                      <NavLink
-                        to={{
-                          pathname: `hoadontheokhachhang/${
-                            itemThongTinKhachHang && itemThongTinKhachHang.id
-                          }`,
-                          dataKhachHang:
-                            itemThongTinKhachHang && itemThongTinKhachHang,
-                        }}
-                      >
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                      </NavLink>
-                    </Tooltip>
-                  </div>
+                  {itemThongTinKhachHang !== {} && (
+                    <div className="col-md-1">
+                      <Tooltip title="Tìm hóa đơn">
+                        <NavLink
+                          to={{
+                            pathname: `hoadontheokhachhang/${
+                              itemThongTinKhachHang
+                                ? itemThongTinKhachHang.id
+                                  ? itemThongTinKhachHang.id
+                                  : 0
+                                : 0
+                            }`,
+                            dataKhachHang:
+                              itemThongTinKhachHang && itemThongTinKhachHang,
+                          }}
+                        >
+                          <i class="fa fa-search" aria-hidden="true"></i>
+                        </NavLink>
+                      </Tooltip>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="col-md-6">
@@ -348,7 +363,14 @@ function FormBanHang({ onSave, cancel, checkEdit, isVisible, onEdit }) {
           </Form>
         </div>
         <div className="col-md-3">
-          <HoadonBanHangCustom dataHoaDon={dataHoaDon} onEdit={onEdit} />
+          <HoadonBanHangCustom
+            dataHoaDon={dataHoaDon}
+            onEdit={onEdit}
+            listHoaDonBanHangTam={listHoaDonBanHangTam}
+            handleHuyDonDatHangTam={handleHuyDonDatHangTam}
+            itemHoaDon={itemHoaDon}
+            hoanTatThanhToan={hoanTatThanhToan}
+          />
         </div>
       </div>
     </>

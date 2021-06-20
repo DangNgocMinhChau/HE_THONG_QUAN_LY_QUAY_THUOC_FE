@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import TableNhapThuoc from "../../components/quanlykho/table";
-import { Button, Tooltip, Switch } from "antd";
+import { Button, Tooltip, Popconfirm } from "antd";
 import * as act from "../../actions/quanlykho/actQuanLyKho";
 import * as actQuanLyFiles from "../../actions/quanlyfiles/actQuanLyFiles";
 import * as actNhaCungCap from "../../actions/quanlynhacungcap/actQuanLyNhaCungCap";
@@ -67,7 +67,7 @@ function PageNhapThuoc({ match, location, history }) {
       thanhToan: value.thanhToan,
       soLuongNhap: value.soLuongNhap,
       soLuongBanDau: value.soLuongNhap,
-      soLuongDaBan: 0,
+      soLuongDaBan: value.soLuongDaBan,
       hanSuDungThuoc: value.hanSuDungThuoc,
       soLuongMua: value.soLuongMua,
       ngayNhapThuoc: value.ngayNhapThuoc,
@@ -76,6 +76,7 @@ function PageNhapThuoc({ match, location, history }) {
       phanLoaiThuoc: value.phanLoaiThuoc,
       khuVuc: value.khuVuc,
       fileDinhKem: strFile,
+      flag: true,
       nguoiTaoId: account_current.id,
     };
 
@@ -128,66 +129,18 @@ function PageNhapThuoc({ match, location, history }) {
   }
 
   const handdleXoaNhieu = () => {
-    idXoa.map((itemId, indexId) => {
-      dataListThuoc.map((item, index) => {
-        if (item.id == itemId) {
-          item = {
-            ...item,
-            ngayXoaBanGhi: renderDateTheoHeThong(),
-            flag: false,
-          };
-          dispatch(act.actUpdateSetFlagRequest(item));
-        }
-      });
-      dispatch(act.actDeleteNhapKhoThuoc(itemId));
-      dispatch(
-        actQuanLyFiles.actDeletefilesRequest(
-          dataListFile &&
-            dataListFile.filter((itemFile) => itemFile.idThuoc === itemId)
-              .length > 0 &&
-            Array.isArray(dataListFile) &&
-            dataListFile.filter((itemFile) => itemFile.idThuoc === itemId)[0].id
-        )
-      );
-    });
+    let value = idXoa;
+    dispatch(act.actDeleteKhothuocRequest(value));
   };
 
   const handdleXoaVinhVien = () => {
-    idXoa.map((itemId, indexId) => {
-      dispatch(act.actDeleteNhapKhoThuocRequest(itemId));
-      dispatch(
-        actQuanLyFiles.actDeletefilesRequest(
-          dataListFile &&
-            dataListFile.filter((itemFile) => itemFile.idThuoc === itemId)
-              .length > 0 &&
-            Array.isArray(dataListFile) &&
-            dataListFile.filter((itemFile) => itemFile.idThuoc === itemId)[0].id
-        )
-      );
-    });
+    let value = idXoa;
+    dispatch(act.actDeleteKhothuocVinhVienRequest(value));
   };
 
   const onDelete = (id) => {
-    dataListThuoc.map((item, index) => {
-      if (item.id == id) {
-        item = {
-          ...item,
-          ngayXoaBanGhi: renderDateTheoHeThong(),
-          flag: false,
-        };
-        dispatch(act.actUpdateSetFlagRequest(item));
-      }
-    });
-    dispatch(act.actDeleteNhapKhoThuoc(id));
-    dispatch(
-      actQuanLyFiles.actUpdateSetFlagRequest(
-        dataListFile &&
-          dataListFile.filter((itemFile) => itemFile.idThuoc === id).length >
-            0 &&
-          Array.isArray(dataListFile) &&
-          dataListFile.filter((itemFile) => itemFile.idThuoc === id)[0]
-      )
-    );
+    let value = [id];
+    dispatch(act.actDeleteKhothuocRequest(value));
   };
 
   const deleteFiles = (itemFileCanXoa, record) => {
@@ -308,21 +261,27 @@ function PageNhapThuoc({ match, location, history }) {
             </Tooltip>
 
             <Tooltip placement="bottom" title="Xoá nhiều" color="red" key="red">
-              <Button
-                className="m-2 "
-                size="small"
-                onClick={() => {
-                  handdleXoaNhieu();
-                }}
-                type="dashed"
-                danger={true}
+              <Popconfirm
+                title="Bạn có chắc chắn muốn xoá ?"
+                okText="Có"
+                cancelText="Không"
               >
-                <i
-                  class="fa fa-trash-o"
-                  style={{ color: "red" }}
-                  aria-hidden="true"
-                ></i>
-              </Button>
+                <Button
+                  className="m-2 "
+                  size="small"
+                  onClick={() => {
+                    handdleXoaNhieu();
+                  }}
+                  type="dashed"
+                  danger={true}
+                >
+                  <i
+                    class="fa fa-trash-o"
+                    style={{ color: "red" }}
+                    aria-hidden="true"
+                  ></i>
+                </Button>
+              </Popconfirm>
             </Tooltip>
 
             <Tooltip
@@ -331,17 +290,23 @@ function PageNhapThuoc({ match, location, history }) {
               color="red"
               key="red"
             >
-              <Button
-                className="m-2 mr-5 "
-                size="small"
-                onClick={() => {
-                  handdleXoaVinhVien();
-                }}
-                type="dashed"
-                danger={true}
+              <Popconfirm
+                title="Bạn có chắc chắn muốn xoá vĩnh viễn?"
+                okText="Có"
+                cancelText="Không"
               >
-                <i class="fa fa-ban" aria-hidden="true"></i>
-              </Button>
+                <Button
+                  className="m-2 mr-5 "
+                  size="small"
+                  onClick={() => {
+                    handdleXoaVinhVien();
+                  }}
+                  type="dashed"
+                  danger={true}
+                >
+                  <i class="fa fa-ban" aria-hidden="true"></i>
+                </Button>
+              </Popconfirm>
             </Tooltip>
           </div>
         )}

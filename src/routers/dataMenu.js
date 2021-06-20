@@ -17,8 +17,8 @@ export const menusListQuanTri = [
         name: "Quản lý nhà thuốc",
         children: [
           {
-            name: "Nhà thuốc",
-            to: "/nhapthuoc",
+            name: "Kho thuốc",
+            to: "/khothuoc",
             exact: true,
           },
         ],
@@ -70,6 +70,11 @@ export const menusListQuanTri = [
     to: "/banhang",
     exact: true,
   },
+  {
+    name: "Danh sách sản phẩm",
+    to: "/danhsachsanpham",
+    exact: true,
+  },
 
   {
     name: "Báo cáo tổng quát",
@@ -86,6 +91,18 @@ export const menusListQuanTri = [
     to: "/mucluc",
     exact: true,
   },
+  {
+    name: "Thùng rác",
+    to: "/thungrac",
+    exact: true,
+    children: [
+      {
+        name: "Kho thuốc",
+        to: "/thungrackhothuoc",
+        exact: true,
+      },
+    ],
+  },
 ];
 
 export const menusListUser = [
@@ -97,8 +114,8 @@ export const menusListUser = [
         name: "Quản lý nhà thuốc",
         children: [
           {
-            name: "Nhà thuốc",
-            to: "/nhapthuoc",
+            name: "Kho thuốc",
+            to: "/khothuoc",
             exact: true,
           },
         ],

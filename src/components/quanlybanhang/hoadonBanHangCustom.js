@@ -4,7 +4,16 @@ import {
   renderConvertSoLuongTheoDonVi,
   renderTien,
 } from "./../../common/convert/renderConvert";
-function HoadonBanHangCustom({ onEdit, dataHoaDon }) {
+import { Tooltip } from "antd";
+
+function HoadonBanHangCustom({
+  onEdit,
+  dataHoaDon,
+  hoanTatThanhToan,
+  itemHoaDon,
+  handleHuyDonDatHangTam,
+  listHoaDonBanHangTam,
+}) {
   let totalTien = 0;
   dataHoaDon &&
     Array.isArray(dataHoaDon.sanPham) &&
@@ -124,6 +133,39 @@ function HoadonBanHangCustom({ onEdit, dataHoaDon }) {
           </p>
         </div>
       </PDFPrint>
+
+      {itemHoaDon && Array.isArray(itemHoaDon.sanPham) && (
+        <>
+          <Tooltip placement="bottom" title="Hoàn tất hoá đơn" key="red">
+            <a
+              className="ml-3 text-success"
+              onClick={() => {
+                hoanTatThanhToan(itemHoaDon.id);
+              }}
+            >
+              <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+            </a>
+          </Tooltip>
+
+          <Tooltip placement="bottom" title="Hủy hoá đơn" key="red">
+            <a
+              className="ml-3 p-0 "
+              size="small"
+              onClick={() => {
+                handleHuyDonDatHangTam();
+              }}
+              type="dashed"
+              danger={true}
+            >
+              <i
+                class="fa fa-times-circle-o"
+                style={{ color: "red" }}
+                aria-hidden="true"
+              ></i>
+            </a>
+          </Tooltip>
+        </>
+      )}
     </>
   );
 }

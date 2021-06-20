@@ -8,17 +8,28 @@ import {
   renderConverLoaiThanhToan,
   renderDate,
 } from "./../../common/convert/renderConvert";
-function DetailKhoThuoc({ match, history, itemKhoThuoc }) {
+import { Button, Tooltip, Switch } from "antd";
+import moment from "moment";
+function DetailKhoThuoc({
+  match,
+  history,
+  itemKhoThuoc,
+  handleBack,
+  checkShowButtonBack,
+}) {
   const dispatch = useDispatch();
-  // const itemNhaCungCap = useSelector((state) => state.quanlynhacungcap.item);
-  // useEffect(() => {
-  //   dispatch(
-  //     actQuanLyNhaCungCap.actGetNhaCungCapByIdRequest(
-  //       itemKhoThuoc && itemKhoThuoc.idNhaCungCap
-  //     )
-  //   );
-  // });
 
+  const renderDateHanSudung = (item) => {
+    var timeNow = moment();
+    var hsd = moment(item.hanSuDungThuoc);
+    let khoangCachGiua2Ngay = hsd.diff(timeNow, "days");
+
+    return (
+      <span style={{ color: khoangCachGiua2Ngay < 30 ? "red" : "black" }}>
+        {renderDate(item.hanSuDungThuoc)}
+      </span>
+    );
+  };
   const renderFile = (value) => {
     if (value && Array.isArray(value)) {
       return value.map((item, index) => {
@@ -75,6 +86,26 @@ function DetailKhoThuoc({ match, history, itemKhoThuoc }) {
       <div className="container-fluid">
         <div className="d-sm-flex align-items-center justify-content-between mb-4"></div>
         <div className=" background-detail-custom  shadow ">
+          {checkShowButtonBack && (
+            <Tooltip placement="bottom" title="Quay lại" color="gray" key="red">
+              <a
+                onClick={() => {
+                  handleBack();
+                }}
+              >
+                <i
+                  className="fa fa-angle-left  "
+                  aria-hidden="true"
+                  style={{
+                    color: "green",
+                    fontSize: "30px",
+                    marginTop: "10px",
+                  }}
+                ></i>
+              </a>
+            </Tooltip>
+          )}
+
           <Divider orientation="left">Nhà cung cấp</Divider>
           <Descriptions size="small" layout="horizontal" bordered>
             <Descriptions.Item label="Nhà cung cấp" span={2}>
@@ -159,7 +190,10 @@ function DetailKhoThuoc({ match, history, itemKhoThuoc }) {
                 renderConverLoaiThanhToan(itemKhoThuoc.thanhToan)}
             </Descriptions.Item>
             <Descriptions.Item label="Ngày nhập thuốc" span={3}>
-              {itemKhoThuoc && renderDateTime(itemKhoThuoc.ngayNhapThuoc)}
+              {itemKhoThuoc && renderDateTime(itemKhoThuoc.ngayTaoBanGhi)}
+            </Descriptions.Item>
+            <Descriptions.Item label="Hạn sử dụng" span={3}>
+              {itemKhoThuoc && renderDateHanSudung(itemKhoThuoc)}
             </Descriptions.Item>
             <Descriptions.Item label="File đính kèm">
               {renderFile(itemKhoThuoc && itemKhoThuoc.fileDBArrayList)}

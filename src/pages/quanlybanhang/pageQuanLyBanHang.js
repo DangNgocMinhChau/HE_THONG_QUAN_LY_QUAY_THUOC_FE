@@ -21,7 +21,9 @@ function PageQuanLyBanHang({ match, location }) {
   const [checkSubmitHoanThanh, setCheckSubmitHoanThanh] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [checkCoDonHang, setCheckCoDonHang] = useState(false);
   const [checkSubmitForm, setCheckSubmitForm] = useState(false);
+  const [checkMuaHangThanhCong, setCheckMuaHangThanhCong] = useState(false);
   const [checkFormThemMoiKhachHang, setCheckFormThemMoiKhachHang] =
     useState(false);
 
@@ -53,6 +55,7 @@ function PageQuanLyBanHang({ match, location }) {
       };
       dispatch(actBanHang.actCreateBanHangRequest(value));
     }
+    setCheckCoDonHang(true);
     // cancel();
   }
 
@@ -118,6 +121,7 @@ function PageQuanLyBanHang({ match, location }) {
     dispatch(actBanHang.actHoaDonBanHang(null));
   }
   const hoanTatThanhToan = (value) => {
+    setCheckMuaHangThanhCong(true);
     dispatch(
       actBanHang.actGetHoaDonSauKhiBanByIdRequest(
         value,
@@ -186,7 +190,6 @@ function PageQuanLyBanHang({ match, location }) {
     }
     dispatch(actQuanLyThongTinKhachHang.actFetchThongTinKhachHangRequest());
   }, []);
-
   return (
     <div className="container-fluid ">
       <div className="row">
@@ -197,43 +200,6 @@ function PageQuanLyBanHang({ match, location }) {
             <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between pb-0 pt-0 ">
               <h6 className="m-0 font-weight-bold ">Bán hàng</h6>
               <div className=" d-flex flex-row align-items-center  ">
-                {listHoaDonBanHangTam.length > 0 && (
-                  <Tooltip placement="bottom" title="Hủy hoá đơn" key="red">
-                    <a
-                      className="m-0 p-0 "
-                      size="small"
-                      onClick={() => {
-                        handleHuyDonDatHangTam();
-                      }}
-                      type="dashed"
-                      danger={true}
-                    >
-                      <i
-                        class="fa fa-times-circle-o"
-                        style={{ color: "red" }}
-                        aria-hidden="true"
-                      ></i>
-                    </a>
-                  </Tooltip>
-                )}
-
-                {itemHoaDon && Array.isArray(itemHoaDon.sanPham) && (
-                  <Tooltip
-                    placement="bottom"
-                    title="Hoàn tất hoá đơn"
-                    key="red"
-                  >
-                    <a
-                      className="ml-3 text-success"
-                      onClick={() => {
-                        hoanTatThanhToan(itemHoaDon.id);
-                      }}
-                    >
-                      <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                    </a>
-                  </Tooltip>
-                )}
-
                 <Tooltip
                   placement="bottom"
                   title="Tạo mới khách hàng"
@@ -271,6 +237,10 @@ function PageQuanLyBanHang({ match, location }) {
               checkFormThemMoiKhachHang={checkFormThemMoiKhachHang}
               setCheckSubmitForm={setCheckSubmitForm}
               onEdit={onEdit}
+              listHoaDonBanHangTam={listHoaDonBanHangTam}
+              handleHuyDonDatHangTam={handleHuyDonDatHangTam}
+              itemHoaDon={itemHoaDon}
+              hoanTatThanhToan={hoanTatThanhToan}
             />
             <ModalBanHang
               isVisible={isVisible}

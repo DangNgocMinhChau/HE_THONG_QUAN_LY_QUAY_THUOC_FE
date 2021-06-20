@@ -10,7 +10,7 @@ function PageQuanLyBaoCao(props) {
         <div className="col-md-12">
           {/* <Darboard /> */}
           {/* <QrCode /> */}
-          <Caculator />
+          {/* <Caculator /> */}
         </div>
       </div>
     </div>

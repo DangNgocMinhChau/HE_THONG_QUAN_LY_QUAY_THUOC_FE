@@ -17,7 +17,9 @@ function PageQuanLyHoaDonTheoKhachHang({ match, location, history }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actQuanLyBanHangThanhCong.actGetHoaDonTheoKhachHangRequest(id));
+    if (id) {
+      dispatch(actQuanLyBanHangThanhCong.actGetHoaDonTheoKhachHangRequest(id));
+    }
   }, []);
 
   const cancel = () => {
@@ -36,10 +38,18 @@ function PageQuanLyHoaDonTheoKhachHang({ match, location, history }) {
               <h6 className="m-0 ">
                 Khách hàng:{" "}
                 {`${
-                  location.dataKhachHang && location.dataKhachHang.tenKhachHang
+                  location.dataKhachHang
+                    ? location.dataKhachHang.tenKhachHang
+                      ? location.dataKhachHang.tenKhachHang
+                      : ""
+                    : ""
                 }  /
                   ${
-                    location.dataKhachHang && location.dataKhachHang.soDienThoai
+                    location.dataKhachHang
+                      ? location.dataKhachHang.soDienThoai
+                        ? location.dataKhachHang.soDienThoai
+                        : ""
+                      : ""
                   }`}{" "}
               </h6>
               <Tooltip

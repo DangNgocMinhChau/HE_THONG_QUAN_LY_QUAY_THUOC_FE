@@ -505,6 +505,8 @@ function FormNhapThuoc({
               </div>
             </div>
             <RenderInput name="ngayTaoBanGhi" hidden={true} />
+            <RenderInput name="soLuongDaBan" hidden={true} />
+            <RenderInput name="soLuongMua" hidden={true} />
           </div>
         </div>
         <Form.Item>

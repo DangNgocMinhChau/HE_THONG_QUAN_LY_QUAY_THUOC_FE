@@ -11,6 +11,8 @@ import PageQuanLyFiles from "../pages/quanlyfile/pageQuanLyFiles";
 import PageQuanLyBaoCao from "../pages/quanlybaocao/pageQuanLyBaoCao";
 import PageQuanLyThongTinKhachHang from "../pages/quanlythongtinkhachhang/pageQuanLyThongTinKhachHang.js";
 import PageQuanLyHoaDonTheoKhachHang from "../pages/quanlythongtinkhachhang/pageQuanLyHoaDonTheoKhachHang";
+import PageDanhSachSanPham from "../pages/danhsachsanpham/pageDanhSachSanPham";
+import PageQuanLyThungRacKhoThuoc from "../pages/quanlythungrac/thungrackhothuoc/pageQuanLyThungRacKhoThuoc";
 
 const routes = [
   {
@@ -19,7 +21,7 @@ const routes = [
     main: () => <Home />,
   },
   {
-    path: "/nhapthuoc",
+    path: "/khothuoc",
     exact: true,
     main: ({ match, location }) => (
       <PageNhapThuoc location={location} match={match} />
@@ -85,10 +87,32 @@ const routes = [
     ),
   },
   {
+    path: "/danhsachsanpham",
+    exact: true,
+    main: ({ match, location, history }) => (
+      <PageDanhSachSanPham
+        location={location}
+        match={match}
+        history={history}
+      />
+    ),
+  },
+  {
     path: "/hoadontheokhachhang/:id",
     exact: true,
     main: ({ match, location, history }) => (
       <PageQuanLyHoaDonTheoKhachHang
+        location={location}
+        match={match}
+        history={history}
+      />
+    ),
+  },
+  {
+    path: "/thungrackhothuoc",
+    exact: true,
+    main: ({ match, location, history }) => (
+      <PageQuanLyThungRacKhoThuoc
         location={location}
         match={match}
         history={history}

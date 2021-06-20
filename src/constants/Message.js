@@ -1,4 +1,6 @@
 export const BAN_CO_MUON_XOA = "Bạn có chắc chắn muốn xóa !";
+export const PHUC_HOI = "Bạn có muốn phục hồi dữ liệu !";
+export const PHUC_HOI_DU_LIEU_THANH_CONG = "Phục hồi dữ liệu thành công !";
 export const XOA_THANH_CONG = "Xóa thành công !";
 export const THEM_THANH_CONG = "Thêm thành công !";
 export const SUA_THANH_CONG = "Cập nhật thành công !";
