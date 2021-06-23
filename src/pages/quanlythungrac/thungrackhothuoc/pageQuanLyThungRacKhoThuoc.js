@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { Button, Tooltip } from "antd";
 import * as act from "../../../actions/quanlykho/actQuanLyKho";
 
-import { renderDateTheoHeThong } from "../../../common/convert/renderConvert";
 import TableThungRacKhoThuoc from "../../../components/quanlythungrac/thungrackhothuoc/tableThungRacKhoThuoc";
 
 function PageQuanLyThungRacKhoThuoc({ match, location }) {

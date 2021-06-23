@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "antd";
-import { FormFile } from "react-bootstrap";
 import PageQuanLyFiles from "./../../pages/quanlyfile/pageQuanLyFiles";
 function ModalFile({ isVisible, handleCancel, onSave }) {
   return (

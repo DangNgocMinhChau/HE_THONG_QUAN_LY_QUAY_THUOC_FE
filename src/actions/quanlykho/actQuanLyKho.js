@@ -6,7 +6,7 @@ import * as actQuanLyFile from "./../../actions/quanlyfiles/actQuanLyFiles";
 import {
   openMessageLoading,
   thongBao,
-} from "./../../constants/message/thongBao";
+} from "./../../common/renderThongBao/renderThongBaoCommon";
 export const actFetchDataRequest = (data) => {
   return (dispatch) => {
     return callApi("url", "GET", null).then((res) => {
@@ -139,6 +139,42 @@ export function actUpdateThuocRequest(value) {
           ten: res.data.result.tenThuoc,
         };
         dispatch(actUpdateThuoc(data));
+      }
+    });
+  };
+}
+
+export function actUpdateThuocKhiEditHoadonRequest(value) {
+  value = {
+    ...value,
+    ngayChinhSua: moment().format("DD/MM/yyyy HH:mm:ss "),
+  };
+  return (dispatch) => {
+    return callApi(
+      `quanlykho/capnhatlaikhothuockhiedithoadon/${value.id}`,
+      "PUT",
+      value
+    ).then((res) => {
+      if (res) {
+        thongBao(message.SUA_THANH_CONG);
+      }
+    });
+  };
+}
+
+export function actUpdateHoaDonKhiEditHoadonRequest(value, item) {
+  value = {
+    ...value,
+    ngayChinhSua: moment().format("DD/MM/yyyy HH:mm:ss "),
+  };
+  return (dispatch) => {
+    return callApi(
+      `sanphamthanhcong/updatesanphamtronghoadon/${value.id}`,
+      "PUT",
+      item
+    ).then((res) => {
+      if (res) {
+        thongBao(message.SUA_THANH_CONG);
       }
     });
   };

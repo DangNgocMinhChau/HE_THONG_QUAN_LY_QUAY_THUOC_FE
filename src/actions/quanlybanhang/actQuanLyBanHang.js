@@ -110,16 +110,11 @@ export function actGetBanHangByIdRequest(id) {
   }
 }
 
-export function actGetHoaDonSauKhiBanByIdRequest(
-  id,
-  capNhatLaiKhoThuocSauKhiBan,
-  hoaDonDaHoanTat
-) {
+export function actGetHoaDonSauKhiBanByIdRequest(id, hoaDonDaHoanTat) {
   return (dispatch) => {
     return callApi(`quanlybanhang/${id}`, "GET", null).then((res) => {
       if (res) {
         dispatch(actGetBanHangById(res.data.result));
-        // capNhatLaiKhoThuocSauKhiBan(res.data.result);
         hoaDonDaHoanTat(res.data.result);
       }
     });

@@ -7,7 +7,7 @@ import * as actKhoThuoc from "./../../actions/quanlykho/actQuanLyKho";
 import * as actQuanLyThongTinKhachHang from "./../../actions/quanlythongtinkhachhang/actQuanLyThongTinKhachHang";
 import * as actQuanLyBanHang from "./../../actions/quanlybanhang/actQuanLyBanHang";
 import * as message from "./../../constants/Message";
-import { thongBao } from "./../../constants/message/thongBao";
+import { thongBao } from "./../../common/renderThongBao/renderThongBaoCommon";
 import {
   RenderInput,
   RenderInputNumber,
@@ -62,7 +62,7 @@ function FormBanHang({
   };
 
   const onShowValue = (value) => {
-    // dispatch(actKhoThuoc.actGetKhoThuocByIdRequest(value));
+    dispatch(actKhoThuoc.actGetKhoThuocByIdRequest(value));
   };
   const changeValue = () => {
     formRef.current?.setFieldsValue({

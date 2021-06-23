@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Table, Divider, Popconfirm, Tabs, Image } from "antd";
+import { Popconfirm, Tabs, Image } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import * as Message from "../../constants/Message";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import * as actQuanLyFiles from "../../actions/quanlyfiles/actQuanLyFiles";
+import CommonTable from "../../common/commonTable";
+
 const { TabPane } = Tabs;
 
-function TableNhaCungCap({ match, data, onDelete, onEdit }) {
-  const [selectionType, setSelectionType] = useState();
+function TableNhaCungCap({ match, data, onDelete, onEdit, setIdXoa }) {
   const [checkType, setCheckType] = useState();
   const dataListFiles = useSelector((state) => state.quanly_files.list);
   const dispatch = useDispatch();
@@ -83,11 +84,6 @@ function TableNhaCungCap({ match, data, onDelete, onEdit }) {
     ];
   }
 
-  function confirm(id) {
-    onDelete(id);
-    // message.warning(Message.XOA_THANH_CONG);
-  }
-
   function renderImg(record) {
     return <Image width={50} src={`/filedinhkem/${record.name}`} />;
   }
@@ -100,7 +96,7 @@ function TableNhaCungCap({ match, data, onDelete, onEdit }) {
               placement="topRight"
               title={Message.BAN_CO_MUON_XOA}
               icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-              onConfirm={() => confirm(record.id)}
+              onConfirm={() => onDelete(record.id)}
               okText="Yes"
               cancelText="No"
             >
@@ -131,37 +127,19 @@ function TableNhaCungCap({ match, data, onDelete, onEdit }) {
     <div>
       <Tabs defaultActiveKey="1" onChange={callback}>
         <TabPane tab="File Text" key="txt">
-          <Table
-            // rowSelection={{
-            //   type: selectionType,
-            //   ...rowSelection,
-            // }}
+          <CommonTable
             columns={columns}
             dataSource={dataListFiles}
-            bordered
-            scroll={{ x: "calc(700px + 50%)", y: 400 }}
-            pagination={{
-              defaultPageSize: 10,
-              showSizeChanger: true,
-              pageSizeOptions: ["10", "20", "30"],
-            }}
+            setIdXoa={setIdXoa}
+            checkRowSelection={false}
           />
         </TabPane>
         <TabPane tab="File ảnh" key="img">
-          <Table
-            // rowSelection={{
-            //   type: selectionType,
-            //   ...rowSelection,
-            // }}
+          <CommonTable
             columns={columns}
             dataSource={dataListFiles}
-            bordered
-            scroll={{ x: "calc(700px + 50%)", y: 400 }}
-            pagination={{
-              defaultPageSize: 10,
-              showSizeChanger: true,
-              pageSizeOptions: ["10", "20", "30"],
-            }}
+            setIdXoa={setIdXoa}
+            checkRowSelection={false}
           />
         </TabPane>
       </Tabs>

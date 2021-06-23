@@ -11,7 +11,7 @@ import FormYeuCauMoKhoaTaiKhoan from "../../../components/login/formYeuCauMoKhoa
 import {
   thongBao,
   openMessageLoading,
-} from "./../../../constants/message/thongBao";
+} from "./../../../common/renderThongBao/renderThongBaoCommon";
 import * as Message from "./../../../constants/Message";
 import * as NoiDung from "./../../../constants/noiDungThongBao";
 var md5 = require("md5");

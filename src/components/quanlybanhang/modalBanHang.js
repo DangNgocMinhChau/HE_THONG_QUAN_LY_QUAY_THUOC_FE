@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "antd";
-import { useForm } from "antd/lib/form/Form";
-import { useSelector } from "react-redux";
 import FormBanHang from "./formBanHang";
 
 function ModalBanHang({ isVisible, onCancel, onSave, checkEdit }) {

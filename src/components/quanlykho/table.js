@@ -1,15 +1,6 @@
 import React, { useState } from "react";
-import {
-  Table,
-  Divider,
-  Radio,
-  Popconfirm,
-  message,
-  Button,
-  Switch,
-} from "antd";
+import { Popconfirm } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import * as Message from "../../constants/Message";
 import {
   renderTien,
@@ -17,6 +8,7 @@ import {
   renderConverLoaiThanhToan,
   renderConvertSoLuongTheoDonVi,
 } from "./../../common/convert/renderConvert";
+import CommonTable from "../../common/commonTable";
 
 function TableNhaCungCap({
   match,
@@ -29,8 +21,6 @@ function TableNhaCungCap({
   onDetail,
   onHandleQRCode,
 }) {
-  const [selectionType, setSelectionType] = useState();
-  const [showQRCode, setShowQRCode] = useState(false);
   const columns = [
     {
       title: "STT",
@@ -200,10 +190,6 @@ function TableNhaCungCap({
     onDelete(id);
   }
 
-  const onChangeSwitch = (value) => {
-    setShowQRCode(value);
-  };
-
   const renderLinkFile = (record) => {
     return (
       record.fileDBArrayList &&
@@ -283,25 +269,9 @@ function TableNhaCungCap({
       </>
     );
   }
-  var url = match.url;
   return (
     <div>
-      <br></br>
-      <Table
-        scroll={{ x: "calc(700px + 50%)", y: 1000 }}
-        rowSelection={{
-          type: selectionType,
-          ...rowSelection,
-        }}
-        columns={columns}
-        dataSource={data}
-        bordered
-        pagination={{
-          defaultPageSize: 10,
-          showSizeChanger: true,
-          pageSizeOptions: ["10", "20", "30"],
-        }}
-      />
+      <CommonTable columns={columns} dataSource={data} setIdXoa={setIdXoa} />
     </div>
   );
 }

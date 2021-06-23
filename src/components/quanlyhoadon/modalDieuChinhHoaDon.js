@@ -23,7 +23,6 @@ function ModalDieuChinhHoaDon({
             onSave={onSave}
             isVisible={isVisible}
             cancel={onCancel}
-            onSave={onSave}
             checkEdit={checkEdit}
             setCheckSubmitForm={setCheckSubmitForm}
           />

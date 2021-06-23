@@ -6,7 +6,7 @@ import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import * as actKhoThuoc from "../../actions/quanlykho/actQuanLyKho";
 import * as message from "../../constants/Message";
 import * as noidung from "../../constants/noiDungThongBao";
-import { thongBao } from "../../constants/message/thongBao";
+import { thongBao } from "../../common/renderThongBao/renderThongBaoCommon";
 import * as actHoaDonHoaDonDaHoanTat from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
 import {
   RenderInput,
@@ -48,61 +48,55 @@ function FormBanHang({
     }
   }
   const onFinish = (value) => {
-    if (value.id) {
-      let idXoa = [];
-      let idSanPhamDangCo = [];
-      initialValue.sanPham.map((item) => {
-        idXoa.push(item.id);
-      });
-
-      value.sanPham.map((item, index) => {
-        idSanPhamDangCo.push(item.id);
-      });
-
-      for (let i = 0; i < idXoa.length; i++) {
-        if (!idSanPhamDangCo.includes(idXoa[i])) {
-          dispatch(
-            actHoaDonHoaDonDaHoanTat.actDeleteSanPhamThanhCongRequest(idXoa[i])
-          );
-        } else {
-        }
+    let arrId = [];
+    let arrCount = [];
+    let checkSubmit = false;
+    value.sanPham.map((item, index) => {
+      arrId.push(item.idThuoc);
+      var counts = {};
+      for (var i = 0; i < arrId.length; i++) {
+        var num = arrId[i];
+        counts[num] = counts[num] ? counts[num] + 1 : 1;
+        arrCount.push(counts[num]);
       }
+    });
 
-      let sanPham = [];
-      value.sanPham.map((item, index) => {
-        if (item.id) {
-          item = { ...item, soLuongMua: item.soLuongMua2 };
-          sanPham.push(item);
-        } else {
-          item = {
-            ...item,
-            soLuongMua: item.soLuongMua2,
-            soLuongDaBan: listThuoc.filter(
-              (itemThuoc) => itemThuoc.id === item.idThuoc
-            )[0].soLuongDaBan,
-            id: null,
-          };
-          sanPham.push(item);
+    arrCount.map((item, index) => {
+      if (item >= 2) {
+        checkSubmit = false;
+      } else {
+        checkSubmit = true;
+      }
+    });
+    if (checkSubmit) {
+      if (value.id) {
+        let idXoa = [];
+        let idSanPhamDangCo = [];
+        initialValue.sanPham.map((item) => {
+          idXoa.push(item.id);
+        });
+
+        value.sanPham.map((item, index) => {
+          idSanPhamDangCo.push(item.id);
+        });
+
+        for (let i = 0; i < idXoa.length; i++) {
+          if (!idSanPhamDangCo.includes(idXoa[i])) {
+            dispatch(
+              actHoaDonHoaDonDaHoanTat.actDeleteSanPhamThanhCongRequest(
+                idXoa[i]
+              )
+            );
+          } else {
+          }
         }
-      });
-      value = {
-        ...value,
-        sanPham: sanPham,
-        soDienThoaiKhachHang: dataInitialValue.soDienThoaiKhachHang,
-        idKhachHang: dataInitialValue.idKhachHang,
-        tenKhachHang: dataInitialValue.tenKhachHang,
-        nguoiTaoId: dataInitialValue.nguoiTaoId,
-      };
-      onSave(value);
+        onSave(value);
+      }
     } else {
-      value = {
-        ...value,
-        soDienThoaiKhachHang: itemThongTinKhachHang.soDienThoai,
-        idKhachHang: itemThongTinKhachHang.id,
-        tenKhachHang: itemThongTinKhachHang.tenKhachHang,
-        nguoiTaoId: account_current.id,
-      };
-      onSave(value);
+      thongBao(
+        "Thông báo !",
+        " Vui lòng kiểm tra lại thông tin, có tên thuốc trùng nhau !"
+      );
     }
   };
   const onFinishFailed = (errorInfo) => {};
@@ -121,20 +115,15 @@ function FormBanHang({
 
   const onShowValue = (idThuoc) => {
     dispatch(actKhoThuoc.actGetKhoThuocByIdRequest(idThuoc));
-    dataListThuoc = dataListThuoc.filter((item) => item.id !== idThuoc);
-
-    itemHoaDonThanhCong.sanPham.map((item, index) => {
-      if (item.idThuoc === idThuoc) {
-        thongBao(message.THONG_BAO, noidung.THUOC_DA_DUOC_CHON);
-        setCheckSubmitForm(true);
-      } else {
-        setCheckSubmitForm(false);
-      }
-    });
   };
   const onShowSoLuong = (e, value) => {
     if (e.target.value > itemThuoc.soLuongNhap - itemThuoc.soLuongDaBan) {
-      thongBao(message.THONG_BAO, noidung.KHONG_DU_THUOC);
+      thongBao(
+        message.THONG_BAO,
+        `Thuốc ${itemThuoc.tenThuoc} trong kho chỉ còn: ${
+          itemThuoc.soLuongNhap - itemThuoc.soLuongDaBan
+        }/${itemThuoc.donViTinh}`
+      );
     }
   };
   let dataListThuoc = useSelector((state) => state.khothuoc.list);
@@ -193,8 +182,8 @@ function FormBanHang({
 
                           <RenderInputNumber
                             {...restField}
-                            name={[name, "soLuongMua2"]}
-                            fieldKey={[fieldKey, "soLuongMua2"]}
+                            name={[name, "soLuongMua"]}
+                            fieldKey={[fieldKey, "soLuongMua"]}
                             onChange={onShowSoLuong}
                             style={{ width: isVisible ? "150px" : "330px" }}
                             validate={true}

@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Descriptions, Button, Divider, Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import * as actQuanLyNhaCungCap from "../../actions/quanlynhacungcap/actQuanLyNhaCungCap";
-import {
-  renderTien,
-  renderDateTime,
-  renderConverLoaiThanhToan,
-  renderDate,
-} from "../../common/convert/renderConvert";
+import { renderDate } from "../../common/convert/renderConvert";
 function DetailQuanLyTaiKhoan({ match, history, itemKhoThuoc }) {
   const dispatch = useDispatch();
   const itemQuanLyTaiKhoan = useSelector((state) => state.quanlytaikhoan.item);

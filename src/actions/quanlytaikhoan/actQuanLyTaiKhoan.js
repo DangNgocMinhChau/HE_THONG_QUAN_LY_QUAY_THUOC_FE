@@ -6,7 +6,7 @@ import moment from "moment";
 import {
   openMessageLoading,
   thongBao,
-} from "./../../constants/message/thongBao";
+} from "../../common/renderThongBao/renderThongBaoCommon";
 import { renderDateTheoHeThong } from "../../common/convert/renderConvert";
 // Quản lý tài khoản
 

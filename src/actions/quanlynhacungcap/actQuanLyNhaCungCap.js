@@ -4,7 +4,7 @@ import * as actNhapThuoc from "../quanlykho/actQuanLyKho";
 import {
   openMessageLoading,
   thongBao,
-} from "./../../constants/message/thongBao";
+} from "./../../common/renderThongBao/renderThongBaoCommon";
 import * as message from "./../../constants/Message";
 import { renderDateTheoHeThong } from "./../../common/convert/renderConvert";
 

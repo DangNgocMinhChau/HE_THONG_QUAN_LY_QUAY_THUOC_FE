@@ -13,6 +13,16 @@ export function actFetchHoaDonDaHoanTatRequest() {
   };
 }
 
+export function actFetchHoaDonDaHoanTatTheoDateRequest(queryStringParam) {
+  return (dispatch) => {
+    return callApi(queryStringParam, "GET").then((res) => {
+      if (res) {
+        dispatch(actFetchHoaDonDaHoanTat(res.data.result));
+      }
+    });
+  };
+}
+
 export const actFetchHoaDonDaHoanTat = (data) => {
   return {
     type: Types.FETCH_HOADONDAHOANTAT,
@@ -89,19 +99,6 @@ export function actGetHoaDonSauKhiBanByIdRequest(id, callback) {
 }
 
 export const actGetHoaDonDaHoanTatById = (value) => {
-  let sanPhamItem = [];
-  value.sanPham.map((item, index) => {
-    item = {
-      ...item,
-      soLuongMua2: item.soLuongMua,
-    };
-    sanPhamItem.push(item);
-  });
-
-  value = {
-    ...value,
-    sanPham: sanPhamItem,
-  };
   return {
     type: Types.EDIT_HOADONDAHOANTAT,
     value,
@@ -113,6 +110,7 @@ export function actUpdateHoaDonDaHoanTatRequest(value) {
     return callApi(`quanlybanhangthanhcong/${value.id}`, "PUT", value).then(
       (res) => {
         if (res) {
+          console.log(res.data.result);
           message.success(Message.SUA_THANH_CONG);
           dispatch(actUpdateHoaDonDaHoanTat(res.data.result));
         }

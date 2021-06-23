@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Table, Divider, Radio, Popconfirm, message, Button } from "antd";
+import { Popconfirm } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import * as Message from "../../constants/Message";
-import moment from "moment";
+import CommonTable from "../../common/commonTable";
 
 function TableNhaCungCap({ match, data, onDelete, onEdit, setIdXoa }) {
-  const [selectionType, setSelectionType] = useState();
   const columns = [
     {
       title: "Tên nhà cung cấp",
@@ -102,22 +101,8 @@ function TableNhaCungCap({ match, data, onDelete, onEdit, setIdXoa }) {
   var url = match.url;
   return (
     <div>
-      <Divider />
-      <Table
-        rowSelection={{
-          type: selectionType,
-          ...rowSelection,
-        }}
-        columns={columns}
-        dataSource={data}
-        bordered
-        scroll={{ x: "calc(700px + 50%)", y: 240 }}
-        pagination={{
-          defaultPageSize: 10,
-          showSizeChanger: true,
-          pageSizeOptions: ["10", "20", "30"],
-        }}
-      />
+      <br></br>
+      <CommonTable columns={columns} dataSource={data} setIdXoa={setIdXoa} />
     </div>
   );
 }

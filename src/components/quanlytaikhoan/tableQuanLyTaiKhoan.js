@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Table, Divider, Radio, Popconfirm, message, Button } from "antd";
+import { Table, Divider, Popconfirm } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import * as Message from "../../constants/Message";
 import { useSelector } from "react-redux";
 import { renderDate } from "./../../common/convert/renderConvert";
+import CommonTable from "../../common/commonTable";
 
 function TableManagementHotel({
   match,
@@ -20,7 +20,6 @@ function TableManagementHotel({
   const account_current = useSelector(
     (state) => state.quanlylogin.account_current
   );
-  var url = match.url;
 
   const columns = [
     {
@@ -187,16 +186,8 @@ function TableManagementHotel({
 
   return (
     <div>
-      <Divider />
-      <Table
-        rowSelection={{
-          type: selectionType,
-          ...rowSelection,
-        }}
-        columns={columns}
-        dataSource={data}
-        scroll={{ x: 1500, y: 500 }}
-      />
+      <br></br>
+      <CommonTable columns={columns} dataSource={data} setIdXoa={setIdXoa} />
     </div>
   );
 }

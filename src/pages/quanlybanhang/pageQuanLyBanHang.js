@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { Button, Tooltip, Alert } from "antd";
+import { Tooltip } from "antd";
 import * as actBanHang from "../../actions/quanlybanhang/actQuanLyBanHang";
 import * as actNhapKho from "../../actions/quanlykho/actQuanLyKho";
 import * as actHoaDonHoaDonDaHoanTat from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
@@ -56,7 +56,6 @@ function PageQuanLyBanHang({ match, location }) {
       dispatch(actBanHang.actCreateBanHangRequest(value));
     }
     setCheckCoDonHang(true);
-    // cancel();
   }
 
   const handleHuyDonDatHangTam = () => {
@@ -108,26 +107,10 @@ function PageQuanLyBanHang({ match, location }) {
     setCheckDanhSach(true);
   };
 
-  function resetForm() {
-    dispatch(actBanHang.actGetBanHangById(null));
-  }
-
-  function openForm() {
-    resetForm();
-    setCheckFormThemMoi(true);
-    setCheckDanhSach(false);
-    setCheckEdit(false);
-    setIsVisible(false);
-    dispatch(actBanHang.actHoaDonBanHang(null));
-  }
   const hoanTatThanhToan = (value) => {
     setCheckMuaHangThanhCong(true);
     dispatch(
-      actBanHang.actGetHoaDonSauKhiBanByIdRequest(
-        value,
-        capNhatLaiKhoThuocSauKhiBan,
-        hoaDonDaHoanTat
-      )
+      actBanHang.actGetHoaDonSauKhiBanByIdRequest(value, hoaDonDaHoanTat)
     );
   };
 
@@ -147,37 +130,6 @@ function PageQuanLyBanHang({ match, location }) {
     dispatch(actBanHang.actGetBanHangById({}));
     setCheckSubmitHoanThanh(true);
     onDelete(idHoaDonBanHang);
-  };
-
-  const capNhatLaiKhoThuocSauKhiBan = (value) => {
-    value &&
-      Array.isArray(value.sanPham) &&
-      value.sanPham.length > 0 &&
-      value.sanPham.map((item, index) => {
-        item = {
-          id: item.id ? item.id : "",
-          tenThuoc: item.tenThuoc,
-          ten: item.tenThuoc,
-          ma: item.ma,
-          donViTinh: item.donViTinh,
-          tongTienTruocThue: parseFloat(item.tongTienTruocThue),
-          phanTramThue: item.phanTramThue,
-          chietKhau: item.chietKhau,
-          giaTien: parseFloat(item.giaTien),
-          thanhToan: item.thanhToan,
-          soLuongNhap: item.soLuongNhap,
-          ngayNhapThuoc: item.ngayNhapThuoc,
-          idNhaCungCap: item.idNhaCungCap ? item.idNhaCungCap : "",
-          ngayTaoBanGhi: item.ngayTaoBanGhi ? item.ngayTaoBanGhi : "",
-          soLuongDaBan: item.soLuongDaBan + item.soLuongMua,
-          soLuongMua: item.soLuongMua,
-          fileDinhKem: item.fileDinhKem ? item.fileDinhKem : "",
-          thongTinNguoiTao: item.thongTinNguoiTao ? item.thongTinNguoiTao : "",
-          khuVuc: item.khuVuc,
-          phanLoaiThuoc: item.phanLoaiThuoc,
-        };
-        dispatch(actNhapKho.actUpdateThuocRequest(item));
-      });
   };
   const handleCreteKhachHang = (value) => {
     setCheckFormThemMoiKhachHang(value);

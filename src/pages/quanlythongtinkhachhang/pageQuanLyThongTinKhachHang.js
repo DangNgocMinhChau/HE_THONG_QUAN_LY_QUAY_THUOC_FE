@@ -6,7 +6,6 @@ import * as actQuanLyBanHangThanhCong from "../../actions/quanly_hoadon_ban_than
 import TableThongTinKhachHang from "../../components/quanlythongtinkhachhang/tableThongTinKhachHang";
 import FormThongTinKhachHang from "../../components/quanlythongtinkhachhang/formThongTinKhachHang";
 import HoaDonTheoKhachHang from "../../components/quanlythongtinkhachhang/hoaDonTheoKhachHang";
-
 import { renderDateTheoHeThong } from "./../../common/convert/renderConvert";
 
 function PageQuanLyThongTinKhachHang({ match, location }) {

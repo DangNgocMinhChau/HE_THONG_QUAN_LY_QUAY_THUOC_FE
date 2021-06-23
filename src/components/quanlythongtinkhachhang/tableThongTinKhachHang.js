@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Table, Divider, Radio, Popconfirm, message, Button } from "antd";
+import { Popconfirm } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import * as Message from "../../constants/Message";
+import CommonTable from "../../common/commonTable";
 
 function TableThongTinKhachHang({
   match,
@@ -12,7 +13,6 @@ function TableThongTinKhachHang({
   setIdXoa,
   onHandleHoaDonCuaKhachHang,
 }) {
-  const [selectionType, setSelectionType] = useState();
   const columns = [
     {
       title: "STT",
@@ -110,22 +110,8 @@ function TableThongTinKhachHang({
   var url = match.url;
   return (
     <div>
-      <Divider />
-      <Table
-        rowSelection={{
-          type: selectionType,
-          ...rowSelection,
-        }}
-        columns={columns}
-        dataSource={data}
-        bordered
-        scroll={{ x: "calc(700px + 50%)", y: "100%" }}
-        pagination={{
-          defaultPageSize: 10,
-          showSizeChanger: true,
-          pageSizeOptions: ["10", "20", "30", "40", "50", "60"],
-        }}
-      />
+      <br></br>
+      <CommonTable columns={columns} dataSource={data} setIdXoa={setIdXoa} />
     </div>
   );
 }

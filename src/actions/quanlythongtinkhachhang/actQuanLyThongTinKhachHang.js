@@ -1,7 +1,10 @@
 import * as Types from "../../constants/ActionType";
 import callApi from "../../utils/apiCaller";
 import * as actNhapThuoc from "../quanlykho/actQuanLyKho";
-import { openMessageLoading, thongBao } from "../../constants/message/thongBao";
+import {
+  openMessageLoading,
+  thongBao,
+} from "../../common/renderThongBao/renderThongBaoCommon";
 import * as message from "../../constants/Message";
 import { renderDateTheoHeThong } from "../../common/convert/renderConvert";
 

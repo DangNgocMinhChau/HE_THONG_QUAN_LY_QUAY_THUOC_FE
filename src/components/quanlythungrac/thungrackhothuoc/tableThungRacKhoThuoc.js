@@ -9,6 +9,7 @@ import {
   renderConverLoaiThanhToan,
   renderConvertSoLuongTheoDonVi,
 } from "./../../../common/convert/renderConvert";
+import CommonTable from "../../../common/commonTable";
 
 function TableThungRacKhoThuoc({
   data,
@@ -241,20 +242,11 @@ function TableThungRacKhoThuoc({
   return (
     <div>
       <br></br>
-      <Table
-        scroll={{ x: "calc(700px + 50%)", y: 1000 }}
-        rowSelection={{
-          type: selectionType,
-          ...rowSelection,
-        }}
+      <CommonTable
         columns={columns}
         dataSource={data}
-        bordered
-        pagination={{
-          defaultPageSize: 10,
-          showSizeChanger: true,
-          pageSizeOptions: ["10", "20", "30"],
-        }}
+        setIdXoa={setIdXoa}
+        checkRowSelection={false}
       />
     </div>
   );

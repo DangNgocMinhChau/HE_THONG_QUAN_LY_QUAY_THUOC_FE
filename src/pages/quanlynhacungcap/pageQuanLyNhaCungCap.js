@@ -6,7 +6,7 @@ import * as actKhoThuoc from "../../actions/quanlykho/actQuanLyKho";
 import moment from "moment";
 import FormNhaCungCap from "../../components/quanlynhacungcap/formNhaCungCap";
 import TableNhaCungCap from "../../components/quanlynhacungcap/tableNhaCungCap";
-import { openMessageLoadingError } from "./../../constants/message/thongBao";
+import { openMessageLoadingError } from "./../../common/renderThongBao/renderThongBaoCommon";
 import * as message from "./../../constants/Message";
 
 function PageQuanLyNhaCungCap({ match, location }) {

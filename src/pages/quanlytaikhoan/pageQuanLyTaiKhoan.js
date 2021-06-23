@@ -7,7 +7,7 @@ import * as act from "../../actions/quanlytaikhoan/actQuanLyTaiKhoan";
 import * as actQuanLyThongBao from "../../actions/quanlythongbao/actQuanLyThongBao";
 import * as actQuanLyCMND from "../../actions/quanly_cmnd/actQuanLyCMND";
 import moment from "moment";
-import { thongBao } from "./../../constants/message/thongBao";
+import { thongBao } from "./../../common/renderThongBao/renderThongBaoCommon";
 import DetailQuanLyTaiKhoan from "../../components/quanlytaikhoan/detailQuanLyTaiKhoan";
 
 function PageQuanLyTaiKhoan({ match, location }) {

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import UploadService from "./../../utils/upload-files.service";
-import { Image } from "antd";
 class FormFiles extends Component {
   constructor(props) {
     super(props);

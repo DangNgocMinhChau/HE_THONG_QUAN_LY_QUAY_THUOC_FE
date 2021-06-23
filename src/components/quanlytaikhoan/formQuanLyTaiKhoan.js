@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Divider } from "antd";
 import { Avatar } from "antd";
 import { useSelector } from "react-redux";
-import { thongBao } from "./../../constants/message/thongBao";
+import { thongBao } from "./../../common/renderThongBao/renderThongBaoCommon";
 import * as message from "./../../constants/Message";
 import * as noiDungThongBao from "./../../constants/noiDungThongBao";
 import {

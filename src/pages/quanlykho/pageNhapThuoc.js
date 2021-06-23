@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import TableNhapThuoc from "../../components/quanlykho/table";
-import { Button, Tooltip, Popconfirm } from "antd";
+import { Button, Tooltip } from "antd";
 import * as act from "../../actions/quanlykho/actQuanLyKho";
 import * as actQuanLyFiles from "../../actions/quanlyfiles/actQuanLyFiles";
 import * as actNhaCungCap from "../../actions/quanlynhacungcap/actQuanLyNhaCungCap";
 import FormKhoThuoc from "../../components/quanlykho/form";
-import { renderDateTheoHeThong } from "./../../common/convert/renderConvert";
 import DetailKhoThuoc from "../../components/quanlykho/detailKhoThuoc";
 import ModalFile from "../../components/quanlyfiles/modalFiles";
 import ModalQRCode from "../../components/quanlykho/modalQRCode";
+import { ConfirmButtonTooltip } from "../../common/renderThongBao/renderThongBaoCommon";
 
-function PageNhapThuoc({ match, location, history }) {
+export default function PageNhapThuoc({ match, location, history }) {
   const [checkFormThemMoi, setCheckFormThemMoi] = useState(false);
   const [checkDanhSach, setCheckDanhSach] = useState(true);
   const [checkEdit, setCheckEdit] = useState(false);
@@ -96,19 +96,6 @@ function PageNhapThuoc({ match, location, history }) {
         ...dataThuoc,
         fileDinhKem: strFile,
       };
-      // if (
-      //   value &&
-      //   value.fileDinhKem &&
-      //   dataListFile &&
-      //   dataListFile.length > 0
-      // ) {
-      //   let dataFiles = {
-      //     ...dataListFile.filter((item) => item.idThuoc === value.id)[0],
-      //     fileDinhKem: value.fileDinhKem ? value.fileDinhKem : "",
-      //   };
-      //   dispatch(actQuanLyFiles.actUpdatefilesRequest(dataFiles));
-      // }
-
       if (value.nhaCungCapId) {
         dispatch(act.actUpdateThuocRequest(dataThuoc));
       } else {
@@ -260,54 +247,33 @@ function PageNhapThuoc({ match, location, history }) {
               </Button>
             </Tooltip>
 
-            <Tooltip placement="bottom" title="Xoá nhiều" color="red" key="red">
-              <Popconfirm
-                title="Bạn có chắc chắn muốn xoá ?"
-                okText="Có"
-                cancelText="Không"
-              >
-                <Button
-                  className="m-2 "
-                  size="small"
-                  onClick={() => {
-                    handdleXoaNhieu();
-                  }}
-                  type="dashed"
-                  danger={true}
-                >
-                  <i
-                    class="fa fa-trash-o"
-                    style={{ color: "red" }}
-                    aria-hidden="true"
-                  ></i>
-                </Button>
-              </Popconfirm>
-            </Tooltip>
-
-            <Tooltip
-              placement="bottom"
-              title="Xoá vĩnh viễn"
+            <ConfirmButtonTooltip
+              messageTitleTooltip={"Xoá nhiều"}
+              messageTitlePopconfirm={"Bạn có chắc chắn muốn xoá ?"}
+              handleOnclick={handdleXoaNhieu}
               color="red"
               key="red"
-            >
-              <Popconfirm
-                title="Bạn có chắc chắn muốn xoá vĩnh viễn?"
-                okText="Có"
-                cancelText="Không"
-              >
-                <Button
-                  className="m-2 mr-5 "
-                  size="small"
-                  onClick={() => {
-                    handdleXoaVinhVien();
-                  }}
-                  type="dashed"
-                  danger={true}
-                >
-                  <i class="fa fa-ban" aria-hidden="true"></i>
-                </Button>
-              </Popconfirm>
-            </Tooltip>
+              okText="Có"
+              cancelText="Không"
+              typeButton="dashed"
+              dangerButton={true}
+              classNameIcon={"fa fa-trash-o"}
+              colorIcon={"red"}
+            />
+
+            <ConfirmButtonTooltip
+              messageTitleTooltip={"Xoá vĩnh viễn"}
+              messageTitlePopconfirm={"Bạn có chắc chắn muốn xoá ?"}
+              handleOnclick={handdleXoaVinhVien}
+              color="red"
+              key="red"
+              okText="Có"
+              cancelText="Không"
+              typeButton="dashed"
+              dangerButton={true}
+              classNameIcon={"fa fa-ban"}
+              colorIcon={"red"}
+            />
           </div>
         )}
       </div>
@@ -381,5 +347,3 @@ function PageNhapThuoc({ match, location, history }) {
     </div>
   );
 }
-
-export default PageNhapThuoc;
