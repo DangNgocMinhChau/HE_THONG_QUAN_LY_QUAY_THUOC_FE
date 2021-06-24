@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   renderConvertSoLuongTheoDonVi,
   renderTien,
 } from "../../common/convert/renderConvert";
 import PDFPrint from "../../common/pdf_print";
-import { Tabs, Divider } from "antd";
+import * as actHoaDonHoaDonDaHoanTat from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
+import { Tabs, Divider, Button } from "antd";
 import CalendarHoaDon from "./calendarHoaDon";
+import queryString from "query-string";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 const { TabPane } = Tabs;
-function HoaDon({ onEdit }) {
+function HoaDon({ onEdit, setIsVisibleLichSuHoaDon }) {
+  const dispatch = useDispatch();
+
   const dataListTatCaHoaDon = useSelector(
     (state) => state.quanly_hoadon_ban_thanhcong.list
   );
@@ -27,6 +31,16 @@ function HoaDon({ onEdit }) {
     dataListTatCaHoaDon.map((itemHoaDon, indexHoaDon) => {
       renderTotalTienNgay(itemHoaDon.totalTien);
     });
+  const onHandleLichSuHoaDon = (value) => {
+    const queryStringParam = queryString.stringifyUrl({
+      url: "quanlybanhangthanhcong/getAllLichSuChinhSuaHoaDonTheoIdHoaDon",
+      query: { idHoaDon: value.id },
+    });
+    dispatch(
+      actHoaDonHoaDonDaHoanTat.actFetchLichSuHoaDonRequest(queryStringParam)
+    );
+    setIsVisibleLichSuHoaDon(true);
+  };
   return (
     <>
       <CalendarHoaDon />
@@ -41,6 +55,13 @@ function HoaDon({ onEdit }) {
                 tab={`${indexHoaDon + 1} . ${itemHoaDon.ngayTaoBanGhi}`}
                 key={indexHoaDon + 1}
               >
+                <Button
+                  onClick={() => {
+                    onHandleLichSuHoaDon(itemHoaDon);
+                  }}
+                >
+                  Tra cứu lịch sử ({itemHoaDon.tongCongLichSuHoaDon})
+                </Button>
                 <PDFPrint stylePrint={true}>
                   <div class="container mt-5 custom-border ">
                     <div class="d-flex justify-content-center row">

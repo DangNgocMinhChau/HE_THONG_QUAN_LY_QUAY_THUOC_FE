@@ -3,14 +3,18 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import * as actNhapKho from "../../actions/quanlykho/actQuanLyKho";
 import * as actHoaDonHoaDonDaHoanTat from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
 import HoaDon from "../../components/quanlyhoadon/hoaDon";
-import ModalDieuChinhHoaDon from "./../../components/quanlyhoadon/modalDieuChinhHoaDon";
+import ModalDieuChinhHoaDon from "../../components/quanlyhoadon/modalDieuChinhHoaDon";
+import ModalTraCuuLichSuHoaDon from "../../components/quanlyhoadon/modalTraCuuLichSuHoadon";
 import { thongBao } from "../../common/renderThongBao/renderThongBaoCommon";
+import { renderDateTheoHeThong } from "./../../common/convert/renderConvert";
+import queryString from "query-string";
 
 function PageQuanLyHoaDon({ match, location }) {
   const [checkFormThemMoi, setCheckFormThemMoi] = useState(false);
   const [checkDanhSach, setCheckDanhSach] = useState(false);
   const [checkEdit, setCheckEdit] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isVisibleLichSuHoaDon, setIsVisibleLichSuHoaDon] = useState(false);
   const [checkSubmitForm, setCheckSubmitForm] = useState(false);
   const dispatch = useDispatch();
   function cancel() {
@@ -35,6 +39,7 @@ function PageQuanLyHoaDon({ match, location }) {
         });
         value = {
           ...value,
+          ngayChinhSua: renderDateTheoHeThong(),
           sanPham: sanPham,
         };
         dispatch(
@@ -63,6 +68,7 @@ function PageQuanLyHoaDon({ match, location }) {
 
   const onCancel = () => {
     setIsVisible(false);
+    setIsVisibleLichSuHoaDon(false);
   };
 
   const handdleBack = () => {
@@ -83,7 +89,10 @@ function PageQuanLyHoaDon({ match, location }) {
                 </a>
               )}
             </div>
-            <HoaDon onEdit={onEdit} />
+            <HoaDon
+              onEdit={onEdit}
+              setIsVisibleLichSuHoaDon={setIsVisibleLichSuHoaDon}
+            />
 
             <ModalDieuChinhHoaDon
               isVisible={isVisible}
@@ -91,6 +100,11 @@ function PageQuanLyHoaDon({ match, location }) {
               onSave={onSave}
               checkEdit={checkEdit}
               setCheckSubmitForm={setCheckSubmitForm}
+            />
+
+            <ModalTraCuuLichSuHoaDon
+              isVisibleLichSuHoaDon={isVisibleLichSuHoaDon}
+              onCancel={onCancel}
             />
           </div>
         </div>

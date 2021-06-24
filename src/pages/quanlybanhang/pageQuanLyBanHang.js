@@ -46,6 +46,10 @@ function PageQuanLyBanHang({ match, location }) {
   };
   function onSave(value) {
     if (value.id) {
+      value = {
+        ...value,
+        ngayChinhSua: renderDateTheoHeThong(),
+      };
       dispatch(actBanHang.actUpdateBanHangRequest(value));
     } else {
       value = {

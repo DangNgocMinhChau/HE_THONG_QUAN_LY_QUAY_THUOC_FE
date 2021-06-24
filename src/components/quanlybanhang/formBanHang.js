@@ -252,7 +252,7 @@ function FormBanHang({
             </div>
             <div className="row">
               <div className="col-md-2">
-                <p>Thuốc</p>
+                <p>Sản phẩm</p>
               </div>
               <div className="col-md-10">
                 <Form.List name="sanPham">
@@ -298,14 +298,9 @@ function FormBanHang({
                       ))}
 
                       <Form.Item>
-                        <Button
-                          type="dashed"
-                          onClick={() => add()}
-                          block
-                          icon={<PlusOutlined />}
-                        >
-                          Thêm
-                        </Button>
+                        <a onClick={() => add()}>
+                          <i class="fa fa-plus" aria-hidden="true"></i>
+                        </a>
                       </Form.Item>
                     </>
                   )}

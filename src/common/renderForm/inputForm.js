@@ -319,3 +319,47 @@ export function RenderInputSelectSearch({
     </Form.Item>
   );
 }
+
+export function RenderInputTextArea({
+  name,
+  label,
+  width,
+  onChange,
+  rules,
+  hidden,
+  validate,
+  textValidate,
+  addonBefore,
+  style,
+  showLabel,
+}) {
+  return (
+    <Form.Item
+      label={showLabel ? label : ""}
+      name={name}
+      hidden={hidden}
+      width={width}
+      rules={
+        validate && [
+          {
+            required: validate,
+            message:
+              textValidate !== null &&
+              textValidate !== undefined &&
+              textValidate !== ""
+                ? textValidate
+                : `Bạn chưa nhập   ${label} !`,
+          },
+        ]
+      }
+    >
+      <Input.TextArea
+        rows={4}
+        cols={120}
+        onChange={onChange}
+        placeholder={label}
+        style={style}
+      />
+    </Form.Item>
+  );
+}

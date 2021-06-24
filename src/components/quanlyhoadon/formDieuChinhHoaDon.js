@@ -12,6 +12,7 @@ import {
   RenderInput,
   RenderInputNumber,
   RenderInputSelectSearch,
+  RenderInputTextArea,
 } from "../../common/renderForm/inputForm";
 function FormBanHang({
   onSave,
@@ -20,21 +21,11 @@ function FormBanHang({
   isVisible,
   setCheckSubmitForm,
 }) {
-  const listThuoc = useSelector((state) => state.khothuoc.list);
   const itemThuoc = useSelector((state) => state.khothuoc.item);
-  const itemHoaDonThanhCong = useSelector(
-    (state) => state.quanly_hoadon_ban_thanhcong.item
-  );
-  const itemThongTinKhachHang = useSelector(
-    (state) => state.quanlythongtinkhachhang.item
-  );
   const [form] = useForm();
   const dispatch = useDispatch();
   const initialValue = useSelector(
     (state) => state.quanly_hoadon_ban_thanhcong.item
-  );
-  const account_current = useSelector(
-    (state) => state.quanlylogin.account_current
   );
 
   if (initialValue !== null) {
@@ -195,14 +186,9 @@ function FormBanHang({
                       ))}
 
                       <Form.Item>
-                        <Button
-                          type="dashed"
-                          onClick={() => add()}
-                          block
-                          icon={<PlusOutlined />}
-                        >
-                          Thêm
-                        </Button>
+                        <a type="dashed" onClick={() => add()}>
+                          <i class="fa fa-plus" aria-hidden="true"></i>
+                        </a>
                       </Form.Item>
                     </>
                   )}
@@ -216,6 +202,12 @@ function FormBanHang({
             name="ngayTaoBanGhi"
             hidden={true}
           />
+        </div>
+        <div className="row">
+          <div className="col-md-2">
+            <p>Lý do chỉnh sửa</p>
+          </div>
+          <RenderInputTextArea name="noiDungChinhSua" label="Lý do chỉnh sửa" />
         </div>
         <Form.Item>
           <div className="row">

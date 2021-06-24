@@ -17,6 +17,7 @@ export function actFetchHoaDonDaHoanTatTheoDateRequest(queryStringParam) {
   return (dispatch) => {
     return callApi(queryStringParam, "GET").then((res) => {
       if (res) {
+        console.log(res);
         dispatch(actFetchHoaDonDaHoanTat(res.data.result));
       }
     });
@@ -26,6 +27,23 @@ export function actFetchHoaDonDaHoanTatTheoDateRequest(queryStringParam) {
 export const actFetchHoaDonDaHoanTat = (data) => {
   return {
     type: Types.FETCH_HOADONDAHOANTAT,
+    data,
+  };
+};
+
+export function actFetchLichSuHoaDonRequest(queryStringParam) {
+  return (dispatch) => {
+    return callApi(queryStringParam, "GET").then((res) => {
+      if (res) {
+        dispatch(actFetchLichSuHoaDon(res.data.result));
+      }
+    });
+  };
+}
+
+export const actFetchLichSuHoaDon = (data) => {
+  return {
+    type: Types.FETCH_LICHSUHOADON,
     data,
   };
 };
@@ -110,7 +128,6 @@ export function actUpdateHoaDonDaHoanTatRequest(value) {
     return callApi(`quanlybanhangthanhcong/${value.id}`, "PUT", value).then(
       (res) => {
         if (res) {
-          console.log(res.data.result);
           message.success(Message.SUA_THANH_CONG);
           dispatch(actUpdateHoaDonDaHoanTat(res.data.result));
         }
