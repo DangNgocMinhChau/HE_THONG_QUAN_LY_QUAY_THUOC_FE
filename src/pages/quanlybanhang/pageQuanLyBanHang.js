@@ -2,47 +2,32 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Tooltip } from "antd";
 import * as actBanHang from "../../actions/quanlybanhang/actQuanLyBanHang";
-import * as actNhapKho from "../../actions/quanlykho/actQuanLyKho";
-import * as actHoaDonHoaDonDaHoanTat from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
+import * as actQuanLyBanHangThanhCong from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
 import * as actQuanLyThongTinKhachHang from "../../actions/quanlythongtinkhachhang/actQuanLyThongTinKhachHang";
 import FormBanHang from "../../components/quanlybanhang/formBanHang";
 import { renderDateTheoHeThong } from "./../../common/convert/renderConvert";
 import ModalBanHang from "../../components/quanlybanhang/modalBanHang";
 import FormThongTinKhachHang from "../../components/quanlythongtinkhachhang/formThongTinKhachHang";
-function PageQuanLyBanHang({ match, location }) {
-  const [checkFormThemMoi, setCheckFormThemMoi] = useState(false);
-  const [checkDanhSach, setCheckDanhSach] = useState(true);
+export default function PageQuanLyBanHang({ match, location }) {
   const account_current = useSelector(
     (state) => state.quanlylogin.account_current
   );
   const listHoaDonBanHangTam = useSelector((state) => state.quanlybanhang.list);
   const itemHoaDon = useSelector((state) => state.quanlybanhang.itemHoaDon);
   const [checkEdit, setCheckEdit] = useState(false);
-  const [checkSubmitHoanThanh, setCheckSubmitHoanThanh] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [checkCoDonHang, setCheckCoDonHang] = useState(false);
-  const [checkSubmitForm, setCheckSubmitForm] = useState(false);
-  const [checkMuaHangThanhCong, setCheckMuaHangThanhCong] = useState(false);
   const [checkFormThemMoiKhachHang, setCheckFormThemMoiKhachHang] =
     useState(false);
 
   const dispatch = useDispatch();
 
   function cancel() {
-    setCheckDanhSach(true);
-    setCheckFormThemMoi(false);
     setIsVisible(false);
   }
 
   const cancelSauKhiThemThongTinKhachHang = () => {
-    setCheckDanhSach(false);
-    setCheckFormThemMoi(true);
     setIsVisible(false);
     setCheckFormThemMoiKhachHang(false);
-  };
-  const onClose = () => {
-    setShowAlert(false);
   };
   function onSave(value) {
     if (value.id) {
@@ -59,7 +44,6 @@ function PageQuanLyBanHang({ match, location }) {
       };
       dispatch(actBanHang.actCreateBanHangRequest(value));
     }
-    setCheckCoDonHang(true);
   }
 
   const handleHuyDonDatHangTam = () => {
@@ -100,19 +84,15 @@ function PageQuanLyBanHang({ match, location }) {
 
   function onEdit(id) {
     dispatch(actBanHang.actGetBanHangByIdRequest(id));
-    setCheckDanhSach(false);
     setCheckEdit(true);
     setIsVisible(true);
-    setCheckDanhSach(true);
   }
 
   const onCancel = () => {
     setIsVisible(false);
-    setCheckDanhSach(true);
   };
 
   const hoanTatThanhToan = (value) => {
-    setCheckMuaHangThanhCong(true);
     dispatch(
       actBanHang.actGetHoaDonSauKhiBanByIdRequest(value, hoaDonDaHoanTat)
     );
@@ -129,14 +109,10 @@ function PageQuanLyBanHang({ match, location }) {
       tienNhan: value.tienNhan,
       ngayTaoBanGhi: renderDateTheoHeThong(),
     };
-    dispatch(actHoaDonHoaDonDaHoanTat.actCreateHoaDonDaHoanTatRequest(value));
+    dispatch(actQuanLyBanHangThanhCong.actCreateHoaDonDaHoanTatRequest(value));
     dispatch(actBanHang.actHoaDonBanHang({}));
     dispatch(actBanHang.actGetBanHangById({}));
-    setCheckSubmitHoanThanh(true);
     onDelete(idHoaDonBanHang);
-  };
-  const handleCreteKhachHang = (value) => {
-    setCheckFormThemMoiKhachHang(value);
   };
 
   useEffect(() => {
@@ -161,21 +137,14 @@ function PageQuanLyBanHang({ match, location }) {
                   title="Tạo mới khách hàng"
                   key="red"
                 >
-                  <a
-                    className="m-0 p-0 ml-3"
-                    size="small"
+                  <i
+                    className="fa fa-address-card"
+                    style={{ color: "indigo", cursor: "pointer" }}
+                    aria-hidden="true"
                     onClick={() => {
-                      handleCreteKhachHang(!checkFormThemMoiKhachHang);
+                      setCheckFormThemMoiKhachHang(!checkFormThemMoiKhachHang);
                     }}
-                    type="dashed"
-                    danger={true}
-                  >
-                    <i
-                      class="fa fa-address-card"
-                      style={{ color: "indigo" }}
-                      aria-hidden="true"
-                    ></i>
-                  </a>
+                  ></i>
                 </Tooltip>
               </div>
             </div>
@@ -191,7 +160,6 @@ function PageQuanLyBanHang({ match, location }) {
               cancel={cancel}
               checkEdit={checkEdit}
               checkFormThemMoiKhachHang={checkFormThemMoiKhachHang}
-              setCheckSubmitForm={setCheckSubmitForm}
               onEdit={onEdit}
               listHoaDonBanHangTam={listHoaDonBanHangTam}
               handleHuyDonDatHangTam={handleHuyDonDatHangTam}
@@ -210,5 +178,3 @@ function PageQuanLyBanHang({ match, location }) {
     </div>
   );
 }
-
-export default PageQuanLyBanHang;

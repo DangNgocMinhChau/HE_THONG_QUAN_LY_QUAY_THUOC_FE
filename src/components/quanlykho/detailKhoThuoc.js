@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Descriptions, Divider, Image } from "antd";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import * as actQuanLyNhaCungCap from "../../actions/quanlynhacungcap/actQuanLyNhaCungCap";
 import {
   renderTien,
-  renderDateTime,
   renderConverLoaiThanhToan,
   renderDate,
+  renderConvertSoLuongTheoDonVi,
 } from "./../../common/convert/renderConvert";
-import { Button, Tooltip, Switch } from "antd";
+import { Tooltip } from "antd";
 import moment from "moment";
 function DetailKhoThuoc({
   match,
@@ -17,8 +15,6 @@ function DetailKhoThuoc({
   handleBack,
   checkShowButtonBack,
 }) {
-  const dispatch = useDispatch();
-
   const renderDateHanSudung = (item) => {
     var timeNow = moment();
     var hsd = moment(item.hanSuDungThuoc);
@@ -44,7 +40,7 @@ function DetailKhoThuoc({
                   <a href={item.url}>
                     {" "}
                     <i
-                      class="fa fa-paperclip"
+                      className="fa fa-paperclip"
                       style={{ color: "black" }}
                       aria-hidden="true"
                     ></i>{" "}
@@ -60,13 +56,13 @@ function DetailKhoThuoc({
             <>
               <div className="row">
                 <div className="col-md-3">
-                  <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                  <i className="fa fa-file-pdf-o" aria-hidden="true"></i>
                 </div>
                 <div className="col-md-6">
                   <a href={item.url}>
                     {" "}
                     <i
-                      class="fa fa-paperclip"
+                      className="fa fa-paperclip"
                       style={{ color: "black" }}
                       aria-hidden="true"
                     ></i>{" "}
@@ -156,19 +152,23 @@ function DetailKhoThuoc({
               {itemKhoThuoc && itemKhoThuoc.phanLoaiThuoc}
             </Descriptions.Item>
             <Descriptions.Item label="Số lượng nhập" span={2}>
-              {itemKhoThuoc &&
-                itemKhoThuoc.soLuongNhap + "/" + itemKhoThuoc.donViTinh}
+              {renderConvertSoLuongTheoDonVi(
+                itemKhoThuoc && itemKhoThuoc.soLuongNhap,
+                itemKhoThuoc.donViTinh
+              )}
             </Descriptions.Item>
             <Descriptions.Item label="Số lượng còn lại trong kho" span={2}>
-              {itemKhoThuoc &&
-                itemKhoThuoc.soLuongNhap -
-                  itemKhoThuoc.soLuongDaBan +
-                  "/" +
-                  itemKhoThuoc.donViTinh}
+              {renderConvertSoLuongTheoDonVi(
+                itemKhoThuoc &&
+                  itemKhoThuoc.soLuongNhap - itemKhoThuoc.soLuongDaBan,
+                itemKhoThuoc.donViTinh
+              )}
             </Descriptions.Item>
             <Descriptions.Item label="Số lượng đã bán" span={2}>
-              {itemKhoThuoc &&
-                itemKhoThuoc.soLuongDaBan + "/" + itemKhoThuoc.donViTinh}
+              {renderConvertSoLuongTheoDonVi(
+                itemKhoThuoc && itemKhoThuoc.soLuongDaBan,
+                itemKhoThuoc.donViTinh
+              )}
             </Descriptions.Item>
             <Descriptions.Item label="Vị trí thuốc trong tủ" span={2}>
               {itemKhoThuoc && itemKhoThuoc.khuVuc}
@@ -190,7 +190,7 @@ function DetailKhoThuoc({
                 renderConverLoaiThanhToan(itemKhoThuoc.thanhToan)}
             </Descriptions.Item>
             <Descriptions.Item label="Ngày nhập thuốc" span={3}>
-              {itemKhoThuoc && renderDateTime(itemKhoThuoc.ngayTaoBanGhi)}
+              {itemKhoThuoc && itemKhoThuoc.ngayTaoBanGhi}
             </Descriptions.Item>
             <Descriptions.Item label="Hạn sử dụng" span={3}>
               {itemKhoThuoc && renderDateHanSudung(itemKhoThuoc)}

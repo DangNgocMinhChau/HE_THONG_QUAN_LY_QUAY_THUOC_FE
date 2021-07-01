@@ -221,7 +221,7 @@ export default function PageNhapThuoc({ match, location, history }) {
               }}
               type="dashed"
             >
-              <i class="fa fa-plus-square" aria-hidden="true"></i>
+              <i className="fa fa-plus-square" aria-hidden="true"></i>
             </Button>
 
             <Tooltip
@@ -240,7 +240,7 @@ export default function PageNhapThuoc({ match, location, history }) {
                 danger={true}
               >
                 <i
-                  class="fa fa-cloud-upload"
+                  className="fa fa-cloud-upload"
                   aria-hidden="true"
                   style={{ color: "green" }}
                 ></i>
@@ -252,7 +252,7 @@ export default function PageNhapThuoc({ match, location, history }) {
               messageTitlePopconfirm={"Bạn có chắc chắn muốn xoá ?"}
               handleOnclick={handdleXoaNhieu}
               color="red"
-              key="red"
+              key="Xoá nhiều"
               okText="Có"
               cancelText="Không"
               typeButton="dashed"
@@ -266,13 +266,13 @@ export default function PageNhapThuoc({ match, location, history }) {
               messageTitlePopconfirm={"Bạn có chắc chắn muốn xoá ?"}
               handleOnclick={handdleXoaVinhVien}
               color="red"
-              key="red"
+              key="Xoá vĩnh viễn"
               okText="Có"
               cancelText="Không"
               typeButton="dashed"
               dangerButton={true}
-              classNameIcon={"fa fa-ban"}
-              colorIcon={"red"}
+              classNameIcon="fa fa-ban"
+              colorIcon="red"
             />
           </div>
         )}
@@ -290,12 +290,11 @@ export default function PageNhapThuoc({ match, location, history }) {
               {checkShowDetail && (
                 <div className="row">
                   <a
-                    size="small"
                     onClick={() => {
                       cancel();
                     }}
                   >
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    <i className="fa fa-chevron-left" aria-hidden="true"></i>
                   </a>
                 </div>
               )}

@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import * as actNhapKho from "../../actions/quanlykho/actQuanLyKho";
-import * as actHoaDonHoaDonDaHoanTat from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
-import HoaDon from "../../components/quanlyhoadon/hoaDon";
-import ModalDieuChinhHoaDon from "../../components/quanlyhoadon/modalDieuChinhHoaDon";
-import ModalTraCuuLichSuHoaDon from "../../components/quanlyhoadon/modalTraCuuLichSuHoadon";
-import { thongBao } from "../../common/renderThongBao/renderThongBaoCommon";
-import { renderDateTheoHeThong } from "./../../common/convert/renderConvert";
+import * as actNhapKho from "../../../actions/quanlykho/actQuanLyKho";
+import * as actQuanLyBanHangThanhCong from "../../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
+import PhieuBanHang from "../../../components/quanlyhoadon/phieubanhang/phieuBanHang";
+import ModalDieuChinhPhieuBanHang from "../../../components/quanlyhoadon/phieubanhang/modalDieuChinhPhieuBanHang";
+import ModalTraCuuLichSuDieuChinhPhieuBanHang from "../../../components/quanlyhoadon/phieubanhang/modalTraCuuLichSuDieuChinhPhieuBanHang";
+import { thongBao } from "../../../common/renderThongBao/renderThongBaoCommon";
+import { renderDateTheoHeThong } from "../../../common/convert/renderConvert";
 import queryString from "query-string";
 
-function PageQuanLyHoaDon({ match, location }) {
+export default function PageQuanLyPhieuBanHang({ match, location }) {
   const [checkFormThemMoi, setCheckFormThemMoi] = useState(false);
   const [checkDanhSach, setCheckDanhSach] = useState(false);
   const [checkEdit, setCheckEdit] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isVisibleLichSuHoaDon, setIsVisibleLichSuHoaDon] = useState(false);
+  const [isVisibleLichSuPhieuBanHang, setIsVisibleLichSuPhieuBanHang] =
+    useState(false);
   const [checkSubmitForm, setCheckSubmitForm] = useState(false);
+  const account_current = useSelector(
+    (state) => state.quanlylogin.account_current
+  );
   const dispatch = useDispatch();
   function cancel() {
     setCheckDanhSach(true);
@@ -24,7 +28,10 @@ function PageQuanLyHoaDon({ match, location }) {
   }
   function onSave(value) {
     if (checkSubmitForm) {
-      thongBao("Thông báo", "Hoá đơn chưa được tối ưu ! vui lòng kiểm tra lại");
+      thongBao(
+        "Thông báo",
+        "phiếu bán chưa được tối ưu ! vui lòng kiểm tra lại"
+      );
     } else {
       if (value.id) {
         let sanPham = [];
@@ -41,9 +48,10 @@ function PageQuanLyHoaDon({ match, location }) {
           ...value,
           ngayChinhSua: renderDateTheoHeThong(),
           sanPham: sanPham,
+          nguoiTaoId: account_current.id,
         };
         dispatch(
-          actHoaDonHoaDonDaHoanTat.actUpdateHoaDonDaHoanTatRequest(value)
+          actQuanLyBanHangThanhCong.actUpdateHoaDonDaHoanTatRequest(value)
         );
         capNhatLaiKhoThuocSauKhiBan(value);
       }
@@ -60,7 +68,7 @@ function PageQuanLyHoaDon({ match, location }) {
   };
 
   function onEdit(id) {
-    dispatch(actHoaDonHoaDonDaHoanTat.actGetHoaDonDaHoanTatByIdRequest(id));
+    dispatch(actQuanLyBanHangThanhCong.actGetHoaDonDaHoanTatByIdRequest(id));
     setCheckEdit(true);
     setIsVisible(true);
     setCheckDanhSach(true);
@@ -68,7 +76,7 @@ function PageQuanLyHoaDon({ match, location }) {
 
   const onCancel = () => {
     setIsVisible(false);
-    setIsVisibleLichSuHoaDon(false);
+    setIsVisibleLichSuPhieuBanHang(false);
   };
 
   const handdleBack = () => {
@@ -81,20 +89,20 @@ function PageQuanLyHoaDon({ match, location }) {
         <div className="col-xl-12 col-lg-12">
           <div className="card shadow mb-4">
             {/* <!-- Card Header - Dropdown --> */}
-            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 className="m-0 font-weight-bold ">Hoá đơn</h6>
+            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between ">
+              <h6 className="m-0 font-weight-bold">Thống kê phiếu bán hàng</h6>
               {checkDanhSach && (
                 <a onClick={handdleBack} className="m-0 font-weight-bold ">
-                  <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                  <i className="fa fa-chevron-left" aria-hidden="true"></i>
                 </a>
               )}
             </div>
-            <HoaDon
+            <PhieuBanHang
               onEdit={onEdit}
-              setIsVisibleLichSuHoaDon={setIsVisibleLichSuHoaDon}
+              setIsVisibleLichSuPhieuBanHang={setIsVisibleLichSuPhieuBanHang}
             />
 
-            <ModalDieuChinhHoaDon
+            <ModalDieuChinhPhieuBanHang
               isVisible={isVisible}
               onCancel={onCancel}
               onSave={onSave}
@@ -102,8 +110,8 @@ function PageQuanLyHoaDon({ match, location }) {
               setCheckSubmitForm={setCheckSubmitForm}
             />
 
-            <ModalTraCuuLichSuHoaDon
-              isVisibleLichSuHoaDon={isVisibleLichSuHoaDon}
+            <ModalTraCuuLichSuDieuChinhPhieuBanHang
+              isVisibleLichSuPhieuBanHang={isVisibleLichSuPhieuBanHang}
               onCancel={onCancel}
             />
           </div>
@@ -112,5 +120,3 @@ function PageQuanLyHoaDon({ match, location }) {
     </div>
   );
 }
-
-export default PageQuanLyHoaDon;

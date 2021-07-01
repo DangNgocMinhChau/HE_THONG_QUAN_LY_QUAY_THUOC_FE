@@ -38,7 +38,6 @@ export function actDeletefilesRequest(id) {
   return (dispatch) => {
     dispatch(actDeletefiles(id));
     return callApi(`files/${id}`, "DELETE", null).then((res) => {
-      console.log(res);
       dispatch(actDeletefiles(id));
     });
   };

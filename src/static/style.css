@@ -1,29 +1,28 @@
-.background-detail-custom{
+.background-detail-custom {
     background: #fff;
-    
 }
 
-.background-menuleft{
+.background-menuleft {
     background: darkslategray;
 }
-.box-shadow{
+.box-shadow {
     box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
 
 .ant-form-item-label {
     text-align: left !important;
 }
-.fix-height{
+.fix-height {
     height: 100vh;
 }
-.ant-menu-item-selected{
+.ant-menu-item-selected {
     background: transparent !important;
 }
-.dropdown-item.active{
+.dropdown-item.active {
     background: transparent !important;
 }
 
- a {
+a {
     text-decoration: none !important;
 }
 /* login */
@@ -38,27 +37,27 @@ body {
 
 .card0 {
     box-shadow: 0px 4px 8px 0px #757575;
-    border-radius: 0px
+    border-radius: 0px;
 }
 
 .card2 {
-    margin: 0px 40px
+    margin: 0px 40px;
 }
 
 .logo {
     width: 200px;
     height: 100px;
     margin-top: 20px;
-    margin-left: 35px
+    margin-left: 35px;
 }
 
 .image {
     width: 360px;
-    height: 280px
+    height: 280px;
 }
 
 .border-line {
-    border-right: 1px solid #EEEEEE
+    border-right: 1px solid #eeeeee;
 }
 
 .facebook {
@@ -69,61 +68,61 @@ body {
     border-radius: 50%;
     width: 35px;
     height: 35px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .twitter {
-    background-color: #1DA1F2;
+    background-color: #1da1f2;
     color: #fff;
     font-size: 18px;
     padding-top: 5px;
     border-radius: 50%;
     width: 35px;
     height: 35px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .linkedin {
-    background-color: #2867B2;
+    background-color: #2867b2;
     color: #fff;
     font-size: 18px;
     padding-top: 5px;
     border-radius: 50%;
     width: 35px;
     height: 35px;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .line {
     height: 1px;
     width: 45%;
-    background-color: #E0E0E0;
-    margin-top: 10px
+    background-color: #e0e0e0;
+    margin-top: 10px;
 }
 
 .or {
     width: 10%;
-    font-weight: bold
+    font-weight: bold;
 }
 
 .text-sm {
-    font-size: 14px !important
+    font-size: 14px !important;
 }
 
 ::placeholder {
-    color: #BDBDBD;
+    color: #bdbdbd;
     opacity: 1;
-    font-weight: 300
+    font-weight: 300;
 }
 
 :-ms-input-placeholder {
-    color: #BDBDBD;
-    font-weight: 300
+    color: #bdbdbd;
+    font-weight: 300;
 }
 
 ::-ms-input-placeholder {
-    color: #BDBDBD;
-    font-weight: 300
+    color: #bdbdbd;
+    font-weight: 300;
 }
 
 input,
@@ -135,9 +134,9 @@ textarea {
     margin-top: 2px;
     width: 100%;
     box-sizing: border-box;
-    color: #2C3E50;
+    color: #2c3e50;
     font-size: 14px;
-    letter-spacing: 1px
+    letter-spacing: 1px;
 }
 
 input:focus,
@@ -145,56 +144,56 @@ textarea:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    border: 1px solid #304FFE;
-    outline-width: 0
+    border: 1px solid #304ffe;
+    outline-width: 0;
 }
 
 button:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    outline-width: 0
+    outline-width: 0;
 }
 
 a {
     color: inherit;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .btn-blue {
-    background-color: #1A237E;
+    background-color: #1a237e;
     width: 150px;
     color: #fff;
-    border-radius: 2px
+    border-radius: 2px;
 }
 
 .btn-blue:hover {
     background-color: #000;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .bg-blue {
     color: #fff;
-    background-color: #1A237E
+    background-color: #1a237e;
 }
 
 @media screen and (max-width: 991px) {
     .logo {
-        margin-left: 0px
+        margin-left: 0px;
     }
 
     .image {
         width: 300px;
-        height: 220px
+        height: 220px;
     }
 
     .border-line {
-        border-right: none
+        border-right: none;
     }
 
     .card2 {
-        border-top: 1px solid #EEEEEE !important;
-        margin: 0px 15px
+        border-top: 1px solid #eeeeee !important;
+        margin: 0px 15px;
     }
 }
 
@@ -209,17 +208,16 @@ a {
 
 .custom-print-2 {
     position: absolute !important;
-    margin-top: 230px;
-    margin-left: 455px;
+    margin-top: 361px;
+    margin-left: -403px;
     z-index: 1;
 }
 
-
-.custom-font-bienlai{
+.custom-font-bienlai {
     font-size: 12px;
     font-weight: bold;
 }
-.text-title-custom-bienlai{
+.text-title-custom-bienlai {
     text-align: center;
 }
 .test {
@@ -227,12 +225,11 @@ a {
 }
 
 .site-calendar-demo-card {
-  width: 500px;
-  border: 1px solid #f0f0f0;
-  border-radius: 2px;
-  margin: 20px 0 20px 500px ;
+    width: 500px;
+    border: 1px solid #f0f0f0;
+    border-radius: 2px;
+    margin: 20px 0 20px 500px;
 }
-
 
 /* ERROR
 */
@@ -245,46 +242,81 @@ Author URI: https://www.os-templates.com/
 Licence: <a href="https://www.os-templates.com/template-terms">Website Template Licence</a>
 */
 
-#fof{display:block; width:100%; padding:150px 0; line-height:1.6em;}
-#fof .fl_left{padding-top:40px; text-align:center;}
-#fof .fl_left img{margin-bottom:20px;}
-#fof .fl_left input{width:220px; padding:5px; border:1px solid #CCCCCC;}
-#fof .fl_left #submit{width:auto;}
-#fof .fl_right{width:50%;}
-#fof .fl_right h1{font-size:40px; margin:0; padding:0;}
-#fof .fl_right p{display:block; margin:15px 0 0 0; padding:0; font-size:16px;}
-#fof .fl_right ul{margin:15px 0 0 0; padding:0; list-style:none;}
-#fof .fl_right ul li{margin-bottom:5px; padding-bottom:5px; border-bottom:1px solid #CCCCCC;}
+#fof {
+    display: block;
+    width: 100%;
+    padding: 150px 0;
+    line-height: 1.6em;
+}
+#fof .fl_left {
+    padding-top: 40px;
+    text-align: center;
+}
+#fof .fl_left img {
+    margin-bottom: 20px;
+}
+#fof .fl_left input {
+    width: 220px;
+    padding: 5px;
+    border: 1px solid #cccccc;
+}
+#fof .fl_left #submit {
+    width: auto;
+}
+#fof .fl_right {
+    width: 50%;
+}
+#fof .fl_right h1 {
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+}
+#fof .fl_right p {
+    display: block;
+    margin: 15px 0 0 0;
+    padding: 0;
+    font-size: 16px;
+}
+#fof .fl_right ul {
+    margin: 15px 0 0 0;
+    padding: 0;
+    list-style: none;
+}
+#fof .fl_right ul li {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #cccccc;
+}
 
 /* CSS3 Elements Only Work In Latest Browsers */
 
 /* IE9 and below don't support CSS generated columns */
 
-#fof .fl_right ul{
-	-moz-column-count:2;
-	-webkit-column-count:2;
-	column-count:2;
-	}
-
+#fof .fl_right ul {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+}
 
 /* Phiếu bán hàng  */
-    .custom-border {
-        border: 1px #BDBDBD solid;
-    }
-    .custom-text{
-        font-family: Verdana, Geneva, Tahoma, sans-serif !important;
-    }
+.custom-border {
+    border: 1px #bdbdbd solid;
+}
+.custom-text {
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+}
 /* ......................End.................. */
-
 
 /* custom css Table antd  */
 
-.ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td {
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td,
+.ant-table tfoot > tr > th,
+.ant-table tfoot > tr > td {
     padding: 5px 16px !important;
 }
 
 /*  */
-
 
 /* td,
 th,
@@ -295,7 +327,7 @@ table {
     font-size: 10px;
 } */
 .tr-custom-table-hoadon {
-    border-top: 1px solid #BDBDBD;
+    border-top: 1px solid #bdbdbd;
     border-collapse: collapse;
     font-size: 10px;
 }
@@ -339,7 +371,35 @@ img {
     width: inherit;
 }
 
+/* CSS Hóa đơn GTGT */
 
+.font-size-custom {
+    font-size: 13px;
+}
 
+.customtable {
+    border-collapse: collapse;
+    width: 100%;
+}
 
+.customtable td,
+.customtable th {
+    border: 0.2px solid black;
+    padding: 5px;
+    font-size: 12px;
 
+}
+
+.customtable th {
+    text-align: center;
+    /* background-color: #1e90ff; */
+}
+
+.inDam {
+    font-weight: bold;
+}
+
+.bg-hoadongtgt{
+    background-color: rgba(255,193,231);
+    border: 1px solid black;
+}

@@ -42,7 +42,6 @@ function PageQuanLyTaiKhoan({ match, location }) {
       thongBao("Thông báo", "Vui lòng kiểm tra lại thông tin");
     } else {
       if (value.id) {
-        console.log(value);
         value = {
           ...value,
           matKhau: md5(`${value.matKhau}`),
@@ -158,7 +157,7 @@ function PageQuanLyTaiKhoan({ match, location }) {
             }}
             type="dashed"
           >
-            <i class="fa fa-plus-square" aria-hidden="true"></i>
+            <i className="fa fa-plus-square" aria-hidden="true"></i>
           </Button>
 
           <Tooltip placement="bottom" title="Xoá nhiều" color="red" key="red">
@@ -172,7 +171,7 @@ function PageQuanLyTaiKhoan({ match, location }) {
               danger={true}
             >
               <i
-                class="fa fa-trash-o"
+                className="fa fa-trash-o"
                 style={{ color: "red" }}
                 aria-hidden="true"
               ></i>
@@ -196,7 +195,7 @@ function PageQuanLyTaiKhoan({ match, location }) {
                       cancel();
                     }}
                   >
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    <i className="fa fa-chevron-left" aria-hidden="true"></i>
                   </a>
                 </div>
               )}

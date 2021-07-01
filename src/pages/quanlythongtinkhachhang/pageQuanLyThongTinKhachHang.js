@@ -5,7 +5,7 @@ import * as actQuanLyThongTinKhachHang from "../../actions/quanlythongtinkhachha
 import * as actQuanLyBanHangThanhCong from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
 import TableThongTinKhachHang from "../../components/quanlythongtinkhachhang/tableThongTinKhachHang";
 import FormThongTinKhachHang from "../../components/quanlythongtinkhachhang/formThongTinKhachHang";
-import HoaDonTheoKhachHang from "../../components/quanlythongtinkhachhang/hoaDonTheoKhachHang";
+import HoaDonTheoKhachHang from "../../components/quanlythongtinkhachhang/phieuBanHangTheoKhachHang";
 import { renderDateTheoHeThong } from "./../../common/convert/renderConvert";
 
 function PageQuanLyThongTinKhachHang({ match, location }) {
@@ -127,7 +127,7 @@ function PageQuanLyThongTinKhachHang({ match, location }) {
             }}
             type="dashed"
           >
-            <i class="fa fa-plus-square" aria-hidden="true"></i>
+            <i className="fa fa-plus-square" aria-hidden="true"></i>
           </Button>
 
           <Tooltip placement="bottom" title="Xoá nhiều" color="red" key="red">
@@ -141,7 +141,7 @@ function PageQuanLyThongTinKhachHang({ match, location }) {
               danger={true}
             >
               <i
-                class="fa fa-trash-o"
+                className="fa fa-trash-o"
                 style={{ color: "red" }}
                 aria-hidden="true"
               ></i>
@@ -171,7 +171,7 @@ function PageQuanLyThongTinKhachHang({ match, location }) {
                       cancel();
                     }}
                   >
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <i className="fa fa-angle-left" aria-hidden="true"></i>
                   </a>
                 </Tooltip>
               )}

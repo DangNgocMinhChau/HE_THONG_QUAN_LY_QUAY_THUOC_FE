@@ -191,7 +191,7 @@ function TableThungRacKhoThuoc({
         <>
           <span>
             <i
-              class="fa fa-paperclip"
+              className="fa fa-paperclip"
               style={{ color: "black" }}
               aria-hidden="true"
             ></i>{" "}

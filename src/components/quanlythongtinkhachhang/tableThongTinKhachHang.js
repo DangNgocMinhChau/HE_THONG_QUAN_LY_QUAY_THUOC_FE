@@ -72,7 +72,7 @@ function TableThongTinKhachHang({
           <div className="col-md-2">
             <NavLink
               to={{
-                pathname: `hoadontheokhachhang/${record.id}`,
+                pathname: `phieubanhangtheokhachhang/${record.id}`,
                 dataKhachHang: record,
               }}
             >

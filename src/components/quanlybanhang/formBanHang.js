@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Divider, Button, Space, Tooltip } from "antd";
 import { useForm } from "antd/lib/form/Form";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { MinusCircleOutlined } from "@ant-design/icons";
 import * as actKhoThuoc from "./../../actions/quanlykho/actQuanLyKho";
 import * as actQuanLyThongTinKhachHang from "./../../actions/quanlythongtinkhachhang/actQuanLyThongTinKhachHang";
 import * as actQuanLyBanHang from "./../../actions/quanlybanhang/actQuanLyBanHang";
@@ -14,11 +14,9 @@ import {
   RenderInputSelectSearch,
 } from "../../common/renderForm/inputForm";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
-import HoadonBanHangCustom from "./hoadonBanHangCustom";
-import { SearchOutlined } from "@ant-design/icons";
+import PhieuBanHang from "./phieuBanHang";
 function FormBanHang({
   onSave,
-  cancel,
   checkEdit,
   isVisible,
   onEdit,
@@ -45,7 +43,6 @@ function FormBanHang({
   const [form] = useForm();
   const dispatch = useDispatch();
   const initialValue = useSelector((state) => state.quanlybanhang.itemHoaDon);
-  const [checkShowFormBanThuoc, setCheckShowFormBanThuoc] = useState(false);
   if (initialValue !== null) {
     var dataInitialValue = {};
     if (initialValue) {
@@ -171,8 +168,6 @@ function FormBanHang({
     dispatch(
       actQuanLyThongTinKhachHang.actGetThongTinKhachHangByIdRequest(value)
     );
-
-    setCheckShowFormBanThuoc(true);
   };
 
   const onShowSoLuong = (e, value) => {
@@ -215,7 +210,7 @@ function FormBanHang({
                       <Tooltip title="Tìm hóa đơn">
                         <NavLink
                           to={{
-                            pathname: `hoadontheokhachhang/${
+                            pathname: `phieubanhangtheokhachhang/${
                               itemThongTinKhachHang
                                 ? itemThongTinKhachHang.id
                                   ? itemThongTinKhachHang.id
@@ -226,7 +221,7 @@ function FormBanHang({
                               itemThongTinKhachHang && itemThongTinKhachHang,
                           }}
                         >
-                          <i class="fa fa-search" aria-hidden="true"></i>
+                          <i className="fa fa-search" aria-hidden="true"></i>
                         </NavLink>
                       </Tooltip>
                     </div>
@@ -299,7 +294,7 @@ function FormBanHang({
 
                       <Form.Item>
                         <a onClick={() => add()}>
-                          <i class="fa fa-plus" aria-hidden="true"></i>
+                          <i className="fa fa-plus" aria-hidden="true"></i>
                         </a>
                       </Form.Item>
                     </>
@@ -358,7 +353,7 @@ function FormBanHang({
           </Form>
         </div>
         <div className="col-md-3">
-          <HoadonBanHangCustom
+          <PhieuBanHang
             dataHoaDon={dataHoaDon}
             onEdit={onEdit}
             listHoaDonBanHangTam={listHoaDonBanHangTam}

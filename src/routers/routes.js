@@ -6,13 +6,15 @@ import PageQuanLyTaiKhoan from "../pages/quanlytaikhoan/pageQuanLyTaiKhoan";
 import PageQuanLyNhaCungCap from "../pages/quanlynhacungcap/pageQuanLyNhaCungCap";
 import Login from "../pages/users/login";
 import PageQuanLyBanHang from "../pages/quanlybanhang/pageQuanLyBanHang";
-import PageQuanLyHoaDon from "../pages/quanlyhoadon/pageQuanLyHoaDon";
+import PageQuanLyPhieuBanHang from "../pages/quanlyhoadon/phieubanhang/pageQuanLyPhieuBanHang";
 import PageQuanLyFiles from "../pages/quanlyfile/pageQuanLyFiles";
 import PageQuanLyBaoCao from "../pages/quanlybaocao/pageQuanLyBaoCao";
 import PageQuanLyThongTinKhachHang from "../pages/quanlythongtinkhachhang/pageQuanLyThongTinKhachHang.js";
-import PageQuanLyHoaDonTheoKhachHang from "../pages/quanlythongtinkhachhang/pageQuanLyHoaDonTheoKhachHang";
+import PageQuanLyPhieuBanHangTheoKhachHang from "../pages/quanlythongtinkhachhang/pageQuanLyPhieuBanHangTheoKhachHang";
 import PageDanhSachSanPham from "../pages/danhsachsanpham/pageDanhSachSanPham";
 import PageQuanLyThungRacKhoThuoc from "../pages/quanlythungrac/thungrackhothuoc/pageQuanLyThungRacKhoThuoc";
+import PageHoaDonNhapKhoGTGT from "../pages/quanlyhoadon/hoadonnhapkho/pageHoaDonNhapKhoGTGT";
+import PageQuanLyThungRacHoaDonGTGT from "../pages/quanlythungrac/thungrachoadonGTGT/PageQuanLyThungRacHoaDonGTGT";
 
 const routes = [
   {
@@ -58,10 +60,17 @@ const routes = [
   },
 
   {
-    path: "/quanlyhoadon",
+    path: "/quanlyphieubanhang",
     exact: true,
     main: ({ match, location }) => (
-      <PageQuanLyHoaDon location={location} match={match} />
+      <PageQuanLyPhieuBanHang location={location} match={match} />
+    ),
+  },
+  {
+    path: "/hoadonnhaphang",
+    exact: true,
+    main: ({ match, location }) => (
+      <PageHoaDonNhapKhoGTGT location={location} match={match} />
     ),
   },
 
@@ -98,10 +107,10 @@ const routes = [
     ),
   },
   {
-    path: "/hoadontheokhachhang/:id",
+    path: "/phieubanhangtheokhachhang/:id",
     exact: true,
     main: ({ match, location, history }) => (
-      <PageQuanLyHoaDonTheoKhachHang
+      <PageQuanLyPhieuBanHangTheoKhachHang
         location={location}
         match={match}
         history={history}
@@ -119,6 +128,18 @@ const routes = [
       />
     ),
   },
+  {
+    path: "/thungrachoadongtgt",
+    exact: true,
+    main: ({ match, location, history }) => (
+      <PageQuanLyThungRacHoaDonGTGT
+        location={location}
+        match={match}
+        history={history}
+      />
+    ),
+  },
+
   {
     path: "",
     exact: true,

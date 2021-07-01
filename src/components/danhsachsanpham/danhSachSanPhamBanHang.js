@@ -108,9 +108,17 @@ export default function DanhSachSanPhamBanHang({ history }) {
                               Hạn sử dụng : {renderDateHanSudung(item)}
                             </span>
                             <br></br>
-                            {item.soLuongNhap - item.soLuongDaBan < 10 && (
+                            {item.soLuongNhap - item.soLuongDaBan < 10 &&
+                              item.soLuongNhap - item.soLuongDaBan > 0 && (
+                                <span
+                                  style={{ color: "red", fontSize: "20px" }}
+                                >
+                                  Sắp hết hàng !
+                                </span>
+                              )}
+                            {item.soLuongNhap - item.soLuongDaBan === 0 && (
                               <span style={{ color: "red", fontSize: "20px" }}>
-                                Sắp hết thuốc !
+                                Hết hàng !
                               </span>
                             )}
                           </div>

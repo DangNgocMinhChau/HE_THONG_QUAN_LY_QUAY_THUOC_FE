@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Calendar } from "antd";
-import * as actHoaDonHoaDonDaHoanTat from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
+import * as actHoaDonHoaDonDaHoanTat from "../../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import queryString from "query-string";
 export default function CalendarHoaDon({ setValueDate, setCheckDanhSach }) {

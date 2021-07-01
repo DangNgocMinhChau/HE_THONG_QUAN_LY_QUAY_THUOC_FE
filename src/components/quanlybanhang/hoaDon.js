@@ -17,23 +17,23 @@ function HoaDon({ onEdit, hoanTatThanhToan }) {
     <>
       <PDFPrint>
         <Card hoverable>
-          <div class="container">
-            <div class="d-flex justify-content-center row ">
-              <div class="col-md-12">
-                <div class=" bg-white rounded">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <h5 class="text-uppercase text-danger">Ngọc Châu</h5>
-                      <div class="billed">
-                        <span class="font-weight-bold d-flex justify-content-start">
+          <div className="container">
+            <div className="d-flex justify-content-center row ">
+              <div className="col-md-12">
+                <div className=" bg-white rounded">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <h5 className="text-uppercase text-danger">Ngọc Châu</h5>
+                      <div className="billed">
+                        <span className="font-weight-bold d-flex justify-content-start">
                           Thông tin người bán :{" "}
                         </span>
                       </div>
                       <ul>
                         <li>
                           {" "}
-                          <div class="billed">
-                            <span class="  d-flex justify-content-start">
+                          <div className="billed">
+                            <span className="  d-flex justify-content-start">
                               Người viết :{" "}
                               {dataHoaDon &&
                                 dataHoaDon?.thongTinNguoiBan?.tenNguoiDung}
@@ -41,23 +41,23 @@ function HoaDon({ onEdit, hoanTatThanhToan }) {
                           </div>
                         </li>
                         <li>
-                          <div class="billed">
-                            <span class=" d-flex justify-content-start">
+                          <div className="billed">
+                            <span className=" d-flex justify-content-start">
                               Thời gian:{" "}
                               {dataHoaDon && dataHoaDon?.ngayTaoBanGhi}
                             </span>
                           </div>
                         </li>
                       </ul>
-                      <div class="billed">
-                        <span class="font-weight-bold  d-flex justify-content-start">
+                      <div className="billed">
+                        <span className="font-weight-bold  d-flex justify-content-start">
                           Thông tin khách hàng :{" "}
                         </span>
                       </div>
                       <ul>
                         <li>
-                          <div class="billed">
-                            <span class=" d-flex justify-content-start">
+                          <div className="billed">
+                            <span className=" d-flex justify-content-start">
                               Tên :{" "}
                               {dataHoaDon &&
                                 dataHoaDon.thongTinNguoiMua &&
@@ -66,8 +66,8 @@ function HoaDon({ onEdit, hoanTatThanhToan }) {
                           </div>
                         </li>
                         <li>
-                          <div class="billed">
-                            <span class=" d-flex justify-content-start">
+                          <div className="billed">
+                            <span className=" d-flex justify-content-start">
                               số điện thoại :{" "}
                               {dataHoaDon &&
                                 dataHoaDon.thongTinNguoiMua &&
@@ -77,8 +77,8 @@ function HoaDon({ onEdit, hoanTatThanhToan }) {
                         </li>
                       </ul>
                     </div>
-                    <div class="col-md-6 text-right mt-5">
-                      <h6 class="text-primary mb-0">Thông tin </h6>
+                    <div className="col-md-6 text-right mt-5">
+                      <h6 className="text-primary mb-0">Thông tin </h6>
                       <span className="custom-font-bienlai">Email:</span>
                       <span> chaungoc@gmail.com</span>
                       <br></br>
@@ -89,7 +89,7 @@ function HoaDon({ onEdit, hoanTatThanhToan }) {
                       <span> 0905315214</span>
                     </div>
                   </div>
-                  <div class="mt-5">
+                  <div className="mt-5">
                     <TableHoaDon
                       dataHoaDon={dataHoaDon && dataHoaDon.sanPham}
                     />
@@ -99,7 +99,7 @@ function HoaDon({ onEdit, hoanTatThanhToan }) {
                   {
                     dataHoaDon && Array.isArray(dataHoaDon.sanPham) && (
                       // dataHoaDon.sanPham.length > 0 && (
-                      <div class="text-right mb-3">
+                      <div className="text-right mb-3">
                         {/* <a
                           className="mr-3"
                           onClick={() => {
@@ -107,7 +107,7 @@ function HoaDon({ onEdit, hoanTatThanhToan }) {
                           }}
                         >
                           <i
-                            class="fa fa-pencil-square-o"
+                            className="fa fa-pencil-square-o"
                             aria-hidden="true"
                           ></i>
                         </a> */}
@@ -118,7 +118,7 @@ function HoaDon({ onEdit, hoanTatThanhToan }) {
                           }}
                         >
                           <i
-                            class="fa fa-check-circle-o"
+                            className="fa fa-check-circle-o"
                             aria-hidden="true"
                           ></i>
                         </a>

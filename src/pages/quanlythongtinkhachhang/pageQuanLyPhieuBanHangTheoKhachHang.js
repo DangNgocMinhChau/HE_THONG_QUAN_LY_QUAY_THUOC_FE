@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import * as actQuanLyBanHangThanhCong from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
-import HoaDonTheoKhachHang from "../../components/quanlythongtinkhachhang/hoaDonTheoKhachHang";
+import PhieuBanHangTheoKhachHang from "../../components/quanlythongtinkhachhang/phieuBanHangTheoKhachHang";
 import { Tooltip } from "antd";
 
-function PageQuanLyHoaDonTheoKhachHang({ match, location, history }) {
+export default function PageQuanLyPhieuBanHangTheoKhachHang({
+  match,
+  location,
+  history,
+}) {
   const id = match.params.id;
   // const { dataListThongTinKhachHang } = useSelector(
   //   (state) => ({
@@ -61,16 +65,14 @@ function PageQuanLyHoaDonTheoKhachHang({ match, location, history }) {
                     cancel();
                   }}
                 >
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  <i className="fa fa-angle-left" aria-hidden="true"></i>
                 </a>
               </Tooltip>
             </div>
-            <HoaDonTheoKhachHang />
+            <PhieuBanHangTheoKhachHang />
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-export default PageQuanLyHoaDonTheoKhachHang;

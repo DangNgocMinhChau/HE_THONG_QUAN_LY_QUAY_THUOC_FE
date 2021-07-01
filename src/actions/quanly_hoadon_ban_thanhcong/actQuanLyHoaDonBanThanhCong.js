@@ -17,7 +17,6 @@ export function actFetchHoaDonDaHoanTatTheoDateRequest(queryStringParam) {
   return (dispatch) => {
     return callApi(queryStringParam, "GET").then((res) => {
       if (res) {
-        console.log(res);
         dispatch(actFetchHoaDonDaHoanTat(res.data.result));
       }
     });

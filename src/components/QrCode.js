@@ -6,7 +6,6 @@ function QrCode({ value, tenDowload }) {
     const pngUrl = canvas
       .toDataURL("image/png")
       .replace("image/png", "image/octet-stream");
-    console.log("pngUrl", pngUrl);
     let downloadLink = document.createElement("a");
     downloadLink.href = pngUrl;
     downloadLink.download = `${tenDowload}.png`;

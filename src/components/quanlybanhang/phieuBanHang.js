@@ -1,18 +1,17 @@
 import React from "react";
-import PDFPrint from "./../../common/pdf_print";
+import PDFPrint from "../../common/pdf_print";
 import {
   renderConvertSoLuongTheoDonVi,
   renderTien,
-} from "./../../common/convert/renderConvert";
+} from "../../common/convert/renderConvert";
 import { Tooltip } from "antd";
 
-function HoadonBanHangCustom({
-  onEdit,
+export default function PhieuBanHang({
   dataHoaDon,
   hoanTatThanhToan,
   itemHoaDon,
   handleHuyDonDatHangTam,
-  listHoaDonBanHangTam,
+  stylePrint,
 }) {
   let totalTien = 0;
   dataHoaDon &&
@@ -27,32 +26,30 @@ function HoadonBanHangCustom({
       data &&
       data.map((item, index) => {
         return (
-          <>
-            <tr className="content tr-custom-table-hoadon">
-              <td className="tr-custom-table-hoadon">{index + 1}</td>
-              <td>{item.tenThuoc}</td>
-              <td>
-                {renderConvertSoLuongTheoDonVi(item.soLuongMua, item.donViTinh)}
-              </td>
-              <td>{renderTien(item.giaTien)}</td>
-              <td className="text-center">
-                {renderTien(item.soLuongMua * item.giaTien)}
-              </td>
-            </tr>
-          </>
+          <tr className="content tr-custom-table-hoadon" key={index}>
+            <td className="tr-custom-table-hoadon">{index + 1}</td>
+            <td>{item.tenThuoc}</td>
+            <td>
+              {renderConvertSoLuongTheoDonVi(item.soLuongMua, item.donViTinh)}
+            </td>
+            <td>{renderTien(item.giaTien)}</td>
+            <td className="text-center">
+              {renderTien(item.soLuongMua * item.giaTien)}
+            </td>
+          </tr>
         );
       })
     );
   };
   return (
     <>
-      <PDFPrint>
-        <div class="ticket">
+      <PDFPrint stylePrint={stylePrint}>
+        <div className="ticket">
           <img
             src="./../thiet-ke-logo-nha-thuoc-gia-re-tai-lac-hong.jpg"
             alt="Logo"
           />
-          <p class="centered">
+          <p className="centered">
             Ngọc Châu
             <br></br>
             <small> Email: chaungoc@gmail.com</small>
@@ -60,7 +57,6 @@ function HoadonBanHangCustom({
             <small> Đ/C: h18/16 K96 Điện Biên Phủ</small>
             <br></br>
             <small> SĐT: 0905315214</small>
-            <hr />
             <small className=" d-flex justify-content-start">
               Tên người bán :{" "}
               {dataHoaDon && dataHoaDon?.thongTinNguoiBan?.tenNguoiDung}
@@ -82,7 +78,6 @@ function HoadonBanHangCustom({
                 dataHoaDon.thongTinNguoiMua.soDienThoai}
             </small>
           </p>
-          <hr />
 
           <table className="tr-custom-table-hoadon">
             <thead>
@@ -125,8 +120,7 @@ function HoadonBanHangCustom({
               </tr>
             </tbody>
           </table>
-          <hr />
-          <p class="centered">
+          <p className="centered">
             Cảm ơn quý khách và hẹn gặp lại !
             <br />
             ngocchau.com
@@ -143,7 +137,7 @@ function HoadonBanHangCustom({
                 hoanTatThanhToan(itemHoaDon.id);
               }}
             >
-              <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+              <i className="fa fa-check-circle-o" aria-hidden="true"></i>
             </a>
           </Tooltip>
 
@@ -155,10 +149,9 @@ function HoadonBanHangCustom({
                 handleHuyDonDatHangTam();
               }}
               type="dashed"
-              danger={true}
             >
               <i
-                class="fa fa-times-circle-o"
+                className="fa fa-times-circle-o"
                 style={{ color: "red" }}
                 aria-hidden="true"
               ></i>
@@ -169,5 +162,3 @@ function HoadonBanHangCustom({
     </>
   );
 }
-
-export default HoadonBanHangCustom;

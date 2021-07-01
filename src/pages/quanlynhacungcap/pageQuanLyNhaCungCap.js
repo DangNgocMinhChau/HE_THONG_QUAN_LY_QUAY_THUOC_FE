@@ -128,7 +128,7 @@ function PageQuanLyNhaCungCap({ match, location }) {
             }}
             type="dashed"
           >
-            <i class="fa fa-plus-square" aria-hidden="true"></i>
+            <i className="fa fa-plus-square" aria-hidden="true"></i>
           </Button>
 
           <Tooltip placement="bottom" title="Xoá nhiều" color="red" key="red">
@@ -142,7 +142,7 @@ function PageQuanLyNhaCungCap({ match, location }) {
               danger={true}
             >
               <i
-                class="fa fa-trash-o"
+                className="fa fa-trash-o"
                 style={{ color: "red" }}
                 aria-hidden="true"
               ></i>

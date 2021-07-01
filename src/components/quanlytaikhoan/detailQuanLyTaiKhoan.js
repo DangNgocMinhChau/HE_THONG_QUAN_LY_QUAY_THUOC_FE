@@ -5,7 +5,6 @@ import { renderDate } from "../../common/convert/renderConvert";
 function DetailQuanLyTaiKhoan({ match, history, itemKhoThuoc }) {
   const dispatch = useDispatch();
   const itemQuanLyTaiKhoan = useSelector((state) => state.quanlytaikhoan.item);
-  console.log(itemQuanLyTaiKhoan);
   return (
     <>
       <div className="container-fluid">

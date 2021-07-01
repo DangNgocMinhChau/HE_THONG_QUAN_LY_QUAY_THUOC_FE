@@ -99,6 +99,7 @@ export function RenderInputNumber({
         style={style}
         parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
         formatter={(value) => ` ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        // defaultValue={""}
       />
     </Form.Item>
   );

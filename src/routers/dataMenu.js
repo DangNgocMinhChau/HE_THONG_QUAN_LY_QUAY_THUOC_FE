@@ -14,7 +14,7 @@ export const menusListQuanTri = [
         ],
       },
       {
-        name: "Quản lý nhà thuốc",
+        name: "Quản lý kho",
         children: [
           {
             name: "Kho thuốc",
@@ -47,8 +47,13 @@ export const menusListQuanTri = [
         name: "Quản lý hoá đơn",
         children: [
           {
-            name: "Hoá đơn",
-            to: "/quanlyhoadon",
+            name: "Phiếu bán hàng",
+            to: "/quanlyphieubanhang",
+            exact: true,
+          },
+          {
+            name: "Hoá đơn nhập hàng",
+            to: "/hoadonnhaphang",
             exact: true,
           },
         ],
@@ -101,6 +106,11 @@ export const menusListQuanTri = [
         to: "/thungrackhothuoc",
         exact: true,
       },
+      {
+        name: "Hóa đơn GTGT",
+        to: "/thungrachoadongtgt",
+        exact: true,
+      },
     ],
   },
 ];
@@ -111,7 +121,7 @@ export const menusListUser = [
     type: "Menu",
     children: [
       {
-        name: "Quản lý nhà thuốc",
+        name: "Quản lý kho",
         children: [
           {
             name: "Kho thuốc",
@@ -144,8 +154,8 @@ export const menusListUser = [
         name: "Quản lý hoá đơn",
         children: [
           {
-            name: "Hoá đơn",
-            to: "/quanlyhoadon",
+            name: "Phiếu bán hàng",
+            to: "/quanlyphieubanhang",
             exact: true,
           },
         ],

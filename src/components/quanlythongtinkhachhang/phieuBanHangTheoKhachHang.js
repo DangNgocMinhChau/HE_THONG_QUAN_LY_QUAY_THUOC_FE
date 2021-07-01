@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Tabs } from "antd";
-import HoaDonBanHangCustom from "./../quanlybanhang/hoadonBanHangCustom";
+import PhieuBanHang from "../quanlybanhang/phieuBanHang";
 const { TabPane } = Tabs;
-export default function HoaDonTheoKhachHang(props) {
+export default function PhieuBanHangTheoKhachHang(props) {
   const { dataListHoadonTheoKhachHang } = useSelector(
     (state) => ({
       dataListHoadonTheoKhachHang:
-        state.quanly_hoadon_ban_thanhcong.hoadonthanhcongtheokhachhang,
+        state.quanly_hoadon.phieubanhang.phieubanhangtheokhachhang,
     }),
     shallowEqual
   );
@@ -19,7 +19,7 @@ export default function HoaDonTheoKhachHang(props) {
           return (
             <TabPane tab={item.ngayTaoBanGhi} key={index}>
               <div style={{ marginLeft: "30%" }}>
-                <HoaDonBanHangCustom dataHoaDon={item} />
+                <PhieuBanHang dataHoaDon={item} />
               </div>
             </TabPane>
           );

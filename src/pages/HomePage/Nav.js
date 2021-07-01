@@ -218,7 +218,7 @@ function Nav({ onToogleMenu, checkToogle, onSetColorMenu, colorMenu }) {
                 aria-expanded="false"
               >
                 <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  <i className="fa fa-cogs" aria-hidden="true"></i>
                 </span>
               </span>
               {/* <!-- Dropdown - User Information --> */}

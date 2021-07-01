@@ -2,10 +2,10 @@ import React from "react";
 
 function KhongTimThayHoaDon(props) {
   return (
-    <div class="wrapper row2">
-      <div id="container" class="clear">
-        <section id="fof" class="clear">
-          <div class="fl_left">
+    <div className="wrapper row2">
+      <div id="container" className="clear">
+        <section id="fof" className="clear">
+          <div className="fl_left">
             <img src="./../../static/img/404.png" alt="" />
             <div id="respond">
               <form action="#" method="post">
@@ -21,7 +21,7 @@ function KhongTimThayHoaDon(props) {
               </form>
             </div>
           </div>
-          <div class="fl_right">
+          <div className="fl_right">
             <h1>Sorry, Nothing Found</h1>
             <p>
               For Some Reason The Page You Requested Could Not Be Found On Our

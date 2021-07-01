@@ -3,18 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Select, Divider, Button, Space } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import * as actKhoThuoc from "../../actions/quanlykho/actQuanLyKho";
-import * as message from "../../constants/Message";
-import * as noidung from "../../constants/noiDungThongBao";
-import { thongBao } from "../../common/renderThongBao/renderThongBaoCommon";
-import * as actHoaDonHoaDonDaHoanTat from "../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
+import * as actKhoThuoc from "../../../actions/quanlykho/actQuanLyKho";
+import * as message from "../../../constants/Message";
+import { thongBao } from "../../../common/renderThongBao/renderThongBaoCommon";
+import * as actHoaDonHoaDonDaHoanTat from "../../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
 import {
   RenderInput,
   RenderInputNumber,
   RenderInputSelectSearch,
   RenderInputTextArea,
-} from "../../common/renderForm/inputForm";
-function FormBanHang({
+} from "../../../common/renderForm/inputForm";
+export default function FormDieuChinhPhieuBanHang({
   onSave,
   cancel,
   checkEdit,
@@ -25,7 +24,7 @@ function FormBanHang({
   const [form] = useForm();
   const dispatch = useDispatch();
   const initialValue = useSelector(
-    (state) => state.quanly_hoadon_ban_thanhcong.item
+    (state) => state.quanly_hoadon.phieubanhang.item
   );
 
   if (initialValue !== null) {
@@ -187,7 +186,7 @@ function FormBanHang({
 
                       <Form.Item>
                         <a type="dashed" onClick={() => add()}>
-                          <i class="fa fa-plus" aria-hidden="true"></i>
+                          <i className="fa fa-plus" aria-hidden="true"></i>
                         </a>
                       </Form.Item>
                     </>
@@ -239,5 +238,3 @@ function FormBanHang({
     </>
   );
 }
-
-export default FormBanHang;

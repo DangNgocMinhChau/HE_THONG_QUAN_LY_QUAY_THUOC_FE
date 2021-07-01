@@ -11,7 +11,7 @@ const PDFPrint = ({ children, stylePrint }) => {
             <Button
               className={`${stylePrint ? "custom-print-2" : "custom-print"}`}
             >
-              <i class="fa fa-print" aria-hidden="true"></i>
+              <i className="fa fa-print" aria-hidden="true"></i>
             </Button>
           )}
           content={() => elmRef.current}

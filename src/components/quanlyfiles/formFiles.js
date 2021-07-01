@@ -124,7 +124,7 @@ class FormFiles extends Component {
               disabled={!selectedFiles}
               onClick={this.uploadFiles}
             >
-              Upload <i class="fa fa-upload" aria-hidden="true"></i>
+              Upload <i className="fa fa-upload" aria-hidden="true"></i>
             </button>
           </div>
         </div>

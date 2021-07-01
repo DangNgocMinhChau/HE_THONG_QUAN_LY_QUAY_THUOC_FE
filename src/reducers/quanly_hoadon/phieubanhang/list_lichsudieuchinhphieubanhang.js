@@ -1,7 +1,7 @@
-import * as Types from "../../constants/ActionType";
+import * as Types from "../../../constants/ActionType";
 var initialState = [];
 
-const listlichsuhoadon = (state = initialState, action) => {
+const listlichsudieuchinhphieubanhang = (state = initialState, action) => {
   var index = -1;
   var { id, value, data } = action;
   switch (action.type) {
@@ -24,4 +24,4 @@ const listlichsuhoadon = (state = initialState, action) => {
   }
 };
 
-export default listlichsuhoadon;
+export default listlichsudieuchinhphieubanhang;

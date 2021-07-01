@@ -69,7 +69,6 @@ function PageLogin(props) {
         let id = listDataUser.filter(
           (item) => item.tenDangNhap == values.user
         )[0]?.id;
-        console.log(id);
         dispatch(act.actGetTaiKhoanByIdLoginFailRequest(id));
       } else if (countLoginFail > 5) {
         thongBao(Message.THONG_BAO, NoiDung.CANH_BAO_DANG_NHAP_SAI);

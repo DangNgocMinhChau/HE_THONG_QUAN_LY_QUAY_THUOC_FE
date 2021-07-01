@@ -11,13 +11,11 @@ import {
 import CommonTable from "../../common/commonTable";
 
 function TableNhaCungCap({
-  match,
   data,
   onDelete,
   onEdit,
   setIdXoa,
   onThongBaoHetHang,
-  deleteFiles,
   onDetail,
   onHandleQRCode,
 }) {
@@ -172,12 +170,6 @@ function TableNhaCungCap({
     },
   ];
 
-  const rowSelection = {
-    onChange: (selectedRowKeys, selectedRows) => {
-      setIdXoa(selectedRowKeys);
-    },
-  };
-
   function renderDetail(record) {
     return (
       <a style={{ color: "Highlight" }} onClick={() => onDetail(record.id)}>
@@ -198,7 +190,7 @@ function TableNhaCungCap({
         <>
           <a href={item.url} target="_blank">
             <i
-              class="fa fa-paperclip"
+              className="fa fa-paperclip"
               style={{ color: "black" }}
               aria-hidden="true"
             ></i>{" "}
@@ -213,8 +205,11 @@ function TableNhaCungCap({
   const renderTinhTrang = (record) => {
     if (record.soLuongNhap - record.soLuongDaBan > 10) {
       return <p style={{ color: "green" }}> Còn hàng</p>;
-    } else if (record.soLuongNhap - record.soLuongDaBan < 10) {
-      onThongBaoHetHang(record);
+    } else if (
+      record.soLuongNhap - record.soLuongDaBan < 10 &&
+      record.soLuongNhap - record.soLuongDaBan > 0
+    ) {
+      // onThongBaoHetHang(record);
       return <p style={{ color: "blue" }}>Sắp hết hàng</p>;
     } else if (record.soLuongNhap - record.soLuongDaBan === 0) {
       return <p style={{ color: "red" }}>Hết hàng</p>;
@@ -271,7 +266,12 @@ function TableNhaCungCap({
   }
   return (
     <div>
-      <CommonTable columns={columns} dataSource={data} setIdXoa={setIdXoa} />
+      <CommonTable
+        key={data.id}
+        columns={columns}
+        dataSource={data}
+        setIdXoa={setIdXoa}
+      />
     </div>
   );
 }

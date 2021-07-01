@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "antd";
-import FormDieuChinhHoaDon from "./formDieuChinhHoaDon";
+import FormDieuChinhPhieuBanHang from "./formDieuChinhPhieuBanHang";
 
-function ModalDieuChinhHoaDon({
+export default function ModalDieuChinhPhieuBanHang({
   isVisible,
   onCancel,
   onSave,
@@ -12,14 +12,14 @@ function ModalDieuChinhHoaDon({
   return (
     <>
       <Modal
-        title="Điều chỉnh hoá đơn"
+        title="Điều chỉnh phiếu bán hàng"
         visible={isVisible}
         onCancel={onCancel}
         width={1000}
         footer={false}
       >
         <div style={{ textAlign: "left" }}>
-          <FormDieuChinhHoaDon
+          <FormDieuChinhPhieuBanHang
             onSave={onSave}
             isVisible={isVisible}
             cancel={onCancel}
@@ -31,5 +31,3 @@ function ModalDieuChinhHoaDon({
     </>
   );
 }
-
-export default ModalDieuChinhHoaDon;

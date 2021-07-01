@@ -1,4 +1,4 @@
-import * as Types from "../../constants/ActionType";
+import * as Types from "../../../constants/ActionType";
 var initialState = [];
 
 var findIndex = (data, id) => {
