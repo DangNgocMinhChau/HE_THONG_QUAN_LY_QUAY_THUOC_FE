@@ -77,13 +77,24 @@ export default function DanhSachSanPhamBanHang({ history }) {
           <div className="col-xl-12 col-lg-12">
             {/* <!-- Card Header - Dropdown --> */}
             {checkDanhSach && (
-              <Card style={{ width: "100%", margin: 5 }}>
+              <Card
+                style={{
+                  width: "100%",
+                  margin: 5,
+                  borderRadius: "20px",
+                  background: "#1b2a49",
+                }}
+              >
                 <div className="row">
                   {dataListThuoc.map((item, index) => {
                     return (
                       <Card
                         hoverable
-                        style={{ width: "20%" }}
+                        style={{
+                          width: "20%",
+                          borderRadius: "20px",
+                          background: "#ffffff",
+                        }}
                         onClick={() => {
                           onHandelDetail(item.id);
                         }}

@@ -15,7 +15,8 @@ import thunk from "redux-thunk";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import vi_VN from "antd/lib/locale-provider/vi_VN";
+import { ConfigProvider } from "antd";
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
@@ -27,7 +28,9 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <ConfigProvider locale={vi_VN}>
+        <App />
+      </ConfigProvider>
     </Router>
   </Provider>,
   document.getElementById("root")

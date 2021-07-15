@@ -5,8 +5,7 @@ import { useForm } from "antd/lib/form/Form";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import * as actQuanLyCMND from "./../.././actions/quanly_cmnd/actQuanLyCMND";
-function ModalQuanLyTaiKhoan({ isVisible, handleCancel, onSave, checkCMND })
-{
+function ModalQuanLyTaiKhoan({ isVisible, handleCancel, onSave, checkCMND }) {
   const [form] = useForm();
   const initialValue = useSelector((state) => state.quanlytaikhoan.item);
   const dispatch = useDispatch();
@@ -25,14 +24,12 @@ function ModalQuanLyTaiKhoan({ isVisible, handleCancel, onSave, checkCMND })
     }
   }
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     form.resetFields();
     form.setFieldsValue(dataInitialValue);
   }, [isVisible, initialValue, form]);
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     dispatch(actQuanLyCMND.getAllCMNDRequest());
   }, []);
   return (

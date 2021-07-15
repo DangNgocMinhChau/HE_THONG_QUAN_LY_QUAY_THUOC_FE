@@ -75,6 +75,7 @@ export default function PageQuanLyBanHang({ match, location }) {
     }
     cancelSauKhiThemThongTinKhachHang();
   };
+
   const callRequestThongTinKhachHang = () => {
     dispatch(actQuanLyThongTinKhachHang.actFetchThongTinKhachHangRequest());
   };
@@ -127,11 +128,17 @@ export default function PageQuanLyBanHang({ match, location }) {
       <div className="row">
         {/* <!-- Area Chart --> */}
         <div className="col-xl-12 col-lg-12">
-          <div className="card shadow mb-4">
+          <div className="card-custom shadow mb-4">
             {/* <!-- Card Header - Dropdown --> */}
-            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between pb-0 pt-0 ">
-              <h6 className="m-0 font-weight-bold ">Bán hàng</h6>
-              <div className=" d-flex flex-row align-items-center  ">
+            <div className="card-header-custom py-2 d-flex flex-row align-items-center justify-content-between ">
+              <p className="text-card-header">
+                <i
+                  className="color-icon-header-remove fa fa-cart-arrow-down"
+                  aria-hidden="true"
+                ></i>
+                Bán hàng
+              </p>
+              {/* <div className=" d-flex flex-row align-items-center  ">
                 <Tooltip
                   placement="bottom"
                   title="Tạo mới khách hàng"
@@ -146,7 +153,7 @@ export default function PageQuanLyBanHang({ match, location }) {
                     }}
                   ></i>
                 </Tooltip>
-              </div>
+              </div> */}
             </div>
             {checkFormThemMoiKhachHang && (
               <FormThongTinKhachHang

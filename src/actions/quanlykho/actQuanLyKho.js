@@ -34,6 +34,16 @@ export function actFetchKhoThuocRequest() {
   };
 }
 
+export function actFetchTop10ThuocBanChayRequest() {
+  return (dispatch) => {
+    return callApi("quanlykho/top10thuocbanchay", "GET", null).then((res) => {
+      if (res) {
+        dispatch(actFetchNhapKhoThuoc(res.data.result));
+      }
+    });
+  };
+}
+
 export function actFetchThungRacKhoThuocRequest() {
   return (dispatch) => {
     return callApi("quanlykho/thungrackhothuoc", "GET", null).then((res) => {

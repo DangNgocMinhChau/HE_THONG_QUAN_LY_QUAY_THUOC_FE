@@ -87,10 +87,16 @@ export default function PageQuanLyPhieuBanHang({ match, location }) {
       <div className="row">
         {/* <!-- Area Chart --> */}
         <div className="col-xl-12 col-lg-12">
-          <div className="card shadow mb-4">
+          <div className="card-custom shadow mb-4">
             {/* <!-- Card Header - Dropdown --> */}
-            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between ">
-              <h6 className="m-0 font-weight-bold">Thống kê phiếu bán hàng</h6>
+            <div className="card-header-custom py-3 d-flex flex-row align-items-center justify-content-between ">
+              <p className="text-card-header">
+                <i
+                  className="color-icon-header-danhsach fa fa-book"
+                  aria-hidden="true"
+                ></i>
+                Thống kê phiếu bán hàng
+              </p>
               {checkDanhSach && (
                 <a onClick={handdleBack} className="m-0 font-weight-bold ">
                   <i className="fa fa-chevron-left" aria-hidden="true"></i>

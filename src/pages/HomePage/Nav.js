@@ -44,7 +44,7 @@ function Nav({ onToogleMenu, checkToogle, onSetColorMenu, colorMenu }) {
       {/* <!-- Main Content --> */}
       <div id="content">
         {/* <!-- Topbar --> */}
-        <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav className="navbar navbar-expand navbar-light bg-white-custom topbar mb-4 static-top shadow">
           {/* <!-- Sidebar Toggle (Topbar) --> */}
           <button
             id="sidebarToggleTop"

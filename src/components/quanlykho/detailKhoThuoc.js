@@ -8,13 +8,7 @@ import {
 } from "./../../common/convert/renderConvert";
 import { Tooltip } from "antd";
 import moment from "moment";
-function DetailKhoThuoc({
-  match,
-  history,
-  itemKhoThuoc,
-  handleBack,
-  checkShowButtonBack,
-}) {
+function DetailKhoThuoc({ itemKhoThuoc }) {
   const renderDateHanSudung = (item) => {
     var timeNow = moment();
     var hsd = moment(item.hanSuDungThuoc);
@@ -79,29 +73,8 @@ function DetailKhoThuoc({
   };
   return (
     <>
-      <div className="container-fluid">
-        <div className="d-sm-flex align-items-center justify-content-between mb-4"></div>
-        <div className=" background-detail-custom  shadow ">
-          {checkShowButtonBack && (
-            <Tooltip placement="bottom" title="Quay lại" color="gray" key="red">
-              <a
-                onClick={() => {
-                  handleBack();
-                }}
-              >
-                <i
-                  className="fa fa-angle-left  "
-                  aria-hidden="true"
-                  style={{
-                    color: "green",
-                    fontSize: "30px",
-                    marginTop: "10px",
-                  }}
-                ></i>
-              </a>
-            </Tooltip>
-          )}
-
+      <div className="container-fluid ">
+        <div className=" background-detail-custom shadow ">
           <Divider orientation="left">Nhà cung cấp</Divider>
           <Descriptions size="small" layout="horizontal" bordered>
             <Descriptions.Item label="Nhà cung cấp" span={2}>

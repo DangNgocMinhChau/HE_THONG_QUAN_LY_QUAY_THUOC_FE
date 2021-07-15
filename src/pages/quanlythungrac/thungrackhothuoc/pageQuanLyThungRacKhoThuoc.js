@@ -41,9 +41,17 @@ function PageQuanLyThungRacKhoThuoc({ match, location }) {
       <div className="row">
         {/* <!-- Area Chart --> */}
         <div className="col-xl-12 col-lg-12">
-          <div className="card shadow mb-4">
+          <div className="card-custom  shadow ">
             {/* <!-- Card Header - Dropdown --> */}
-            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between "></div>
+            <div className=" py-2 d-flex flex-row align-items-center justify-content-between card-header-custom ">
+              <p className="text-card-header">
+                <i
+                  className="color-icon-header-remove fa fa-trash-o"
+                  aria-hidden="true"
+                ></i>
+                Thùng rác thuốc
+              </p>
+            </div>
             {checkDanhSach && (
               <TableThungRacKhoThuoc
                 data={dataListThuoc}

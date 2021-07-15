@@ -6453,8 +6453,8 @@ button.bg-dark:focus {
   background-color: #42444e !important;
 }
 
-.bg-white {
-  background-color: #fff !important;
+.bg-white-custom {
+  background: #fff  !important;
 }
 
 .bg-transparent {

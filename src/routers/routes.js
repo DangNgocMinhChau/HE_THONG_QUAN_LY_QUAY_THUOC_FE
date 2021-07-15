@@ -15,6 +15,7 @@ import PageDanhSachSanPham from "../pages/danhsachsanpham/pageDanhSachSanPham";
 import PageQuanLyThungRacKhoThuoc from "../pages/quanlythungrac/thungrackhothuoc/pageQuanLyThungRacKhoThuoc";
 import PageHoaDonNhapKhoGTGT from "../pages/quanlyhoadon/hoadonnhapkho/pageHoaDonNhapKhoGTGT";
 import PageQuanLyThungRacHoaDonGTGT from "../pages/quanlythungrac/thungrachoadonGTGT/PageQuanLyThungRacHoaDonGTGT";
+import PageTop10ThuocBanChay from "../pages/quanlybaocao/pageTop10ThuocBanChay";
 
 const routes = [
   {
@@ -86,6 +87,13 @@ const routes = [
     exact: true,
     main: ({ match, location }) => (
       <PageQuanLyBaoCao location={location} match={match} />
+    ),
+  },
+  {
+    path: "/topthuocbanchay",
+    exact: true,
+    main: ({ match, location }) => (
+      <PageTop10ThuocBanChay location={location} match={match} />
     ),
   },
   {

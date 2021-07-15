@@ -21,20 +21,23 @@ export default function PageNhapThuoc({ match, location, history }) {
   const [isVisibleQrCode, setIsVisibleQrCode] = useState(false);
   const [valueRecordTable, setValueRecordTable] = useState();
   const [idXoa, setIdXoa] = useState([]);
+  const [titleCardHeader, setTitleCardHeader] = useState("");
 
-  const { dataListThuoc, dataListFile, account_current, itemKhoThuoc } =
-    useSelector(
-      (state) => ({
-        dataListThuoc: state.khothuoc.list,
-        dataListFile: state.quanly_files.list,
-        account_current: state.quanlylogin.account_current,
-        itemKhoThuoc: state.khothuoc.item,
-      }),
-      shallowEqual
-    );
-
-  const dataListNhaCungCap = useSelector(
-    (state) => state.quanlynhacungcap.list
+  const {
+    dataListThuoc,
+    dataListFile,
+    account_current,
+    itemKhoThuoc,
+    dataListNhaCungCap,
+  } = useSelector(
+    (state) => ({
+      dataListThuoc: state.khothuoc.list,
+      dataListFile: state.quanly_files.list,
+      account_current: state.quanlylogin.account_current,
+      itemKhoThuoc: state.khothuoc.item,
+      dataListNhaCungCap: (state) => state.quanlynhacungcap.list,
+    }),
+    shallowEqual
   );
 
   const dispatch = useDispatch();
@@ -43,6 +46,7 @@ export default function PageNhapThuoc({ match, location, history }) {
     setCheckDanhSach(true);
     setCheckFormThemMoi(false);
     setCheckShowDetail(false);
+    setTitleCardHeader("Danh sách thuốc");
   }
 
   function onSave(value) {
@@ -162,6 +166,7 @@ export default function PageNhapThuoc({ match, location, history }) {
     setCheckShowDetail(true);
     setCheckDanhSach(false);
     dispatch(act.actGetKhoThuocByIdRequest(id));
+    setTitleCardHeader("Chi tiết sản phẩm");
   };
 
   function onEdit(record) {
@@ -170,6 +175,7 @@ export default function PageNhapThuoc({ match, location, history }) {
     setCheckFormThemMoi(true);
     setCheckDanhSach(false);
     setCheckEdit(true);
+    setTitleCardHeader(`Chỉnh sửa thuốc - ${record.tenThuoc} `);
   }
 
   function resetForm() {
@@ -182,6 +188,7 @@ export default function PageNhapThuoc({ match, location, history }) {
     setCheckDanhSach(false);
     setCheckEdit(true);
     dispatch(actNhaCungCap.actGetNhaCungCapById(null));
+    setTitleCardHeader("Thêm mới thuốc");
   }
 
   const onThongBaoHetHang = (value) => {
@@ -204,6 +211,7 @@ export default function PageNhapThuoc({ match, location, history }) {
     dispatch(act.actFetchKhoThuocRequest());
     dispatch(actNhaCungCap.actFetchNhaCungCapRequest());
     dispatch(actQuanLyFiles.actFetchfilesRequest());
+    setTitleCardHeader("Danh sách thuốc");
   }, []);
 
   return (
@@ -281,22 +289,22 @@ export default function PageNhapThuoc({ match, location, history }) {
       <div className="row">
         {/* <!-- Area Chart --> */}
         <div className="col-xl-12 col-lg-12">
-          <div className="card shadow mb-4 ">
+          <div className="card-custom shadow mb-4 ">
             {/* <!-- Card Header - Dropdown --> */}
-            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 className="m-0 font-weight-bold ">
-                Danh sách thuốc trong kho
-              </h6>
+            <div className="card-header-custom py-2 d-flex flex-row align-items-center justify-content-between">
+              <p className="text-card-header">{titleCardHeader}</p>
               {checkShowDetail && (
-                <div className="row">
-                  <a
-                    onClick={() => {
-                      cancel();
-                    }}
-                  >
-                    <i className="fa fa-chevron-left" aria-hidden="true"></i>
-                  </a>
-                </div>
+                <a
+                  onClick={() => {
+                    cancel();
+                  }}
+                >
+                  <i
+                    style={{ color: "AppWorkspace", marginRight: "20px" }}
+                    className="fa fa-chevron-left"
+                    aria-hidden="true"
+                  ></i>
+                </a>
               )}
             </div>
             {checkFormThemMoi && (

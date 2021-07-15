@@ -85,6 +85,9 @@ export const menusListQuanTri = [
     name: "Báo cáo tổng quát",
     to: "/baocaotongquat",
     exact: true,
+    children: [
+      { name: "Top 10 thuốc bán chạy", to: "/topthuocbanchay", exact: true },
+    ],
   },
   {
     name: "Xem dánh sách",

@@ -19,8 +19,11 @@ function renderRouter(dataMenu, parentKey = 0) {
     ) : (
       <Menu.Item key={`${parentKey}-${index}`}>
         <Link key={index} className="nav-link" to={item.to} exact={item.exact}>
-          <i className="fas fa-fw fa-chart-area"></i>
-          <span>{item.name}</span>
+          <span>
+            {" "}
+            <i className="icon-menu-custom fa fa-circle"></i>
+            {item.name}
+          </span>
         </Link>
       </Menu.Item>
     )

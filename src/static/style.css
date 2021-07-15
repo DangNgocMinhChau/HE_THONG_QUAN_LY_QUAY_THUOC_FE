@@ -1,5 +1,9 @@
 .background-detail-custom {
     background: #fff;
+    border-radius: 20px;
+    padding-bottom: 50px;
+    margin-left: 15%;
+    width: 70%;
 }
 
 .background-menuleft {
@@ -24,6 +28,10 @@
 
 a {
     text-decoration: none !important;
+}
+
+.ant-menu.ant-menu-dark, .ant-menu-dark .ant-menu-sub, .ant-menu.ant-menu-dark .ant-menu-sub {
+    background: #2c3e50 !important;
 }
 /* login */
 /* 
@@ -315,6 +323,50 @@ Licence: <a href="https://www.os-templates.com/template-terms">Website Template 
 .ant-table tfoot > tr > td {
     padding: 5px 16px !important;
 }
+.ant-table-pagination.ant-pagination {
+    margin: 10px 0 !important;
+
+}
+.ant-table-pagination-right {
+    justify-content: flex-start !important;
+}
+
+.ant-table-pagination {
+    display: inline-block !important;
+}
+
+
+
+.ant-table-thead > tr > th {
+    background: #104E8B !important;
+    border: 1px solid steelblue !important;
+    color: white !important;
+}
+
+.ant-modal-header {
+    background: #1b2a49 !important;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important
+}
+
+.ant-modal-title {
+    color: whitesmoke !important;
+    text-align: center;
+
+}
+.ant-modal-content {
+    border-radius: 15px !important;
+}
+
+.ant-modal-footer {
+    background: #1b2a49 !important;
+    border-bottom-left-radius: 15px !important;
+    border-bottom-right-radius: 15px !important
+}
+
+.ant-modal-close-x {
+    color: white;
+}
 
 /*  */
 
@@ -402,4 +454,43 @@ img {
 .bg-hoadongtgt{
     background-color: rgba(255,193,231);
     border: 1px solid black;
+}
+
+
+
+
+.card-header-custom{
+    border-top-left-radius: 15px ;
+    border-top-right-radius: 15px ;
+    background-color: #1b2a49;
+
+}
+.text-card-header{
+    color: whitesmoke;
+    text-align: center;
+    margin: 0;
+    padding-left: 50%;
+    
+}
+.color-icon-header-remove{
+    color: tomato;
+    padding-right:10px ;
+}
+
+.color-icon-header-danhsach{
+    color: floralwhite;
+    padding-right:10px ;
+}
+
+.card-custom{
+    border-radius: 20px !important;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 5px;
+}
+
+.icon-menu-custom {
+    margin-right: 10px;
+    color: #1a237e;
+    font-size: 5px !important;
 }
