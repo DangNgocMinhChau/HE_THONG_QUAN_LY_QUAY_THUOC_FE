@@ -11,7 +11,9 @@ function App() {
 
   return (
     <>
-      {account_current.checkToken ? (
+      {/* <Page account_current={account_current} /> */}
+
+      {account_current && account_current.dangNhapThanhCong ? (
         <div className="App">
           <Page account_current={account_current} />
         </div>

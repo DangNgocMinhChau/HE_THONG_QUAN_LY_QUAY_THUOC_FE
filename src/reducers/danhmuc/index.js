@@ -1,8 +1,6 @@
 import { combineReducers } from "redux";
-import list from "./list";
-import item from "./item";
+import quyen from "./quyen";
 
 export default combineReducers({
-  list,
-  item,
+  quyen,
 });

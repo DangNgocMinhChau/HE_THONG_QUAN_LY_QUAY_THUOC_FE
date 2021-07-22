@@ -9,6 +9,8 @@ import quanlybanhang from "./quanlybanhang";
 import quanly_hoadon from "./quanly_hoadon";
 import quanly_files from "./quanlyfiles";
 import quanlythongtinkhachhang from "./quanlythongtinkhachhang";
+import config_crud_auto from "./config_crud_auto";
+import danhmuc from "./danhmuc";
 
 const appReducers = combineReducers({
   khothuoc,
@@ -21,6 +23,8 @@ const appReducers = combineReducers({
   quanly_hoadon,
   quanly_files,
   quanlythongtinkhachhang,
+  config_crud_auto,
+  danhmuc,
 });
 
 export default appReducers;

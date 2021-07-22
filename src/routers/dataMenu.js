@@ -1,3 +1,17 @@
+import { arrayFileConfig } from "./../common/commom_object_config_auto_create/ArrayFileConfig";
+
+const renderRouterDanhMuc = () => {
+  const listData = [];
+  arrayFileConfig.map((item, index) => {
+    listData.push({
+      name: item.name,
+      to: item.linkUrl,
+      exact: true,
+    });
+  });
+  return listData;
+};
+
 export const menusListQuanTri = [
   {
     name: "Hệ thống",
@@ -115,6 +129,12 @@ export const menusListQuanTri = [
         exact: true,
       },
     ],
+  },
+  {
+    name: "Danh mục",
+    to: "/mucluc",
+    exact: true,
+    children: renderRouterDanhMuc(),
   },
 ];
 

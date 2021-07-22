@@ -43,9 +43,10 @@ function MenuLeft({ checkToogle, colorMenu, account_current }) {
           mode="inline"
           collapsedWidth="100%"
         >
-          {account_current.maQuyen === "ADMIN"
+          {/* {account_current.maQuyen === "ADMIN"
             ? renderRouter(dataMenu.menusListQuanTri)
-            : renderRouter(dataMenu.menusListUser)}
+            : renderRouter(dataMenu.menusListUser)} */}
+          {renderRouter(dataMenu.menusListQuanTri)}
         </Menu>
       )}
     </>

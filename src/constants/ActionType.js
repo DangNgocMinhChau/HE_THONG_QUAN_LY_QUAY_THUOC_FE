@@ -72,3 +72,14 @@ export const DELETE_HOADON_GTGT = "DELETE_HOADON_GTGT";
 export const CREATE_HOADON_GTGT = "CREATE_HOADON_GTGT";
 export const EDIT_HOADON_GTGT = "EDIT_HOADON_GTGT";
 export const UPDATE_HOADON_GTGT = "UPDATE_HOADON_GTGT";
+
+//QuanLyCMND
+
+export const FETCH_CRUD = "FETCH_CRUD";
+export const CREATE_CRUD = "CREATE_CRUD";
+export const DELETE_CRUD = "DELETE_CRUD";
+export const EDIT_CRUD = "EDIT_CRUD";
+export const UPDATE_CRUD = "UPDATE_CRUD";
+
+// Quyen
+export const FETCH_QUYEN = "FETCH_QUYEN";

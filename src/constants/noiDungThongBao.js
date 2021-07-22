@@ -1,6 +1,9 @@
 export const TRUNG_SO_CMND =
   "Số CMND này đã có người sử dụng, vui lòng kiểm tra lại";
 
+export const TAIKHOAN_DA_TONTAI =
+  "Tài khoản này đã được đăng ký, mong bạn kiểm tra lại!";
+
 export const TAI_KHOAN_BI_KHOA =
   "Tài khoản đã bị khóa. Vui lòng liên hệ với quản trị viên để được hỗ trợ !";
 

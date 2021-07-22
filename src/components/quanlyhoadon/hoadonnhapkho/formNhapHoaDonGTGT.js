@@ -74,9 +74,7 @@ export default function FormNhapHoaDonGTGT({
     }
   };
 
-  const valueOnChange = (e) => {
-    console.log(e.format());
-  };
+  const valueOnChange = (e) => {};
 
   return (
     <Form

@@ -1,7 +1,7 @@
 import * as Types from "../../constants/ActionType";
 import callApi from "../../utils/apiCaller";
 import * as message from "../../constants/Message";
-import * as actQuanLyCMND from "../../actions/quanly_cmnd/actQuanLyCMND";
+import * as actQuanLyCMND from "../quanly_cmnd/actQuanLyCMND";
 import moment from "moment";
 import {
   openMessageLoading,
@@ -50,14 +50,18 @@ export function actCreateTaiKhoanRequest(value) {
   return (dispatch) => {
     return callApi(`quanlytaikhoan`, "POST", value).then((res) => {
       if (res) {
-        let dataCMND = {
-          cmnd: res.data.result.cmnd,
-          idUser: res.data.result.id,
-          ngayTaoBanGhi: moment().format("DD/MM/yyyy HH:mm:ss "),
-        };
-        dispatch(actQuanLyCMND.actCreateCMNDRequest(dataCMND));
-        thongBao(message.THEM_THANH_CONG);
-        dispatch(actCreateTaiKhoan(res.data.result));
+        if (res.status) {
+          let dataCMND = {
+            cmnd: res.data.result.cmnd,
+            idUser: res.data.result.id,
+            ngayTaoBanGhi: moment().format("DD/MM/yyyy HH:mm:ss "),
+          };
+          dispatch(actQuanLyCMND.actCreateCMNDRequest(dataCMND));
+          thongBao(res.msg);
+          dispatch(actCreateTaiKhoan(res.data.result));
+        } else {
+          thongBao(res.msg);
+        }
       }
     });
   };
@@ -125,19 +129,7 @@ export const actUpdateTaiKhoan = (value) => {
   };
 };
 
-export const actLoginUserSuccess = (data) => {
-  let dataAccoutCurrent = {};
-  if (data.result) {
-    dataAccoutCurrent = data.result;
-  }
-  if (Array.isArray(data) && data.length > 0) {
-    dataAccoutCurrent = data[0];
-  }
-  let value = {
-    ...dataAccoutCurrent,
-    checkToken: true,
-    matKhauGoc: null,
-  };
+export const actLoginUserSuccess = (value) => {
   return {
     type: Types.LOGIN_SUCCESS,
     value,
@@ -162,11 +154,7 @@ export function actGetTaiKhoanByIdInApplicationRequest(id) {
   return (dispatch) => {
     return callApi(`quanlytaikhoan/${id}`, "GET", null).then((res) => {
       if (res) {
-        let data = {
-          ...res.data,
-          checkToken: true,
-        };
-        dispatch(actLoginUserSuccess(data));
+        dispatch(actLoginUserSuccess(res.data.result));
       }
     });
   };
@@ -268,6 +256,29 @@ export function actCreateThongBaoRequest(value) {
   return (dispatch) => {
     return callApi(`quanlythongbao`, "POST", value).then((res) => {
       if (res) {
+      }
+    });
+  };
+}
+
+export function actLoginTaiKhoan(value, setLoginThanhCong) {
+  return (dispatch) => {
+    return callApi(value, "GET", null).then((res) => {
+      if (res) {
+        dispatch(actLoginUserSuccess(res.data.result));
+        setLoginThanhCong(res.data.result);
+      }
+    });
+  };
+}
+
+export function actCheckTaiKhoanTonTaiRequest(value, checkTaiKhoanDangKy) {
+  return (dispatch) => {
+    return callApi(value, "GET", null).then((res) => {
+      if (res) {
+        if (res.data.result) {
+          checkTaiKhoanDangKy();
+        }
       }
     });
   };

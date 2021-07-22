@@ -16,7 +16,26 @@ import PageQuanLyThungRacKhoThuoc from "../pages/quanlythungrac/thungrackhothuoc
 import PageHoaDonNhapKhoGTGT from "../pages/quanlyhoadon/hoadonnhapkho/pageHoaDonNhapKhoGTGT";
 import PageQuanLyThungRacHoaDonGTGT from "../pages/quanlythungrac/thungrachoadonGTGT/PageQuanLyThungRacHoaDonGTGT";
 import PageTop10ThuocBanChay from "../pages/quanlybaocao/pageTop10ThuocBanChay";
+import { arrayFileConfig } from "../common/commom_object_config_auto_create/ArrayFileConfig";
+import PageConfigCRUD from "../pages/autoCreateDanhMuc/pageConfigCRUD/pageConfigCRUD";
 
+const renderRouterConfig = () => {
+  const dataPath = [];
+  arrayFileConfig.map((itemConfig, indexConfig) => {
+    dataPath.push({
+      path: itemConfig.linkUrl,
+      exact: true,
+      main: ({ match, location }) => (
+        <PageConfigCRUD
+          location={location}
+          match={match}
+          propsDefineObject={itemConfig}
+        />
+      ),
+    });
+  });
+  return dataPath;
+};
 const routes = [
   {
     path: "/",
@@ -147,7 +166,7 @@ const routes = [
       />
     ),
   },
-
+  renderRouterConfig(),
   {
     path: "",
     exact: true,
@@ -155,4 +174,15 @@ const routes = [
   },
 ];
 
-export default routes;
+let dataRouter = [];
+routes.map((itemMenu, indexMenu) => {
+  if (Array.isArray(itemMenu) && itemMenu.length > 0) {
+    itemMenu.map((itemRouterConfig, indexRouterConfig) => {
+      dataRouter.push(itemRouterConfig);
+    });
+  } else {
+    dataRouter.push(itemMenu);
+  }
+});
+
+export default dataRouter;

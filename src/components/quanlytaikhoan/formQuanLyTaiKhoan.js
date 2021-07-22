@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { Form, Divider } from "antd";
 import { Avatar } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { thongBao } from "./../../common/renderThongBao/renderThongBaoCommon";
 import * as message from "./../../constants/Message";
 import * as noiDungThongBao from "./../../constants/noiDungThongBao";
+import * as actDanhMuc from "./.././../actions/danhmuc/actQuanLyDanhMuc";
+import * as actQuanLyTaiKhoan from "./.././../actions/quanlytaikhoan/actQuanLyTaiKhoan";
 import {
   RenderInput,
   RenderInputDatePicker,
   RenderInputRadio,
   RenderInputSelect,
 } from "./../../common/renderForm/inputForm";
-
+import queryString from "query-string";
 import {
   optionPhanQuyenAdmin,
   optionPhanQuyenNoAdmin,
@@ -31,10 +33,17 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
     },
   };
   const onFinishFailed = (errorInfo) => {};
+  const dispatch = useDispatch();
   const listCMND = useSelector((state) => state.quanly_cmnd.list);
   const account_current = useSelector(
     (state) => state.quanlylogin.account_current
   );
+
+  const checkTaiKhoanTonTai = useSelector(
+    (state) => state.quanlytaikhoan.check_taikhoan_tontai
+  );
+
+  const optionQuyen = useSelector((state) => state.danhmuc.quyen.list);
 
   const onChange = (e, value) => {
     let data = listCMND.filter((item) => item.cmnd === e.target.value);
@@ -45,6 +54,24 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
       checkCMND(false);
     }
   };
+
+  const checkTaiKhoan = (e, value) => {
+    const queryStringParam = queryString.stringifyUrl({
+      url: "quanlytaikhoan/findAccountByUser",
+      query: { account: e.target.value },
+    });
+    dispatch(
+      actQuanLyTaiKhoan.actCheckTaiKhoanTonTaiRequest(
+        queryStringParam,
+        checkTaiKhoanDangKy
+      )
+    );
+  };
+
+  const checkTaiKhoanDangKy = () => {
+    thongBao(message.THONG_BAO, noiDungThongBao.TAIKHOAN_DA_TONTAI);
+  };
+
   const onChangeAvatar = (e, value) => {
     setUrl(e.target.value);
   };
@@ -53,6 +80,11 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
   const upload = () => {
     setCheckInputImg(!checkInputImg);
   };
+
+  useState(() => {
+    dispatch(actDanhMuc.getAllDanhMucQuyenRequest(account_current));
+  }, []);
+
   return (
     <>
       <Form
@@ -79,9 +111,7 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
         </div>
 
         <Divider plain>Tài khoản</Divider>
-
         <RenderInput label="id" name="id" hidden={true} />
-
         <RenderInput
           label="Tên người dùng"
           showLabel={true}
@@ -128,6 +158,7 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
           label="Tên đăng nhập"
           name="tenDangNhap"
           validate={true}
+          onChange={checkTaiKhoan}
         />
 
         <RenderInput
@@ -146,19 +177,19 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
           password={true}
         />
 
-        {account_current.checkToken ? (
+        {account_current && account_current.checkToken ? (
           <RenderInputSelect
             label="Quyền"
             name="quyenId"
             showLabel={true}
-            options={optionPhanQuyenAdmin}
+            options={optionQuyen}
           />
         ) : (
           <RenderInputSelect
             label="Quyền"
             name="quyenId"
             showLabel={true}
-            options={optionPhanQuyenNoAdmin}
+            options={optionQuyen}
           />
         )}
         <RenderInput name="ngayTaoBanGhi" hidden={true} />

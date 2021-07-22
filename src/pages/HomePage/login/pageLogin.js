@@ -7,6 +7,7 @@ import FormDangNhap from "../../../components/login/formDangNhap";
 import FormResetPass from "../../../components/login/formResetPass";
 import FormDoiMatKhau from "../../../components/login/formDoiMatKhau";
 import FormYeuCauMoKhoaTaiKhoan from "../../../components/login/formYeuCauMoKhoaTaiKhoan";
+import queryString from "query-string";
 
 import {
   thongBao,
@@ -16,14 +17,6 @@ import * as Message from "./../../../constants/Message";
 import * as NoiDung from "./../../../constants/noiDungThongBao";
 var md5 = require("md5");
 function PageLogin(props) {
-  const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
-  };
-  const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-  };
-
   const [visible, setVisible] = useState(false);
   const [checkResetPass, setCheckResetPass] = useState(false);
   const [checkFormDangNhap, setCheckFormDangNhap] = useState(true);
@@ -32,9 +25,6 @@ function PageLogin(props) {
   const [checkCMND, setCheckCMND] = useState();
   const listDataUser = useSelector((state) => state.quanlytaikhoan.list);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(act.actFetchTaiKhoanRequest());
-  }, []);
 
   useEffect(() => {
     if (localStorage.getItem("login")) {
@@ -45,34 +35,62 @@ function PageLogin(props) {
       );
     }
   }, []);
-  let countLoginFail = 0;
+
   const onFinish = (values) => {
-    let dataUserLogin = listDataUser.filter(
-      (item) =>
-        item.tenDangNhap === values.user &&
-        item.matKhau === md5(`${values.password}`)
-    );
-    if (dataUserLogin.length > 0) {
-      if (dataUserLogin[0]?.lockUser) {
+    const queryStringParam = queryString.stringifyUrl({
+      url: "quanlytaikhoan/login",
+      query: { account: values.user, password: values.password },
+    });
+    dispatch(act.actLoginTaiKhoan(queryStringParam, setLoginThanhCong));
+    // let dataUserLogin = listDataUser.filter(
+    //   (item) =>
+    //     item.tenDangNhap === values.user &&
+    //     item.matKhau === md5(`${values.password}`)
+    // );
+    // if (dataUserLogin.length > 0) {
+    //   if (dataUserLogin[0]?.lockUser) {
+    //     thongBao(Message.DANG_NHAP_LOI, NoiDung.TAI_KHOAN_BI_KHOA);
+    //   } else {
+    //     dispatch(act.actLoginUserSuccess(dataUserLogin));
+    //     localStorage.setItem("login", dataUserLogin[0].id);
+    //     thongBao(Message.DANG_NHAP_THANH_CONG, NoiDung.DANG_NHAP_THANH_CONG);
+    //   }
+    // } else {
+    //   thongBao(Message.DANG_NHAP_LOI, NoiDung.TAI_KHOAN_KHONG_DUNG);
+
+    //   countLoginFail++;
+    //   if (countLoginFail == 10) {
+    //     thongBao(Message.THONG_BAO, NoiDung.CANH_BAO_DANG_NHAP_SAI_10_LAN);
+    //     let id = listDataUser.filter(
+    //       (item) => item.tenDangNhap == values.user
+    //     )[0]?.id;
+    //     dispatch(act.actGetTaiKhoanByIdLoginFailRequest(id));
+    //   } else if (countLoginFail > 5) {
+    //     thongBao(Message.THONG_BAO, NoiDung.CANH_BAO_DANG_NHAP_SAI);
+    //   }
+    // }
+  };
+  let countLoginFail = 0;
+
+  const setLoginThanhCong = (value) => {
+    if (value.dangNhapThanhCong) {
+      if (value.lockUser) {
         thongBao(Message.DANG_NHAP_LOI, NoiDung.TAI_KHOAN_BI_KHOA);
       } else {
-        dispatch(act.actLoginUserSuccess(dataUserLogin));
-        localStorage.setItem("login", dataUserLogin[0].id);
+        localStorage.setItem("login", value.id);
         thongBao(Message.DANG_NHAP_THANH_CONG, NoiDung.DANG_NHAP_THANH_CONG);
       }
     } else {
       thongBao(Message.DANG_NHAP_LOI, NoiDung.TAI_KHOAN_KHONG_DUNG);
-
-      countLoginFail++;
-      if (countLoginFail == 10) {
-        thongBao(Message.THONG_BAO, NoiDung.CANH_BAO_DANG_NHAP_SAI_10_LAN);
-        let id = listDataUser.filter(
-          (item) => item.tenDangNhap == values.user
-        )[0]?.id;
-        dispatch(act.actGetTaiKhoanByIdLoginFailRequest(id));
-      } else if (countLoginFail > 5) {
-        thongBao(Message.THONG_BAO, NoiDung.CANH_BAO_DANG_NHAP_SAI);
-      }
+      // if (countLoginFail == 10) {
+      //   thongBao(Message.THONG_BAO, NoiDung.CANH_BAO_DANG_NHAP_SAI_10_LAN);
+      //   let id = listDataUser.filter(
+      //     (item) => item.tenDangNhap == value.user
+      //   )[0]?.id;
+      //   dispatch(act.actGetTaiKhoanByIdLoginFailRequest(id));
+      // } else if (countLoginFail > 5) {
+      //   thongBao(Message.THONG_BAO, NoiDung.CANH_BAO_DANG_NHAP_SAI);
+      // }
     }
   };
 

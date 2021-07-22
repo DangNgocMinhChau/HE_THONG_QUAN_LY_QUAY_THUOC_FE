@@ -24,7 +24,6 @@ export default function ModalTraCuuLichSuDieuChinhPhieuBanHang({
     >
       <Timeline>
         {dataListLichSuDieuChinhPhieuBanHang.map((item, index) => {
-          console.log(item);
           return (
             <Timeline.Item key={index}>
               {item.ngayTaoBanGhi}

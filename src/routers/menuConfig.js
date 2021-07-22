@@ -68,7 +68,8 @@ export default function MenuConfig(props) {
   );
   return (
     <>
-      {account_current.quyen === "QuanTri"
+      {/* {renderMenu(dataMenu.menusListQuanTri)} */}
+      {account_current.quyen === "ADMIN"
         ? renderMenu(dataMenu.menusListQuanTri)
         : renderMenu(dataMenu.menusListUser)}
     </>
