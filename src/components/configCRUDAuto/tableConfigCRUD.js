@@ -26,7 +26,7 @@ export default function TableConfigCRUD({
         title: "Chức năng",
         dataIndex: "action",
         fixed: "right",
-        width: 50,
+        width: 150,
         render: (data, record) => actionRender(record),
       },
     ];
@@ -52,8 +52,8 @@ export default function TableConfigCRUD({
     });
     columns.unshift({
       title: "STT",
-      width: 50,
-      render: (data, record, index) => <p>{index + 1}</p>,
+      width: 60,
+      render: (data, record, index) => <span>{index + 1}</span>,
     });
     return columns;
   };
@@ -69,44 +69,41 @@ export default function TableConfigCRUD({
 
   function actionRender(record) {
     return (
-      <>
-        <div className="row">
-          <div className="col-md-2">
+      <div className="row">
+        <div className="col-md-2">
+          <a>
+            <i
+              className="fa fa-pencil-square-o"
+              style={{ color: "green", fontSize: "20px" }}
+              onClick={() => {
+                onEdit(record.id);
+              }}
+            ></i>
+          </a>
+        </div>
+
+        <div className="col-md-2">
+          <Popconfirm
+            placement="topRight"
+            title={Message.BAN_CO_MUON_XOA}
+            icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+            onConfirm={() => confirm(record.id)}
+            okText="Yes"
+            cancelText="No"
+          >
             <a>
               <i
-                className="fa fa-pencil-square-o"
-                style={{ color: "green", fontSize: "20px" }}
-                onClick={() => {
-                  onEdit(record.id);
-                }}
+                className="fa fa-trash-o"
+                style={{ color: "red", fontSize: "20px" }}
               ></i>
             </a>
-          </div>
-
-          <div className="col-md-2">
-            <Popconfirm
-              placement="topRight"
-              title={Message.BAN_CO_MUON_XOA}
-              icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-              onConfirm={() => confirm(record.id)}
-              okText="Yes"
-              cancelText="No"
-            >
-              <a>
-                <i
-                  className="fa fa-trash-o"
-                  style={{ color: "red", fontSize: "20px" }}
-                ></i>
-              </a>
-            </Popconfirm>
-          </div>
+          </Popconfirm>
         </div>
-      </>
+      </div>
     );
   }
   return (
     <div>
-      <br></br>
       <CommonTable
         columns={renderTable()}
         dataSource={data}

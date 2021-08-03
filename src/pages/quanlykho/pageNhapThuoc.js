@@ -40,6 +40,33 @@ export default function PageNhapThuoc({ match, location, history }) {
     shallowEqual
   );
 
+  const ConvertThanhPhayVaCham = (value, slkitu = 5) => {
+    let result = "";
+    if (value !== null && value !== undefined) {
+      result += formatNumber(parseInt(value.toString().split(".")[0]), 3);
+      if (
+        value.toString().split(".")[1] !== null &&
+        value.toString().split(".")[1] !== undefined
+      ) {
+        result += "," + value.toString().split(".")[1].substring(0, slkitu);
+      }
+    }
+    return result;
+  };
+
+  const formatNumber = (number, decimal = 2) => {
+    // try {
+    //   if (isNumber(number)) {
+    //     return new Intl.NumberFormat("vi-VN", {
+    //       maximumFractionDigits: decimal,
+    //     }).format(number);
+    //   } else {
+    //     return 0;
+    //   }
+    // } catch (error) {
+    //   return 0;
+    // }
+  };
   const dispatch = useDispatch();
 
   function cancel() {

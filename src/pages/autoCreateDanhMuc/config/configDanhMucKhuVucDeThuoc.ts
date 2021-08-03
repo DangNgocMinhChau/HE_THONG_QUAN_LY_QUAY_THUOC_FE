@@ -2,7 +2,6 @@ import AppModuleInterface from "../../../common/commom_object_config_auto_create
 import ObjectFormInterface from "../../../common/commom_object_config_auto_create/ObjectFormInterface";
 import {TypeControl} from "../../../common/commom_object_config_auto_create/TypeControl.js";
 
-
 const defineObjectFormProps = () : ObjectFormInterface [] => ([
     {
         dataField : "id",
@@ -10,11 +9,11 @@ const defineObjectFormProps = () : ObjectFormInterface [] => ([
         description: "ID",
         defaultValue: "undefined",
         isShow:false,
-        isFilter:false,
-        sort:true,
+        isFilter:true,
         width: 50,
+        sort:true,
         render:true,
-        renderField:"Input",
+        renderField:TypeControl.Input,
         hidden:true
     },
     {
@@ -29,29 +28,28 @@ const defineObjectFormProps = () : ObjectFormInterface [] => ([
         renderField: TypeControl.Input,
         validate:true,
         hidden:false
+
     },
     {
         dataField : "ten",
-        text: "Thuộc loại",
-        description: "Thuộc loại",
+        text: "Khu vực",
+        description: "Khu vực",
         defaultValue: "undefined",
         isShow:true,
         isFilter:false,
+        width: 200,
         sort:true,
-        width: 50,
-        render:true,
-        renderField:"Input",
+        renderField: TypeControl.Input,
         hidden:false
-
-    }
+    },
 ])
 
 
-export const configDanhMucLoaiThuoc = (): AppModuleInterface => ({
-    appModuleId: "DANHMUC_PHANLOAITHUOC",
-    linkUrl:"/danhmuc/phanloaithuoc",
-    name:"Phân loại thuốc",
-    description:"Phân loại thuốc",
+export const configDanhMucKhuVucDeThuoc = (): AppModuleInterface => ({
+    appModuleId: "DANHMUC_KHUVUC_DETHUOC",
+    linkUrl:"/danhmuc/khuvucdethuoc",
+    name:"Khu vực để thuốc",
+    description:"Khu vực để thuốc",
     defineObjectFormProps: defineObjectFormProps(),
-    apiCallServer:"quanlyphanloaithuoc"
+    apiCallServer:"quanlykhuvucdethuoc"
 })

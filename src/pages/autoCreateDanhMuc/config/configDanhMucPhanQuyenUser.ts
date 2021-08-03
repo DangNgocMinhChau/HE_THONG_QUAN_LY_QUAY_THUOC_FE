@@ -48,8 +48,8 @@ const defineObjectFormProps = () : ObjectFormInterface [] => ([
 export const configDanhMucPhanQuyenUser = (): AppModuleInterface => ({
     appModuleId: "DANHMUC_PHANQUYEN_USER_DMPQUS",
     linkUrl:"/danhmuc/phanquyen",
-    name:"Danh mục phân quyền User",
-    description:"Danh mục phân quyền User",
+    name:"Phân quyền",
+    description:"Phân quyền",
     defineObjectFormProps: defineObjectFormProps(),
     apiCallServer:"quanlyquyen"
 })

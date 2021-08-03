@@ -73,6 +73,15 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
     setCheckShowDanhSachHoaDonTheoKhachHang(false);
   }
 
+  const handdleXoaNhieu = () => {
+    idXoa.map((item, index) => {
+      let value = [item];
+      dispatch(
+        actCRUDConfig.actDeleteRequest(propsDefineObject.apiCallServer, value)
+      );
+    });
+  };
+
   useEffect(() => {
     dispatch(actCRUDConfig.resetList([]));
     dispatch(actCRUDConfig.actFindRequest(propsDefineObject.apiCallServer));
@@ -99,9 +108,9 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
             <Button
               className="m-2 mr-5 "
               size="small"
-              //   onClick={() => {
-              //     handdleXoaNhieu();
-              //   }}
+              onClick={() => {
+                handdleXoaNhieu();
+              }}
               type="dashed"
               danger={true}
             >
@@ -128,22 +137,6 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
                 ></i>
                 {propsDefineObject.name}
               </p>
-              {/* {checkShowDanhSachHoaDonTheoKhachHang && (
-                <Tooltip
-                  placement="bottom"
-                  title="Quay lại"
-                  color="gray"
-                  key="red"
-                >
-                  <a
-                    onClick={() => {
-                      cancel();
-                    }}
-                  >
-                    <i className="fa fa-angle-left" aria-hidden="true"></i>
-                  </a>
-                </Tooltip>
-              )} */}
             </div>
             {checkFormThemMoi && (
               <FormConfigCRUD
@@ -154,7 +147,6 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
               />
             )}
 
-            {/* {checkShowDanhSachHoaDonTheoKhachHang && <HoaDonTheoKhachHang />} */}
             {checkDanhSach && (
               <TableConfigCRUD
                 match={match}
@@ -162,6 +154,7 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
                 onDelete={onDelete}
                 onEdit={onEdit}
                 data={dataTable}
+                setIdXoa={setIdXoa}
               />
             )}
           </div>
