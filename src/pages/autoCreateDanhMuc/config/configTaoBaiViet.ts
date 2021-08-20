@@ -31,20 +31,6 @@ const defineObjectFormProps = (): ObjectFormInterface[] => ([
         apiSelect:'/quanlytag/getAllSelect'
     },
     {
-        dataField: "quyen",
-        text: "Quyen ",
-        description: "Quyen ",
-        defaultValue: "",
-        isShow: true,
-        isFilter: false,
-        width: 200,
-        sort: true,
-        renderField: TypeControl.Select,
-        validate: true,
-        hidden: false,
-        apiSelect:'/quanlyquyen/getAllSelect'
-    },
-    {
         dataField: "tieuDe",
         text: "Tên ",
         description: "Tên ",
@@ -78,5 +64,6 @@ export const configTaoBaiViet = (): AppModuleInterface => ({
     description: "Bài viết",
     defineObjectFormProps: defineObjectFormProps(),
     apiCallServer: "quanlybaiviet",
-    routerDynamic: true
+    routerDynamic: true,
+    checkOnSaveBaiViet:"tag"
 })

@@ -30,9 +30,20 @@ export default function FormConfigCRUD({
   if (initialValue !== null) {
     var dataInitialValue = {};
     if (initialValue) {
-      dataInitialValue = {
-        ...initialValue,
-      };
+      if (propsDefineObject.checkOnSaveBaiViet) {
+        let pFeild = propsDefineObject.checkOnSaveBaiViet;
+        dataInitialValue = {
+          ...initialValue,
+          [pFeild]:
+            initialValue &&
+            initialValue[pFeild] &&
+            initialValue[pFeild].split(","),
+        };
+      } else {
+        dataInitialValue = {
+          ...initialValue,
+        };
+      }
     } else {
       dataInitialValue = initialValue;
     }
@@ -48,17 +59,28 @@ export default function FormConfigCRUD({
 
   const onFinishFailed = (errorInfo) => {};
   const onFinish = (value) => {
-    if (dataEditor) {
-      value = {
-        ...value,
-        ...contentEditor,
-      };
-      onSave(value);
+    if (propsDefineObject.checkOnSaveBaiViet) {
+      if (dataEditor) {
+        value = {
+          ...value,
+          ...contentEditor,
+          tag: value.tag.toString(),
+        };
+        onSave(value);
+      } else {
+        onSave(value);
+      }
     } else {
-      onSave(value);
+      if (dataEditor) {
+        value = {
+          ...value,
+          ...contentEditor,
+        };
+        onSave(value);
+      } else {
+        onSave(value);
+      }
     }
-    // console.log(dataEditor);
-    // console.log(value);
   };
   useEffect(() => {
     form.setFieldsValue(dataInitialValue);

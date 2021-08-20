@@ -29,7 +29,7 @@ const list = (state = initialState, action) => {
       state = { ...state, ...select };
       return { ...state };
     default:
-      return [...state];
+      return { ...state };
   }
 };
 

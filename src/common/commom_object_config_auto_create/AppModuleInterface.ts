@@ -8,5 +8,6 @@ export default interface AppModuleInterface{
     description:string,
     defineObjectFormProps: ObjectFormInterface[];
     apiCallServer:string,
-    routerDynamic:boolean
+    routerDynamic:boolean,
+    checkOnSaveBaiViet?:string
 }
