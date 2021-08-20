@@ -51,5 +51,6 @@ export const configDanhMucPhanQuyenUser = (): AppModuleInterface => ({
     name:"Phân quyền",
     description:"Phân quyền",
     defineObjectFormProps: defineObjectFormProps(),
-    apiCallServer:"quanlyquyen"
+    apiCallServer:"quanlyquyen",
+    routerDynamic:true
 })

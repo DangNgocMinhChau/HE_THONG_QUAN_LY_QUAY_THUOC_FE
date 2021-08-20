@@ -10,8 +10,9 @@ import {
   RenderInputRadio,
   RenderInputSelectSearch,
   RenderInputTextArea,
+  RenderInputSelectMulti,
 } from "../../common/renderForm/inputForm";
-
+import { optionPhanTramThue } from "./../../common/data_options_select/optionSelect";
 export default function FormConfigCRUD({
   onSave,
   cancel,
@@ -181,6 +182,26 @@ export default function FormConfigCRUD({
                         name={itemInputForm.dataField}
                         validate={itemInputForm.validate}
                         hidden={itemInputForm.hidden}
+                      />
+                    </div>
+                  </div>
+                );
+              }
+
+              if (itemInputForm.renderField === "InputSelectMulti") {
+                return (
+                  <div className="row">
+                    <div className="col-md-2">
+                      <p>{!itemInputForm.hidden && itemInputForm.text}</p>
+                    </div>
+                    <div className="col-md-10">
+                      <RenderInputSelectMulti
+                        showLabel={false}
+                        label={itemInputForm.text}
+                        name={itemInputForm.dataField}
+                        validate={itemInputForm.validate}
+                        hidden={itemInputForm.hidden}
+                        options={optionPhanTramThue}
                       />
                     </div>
                   </div>

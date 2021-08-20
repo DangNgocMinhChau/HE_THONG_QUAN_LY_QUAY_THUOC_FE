@@ -8,7 +8,7 @@ import FormResetPass from "../../../components/login/formResetPass";
 import FormDoiMatKhau from "../../../components/login/formDoiMatKhau";
 import FormYeuCauMoKhoaTaiKhoan from "../../../components/login/formYeuCauMoKhoaTaiKhoan";
 import queryString from "query-string";
-
+import { useHistory } from "react-router-dom";
 import {
   thongBao,
   openMessageLoading,
@@ -25,22 +25,16 @@ function PageLogin(props) {
   const [checkCMND, setCheckCMND] = useState();
   const listDataUser = useSelector((state) => state.quanlytaikhoan.list);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (localStorage.getItem("login")) {
-      dispatch(
-        act.actGetTaiKhoanByIdInApplicationRequest(
-          localStorage.getItem("login")
-        )
-      );
-    }
-  }, []);
-
+  const history = useHistory();
+  const funcAddRoute = () => {
+    history.push("/quanly");
+  };
   const onFinish = (values) => {
     const queryStringParam = queryString.stringifyUrl({
       url: "quanlytaikhoan/login",
       query: { account: values.user, password: values.password },
     });
+
     dispatch(act.actLoginTaiKhoan(queryStringParam, setLoginThanhCong));
     // let dataUserLogin = listDataUser.filter(
     //   (item) =>
@@ -79,6 +73,7 @@ function PageLogin(props) {
       } else {
         localStorage.setItem("login", value.id);
         thongBao(Message.DANG_NHAP_THANH_CONG, NoiDung.DANG_NHAP_THANH_CONG);
+        funcAddRoute();
       }
     } else {
       thongBao(Message.DANG_NHAP_LOI, NoiDung.TAI_KHOAN_KHONG_DUNG);
@@ -342,7 +337,9 @@ function PageLogin(props) {
         <div className="bg-blue py-4">
           <div className="row px-3">
             {" "}
-            <small className="ml-4 ml-sm-5 mb-2">Quản lý quầy thuốc</small>
+            <small className="ml-4 ml-sm-5 mb-2">
+              <a href="/trangchu">Giới thiệu</a>{" "}
+            </small>
             <div className="social-contact ml-4 ml-sm-auto">
               {" "}
               <span className="fa fa-facebook mr-4 text-sm"></span>{" "}

@@ -2,7 +2,6 @@ import AppModuleInterface from "../../../common/commom_object_config_auto_create
 import ObjectFormInterface from "../../../common/commom_object_config_auto_create/ObjectFormInterface";
 import {TypeControl} from "../../../common/commom_object_config_auto_create/TypeControl.js";
 
-
 const defineObjectFormProps = () : ObjectFormInterface [] => ([
     {
         dataField : "id",
@@ -10,17 +9,17 @@ const defineObjectFormProps = () : ObjectFormInterface [] => ([
         description: "ID",
         defaultValue: "undefined",
         isShow:false,
-        isFilter:false,
-        sort:true,
+        isFilter:true,
         width: 50,
+        sort:true,
         render:true,
-        renderField:"Input",
+        renderField:TypeControl.Input,
         hidden:true
     },
     {
         dataField : "ma",
-        text: "Mã",
-        description: "Mã",
+        text: "Tag ",
+        description: "Tag ",
         defaultValue: "undefined",
         isShow:true,
         isFilter:false,
@@ -29,31 +28,29 @@ const defineObjectFormProps = () : ObjectFormInterface [] => ([
         renderField: TypeControl.Input,
         validate:true,
         hidden:false
+
     },
     {
         dataField : "ten",
-        text: "Thuộc loại",
-        description: "Thuộc loại",
+        text: "Tên ",
+        description: "Tên ",
         defaultValue: "undefined",
         isShow:true,
         isFilter:false,
+        width: 200,
         sort:true,
-        width: 50,
-        render:true,
-        renderField:"Input",
+        renderField: TypeControl.Input,
         hidden:false
-
-    }
+    },
 ])
 
 
-export const configDanhMucLoaiThuoc = (): AppModuleInterface => ({
-    appModuleId: "DANHMUC_PHANLOAITHUOC",
-    linkUrl:"/danhmuc/phanloaithuoc",
-    name:"Phân loại thuốc",
-    description:"Phân loại thuốc",
+export const configDanhMucTagBaiViet = (): AppModuleInterface => ({
+    appModuleId: "DANHMUC_TAGBAIVIET",
+    linkUrl:"/danhmuc/tagbaiviet",
+    name:"Tag",
+    description:"Tag",
     defineObjectFormProps: defineObjectFormProps(),
-    apiCallServer:"quanlyphanloaithuoc",
+    apiCallServer:"quanlytag",
     routerDynamic:false
-
 })

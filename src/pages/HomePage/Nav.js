@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { act } from "react-dom/test-utils";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { Redirect, Link, Route, Switch, useHistory } from "react-router-dom";
 import routes from "./../../routers/routes";
 import SwitchCommon from "./switch-common";
 import * as actUser from "./../../actions/quanlytaikhoan/actQuanLyTaiKhoan";
@@ -27,7 +27,9 @@ function Nav({ onToogleMenu, checkToogle, onSetColorMenu, colorMenu }) {
     return result;
   }
   const dispatch = useDispatch();
+  const history = useHistory();
   const logOut = () => {
+    history.push("/login");
     dispatch(actUser.actLogOut({ checkToken: false }));
     localStorage.removeItem("login");
   };
@@ -242,7 +244,10 @@ function Nav({ onToogleMenu, checkToogle, onSetColorMenu, colorMenu }) {
             </li>
           </ul>
         </nav>
-        <Switch>{renderContentMenu(routes)}</Switch>
+        <Switch>
+          {/* {<Redirect exact from="/" to="/quanlytaikhoan"></Redirect>} */}
+          {renderContentMenu(routes)}
+        </Switch>
       </div>
     </div>
   );

@@ -51,5 +51,7 @@ export const configDanhMucKhuVucDeThuoc = (): AppModuleInterface => ({
     name:"Khu vực để thuốc",
     description:"Khu vực để thuốc",
     defineObjectFormProps: defineObjectFormProps(),
-    apiCallServer:"quanlykhuvucdethuoc"
+    apiCallServer:"quanlykhuvucdethuoc",
+    routerDynamic:false
+
 })

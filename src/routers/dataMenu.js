@@ -3,11 +3,13 @@ import { arrayFileConfig } from "./../common/commom_object_config_auto_create/Ar
 const renderRouterDanhMuc = () => {
   const listData = [];
   arrayFileConfig.map((item, index) => {
-    listData.push({
-      name: item.name,
-      to: item.linkUrl,
-      exact: true,
-    });
+    if (!item.routerDynamic) {
+      listData.push({
+        name: item.name,
+        to: `/quanly${item.linkUrl}`,
+        exact: true,
+      });
+    }
   });
   return listData;
 };
@@ -22,7 +24,12 @@ export const menusListQuanTri = [
         children: [
           {
             name: "Tài khoản",
-            to: "/quanlytaikhoan",
+            to: "/quanly/quanlytaikhoan",
+            exact: true,
+          },
+          {
+            name: "Phân quyền",
+            to: "/quanly/danhmuc/phanquyen",
             exact: true,
           },
         ],
@@ -32,17 +39,7 @@ export const menusListQuanTri = [
         children: [
           {
             name: "Kho thuốc",
-            to: "/khothuoc",
-            exact: true,
-          },
-        ],
-      },
-      {
-        name: "Quản lý nhà cung cấp",
-        children: [
-          {
-            name: "Nhà cung cấp",
-            to: "/quanlynhacungcap",
+            to: "/quanly/khothuoc",
             exact: true,
           },
         ],
@@ -52,7 +49,7 @@ export const menusListQuanTri = [
         children: [
           {
             name: "Thông tin khách hàng",
-            to: "/quanlythongtinkhachhang",
+            to: "/quanly/quanlythongtinkhachhang",
             exact: true,
           },
         ],
@@ -62,12 +59,12 @@ export const menusListQuanTri = [
         children: [
           {
             name: "Phiếu bán hàng",
-            to: "/quanlyphieubanhang",
+            to: "/quanly/quanlyphieubanhang",
             exact: true,
           },
           {
             name: "Hoá đơn nhập hàng",
-            to: "/hoadonnhaphang",
+            to: "/quanly/hoadonnhaphang",
             exact: true,
           },
         ],
@@ -77,62 +74,67 @@ export const menusListQuanTri = [
         children: [
           {
             name: "File",
-            to: "/files",
+            to: "/quanly/files",
             exact: true,
           },
         ],
       },
     ],
   },
+
   {
     name: "Tạo phiếu bán hàng",
-    to: "/banhang",
+    to: "/quanly/banhang",
     exact: true,
   },
   {
     name: "Danh sách sản phẩm",
-    to: "/danhsachsanpham",
+    to: "/quanly/danhsachsanpham",
     exact: true,
   },
 
   {
     name: "Báo cáo tổng quát",
-    to: "/baocaotongquat",
+    to: "/quanly/baocaotongquat",
     exact: true,
     children: [
-      { name: "Top 10 thuốc bán chạy", to: "/topthuocbanchay", exact: true },
+      {
+        name: "Top 10 thuốc bán chạy",
+        to: "/quanly/topthuocbanchay",
+        exact: true,
+      },
     ],
   },
   {
     name: "Xem dánh sách",
-    to: "/xemdanhsach",
+    to: "/quanly/xemdanhsach",
     exact: true,
   },
   {
     name: "Mục lục",
-    to: "/mucluc",
+    to: "/quanly/mucluc",
     exact: true,
   },
   {
     name: "Thùng rác",
-    to: "/thungrac",
+    to: "/quanly/thungrac",
     exact: true,
     children: [
       {
         name: "Kho thuốc",
-        to: "/thungrackhothuoc",
+        to: "/quanly/thungrackhothuoc",
         exact: true,
       },
       {
         name: "Hóa đơn GTGT",
-        to: "/thungrachoadongtgt",
+        to: "/quanly/thungrachoadongtgt",
         exact: true,
       },
     ],
   },
   {
     name: "Danh mục",
-    to: "/mucluc",
+    to: "mucluc",
     exact: true,
     children: renderRouterDanhMuc(),
   },

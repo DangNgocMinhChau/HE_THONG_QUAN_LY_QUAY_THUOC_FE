@@ -102,7 +102,6 @@ const defineObjectFormProps = () : ObjectFormInterface [] => ([
         renderField: TypeControl.Input,
         hidden:false
     },
- 
 ])
 
 
@@ -112,5 +111,6 @@ export const configDanhMucNhaCungCap = (): AppModuleInterface => ({
     name:"Nhà cung cấp",
     description:"Nhà cung cấp",
     defineObjectFormProps: defineObjectFormProps(),
-    apiCallServer:"nhacungcap"
+    apiCallServer:"nhacungcap",
+    routerDynamic:false
 })

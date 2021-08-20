@@ -2,10 +2,12 @@ import { configDanhMucLoaiThuoc } from "../../pages/autoCreateDanhMuc/config/con
 import { configDanhMucPhanQuyenUser } from "../../pages/autoCreateDanhMuc/config/configDanhMucPhanQuyenUser.ts";
 import { configDanhMucKhuVucDeThuoc } from "../../pages/autoCreateDanhMuc/config/configDanhMucKhuVucDeThuoc.ts";
 import { configDanhMucNhaCungCap } from "../../pages/autoCreateDanhMuc/config/configDanhMucNhaCungCap.ts";
+import { configDanhMucTagBaiViet } from "../../pages/autoCreateDanhMuc/config/configDanhMucTagBaiViet";
 
 export const arrayFileConfig = [
   configDanhMucPhanQuyenUser(),
   configDanhMucLoaiThuoc(),
   configDanhMucKhuVucDeThuoc(),
   configDanhMucNhaCungCap(),
+  configDanhMucTagBaiViet(),
 ];

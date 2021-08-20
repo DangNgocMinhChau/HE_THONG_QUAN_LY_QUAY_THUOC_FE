@@ -23,7 +23,7 @@ const renderRouterConfig = () => {
   const dataPath = [];
   arrayFileConfig.map((itemConfig, indexConfig) => {
     dataPath.push({
-      path: itemConfig.linkUrl,
+      path: `/quanly${itemConfig.linkUrl}`,
       exact: true,
       main: ({ match, location }) => (
         <PageConfigCRUD
@@ -43,14 +43,14 @@ const routes = [
     main: () => <Home />,
   },
   {
-    path: "/khothuoc",
+    path: "/quanly/khothuoc",
     exact: true,
     main: ({ match, location }) => (
       <PageNhapThuoc location={location} match={match} />
     ),
   },
   {
-    path: "/quanlytaikhoan",
+    path: "/quanly/quanlytaikhoan",
     exact: true,
     main: ({ match, location }) => (
       <PageQuanLyTaiKhoan location={location} match={match} />
@@ -58,7 +58,7 @@ const routes = [
   },
 
   {
-    path: "/quanlynhacungcap",
+    path: "/quanly/quanlynhacungcap",
     exact: true,
     main: ({ match, location }) => (
       <PageQuanLyNhaCungCap location={location} match={match} />
@@ -66,13 +66,13 @@ const routes = [
   },
 
   {
-    path: "/login",
+    path: "/quanly/login",
     exact: true,
     main: ({ match, location }) => <Login match={match} location={location} />,
   },
 
   {
-    path: "/banhang",
+    path: "/quanly/banhang",
     exact: true,
     main: ({ match, location }) => (
       <PageQuanLyBanHang location={location} match={match} />
@@ -80,14 +80,14 @@ const routes = [
   },
 
   {
-    path: "/quanlyphieubanhang",
+    path: "/quanly/quanlyphieubanhang",
     exact: true,
     main: ({ match, location }) => (
       <PageQuanLyPhieuBanHang location={location} match={match} />
     ),
   },
   {
-    path: "/hoadonnhaphang",
+    path: "/quanly/hoadonnhaphang",
     exact: true,
     main: ({ match, location }) => (
       <PageHoaDonNhapKhoGTGT location={location} match={match} />
@@ -95,35 +95,35 @@ const routes = [
   },
 
   {
-    path: "/files",
+    path: "/quanly/files",
     exact: true,
     main: ({ match, location }) => (
       <PageQuanLyFiles location={location} match={match} />
     ),
   },
   {
-    path: "/baocaotongquat",
+    path: "/quanly/baocaotongquat",
     exact: true,
     main: ({ match, location }) => (
       <PageQuanLyBaoCao location={location} match={match} />
     ),
   },
   {
-    path: "/topthuocbanchay",
+    path: "/quanly/topthuocbanchay",
     exact: true,
     main: ({ match, location }) => (
       <PageTop10ThuocBanChay location={location} match={match} />
     ),
   },
   {
-    path: "/quanlythongtinkhachhang",
+    path: "/quanly/quanlythongtinkhachhang",
     exact: true,
     main: ({ match, location }) => (
       <PageQuanLyThongTinKhachHang location={location} match={match} />
     ),
   },
   {
-    path: "/danhsachsanpham",
+    path: "/quanly/danhsachsanpham",
     exact: true,
     main: ({ match, location, history }) => (
       <PageDanhSachSanPham
@@ -134,7 +134,7 @@ const routes = [
     ),
   },
   {
-    path: "/phieubanhangtheokhachhang/:id",
+    path: "/quanly/phieubanhangtheokhachhang/:id",
     exact: true,
     main: ({ match, location, history }) => (
       <PageQuanLyPhieuBanHangTheoKhachHang
@@ -145,7 +145,7 @@ const routes = [
     ),
   },
   {
-    path: "/thungrackhothuoc",
+    path: "/quanly/thungrackhothuoc",
     exact: true,
     main: ({ match, location, history }) => (
       <PageQuanLyThungRacKhoThuoc
@@ -156,7 +156,7 @@ const routes = [
     ),
   },
   {
-    path: "/thungrachoadongtgt",
+    path: "/quanly/thungrachoadongtgt",
     exact: true,
     main: ({ match, location, history }) => (
       <PageQuanLyThungRacHoaDonGTGT

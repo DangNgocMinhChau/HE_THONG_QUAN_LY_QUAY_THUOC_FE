@@ -7,5 +7,6 @@ export default interface AppModuleInterface{
     name:string,
     description:string,
     defineObjectFormProps: ObjectFormInterface[];
-    apiCallServer:string
+    apiCallServer:string,
+    routerDynamic:boolean
 }

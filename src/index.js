@@ -18,7 +18,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import vi_VN from "antd/lib/locale-provider/vi_VN";
 import { ConfigProvider } from "antd";
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
+const { PUBLIC_URL } = process.env;
 const store = createStore(
   appReducers,
   // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -26,13 +26,9 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <ConfigProvider locale={vi_VN}>
-        <App />
-      </ConfigProvider>
-    </Router>
-  </Provider>,
+  <ConfigProvider locale={vi_VN}>
+    <App store={store} basename={PUBLIC_URL} />
+  </ConfigProvider>,
   document.getElementById("root")
 );
 
