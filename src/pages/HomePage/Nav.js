@@ -245,8 +245,7 @@ function Nav({ onToogleMenu, checkToogle, onSetColorMenu, colorMenu }) {
           </ul>
         </nav>
         <Switch>
-          {/* {<Redirect exact from="/" to="/quanlytaikhoan"></Redirect>} */}
-          {renderContentMenu(routes)}
+          {account_current.dangNhapThanhCong ? renderContentMenu(routes) : <Redirect exact to="/login"></Redirect>}
         </Switch>
       </div>
     </div>

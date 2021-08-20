@@ -7,4 +7,6 @@ export const TypeControl = {
   InputRadio: "InputRadio",
   InputSelectSearch: "InputSelectSearch",
   InputTextArea: "InputTextArea",
+  InputEditor: "InputEditor",
+  Select: "Select",
 };

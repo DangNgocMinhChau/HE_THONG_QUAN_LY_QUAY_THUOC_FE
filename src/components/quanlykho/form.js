@@ -8,7 +8,6 @@ import {
   RenderInput,
   RenderInputDatePicker,
   RenderInputRadio,
-  RenderInputSelect,
   RenderInputNumber,
   RenderInputSelectSearch,
 } from "./../../common/renderForm/inputForm";
@@ -18,6 +17,7 @@ import {
   optionHinhThucThanhToan,
   optionPhanTramThue,
 } from "./../../common/data_options_select/optionSelect";
+import InputFormSelect from "../../common/renderForm/inputFormSelect";
 function FormNhapThuoc({
   onSave,
   cancel,
@@ -391,7 +391,7 @@ function FormNhapThuoc({
                 <p>Thuế 5%</p>
               </div>
               <div className="col-md-10">
-                <RenderInputSelect
+                <InputFormSelect
                   label="Thuế"
                   name="phanTramThue"
                   options={optionPhanTramThue}
@@ -429,7 +429,7 @@ function FormNhapThuoc({
                 <p>Thanh toán</p>
               </div>
               <div className="col-md-10">
-                <RenderInputSelect
+                <InputFormSelect
                   allowClear={true}
                   name="thanhToan"
                   label="Thanh toán"

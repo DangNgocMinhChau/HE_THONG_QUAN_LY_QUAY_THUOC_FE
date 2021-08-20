@@ -28,7 +28,6 @@ function Routes(props) {
   const isEmpty = (v) => {
     return Object.keys(v).length === 0;
   };
-  console.log(localStorage.getItem("login"));
   return (
     <Switch>
       <Route path="/login" component={PageLogin} />

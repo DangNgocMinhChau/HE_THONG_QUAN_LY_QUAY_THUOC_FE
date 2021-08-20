@@ -12,5 +12,6 @@ export default interface ObjectFormInterface{
     renderConfig?:any,
     renderField:string,
     validate?:boolean,
-    hidden:boolean
+    hidden:boolean,
+    apiSelect?:string
 }

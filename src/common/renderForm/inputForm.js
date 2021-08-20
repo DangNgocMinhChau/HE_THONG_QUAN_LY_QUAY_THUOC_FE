@@ -8,10 +8,9 @@ import {
   DatePicker,
   TreeSelect,
 } from "antd";
-const { Option } = Select;
-const { TreeNode } = TreeSelect;
-const dateFormat = "DD/MM/YYYY";
 
+const { Option } = Select;
+const dateFormat = "DD/MM/YYYY";
 export function RenderInput({
   label,
   name,
@@ -209,118 +208,6 @@ export function RenderInputRadio({
             );
           })}
       </Radio.Group>
-    </Form.Item>
-  );
-}
-
-export function RenderInputSelect({
-  label,
-  name,
-  width,
-  onChange,
-  rules,
-  hidden,
-  validate,
-  textValidate,
-  hasFeedback,
-  validateStatus,
-  style,
-  options,
-  showLabel,
-  allowClear,
-}) {
-  return (
-    <Form.Item
-      label={showLabel ? label : ""}
-      name={name}
-      hidden={hidden}
-      width={width}
-      hasFeedback={hasFeedback}
-      validateStatus={validateStatus}
-      rules={
-        validate && [
-          {
-            required: validate,
-            message:
-              textValidate !== null &&
-              textValidate !== undefined &&
-              textValidate !== ""
-                ? textValidate
-                : `Bạn chưa nhập   ${label} !`,
-          },
-        ]
-      }
-    >
-      <Select allowClear={allowClear} placeholder={label}>
-        {options &&
-          Array.isArray(options) &&
-          options.length > 0 &&
-          options.map((item, index) => {
-            return <Select.Option value={item.value}>{item.ten}</Select.Option>;
-          })}
-      </Select>
-    </Form.Item>
-  );
-}
-
-export function RenderInputSelectMulti({
-  label,
-  name,
-  width,
-  onChange,
-  rules,
-  hidden,
-  validate,
-  textValidate,
-  hasFeedback,
-  validateStatus,
-  style,
-  options,
-  showLabel,
-  allowClear,
-  value,
-}) {
-  console.log(options);
-  return (
-    <Form.Item
-      label={showLabel ? label : ""}
-      name={name}
-      hidden={hidden}
-      width={width}
-      hasFeedback={hasFeedback}
-      validateStatus={validateStatus}
-      rules={
-        validate && [
-          {
-            required: validate,
-            message:
-              textValidate !== null &&
-              textValidate !== undefined &&
-              textValidate !== ""
-                ? textValidate
-                : `Bạn chưa nhập   ${label} !`,
-          },
-        ]
-      }
-    >
-      <TreeSelect
-        showSearch
-        style={{ width: "100%" }}
-        value={value}
-        dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
-        placeholder="Please select"
-        allowClear
-        multiple
-        treeDefaultExpandAll
-        onChange={onChange}
-      >
-        {options &&
-          Array.isArray(options) &&
-          options.length > 0 &&
-          options.map((item, index) => {
-            return <TreeNode value={item.value} title={item.ten} />;
-          })}
-      </TreeSelect>
     </Form.Item>
   );
 }

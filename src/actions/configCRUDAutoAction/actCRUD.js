@@ -112,3 +112,21 @@ export const actUpdate = (value) => {
     value,
   };
 };
+
+export const actFindSelectRequest = (url, fieldRedux) => {
+  return (dispatch) => {
+    return callApi(`${url}`, "GET", null).then((res) => {
+      if (res) {
+        dispatch(actFindSelect(res.data.result, fieldRedux));
+      }
+    });
+  };
+};
+
+export const actFindSelect = (data, fieldRedux) => {
+  return {
+    type: Types.SELECT_CRUD,
+    data,
+    fieldRedux,
+  };
+};

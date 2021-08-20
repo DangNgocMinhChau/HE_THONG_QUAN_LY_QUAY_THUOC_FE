@@ -111,6 +111,12 @@ export const menusListQuanTri = [
     exact: true,
   },
   {
+    name: "Bài viết tin tức",
+    to: "/quanly/taobaiviet",
+    exact: true,
+  },
+
+  {
     name: "Mục lục",
     to: "/quanly/mucluc",
     exact: true,

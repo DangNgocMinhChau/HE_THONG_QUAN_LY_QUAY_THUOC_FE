@@ -17,40 +17,66 @@ const defineObjectFormProps = (): ObjectFormInterface[] => ([
         hidden: true
     },
     {
-        dataField: "ma",
+        dataField: "tag",
         text: "Tag ",
         description: "Tag ",
-        defaultValue: "undefined",
+        defaultValue: [],
         isShow: true,
         isFilter: false,
         width: 200,
         sort: true,
-        renderField: TypeControl.Input,
+        renderField: TypeControl.Select,
         validate: true,
-        hidden: false
-
+        hidden: false,
+        apiSelect:'/quanlytag/getAllSelect'
     },
     {
-        dataField: "ten",
+        dataField: "quyen",
+        text: "Quyen ",
+        description: "Quyen ",
+        defaultValue: "",
+        isShow: true,
+        isFilter: false,
+        width: 200,
+        sort: true,
+        renderField: TypeControl.Select,
+        validate: true,
+        hidden: false,
+        apiSelect:'/quanlyquyen/getAllSelect'
+    },
+    {
+        dataField: "tieuDe",
         text: "Tên ",
         description: "Tên ",
-        defaultValue: "undefined",
+        defaultValue: "",
         isShow: true,
         isFilter: false,
         width: 200,
         sort: true,
         renderField: TypeControl.Input,
+        hidden: false
+    },
+    {
+        dataField: "noiDung",
+        text: "Nội dung ",
+        description: "Nội dung ",
+        defaultValue: "undefined",
+        isShow: true,
+        isFilter: false,
+        width: 200,
+        sort: true,
+        renderField: TypeControl.InputEditor,
         hidden: false
     },
 ])
 
 
-export const configDanhMucTagBaiViet = (): AppModuleInterface => ({
-    appModuleId: "DANHMUC_TAGBAIVIET",
-    linkUrl: "/danhmuc/tagbaiviet",
-    name: "Tag",
-    description: "Tag",
+export const configTaoBaiViet = (): AppModuleInterface => ({
+    appModuleId: "TAO_BAIVIET",
+    linkUrl: "/taobaiviet",
+    name: "Bài viết",
+    description: "Bài viết",
     defineObjectFormProps: defineObjectFormProps(),
-    apiCallServer: "quanlytag",
-    routerDynamic: false
+    apiCallServer: "quanlybaiviet",
+    routerDynamic: true
 })

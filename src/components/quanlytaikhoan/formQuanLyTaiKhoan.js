@@ -11,7 +11,6 @@ import {
   RenderInput,
   RenderInputDatePicker,
   RenderInputRadio,
-  RenderInputSelect,
 } from "./../../common/renderForm/inputForm";
 import queryString from "query-string";
 import {
@@ -19,6 +18,7 @@ import {
   optionPhanQuyenNoAdmin,
   valueRadioGioiTinh,
 } from "./../../common/data_options_select/optionSelect.js";
+import InputFormSelect from "../../common/renderForm/inputFormSelect";
 
 function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
   const item = useSelector((state) => state.quanlytaikhoan.item);
@@ -178,14 +178,14 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
         />
 
         {account_current && account_current.checkToken ? (
-          <RenderInputSelect
+          <InputFormSelect
             label="Quyền"
             name="quyenId"
             showLabel={true}
             options={optionQuyen}
           />
         ) : (
-          <RenderInputSelect
+          <InputFormSelect
             label="Quyền"
             name="quyenId"
             showLabel={true}

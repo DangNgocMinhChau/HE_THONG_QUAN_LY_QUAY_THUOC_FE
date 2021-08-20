@@ -4,22 +4,27 @@ import { Form, Divider, Button } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import {
   RenderInput,
-  RenderInputSelect,
   RenderInputDatePicker,
   RenderInputNumber,
   RenderInputRadio,
   RenderInputSelectSearch,
   RenderInputTextArea,
-  RenderInputSelectMulti,
 } from "../../common/renderForm/inputForm";
 import { optionPhanTramThue } from "./../../common/data_options_select/optionSelect";
+import InputEditor from "../../common/renderForm/inputEditor";
+import InputFormSelectMulti from "../../common/renderForm/inputFormSelectMulti";
+import InputFormSelect from "../../common/renderForm/inputFormSelect";
 export default function FormConfigCRUD({
   onSave,
   cancel,
   checkEdit,
   propsDefineObject,
+  checkThemMoi,
 }) {
   const [form] = useForm();
+  const [dataEditor, setDataEditor] = useState();
+  const [contentEditor, setContentEditor] = useState({});
+
   const dispatch = useDispatch();
   const initialValue = useSelector((state) => state.config_crud_auto.item);
   if (initialValue !== null) {
@@ -32,21 +37,43 @@ export default function FormConfigCRUD({
       dataInitialValue = initialValue;
     }
   }
-
-  const onFinishFailed = (errorInfo) => {};
-
-  const onFinish = (value) => {
-    onSave(value);
+  const funcCustomEditor = (e, nameField) => {
+    let name = nameField;
+    let content = {
+      [name]: e,
+    };
+    setDataEditor(e);
+    setContentEditor(content);
   };
 
+  const onFinishFailed = (errorInfo) => {};
+  const onFinish = (value) => {
+    if (dataEditor) {
+      value = {
+        ...value,
+        ...contentEditor,
+      };
+      onSave(value);
+    } else {
+      onSave(value);
+    }
+    // console.log(dataEditor);
+    // console.log(value);
+  };
   useEffect(() => {
     form.setFieldsValue(dataInitialValue);
+    setDataEditor(dataInitialValue);
   }, [initialValue, form]);
 
   useEffect(() => {
     form.resetFields();
   }, [form]);
 
+  useEffect(() => {
+    if (checkThemMoi && !checkEdit) {
+      setDataEditor("");
+    }
+  }, []);
   const renderForm = () => {
     return (
       <div className="row m-0 p-0 ">
@@ -63,25 +90,6 @@ export default function FormConfigCRUD({
                     </div>
                     <div className="col-md-10">
                       <RenderInput
-                        showLabel={false}
-                        label={itemInputForm.text}
-                        name={itemInputForm.dataField}
-                        validate={itemInputForm.validate}
-                        hidden={itemInputForm.hidden}
-                      />
-                    </div>
-                  </div>
-                );
-              }
-
-              if (itemInputForm.renderField === "InputSelect") {
-                return (
-                  <div className="row">
-                    <div className="col-md-2">
-                      <p>{!itemInputForm.hidden && itemInputForm.text}</p>
-                    </div>
-                    <div className="col-md-10">
-                      <RenderInputSelect
                         showLabel={false}
                         label={itemInputForm.text}
                         name={itemInputForm.dataField}
@@ -187,21 +195,53 @@ export default function FormConfigCRUD({
                   </div>
                 );
               }
-
-              if (itemInputForm.renderField === "InputSelectMulti") {
+              if (itemInputForm.renderField === "InputEditor") {
                 return (
                   <div className="row">
                     <div className="col-md-2">
                       <p>{!itemInputForm.hidden && itemInputForm.text}</p>
                     </div>
                     <div className="col-md-10">
-                      <RenderInputSelectMulti
+                      <InputEditor
+                        name={itemInputForm.dataField}
+                        dataEditor={dataEditor}
+                        setDataEditor={setDataEditor}
+                        funcCustomEditor={funcCustomEditor}
+                      />
+                    </div>
+                  </div>
+                );
+              }
+              if (itemInputForm.renderField === "Select") {
+                return Array.isArray(itemInputForm.defaultValue) ? (
+                  <div className="row">
+                    <div className="col-md-2">
+                      <p>{!itemInputForm.hidden && itemInputForm.text}</p>
+                    </div>
+                    <div className="col-md-10">
+                      <InputFormSelectMulti
                         showLabel={false}
                         label={itemInputForm.text}
                         name={itemInputForm.dataField}
                         validate={itemInputForm.validate}
                         hidden={itemInputForm.hidden}
-                        options={optionPhanTramThue}
+                        api={itemInputForm.apiSelect}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="row">
+                    <div className="col-md-2">
+                      <p>{!itemInputForm.hidden && itemInputForm.text}</p>
+                    </div>
+                    <div className="col-md-10">
+                      <InputFormSelect
+                        showLabel={false}
+                        label={itemInputForm.text}
+                        name={itemInputForm.dataField}
+                        validate={itemInputForm.validate}
+                        hidden={itemInputForm.hidden}
+                        api={itemInputForm.apiSelect}
                       />
                     </div>
                   </div>

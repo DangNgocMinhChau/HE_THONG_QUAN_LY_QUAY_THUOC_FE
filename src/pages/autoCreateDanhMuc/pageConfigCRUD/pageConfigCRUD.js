@@ -40,7 +40,6 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
   }
 
   function openForm() {
-    // resetForm();
     setCheckFormThemMoi(true);
     setCheckDanhSach(false);
     setCheckEdit(false);
@@ -143,6 +142,7 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
                 onSave={onSave}
                 cancel={cancel}
                 checkEdit={checkEdit}
+                checkThemMoi={true}
                 propsDefineObject={propsDefineObject}
               />
             )}

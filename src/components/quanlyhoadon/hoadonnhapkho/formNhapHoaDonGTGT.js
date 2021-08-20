@@ -3,7 +3,6 @@ import {
   RenderInput,
   RenderInputDatePicker,
   RenderInputRadio,
-  RenderInputSelect,
   RenderInputNumber,
   RenderInputSelectSearch,
 } from "./../../../common/renderForm/inputForm";
@@ -18,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "antd/lib/form/Form";
 import moment from "moment";
 import * as acthoadonGTGT from "../../../actions/quanly_hoadon/actHoaDonGTGT";
+import InputFormSelect from "../../../common/renderForm/inputFormSelect";
 
 export default function FormNhapHoaDonGTGT({
   onSave,
@@ -166,7 +166,7 @@ export default function FormNhapHoaDonGTGT({
             />
           </div>
           <div className="col-md-6 text-justify">
-            <RenderInputSelect
+            <InputFormSelect
               allowClear={true}
               showLabel={true}
               validate={false}
@@ -329,7 +329,7 @@ export default function FormNhapHoaDonGTGT({
               </tr>
               <tr>
                 <td className="text-justify" colSpan={2}>
-                  <RenderInputSelect
+                  <InputFormSelect
                     showLabel={true}
                     label=" Thuế suât GTGT"
                     name="phanTramThue"
