@@ -80,5 +80,5 @@ export const configTaoBaiViet = (): AppModuleInterface => ({
     apiCallServer: "quanlybaiviet",
     routerDynamic: true,
     checkOnSaveBaiViet:"tag,file",
-    buildModalPage:true
+    buildModalPage:false
 })

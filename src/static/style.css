@@ -1,37 +1,40 @@
 .background-detail-custom {
-    background: #fff;
-    border-radius: 20px;
-    padding-bottom: 50px;
-    margin-left: 15%;
-    width: 70%;
+  background: #fff;
+  border-radius: 20px;
+  padding-bottom: 50px;
+  margin-left: 15%;
+  width: 70%;
 }
 
 .background-menuleft {
-    background: darkslategray;
+  background: darkslategray;
 }
 .box-shadow {
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
 
 .ant-form-item-label {
-    text-align: left !important;
+  text-align: left !important;
 }
 .fix-height {
-    height: 100vh;
+  height: 100vh;
 }
 .ant-menu-item-selected {
-    background: transparent !important;
+  background: transparent !important;
 }
 .dropdown-item.active {
-    background: transparent !important;
+  background: transparent !important;
 }
 
 a {
-    text-decoration: none !important;
+  text-decoration: none !important;
 }
 
-.ant-menu.ant-menu-dark, .ant-menu-dark .ant-menu-sub, .ant-menu.ant-menu-dark .ant-menu-sub {
-    background: #2c3e50 !important;
+.ant-menu.ant-menu-dark,
+.ant-menu-dark .ant-menu-sub,
+.ant-menu.ant-menu-dark .ant-menu-sub {
+  background: #2c3e50 !important;
 }
 /* login */
 /* 
@@ -44,199 +47,199 @@ body {
 } */
 
 .card0 {
-    box-shadow: 0px 4px 8px 0px #757575;
-    border-radius: 0px;
+  box-shadow: 0px 4px 8px 0px #757575;
+  border-radius: 0px;
 }
 
 .card2 {
-    margin: 0px 40px;
+  margin: 0px 40px;
 }
 
 .logo {
-    width: 200px;
-    height: 100px;
-    margin-top: 20px;
-    margin-left: 35px;
+  width: 200px;
+  height: 100px;
+  margin-top: 20px;
+  margin-left: 35px;
 }
 
 .image {
-    width: 360px;
-    height: 280px;
+  width: 360px;
+  height: 280px;
 }
 
 .border-line {
-    border-right: 1px solid #eeeeee;
+  border-right: 1px solid #eeeeee;
 }
 
 .facebook {
-    background-color: #3b5998;
-    color: #fff;
-    font-size: 18px;
-    padding-top: 5px;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
+  background-color: #3b5998;
+  color: #fff;
+  font-size: 18px;
+  padding-top: 5px;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
 }
 
 .twitter {
-    background-color: #1da1f2;
-    color: #fff;
-    font-size: 18px;
-    padding-top: 5px;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
+  background-color: #1da1f2;
+  color: #fff;
+  font-size: 18px;
+  padding-top: 5px;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
 }
 
 .linkedin {
-    background-color: #2867b2;
-    color: #fff;
-    font-size: 18px;
-    padding-top: 5px;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
+  background-color: #2867b2;
+  color: #fff;
+  font-size: 18px;
+  padding-top: 5px;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
 }
 
 .line {
-    height: 1px;
-    width: 45%;
-    background-color: #e0e0e0;
-    margin-top: 10px;
+  height: 1px;
+  width: 45%;
+  background-color: #e0e0e0;
+  margin-top: 10px;
 }
 
 .or {
-    width: 10%;
-    font-weight: bold;
+  width: 10%;
+  font-weight: bold;
 }
 
 .text-sm {
-    font-size: 14px !important;
+  font-size: 14px !important;
 }
 
 ::placeholder {
-    color: #bdbdbd;
-    opacity: 1;
-    font-weight: 300;
+  color: #bdbdbd;
+  opacity: 1;
+  font-weight: 300;
 }
 
 :-ms-input-placeholder {
-    color: #bdbdbd;
-    font-weight: 300;
+  color: #bdbdbd;
+  font-weight: 300;
 }
 
 ::-ms-input-placeholder {
-    color: #bdbdbd;
-    font-weight: 300;
+  color: #bdbdbd;
+  font-weight: 300;
 }
 
 input,
 textarea {
-    padding: 10px 12px 10px 12px;
-    border: 1px solid lightgrey;
-    border-radius: 2px;
-    margin-bottom: 5px;
-    margin-top: 2px;
-    width: 100%;
-    box-sizing: border-box;
-    color: #2c3e50;
-    font-size: 14px;
-    letter-spacing: 1px;
+  padding: 10px 12px 10px 12px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  margin-top: 2px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #2c3e50;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
 input:focus,
 textarea:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: 1px solid #304ffe;
-    outline-width: 0;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border: 1px solid #304ffe;
+  outline-width: 0;
 }
 
 button:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    outline-width: 0;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  outline-width: 0;
 }
 
 a {
-    color: inherit;
-    cursor: pointer;
+  color: inherit;
+  cursor: pointer;
 }
 
 .btn-blue {
-    background-color: #1a237e;
-    width: 150px;
-    color: #fff;
-    border-radius: 2px;
+  background-color: #1a237e;
+  width: 150px;
+  color: #fff;
+  border-radius: 2px;
 }
 
 .btn-blue:hover {
-    background-color: #000;
-    cursor: pointer;
+  background-color: #000;
+  cursor: pointer;
 }
 
 .bg-blue {
-    color: #fff;
-    background-color: #1a237e;
+  color: #fff;
+  background-color: #1a237e;
 }
 
 @media screen and (max-width: 991px) {
-    .logo {
-        margin-left: 0px;
-    }
+  .logo {
+    margin-left: 0px;
+  }
 
-    .image {
-        width: 300px;
-        height: 220px;
-    }
+  .image {
+    width: 300px;
+    height: 220px;
+  }
 
-    .border-line {
-        border-right: none;
-    }
+  .border-line {
+    border-right: none;
+  }
 
-    .card2 {
-        border-top: 1px solid #eeeeee !important;
-        margin: 0px 15px;
-    }
+  .card2 {
+    border-top: 1px solid #eeeeee !important;
+    margin: 0px 15px;
+  }
 }
 
 /* .............................................................. */
 
 .custom-print {
-    position: absolute !important;
-    margin-top: 370px;
-    margin-left: 110px;
-    z-index: 1;
+  position: absolute !important;
+  margin-top: 370px;
+  margin-left: 110px;
+  z-index: 1;
 }
 
 .custom-print-2 {
-    position: absolute !important;
-    margin-top: 361px;
-    margin-left: -403px;
-    z-index: 1;
+  position: absolute !important;
+  margin-top: 361px;
+  margin-left: -403px;
+  z-index: 1;
 }
 
 .custom-font-bienlai {
-    font-size: 12px;
-    font-weight: bold;
+  font-size: 12px;
+  font-weight: bold;
 }
 .text-title-custom-bienlai {
-    text-align: center;
+  text-align: center;
 }
 .test {
-    color: lightskyblue;
+  color: lightskyblue;
 }
 
 .site-calendar-demo-card {
-    width: 500px;
-    border: 1px solid #f0f0f0;
-    border-radius: 2px;
-    margin: 20px 0 20px 500px;
+  width: 500px;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+  margin: 20px 0 20px 500px;
 }
 
 /* ERROR
@@ -251,49 +254,49 @@ Licence: <a href="https://www.os-templates.com/template-terms">Website Template 
 */
 
 #fof {
-    display: block;
-    width: 100%;
-    padding: 150px 0;
-    line-height: 1.6em;
+  display: block;
+  width: 100%;
+  padding: 150px 0;
+  line-height: 1.6em;
 }
 #fof .fl_left {
-    padding-top: 40px;
-    text-align: center;
+  padding-top: 40px;
+  text-align: center;
 }
 #fof .fl_left img {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 #fof .fl_left input {
-    width: 220px;
-    padding: 5px;
-    border: 1px solid #cccccc;
+  width: 220px;
+  padding: 5px;
+  border: 1px solid #cccccc;
 }
 #fof .fl_left #submit {
-    width: auto;
+  width: auto;
 }
 #fof .fl_right {
-    width: 50%;
+  width: 50%;
 }
 #fof .fl_right h1 {
-    font-size: 40px;
-    margin: 0;
-    padding: 0;
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
 }
 #fof .fl_right p {
-    display: block;
-    margin: 15px 0 0 0;
-    padding: 0;
-    font-size: 16px;
+  display: block;
+  margin: 15px 0 0 0;
+  padding: 0;
+  font-size: 16px;
 }
 #fof .fl_right ul {
-    margin: 15px 0 0 0;
-    padding: 0;
-    list-style: none;
+  margin: 15px 0 0 0;
+  padding: 0;
+  list-style: none;
 }
 #fof .fl_right ul li {
-    margin-bottom: 5px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #cccccc;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #cccccc;
 }
 
 /* CSS3 Elements Only Work In Latest Browsers */
@@ -301,17 +304,17 @@ Licence: <a href="https://www.os-templates.com/template-terms">Website Template 
 /* IE9 and below don't support CSS generated columns */
 
 #fof .fl_right ul {
-    -moz-column-count: 2;
-    -webkit-column-count: 2;
-    column-count: 2;
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
 }
 
 /* Phiếu bán hàng  */
 .custom-border {
-    border: 1px #bdbdbd solid;
+  border: 1px #bdbdbd solid;
 }
 .custom-text {
-    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
 }
 /* ......................End.................. */
 
@@ -321,51 +324,47 @@ Licence: <a href="https://www.os-templates.com/template-terms">Website Template 
 .ant-table-tbody > tr > td,
 .ant-table tfoot > tr > th,
 .ant-table tfoot > tr > td {
-    padding: 5px 16px !important;
+  padding: 5px 16px !important;
 }
 .ant-table-pagination.ant-pagination {
-    margin: 10px 0 !important;
-
+  margin: 10px 0 !important;
 }
 .ant-table-pagination-right {
-    justify-content: flex-start !important;
+  justify-content: flex-start !important;
 }
 
 .ant-table-pagination {
-    display: inline-block !important;
+  display: inline-block !important;
 }
 
-
-
 .ant-table-thead > tr > th {
-    background: #104E8B !important;
-    border: 1px solid steelblue !important;
-    color: white !important;
+  background: #104e8b !important;
+  border: 1px solid steelblue !important;
+  color: white !important;
 }
 
 .ant-modal-header {
-    background: #1b2a49 !important;
-    border-top-left-radius: 15px !important;
-    border-top-right-radius: 15px !important
+  background: #1b2a49 !important;
+  border-top-left-radius: 15px !important;
+  border-top-right-radius: 15px !important;
 }
 
 .ant-modal-title {
-    color: whitesmoke !important;
-    text-align: center;
-
+  color: whitesmoke !important;
+  text-align: center;
 }
 .ant-modal-content {
-    border-radius: 15px !important;
+  border-radius: 15px !important;
 }
 
 .ant-modal-footer {
-    background: #1b2a49 !important;
-    border-bottom-left-radius: 15px !important;
-    border-bottom-right-radius: 15px !important
+  background: #1b2a49 !important;
+  border-bottom-left-radius: 15px !important;
+  border-bottom-right-radius: 15px !important;
 }
 
 .ant-modal-close-x {
-    color: white;
+  color: white;
 }
 
 /*  */
@@ -379,118 +378,117 @@ table {
     font-size: 10px;
 } */
 .tr-custom-table-hoadon {
-    border-top: 1px solid #bdbdbd;
-    border-collapse: collapse;
-    font-size: 10px;
+  border-top: 1px solid #bdbdbd;
+  border-collapse: collapse;
+  font-size: 10px;
 }
 
 td.description,
 th.description {
-    width: 75px;
-    max-width: 75px;
-    font-size: 10px;
+  width: 75px;
+  max-width: 75px;
+  font-size: 10px;
 }
 
 td.quantity,
 th.quantity {
-    width: 40px;
-    max-width: 40px;
-    word-break: break-all;
-    font-size: 10px;
+  width: 40px;
+  max-width: 40px;
+  word-break: break-all;
+  font-size: 10px;
 }
 
 td.price,
 th.price {
-    width: 40px;
-    max-width: 40px;
-    word-break: break-all;
-    font-size: 12px;
+  width: 40px;
+  max-width: 40px;
+  word-break: break-all;
+  font-size: 12px;
 }
 
 .centered {
-    text-align: center;
-    align-content: center;
-    font-size: 12px;
+  text-align: center;
+  align-content: center;
+  font-size: 12px;
 }
 
 .ticket {
-    width: 350px;
-    max-width: 350px;
+  width: 350px;
+  max-width: 350px;
 }
 
 img {
-    max-width: inherit;
-    width: inherit;
+  max-width: inherit;
+  width: inherit;
 }
 
 /* CSS Hóa đơn GTGT */
 
 .font-size-custom {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .customtable {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 .customtable td,
 .customtable th {
-    border: 0.2px solid black;
-    padding: 5px;
-    font-size: 12px;
-
+  border: 0.2px solid black;
+  padding: 5px;
+  font-size: 12px;
 }
 
 .customtable th {
-    text-align: center;
-    /* background-color: #1e90ff; */
+  text-align: center;
+  /* background-color: #1e90ff; */
 }
 
 .inDam {
-    font-weight: bold;
+  font-weight: bold;
 }
 
-.bg-hoadongtgt{
-    background-color: rgba(255,193,231);
-    border: 1px solid black;
+.bg-hoadongtgt {
+  background-color: rgba(255, 193, 231);
+  border: 1px solid black;
 }
 
-
-
-
-.card-header-custom{
-    border-top-left-radius: 15px ;
-    border-top-right-radius: 15px ;
-    background-color: #1b2a49;
-
+.card-header-custom {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: #1b2a49;
 }
-.text-card-header{
-    color: whitesmoke;
-    text-align: center;
-    margin: 0;
-    padding-left: 50%;
-    
+.text-card-header {
+  color: whitesmoke;
+  text-align: center;
+  margin: 0;
+  padding-left: 50%;
 }
-.color-icon-header-remove{
-    color: tomato;
-    padding-right:10px ;
+.color-icon-header-remove {
+  color: tomato;
+  padding-right: 10px;
 }
 
-.color-icon-header-danhsach{
-    color: floralwhite;
-    padding-right:10px ;
+.color-icon-header-danhsach {
+  color: floralwhite;
+  padding-right: 10px;
 }
 
-.card-custom{
-    border-radius: 20px !important;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding-bottom: 5px;
+.card-custom {
+  border-radius: 20px !important;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-bottom: 5px;
 }
 
 .icon-menu-custom {
-    margin-right: 10px;
-    color: #1a237e;
-    font-size: 5px !important;
+  margin-right: 10px;
+  color: #1a237e;
+  font-size: 5px !important;
+}
+
+/* tin tức banner */
+.banner {
+  margin-bottom: 25px;
 }

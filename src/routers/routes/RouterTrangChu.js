@@ -4,11 +4,11 @@ import Tintuc from "../../pages/HomePage/trangchu/tintuc";
 function RouterTrangChu(props) {
   return (
     <Switch>
-      {<Redirect exact from="/trangchu" to="/trangchu/tintuc" />}
+      {<Redirect exact from="/trangchu" to="/trangchu" />}
       <Route
         path="/trangchu/tintuc"
         component={() => {
-          return <div>tin tuc trang chu ne</div>;
+          return <div>render ra cai ni</div>;
         }}
       />
       <Route path="/trangchu/tintuc2" component={Tintuc} />
