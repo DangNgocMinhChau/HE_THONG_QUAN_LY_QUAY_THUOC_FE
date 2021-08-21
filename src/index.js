@@ -4,6 +4,8 @@ import "./index.css";
 import "./static/sb-admin-2.css";
 import "./static/sb-admin-2.min.css";
 import "./static/style.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { applyMiddleware, compose, createStore } from "redux";
