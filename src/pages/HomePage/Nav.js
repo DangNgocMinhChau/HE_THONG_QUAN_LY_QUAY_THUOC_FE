@@ -245,7 +245,12 @@ function Nav({ onToogleMenu, checkToogle, onSetColorMenu, colorMenu }) {
           </ul>
         </nav>
         <Switch>
-          {account_current.dangNhapThanhCong ? renderContentMenu(routes) : <Redirect exact to="/login"></Redirect>}
+          {account_current.dangNhapThanhCong ||
+          localStorage.getItem("login") !== null ? (
+            renderContentMenu(routes)
+          ) : (
+            <Redirect exact to="/login"></Redirect>
+          )}
         </Switch>
       </div>
     </div>
