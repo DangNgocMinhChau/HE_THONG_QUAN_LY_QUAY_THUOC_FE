@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import * as actTinTuc from "../../../actions/configCRUDAutoAction/actCRUD";
+import * as actTinTuc from "../../../actions/quanlytintuc/actQuanLyTinTuc";
 
 export default function Tintuc(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actTinTuc.actFindRequest());
+    dispatch(actTinTuc.actFetchTinTucRequest());
   }, []);
   return (
     <>

@@ -82,5 +82,14 @@ export const EDIT_CRUD = "EDIT_CRUD";
 export const UPDATE_CRUD = "UPDATE_CRUD";
 export const SELECT_CRUD = "SELECT_CRUD";
 
+// Quaả ly tin tức
+
+export const FETCH_TINTUC = "FETCH_TINTUC";
+export const CREATE_TINTUC = "CREATE_TINTUC";
+export const DELETE_TINTUC = "DELETE_TINTUC";
+export const EDIT_TINTUC = "EDIT_TINTUC";
+export const UPDATE_TINTUC = "UPDATE_TINTUC";
+export const SELECT_TINTUC = "SELECT_TINTUC";
+
 // Quyen
 export const FETCH_QUYEN = "FETCH_QUYEN";

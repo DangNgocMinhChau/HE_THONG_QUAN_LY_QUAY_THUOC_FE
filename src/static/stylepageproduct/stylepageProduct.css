@@ -1,0 +1,217 @@
+/* navbar trang giao dien */
+.menugiaodien .nav-item a {
+  color: black;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #23cc23bf !important;
+  font-size: 23px !important;
+}
+
+/* card product */
+.wrapper-2 {
+  width: 100%;
+  justify-content: space-around;
+  height: 200px;
+}
+.big-image {
+  height: 200px;
+  width: 100%;
+  background: white;
+  position: relative;
+  align-items: flex-end;
+  transition: 0.4s ease-out;
+}
+
+.big-image:hover:before {
+  opacity: 1;
+}
+.big-image:hover .info-T-shirt-all {
+  opacity: 1;
+  transform: translateY(0px);
+}
+.big-image:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  transition: 0.5s;
+  opacity: 0;
+}
+.big-image img {
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.big-image .info-T-shirt-all {
+  position: relative;
+  text-align: center;
+  z-index: 3;
+  color: white;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.5s;
+  bottom: 65%;
+}
+
+.big-image .info-T-shirt-all button {
+  outline: none;
+  border: none;
+  background: white;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.4s ease;
+  margin-bottom: 13px;
+}
+.big-image .info-T-shirt-all button:hover {
+  color: #ffac4b;
+}
+
+.big-image .info-T-shirt-all button {
+  width: 50px;
+  height: 40px;
+  margin-top: 40px;
+}
+
+.product-info {
+  width: 100%;
+  height: 60px;
+}
+.product-info a {
+  font-size: 17px;
+}
+.card-product-lis .product-info a:hover {
+  color: #23cc23bf;
+}
+
+/* product-Sanpham-Banchay */
+.img-card {
+  border-radius: 4px;
+  color: #666;
+  height: 420px !important;
+  width: 260px !important;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.img {
+  width: 100% !important;
+  height: 270px !important;
+}
+
+.img-card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+  padding: 15px;
+}
+.card-body strong {
+  color: black;
+  font-size: 16px;
+}
+
+.slick-slide > div {
+  margin: 0 10px;
+}
+
+.slick-list {
+  margin: 0 -10px;
+}
+
+.slick-slide *:focus {
+  outline: none;
+}
+.slick-product-same {
+  justify-content: center;
+  text-align: center;
+}
+
+/* banner-homepage */
+.banner-homepage {
+  background-image: url("https://image.pharmacity.vn/live/uploads/2021/04/extracare_banner.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 300px;
+}
+.banner-all {
+  display: flex;
+}
+.banner-title-1 {
+  margin-top: 106px;
+  margin-left: 20px;
+}
+.banner-title-1 strong {
+  color: white;
+}
+.pharmarcy-chaudang {
+  margin-top: 50px;
+  color: white;
+  font-size: 20px;
+  line-height: normal;
+}
+
+/* Thương hiệu nổi bật */
+.img-brand-all {
+  width: 100px;
+  height: 187px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin-top: 17px;
+  text-align: center;
+}
+.img-brand {
+  width: 100%;
+  height: 155px;
+}
+.card-brand-name {
+  font-size: 17px;
+}
+
+.thuonghieunoibat {
+  margin-bottom: 60px;
+}
+
+.all-content {
+  display: flex;
+}
+
+.icon-shipping {
+  font-size: 30px;
+  margin-top: 10px;
+  margin-right: 10px;
+  color: rgba(35, 204, 35, 0.75);
+}
+
+.shipping-content {
+  font-size: 13px;
+}
+
+.shipping-content strong {
+  color: rgba(35, 204, 35, 0.75);
+}
+
+/* footer */
+.about-pharmacy {
+  padding-top: 70px;
+}
+
+.about-pharmacy .content-pharmacy-chau p {
+  padding-top: 30px;
+}
+
+.contact-about-us {
+  text-align: center;
+}
+
+.follow-us {
+  text-align: center;
+}
