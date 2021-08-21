@@ -117,7 +117,20 @@ export const actFindSelectRequest = (url, fieldRedux) => {
   return (dispatch) => {
     return callApi(`${url}`, "GET", null).then((res) => {
       if (res) {
-        dispatch(actFindSelect(res.data.result, fieldRedux));
+        if (fieldRedux == "file") {
+          let dataRes = [];
+          let itemRes = {};
+          res.data.map((item, index) => {
+            itemRes = {
+              value: item.path,
+              ten: item.name,
+            };
+            dataRes.push(itemRes);
+          });
+          dispatch(actFindSelect(dataRes, fieldRedux));
+        } else {
+          dispatch(actFindSelect(res.data.result, fieldRedux));
+        }
       }
     });
   };

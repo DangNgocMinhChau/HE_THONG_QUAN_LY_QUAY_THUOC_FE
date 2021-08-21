@@ -26,6 +26,12 @@ const list = (state = initialState, action) => {
           quyen: data,
         };
       }
+
+      if (fieldRedux == "file") {
+        select = {
+          file: data,
+        };
+      }
       state = { ...state, ...select };
       return { ...state };
     default:

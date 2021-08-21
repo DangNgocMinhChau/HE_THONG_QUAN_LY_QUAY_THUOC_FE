@@ -47,12 +47,26 @@ const defineObjectFormProps = (): ObjectFormInterface[] => ([
         text: "Nội dung ",
         description: "Nội dung ",
         defaultValue: "undefined",
-        isShow: true,
+        isShow: false,
         isFilter: false,
         width: 200,
         sort: true,
         renderField: TypeControl.InputEditor,
         hidden: false
+    },
+    {
+        dataField: "file",
+        text: "File ",
+        description: "File",
+        defaultValue: [],
+        isShow: false,
+        isFilter: false,
+        width: 200,
+        sort: true,
+        renderField: TypeControl.Select,
+        validate: true,
+        hidden: false,
+        apiSelect:'files/img'
     },
 ])
 
@@ -65,5 +79,5 @@ export const configTaoBaiViet = (): AppModuleInterface => ({
     defineObjectFormProps: defineObjectFormProps(),
     apiCallServer: "quanlybaiviet",
     routerDynamic: true,
-    checkOnSaveBaiViet:"tag"
+    checkOnSaveBaiViet:"tag,file"
 })

@@ -27,10 +27,11 @@ export default function InputFormSelectMulti({
     dispatch(actionCRUD.actFindSelectRequest(api, name));
   }, []);
 
-  const { tag, quyen } = useSelector(
+  const { tag, quyen, file } = useSelector(
     (state) => ({
       tag: state.danhmuc.select.list.tag,
       quyen: state.danhmuc.select.list.quyen,
+      file: state.danhmuc.select.list.file,
     }),
     shallowEqual
   );
@@ -40,6 +41,10 @@ export default function InputFormSelectMulti({
   }
   if (name === "quyen") {
     optionsApi = quyen;
+  }
+
+  if (name == "file") {
+    optionsApi = file;
   }
   let dataOption = options ? options : optionsApi;
 
@@ -68,7 +73,7 @@ export default function InputFormSelectMulti({
       <TreeSelect
         showSearch
         style={{ width: "100%" }}
-        value={value}
+        placeholder={label}
         dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
         placeholder="Please select"
         allowClear

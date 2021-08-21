@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { Form, Select } from "antd";
+import { Form, Select, TreeSelect } from "antd";
 import * as actionCRUD from "./../../actions/configCRUDAutoAction/actCRUD";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
+const { Option } = Select;
 
-export default function InputFormSelect({
+export default function InputFormSelectSearch({
   label,
   name,
   width,
@@ -15,10 +16,13 @@ export default function InputFormSelect({
   hasFeedback,
   validateStatus,
   style,
+  options,
   showLabel,
   allowClear,
+  restField,
+  fieldKey,
   api,
-  options,
+  ...props
 }) {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -42,10 +46,10 @@ export default function InputFormSelect({
   if (name === "quyen") {
     optionsApi = quyen;
   }
-
-  if (name == "file") {
+  if (name === "file") {
     optionsApi = file;
   }
+
   let dataOption = options ? options : optionsApi;
   return (
     <Form.Item
@@ -55,6 +59,8 @@ export default function InputFormSelect({
       width={width}
       hasFeedback={hasFeedback}
       validateStatus={validateStatus}
+      fieldKey={fieldKey}
+      style={style}
       rules={
         validate && [
           {
@@ -69,12 +75,27 @@ export default function InputFormSelect({
         ]
       }
     >
-      <Select allowClear={allowClear} placeholder={label}>
+      <Select
+        allowClear
+        showSearch
+        onChange={onChange}
+        placeholder={label}
+        dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
+        multiple
+        allowClear
+        filterOption={(input, option) =>
+          option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+        }
+      >
         {dataOption &&
           Array.isArray(dataOption) &&
           dataOption.length > 0 &&
           dataOption.map((item, index) => {
-            return <Select.Option value={item.value}>{item.ten}</Select.Option>;
+            return (
+              <Option key={index} value={item.value}>
+                {item.ten}
+              </Option>
+            );
           })}
       </Select>
     </Form.Item>

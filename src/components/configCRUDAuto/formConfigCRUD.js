@@ -14,6 +14,7 @@ import { optionPhanTramThue } from "./../../common/data_options_select/optionSel
 import InputEditor from "../../common/renderForm/inputEditor";
 import InputFormSelectMulti from "../../common/renderForm/inputFormSelectMulti";
 import InputFormSelect from "../../common/renderForm/inputFormSelect";
+import InputFormSelectSearch from "../../common/renderForm/inputFormSelectSearch";
 export default function FormConfigCRUD({
   onSave,
   cancel,
@@ -31,13 +32,18 @@ export default function FormConfigCRUD({
     var dataInitialValue = {};
     if (initialValue) {
       if (propsDefineObject.checkOnSaveBaiViet) {
-        let pFeild = propsDefineObject.checkOnSaveBaiViet;
+        let pFeildTag = propsDefineObject.checkOnSaveBaiViet.split(",")[0];
+        let pFeildFile = propsDefineObject.checkOnSaveBaiViet.split(",")[1];
         dataInitialValue = {
           ...initialValue,
-          [pFeild]:
+          [pFeildTag]:
             initialValue &&
-            initialValue[pFeild] &&
-            initialValue[pFeild].split(","),
+            initialValue[pFeildTag] &&
+            initialValue[pFeildTag].split(","),
+          [pFeildFile]:
+            initialValue &&
+            initialValue[pFeildFile] &&
+            initialValue[pFeildFile].split(","),
         };
       } else {
         dataInitialValue = {
@@ -60,11 +66,14 @@ export default function FormConfigCRUD({
   const onFinishFailed = (errorInfo) => {};
   const onFinish = (value) => {
     if (propsDefineObject.checkOnSaveBaiViet) {
+      let pFeildTag = propsDefineObject.checkOnSaveBaiViet.split(",")[0];
+      let pFeildFile = propsDefineObject.checkOnSaveBaiViet.split(",")[1];
       if (dataEditor) {
         value = {
           ...value,
           ...contentEditor,
-          tag: value.tag.toString(),
+          [pFeildTag]: value[pFeildTag].toString(),
+          [pFeildFile]: value[pFeildFile].toString(),
         };
         onSave(value);
       } else {
@@ -187,12 +196,13 @@ export default function FormConfigCRUD({
                       <p>{!itemInputForm.hidden && itemInputForm.text}</p>
                     </div>
                     <div className="col-md-10">
-                      <RenderInputSelectSearch
+                      <InputFormSelectSearch
                         showLabel={false}
                         label={itemInputForm.text}
                         name={itemInputForm.dataField}
                         validate={itemInputForm.validate}
                         hidden={itemInputForm.hidden}
+                        api={itemInputForm.apiSelect}
                       />
                     </div>
                   </div>
