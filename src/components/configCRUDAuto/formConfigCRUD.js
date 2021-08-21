@@ -170,7 +170,6 @@ export default function FormConfigCRUD({
                   </div>
                 );
               }
-
               if (itemInputForm.renderField === "InputRadio") {
                 return (
                   <div className="row">
@@ -184,6 +183,7 @@ export default function FormConfigCRUD({
                         name={itemInputForm.dataField}
                         validate={itemInputForm.validate}
                         hidden={itemInputForm.hidden}
+                        value={itemInputForm.dataOption}
                       />
                     </div>
                   </div>
@@ -376,6 +376,7 @@ export default function FormConfigCRUD({
                             name={itemInputForm.dataField}
                             validate={itemInputForm.validate}
                             hidden={itemInputForm.hidden}
+                            value={itemInputForm.dataOption}
                           />
                         </div>
                       </div>

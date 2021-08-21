@@ -11,6 +11,7 @@ import {
 
 const { Option } = Select;
 const dateFormat = "DD/MM/YYYY";
+
 export function RenderInput({
   label,
   name,
@@ -152,7 +153,7 @@ export function RenderInputDatePicker({
       <DatePicker
         placeholder={label}
         onChange={onChange}
-        style={style}
+        style={{ width: "100%" }}
         format={dateFormat}
       />
     </Form.Item>

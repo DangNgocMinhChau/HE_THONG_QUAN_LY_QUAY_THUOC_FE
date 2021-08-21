@@ -39,7 +39,7 @@ export default function InputFormSelectMulti({
   if (name === "tag") {
     optionsApi = tag;
   }
-  if (name === "quyen") {
+  if (name === "quyen" || name === "quyenId") {
     optionsApi = quyen;
   }
 

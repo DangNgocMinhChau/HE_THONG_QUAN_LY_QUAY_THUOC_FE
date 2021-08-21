@@ -21,7 +21,7 @@ const list = (state = initialState, action) => {
           tag: data,
         };
       }
-      if (fieldRedux == "quyen") {
+      if (fieldRedux == "quyen" || fieldRedux === "quyenId") {
         select = {
           quyen: data,
         };

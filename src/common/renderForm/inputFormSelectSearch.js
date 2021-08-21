@@ -43,7 +43,7 @@ export default function InputFormSelectSearch({
   if (name === "tag") {
     optionsApi = tag;
   }
-  if (name === "quyen") {
+  if (name === "quyen" || name === "quyenId") {
     optionsApi = quyen;
   }
   if (name === "file") {

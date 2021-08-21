@@ -39,7 +39,7 @@ export default function InputFormSelect({
   if (name === "tag") {
     optionsApi = tag;
   }
-  if (name === "quyen") {
+  if (name === "quyen" || name === "quyenId") {
     optionsApi = quyen;
   }
 
@@ -74,7 +74,11 @@ export default function InputFormSelect({
           Array.isArray(dataOption) &&
           dataOption.length > 0 &&
           dataOption.map((item, index) => {
-            return <Select.Option value={item.value}>{item.ten}</Select.Option>;
+            return (
+              <Select.Option value={name === "quyenId" ? item.id : item.value}>
+                {item.ten}
+              </Select.Option>
+            );
           })}
       </Select>
     </Form.Item>
