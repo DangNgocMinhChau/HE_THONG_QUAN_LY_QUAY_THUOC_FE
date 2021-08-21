@@ -79,5 +79,6 @@ export const configTaoBaiViet = (): AppModuleInterface => ({
     defineObjectFormProps: defineObjectFormProps(),
     apiCallServer: "quanlybaiviet",
     routerDynamic: true,
-    checkOnSaveBaiViet:"tag,file"
+    checkOnSaveBaiViet:"tag,file",
+    buildModalPage:true
 })

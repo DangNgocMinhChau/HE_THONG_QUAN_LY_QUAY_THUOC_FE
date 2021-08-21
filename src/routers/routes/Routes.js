@@ -25,9 +25,6 @@ function Routes(props) {
     }
   }, []);
 
-  const isEmpty = (v) => {
-    return Object.keys(v).length === 0;
-  };
   return (
     <Switch>
       <Route path="/login" component={PageLogin} />

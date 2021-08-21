@@ -8,6 +8,7 @@ import * as actCRUDConfig from "../../../actions/configCRUDAutoAction/actCRUD";
 export default function PageConfigCRUD({ propsDefineObject, match }) {
   const [checkFormThemMoi, setCheckFormThemMoi] = useState(false);
   const [checkDanhSach, setCheckDanhSach] = useState(true);
+  const [isVisible, setIsvisible] = useState(false);
   const [checkEdit, setCheckEdit] = useState(false);
   const [
     checkShowDanhSachHoaDonTheoKhachHang,
@@ -35,14 +36,16 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
       actCRUDConfig.actGetIdRequest(propsDefineObject.apiCallServer, id)
     );
     setCheckFormThemMoi(true);
-    setCheckDanhSach(false);
     setCheckEdit(true);
+    setIsvisible(true);
+    setCheckDanhSach(propsDefineObject.buildModalPage ? true : false);
   }
 
   function openForm() {
     setCheckFormThemMoi(true);
-    setCheckDanhSach(false);
+    setCheckDanhSach(propsDefineObject.buildModalPage ? true : false);
     setCheckEdit(false);
+    setIsvisible(true);
   }
 
   function onSave(value) {
@@ -70,6 +73,7 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
     setCheckDanhSach(true);
     setCheckFormThemMoi(false);
     setCheckShowDanhSachHoaDonTheoKhachHang(false);
+    setIsvisible(false);
   }
 
   const handdleXoaNhieu = () => {
@@ -144,6 +148,7 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
                 checkEdit={checkEdit}
                 checkThemMoi={true}
                 propsDefineObject={propsDefineObject}
+                isVisible={isVisible}
               />
             )}
 
