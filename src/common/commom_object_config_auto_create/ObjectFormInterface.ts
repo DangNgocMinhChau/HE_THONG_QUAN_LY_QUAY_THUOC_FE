@@ -14,5 +14,6 @@ export default interface ObjectFormInterface{
     validate?:boolean,
     hidden:boolean,
     apiSelect?:string,
-    dataOption?:any
+    dataOption?:any,
+    password?:boolean
 }

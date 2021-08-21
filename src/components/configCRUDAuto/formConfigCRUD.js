@@ -15,6 +15,7 @@ import InputEditor from "../../common/renderForm/inputEditor";
 import InputFormSelectMulti from "../../common/renderForm/inputFormSelectMulti";
 import InputFormSelect from "../../common/renderForm/inputFormSelect";
 import InputFormSelectSearch from "../../common/renderForm/inputFormSelectSearch";
+import InputFormDefault from "../../common/renderForm/inputFormDefault";
 export default function FormConfigCRUD({
   onSave,
   cancel,
@@ -313,12 +314,13 @@ export default function FormConfigCRUD({
                           <p>{!itemInputForm.hidden && itemInputForm.text}</p>
                         </div>
                         <div className="col-md-10">
-                          <RenderInput
+                          <InputFormDefault
                             showLabel={false}
                             label={itemInputForm.text}
                             name={itemInputForm.dataField}
                             validate={itemInputForm.validate}
                             hidden={itemInputForm.hidden}
+                            password={itemInputForm.password}
                           />
                         </div>
                       </div>

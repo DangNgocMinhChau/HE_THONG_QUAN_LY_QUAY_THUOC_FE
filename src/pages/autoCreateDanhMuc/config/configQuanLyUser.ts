@@ -125,7 +125,8 @@ const defineObjectFormProps = (): ObjectFormInterface[] => ([
         width: 200,
         sort: true,
         renderField: TypeControl.Input,
-        hidden: false
+        hidden: false,
+        password:true
     },
     {
         dataField: "xacNhanMatKhau",
@@ -137,7 +138,8 @@ const defineObjectFormProps = (): ObjectFormInterface[] => ([
         width: 200,
         sort: true,
         renderField: TypeControl.Input,
-        hidden: false
+        hidden: false,
+        password:true
     },
     {
         dataField: "quyenId",
