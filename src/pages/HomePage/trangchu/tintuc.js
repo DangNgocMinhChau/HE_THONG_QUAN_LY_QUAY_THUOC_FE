@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import * as actTinTuc from "../../../actions/quanlytintuc/actQuanLyTinTuc";
+import parse from "html-react-parser";
 
 export default function Tintuc(props) {
   const dispatch = useDispatch();
@@ -8,6 +9,18 @@ export default function Tintuc(props) {
   useEffect(() => {
     dispatch(actTinTuc.actFetchTinTucRequest());
   }, []);
+  const { tinTuc } = useSelector(
+    (state) => ({
+      tinTuc: state.quanlytintuc.list,
+    }),
+    shallowEqual
+  );
+
+  const renderTintuc = (tinTuc) => {
+    return tinTuc.map((item, index) => {
+      return <p>{parse(item.noiDung)}</p>;
+    });
+  };
   return (
     <>
       <div className="container">
@@ -31,6 +44,7 @@ export default function Tintuc(props) {
             dsadas
           </div>
         </div>
+        {renderTintuc(tinTuc)}
       </div>
     </>
   );

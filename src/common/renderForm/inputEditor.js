@@ -13,7 +13,7 @@ export default function InputEditor({ dataEditor, name, funcCustomEditor }) {
         }
         onEditorChange={(e) => funcCustomEditor(e, name)}
         init={{
-          height: 200,
+          height: 500,
           branding: false,
         }}
       />

@@ -126,11 +126,11 @@ function Nav({ onToogleMenu, checkToogle, onSetColorMenu, colorMenu }) {
                 aria-expanded="false"
               >
                 <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-                  {account_current.tenDangNhap}
+                  {account_current && account_current.tenDangNhap}
                 </span>
                 <img
                   className="img-profile rounded-circle"
-                  src={account_current.img}
+                  src={account_current && account_current.img}
                 />
               </a>
               {/* <!-- Dropdown - User Information --> */}
@@ -245,7 +245,7 @@ function Nav({ onToogleMenu, checkToogle, onSetColorMenu, colorMenu }) {
           </ul>
         </nav>
         <Switch>
-          {account_current.dangNhapThanhCong ||
+          {(account_current && account_current.dangNhapThanhCong) ||
           localStorage.getItem("login") !== null ? (
             renderContentMenu(routes)
           ) : (

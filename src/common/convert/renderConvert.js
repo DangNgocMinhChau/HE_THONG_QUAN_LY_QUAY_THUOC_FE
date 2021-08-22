@@ -53,3 +53,8 @@ export const renderConvertSoLuongTheoDonViReturnString = (value, donViTinh) => {
 export const renderDateTheoHeThong = () => {
   return moment().format("DD/MM/yyyy HH:mm:ss ");
 };
+
+export const renderStringHTML = (html) => {
+  let doc = new DOMParser().parseFromString(html, "text/html");
+  return doc.body.textContent || "";
+};
