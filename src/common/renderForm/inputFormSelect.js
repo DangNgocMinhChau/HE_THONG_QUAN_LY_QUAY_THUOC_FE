@@ -80,7 +80,6 @@ export default function InputFormSelect({
           style={{ width: "100%" }}
           placeholder={label}
           dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
-          placeholder="Please select"
           allowClear
           multiple
           treeDefaultExpandAll

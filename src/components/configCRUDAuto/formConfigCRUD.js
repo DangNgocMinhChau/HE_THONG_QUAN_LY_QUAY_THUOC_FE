@@ -133,7 +133,12 @@ export default function FormConfigCRUD({
                 return (
                   <div className="row">
                     <div className="col-md-2">
-                      <p>{!itemInputForm.hidden && itemInputForm.text}</p>
+                      <p>
+                        {!itemInputForm.hidden && itemInputForm.text}{" "}
+                        {itemInputForm.validate && (
+                          <i style={{ color: "red" }}>*</i>
+                        )}
+                      </p>
                     </div>
                     <div className="col-md-10">
                       <InputFormDatepiker
@@ -148,30 +153,16 @@ export default function FormConfigCRUD({
                 );
               }
 
-              if (itemInputForm.renderField === "InputNumber") {
-                return (
-                  <div className="row">
-                    <div className="col-md-2">
-                      <p>{!itemInputForm.hidden && itemInputForm.text}</p>
-                    </div>
-                    <div className="col-md-10">
-                      <InputFormDefault
-                        showLabel={false}
-                        label={itemInputForm.text}
-                        name={itemInputForm.dataField}
-                        validate={itemInputForm.validate}
-                        hidden={itemInputForm.hidden}
-                        inputNumber={true}
-                      />
-                    </div>
-                  </div>
-                );
-              }
               if (itemInputForm.renderField === "InputRadio") {
                 return (
                   <div className="row">
                     <div className="col-md-2">
-                      <p>{!itemInputForm.hidden && itemInputForm.text}</p>
+                      <p>
+                        {!itemInputForm.hidden && itemInputForm.text}{" "}
+                        {itemInputForm.validate && (
+                          <i style={{ color: "red" }}>*</i>
+                        )}
+                      </p>
                     </div>
                     <div className="col-md-10">
                       <InputFormRadio
@@ -189,31 +180,16 @@ export default function FormConfigCRUD({
                 );
               }
 
-              if (itemInputForm.renderField === "InputSelectSearch") {
-                return (
-                  <div className="row">
-                    <div className="col-md-2">
-                      <p>{!itemInputForm.hidden && itemInputForm.text}</p>
-                    </div>
-                    <div className="col-md-10">
-                      <InputFormSelectSearch
-                        showLabel={false}
-                        label={itemInputForm.text}
-                        name={itemInputForm.dataField}
-                        validate={itemInputForm.validate}
-                        hidden={itemInputForm.hidden}
-                        api={itemInputForm.apiSelect}
-                      />
-                    </div>
-                  </div>
-                );
-              }
-
               if (itemInputForm.renderField === "InputTextArea") {
                 return (
                   <div className="row">
                     <div className="col-md-2">
-                      <p>{!itemInputForm.hidden && itemInputForm.text}</p>
+                      <p>
+                        {!itemInputForm.hidden && itemInputForm.text}{" "}
+                        {itemInputForm.validate && (
+                          <i style={{ color: "red" }}>*</i>
+                        )}
+                      </p>
                     </div>
                     <div className="col-md-10">
                       <InputFormTextArea
@@ -232,7 +208,12 @@ export default function FormConfigCRUD({
                 return (
                   <div className="row">
                     <div className="col-md-2">
-                      <p>{!itemInputForm.hidden && itemInputForm.text}</p>
+                      <p>
+                        {!itemInputForm.hidden && itemInputForm.text}{" "}
+                        {itemInputForm.validate && (
+                          <i style={{ color: "red" }}>*</i>
+                        )}
+                      </p>
                     </div>
                     <div className="col-md-10">
                       <InputEditor
@@ -249,7 +230,12 @@ export default function FormConfigCRUD({
                 return (
                   <div className="row">
                     <div className="col-md-2">
-                      <p>{!itemInputForm.hidden && itemInputForm.text}</p>
+                      <p>
+                        {!itemInputForm.hidden && itemInputForm.text}
+                        {itemInputForm.validate && (
+                          <i style={{ color: "red" }}>*</i>
+                        )}
+                      </p>
                     </div>
                     <div className="col-md-10">
                       <InputFormSelect
