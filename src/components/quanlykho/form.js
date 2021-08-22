@@ -4,13 +4,6 @@ import moment from "moment";
 import { Form, Divider, Button, Space } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { useForm } from "antd/lib/form/Form";
-import {
-  RenderInput,
-  RenderInputDatePicker,
-  RenderInputRadio,
-  RenderInputNumber,
-  RenderInputSelectSearch,
-} from "./../../common/renderForm/inputForm";
 import * as actNhaCungCap from "../../actions/quanlynhacungcap/actQuanLyNhaCungCap";
 import {
   valueRadioDonViTinh,
@@ -18,6 +11,9 @@ import {
   optionPhanTramThue,
 } from "./../../common/data_options_select/optionSelect";
 import InputFormSelect from "../../common/renderForm/inputFormSelect";
+import InputFormDefault from "../../common/renderForm/inputFormDefault";
+import InputFormDatepiker from "../../common/renderForm/inputFormDatepiker";
+import InputFormRadio from "../../common/renderForm/inputFormRadio";
 function FormNhapThuoc({
   onSave,
   cancel,
@@ -141,11 +137,12 @@ function FormNhapThuoc({
                   <p>Nhà cung cấp</p>
                 </div>
                 <div className="col-md-10">
-                  <RenderInputSelectSearch
+                  <InputFormSelect
                     name="nhaCungCapId"
                     label="Nhà cung cấp"
                     validate
                     options={dataListNhaCungCap}
+                    search={true}
                   />
                 </div>
               </div>
@@ -187,11 +184,12 @@ function FormNhapThuoc({
                     <p>Nhà cung cấp có sẵn</p>
                   </div>
                   <div className="col-md-10">
-                    <RenderInputSelectSearch
+                    <InputFormSelect
                       name="nhaCungCapId"
                       label="Nhà cung cấp"
                       validate
                       options={dataListNhaCungCap}
+                      search={true}
                     />
                   </div>
                 </div>
@@ -201,7 +199,7 @@ function FormNhapThuoc({
                   <p>Tên nhà cung cấp</p>
                 </div>
                 <div className="col-md-10">
-                  <RenderInput
+                  <InputFormDefault
                     showLabel={false}
                     label="Tên nhà cung cấp"
                     validate={true}
@@ -215,7 +213,7 @@ function FormNhapThuoc({
                   <p>Địa chỉ</p>
                 </div>
                 <div className="col-md-10">
-                  <RenderInput
+                  <InputFormDefault
                     showLabel={false}
                     label="Địa chỉ nhà cung cấp"
                     validate={true}
@@ -229,7 +227,7 @@ function FormNhapThuoc({
                   <p>Mã số thuế</p>
                 </div>
                 <div className="col-md-10">
-                  <RenderInput
+                  <InputFormDefault
                     showLabel={false}
                     label="Mã số thuế"
                     validate={true}
@@ -243,7 +241,7 @@ function FormNhapThuoc({
                   <p>Số điện thoại nhà cung cấp (Nếu có)</p>
                 </div>
                 <div className="col-md-10">
-                  <RenderInput
+                  <InputFormDefault
                     showLabel={false}
                     label="Số điện thoại"
                     validate={true}
@@ -258,7 +256,7 @@ function FormNhapThuoc({
                   <p>Zalo</p>
                 </div>
                 <div className="col-md-10">
-                  <RenderInput
+                  <InputFormDefault
                     showLabel={false}
                     label="Zalo"
                     validate={true}
@@ -272,7 +270,7 @@ function FormNhapThuoc({
                   <p>Gmail</p>
                 </div>
                 <div className="col-md-10">
-                  <RenderInput
+                  <InputFormDefault
                     showLabel={false}
                     label="Email"
                     validate={true}
@@ -285,14 +283,14 @@ function FormNhapThuoc({
           <div className="col-md-6 ">
             <Divider plain>Hàng hóa</Divider>
 
-            <RenderInput name="id" hidden={true} />
+            <InputFormDefault name="id" hidden={true} />
 
             <div className="row">
               <div className="col-md-2">
                 <p>Mã</p>
               </div>
               <div className="col-md-10">
-                <RenderInput
+                <InputFormDefault
                   showLabel={false}
                   label="Mã"
                   validate={true}
@@ -306,7 +304,7 @@ function FormNhapThuoc({
                 <p>Tên hàng hóa</p>
               </div>
               <div className="col-md-10">
-                <RenderInput
+                <InputFormDefault
                   showLabel={false}
                   label="Tên thuốc"
                   validate={true}
@@ -320,7 +318,7 @@ function FormNhapThuoc({
                 <p>Khu vực xếp thuốc</p>
               </div>
               <div className="col-md-10">
-                <RenderInput
+                <InputFormDefault
                   showLabel={false}
                   label="Khu vực"
                   validate={true}
@@ -334,7 +332,7 @@ function FormNhapThuoc({
                 <p>Phân loại thuốc</p>
               </div>
               <div className="col-md-10">
-                <RenderInput
+                <InputFormDefault
                   showLabel={false}
                   label="Phân loại thuốc"
                   validate={true}
@@ -350,9 +348,10 @@ function FormNhapThuoc({
                     <p>Số lượng nhập hàng </p>
                   </div>
                   <div className="col-md-8">
-                    <RenderInputNumber
+                    <InputFormDefault
                       name="soLuongNhap"
                       style={{ width: "250px" }}
+                      inputNumber={true}
                     />
                   </div>
                 </div>
@@ -364,9 +363,9 @@ function FormNhapThuoc({
                     <p>Đơn vị tính</p>
                   </div>
                   <div className="col-md-8 m-0 p-0">
-                    <RenderInputRadio
+                    <InputFormRadio
                       name="donViTinh"
-                      value={valueRadioDonViTinh}
+                      options={valueRadioDonViTinh}
                     />
                   </div>
                 </div>
@@ -378,10 +377,11 @@ function FormNhapThuoc({
                 <p>Tổng tiền trước thuế (VNĐ)</p>
               </div>
               <div className="col-md-10">
-                <RenderInputNumber
+                <InputFormDefault
                   label="Tổng tiền trước thuế"
                   name="tongTienTruocThue"
                   style={{ width: "650px" }}
+                  inputNumber={true}
                 />
               </div>
             </div>
@@ -404,10 +404,11 @@ function FormNhapThuoc({
                 <p>Chiết khấu</p>
               </div>
               <div className="col-md-10">
-                <RenderInputNumber
+                <InputFormDefault
                   label="Chiết khấu"
                   name="chietKhau"
                   style={{ width: "650px" }}
+                  inputNumber={true}
                 />
               </div>
             </div>
@@ -416,10 +417,11 @@ function FormNhapThuoc({
                 <p>Giá (Đã bao gồm VAT/VNĐ)</p>
               </div>
               <div className="col-md-10">
-                <RenderInputNumber
+                <InputFormDefault
                   label="Giá tiền"
                   name="giaTien"
                   style={{ width: "650px" }}
+                  inputNumber={true}
                 />
               </div>
             </div>
@@ -443,7 +445,7 @@ function FormNhapThuoc({
                 <p>Ngày nhập thuốc</p>
               </div>
               <div className="col-md-10">
-                <RenderInputDatePicker
+                <InputFormDatepiker
                   name="hanSuDungThuoc"
                   label="Hạn sử dụng"
                   hasFeedback
@@ -472,7 +474,7 @@ function FormNhapThuoc({
                         >
                           <div className="row">
                             <div className="col-md-10">
-                              <RenderInputSelectSearch
+                              <InputFormSelect
                                 {...restField}
                                 label="File"
                                 name={[name, "idFile"]}
@@ -481,6 +483,7 @@ function FormNhapThuoc({
                                 //  onChange={onShowValue}
                                 options={dataListFile}
                                 validate={true}
+                                search={true}
                               />
                             </div>
                           </div>
@@ -504,9 +507,9 @@ function FormNhapThuoc({
                 </Form.List>
               </div>
             </div>
-            <RenderInput name="ngayTaoBanGhi" hidden={true} />
-            <RenderInput name="soLuongDaBan" hidden={true} />
-            <RenderInput name="soLuongMua" hidden={true} />
+            <InputFormDefault name="ngayTaoBanGhi" hidden={true} />
+            <InputFormDefault name="soLuongDaBan" hidden={true} />
+            <InputFormDefault name="soLuongMua" hidden={true} />
           </div>
         </div>
         <Form.Item>

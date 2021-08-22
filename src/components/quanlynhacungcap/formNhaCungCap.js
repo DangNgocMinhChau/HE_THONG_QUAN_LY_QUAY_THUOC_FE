@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Divider, Button } from "antd";
 import { useForm } from "antd/lib/form/Form";
-import { RenderInput } from "./../../common/renderForm/inputForm";
+import InputFormDefault from "../../common/renderForm/inputFormDefault";
 
 function FormNhaCungCap({ onSave, cancel, checkEdit }) {
   const [form] = useForm();
@@ -45,14 +45,14 @@ function FormNhaCungCap({ onSave, cancel, checkEdit }) {
           <div className="col-md-12 ">
             <Divider plain>Nhà cung cấp</Divider>
 
-            <RenderInput label="id" name="id" hidden={true} />
+            <InputFormDefault label="id" name="id" hidden={true} />
 
             <div className="row">
               <div className="col-md-2">
                 <p>Mã</p>
               </div>
               <div className="col-md-10">
-                <RenderInput
+                <InputFormDefault
                   showLabel={false}
                   label="Mã"
                   name="ma"
@@ -66,7 +66,7 @@ function FormNhaCungCap({ onSave, cancel, checkEdit }) {
                 <p>Tên nhà cung cấp</p>
               </div>
               <div className="col-md-10">
-                <RenderInput
+                <InputFormDefault
                   showLabel={false}
                   label="Tên nhà cung cấp"
                   name="tenNhaCungCap"
@@ -80,7 +80,7 @@ function FormNhaCungCap({ onSave, cancel, checkEdit }) {
                 <p>Địa chỉ</p>
               </div>
               <div className="col-md-10">
-                <RenderInput
+                <InputFormDefault
                   showLabel={false}
                   label="Địa chỉ"
                   validate={true}
@@ -94,7 +94,7 @@ function FormNhaCungCap({ onSave, cancel, checkEdit }) {
                 <p>Mã số thuế</p>
               </div>
               <div className="col-md-10">
-                <RenderInput
+                <InputFormDefault
                   showLabel={false}
                   label="Mã số thuế"
                   validate={true}
@@ -107,7 +107,7 @@ function FormNhaCungCap({ onSave, cancel, checkEdit }) {
                 <p>Số điện thoại nhà cung cấp (Nếu có)</p>
               </div>
               <div className="col-md-10">
-                <RenderInput
+                <InputFormDefault
                   showLabel={false}
                   label="Số điện thoại"
                   name="soDienThoaiNhaCungCap"
@@ -122,7 +122,7 @@ function FormNhaCungCap({ onSave, cancel, checkEdit }) {
                 <p>Zalo</p>
               </div>
               <div className="col-md-10">
-                <RenderInput showLabel={false} label="Zalo" name="zalo" />
+                <InputFormDefault showLabel={false} label="Zalo" name="zalo" />
               </div>
             </div>
 
@@ -131,11 +131,15 @@ function FormNhaCungCap({ onSave, cancel, checkEdit }) {
                 <p>Gmail</p>
               </div>
               <div className="col-md-10">
-                <RenderInput showLabel={false} label="Email" name="email" />
+                <InputFormDefault
+                  showLabel={false}
+                  label="Email"
+                  name="email"
+                />
               </div>
             </div>
           </div>
-          <RenderInput name="ngayTaoBanGhi" hidden={true} />
+          <InputFormDefault name="ngayTaoBanGhi" hidden={true} />
         </div>
         <Form.Item>
           <div className="row">

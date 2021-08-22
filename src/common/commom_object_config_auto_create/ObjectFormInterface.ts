@@ -14,6 +14,11 @@ export default interface ObjectFormInterface{
     validate?:boolean,
     hidden:boolean,
     apiSelect?:string,
+    //Dùng data cứng
     dataOption?:any,
-    password?:boolean
+    // render Input password
+    password?:boolean,
+    // render Input Number
+    inputNumber?:boolean,
+    selectSearch?:boolean
 }

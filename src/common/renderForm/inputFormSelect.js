@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
-import { Form, Select } from "antd";
+import { Form, Select, TreeSelect } from "antd";
 import * as actionCRUD from "./../../actions/configCRUDAutoAction/actCRUD";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
+const { TreeNode } = TreeSelect;
+const { Option } = Select;
 
 export default function InputFormSelect({
   label,
@@ -19,6 +21,8 @@ export default function InputFormSelect({
   allowClear,
   api,
   options,
+  defaultValue,
+  search,
 }) {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -69,18 +73,62 @@ export default function InputFormSelect({
         ]
       }
     >
-      <Select allowClear={allowClear} placeholder={label}>
-        {dataOption &&
-          Array.isArray(dataOption) &&
-          dataOption.length > 0 &&
-          dataOption.map((item, index) => {
-            return (
-              <Select.Option value={name === "quyenId" ? item.id : item.value}>
-                {item.ten}
-              </Select.Option>
-            );
-          })}
-      </Select>
+      {defaultValue && Array.isArray(defaultValue) ? (
+        <TreeSelect
+          showSearch
+          style={{ width: "100%" }}
+          placeholder={label}
+          dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
+          placeholder="Please select"
+          allowClear
+          multiple
+          treeDefaultExpandAll
+          onChange={onChange}
+        >
+          {dataOption &&
+            Array.isArray(dataOption) &&
+            dataOption.length > 0 &&
+            dataOption.map((item, index) => {
+              return <TreeNode value={item.value} title={item.ten} />;
+            })}
+        </TreeSelect>
+      ) : search ? (
+        <Select
+          allowClear
+          showSearch
+          onChange={onChange}
+          placeholder={label}
+          filterOption={(input, option) =>
+            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
+        >
+          {dataOption &&
+            Array.isArray(dataOption) &&
+            dataOption.length > 0 &&
+            dataOption.map((item, index) => {
+              return (
+                <Option key={index} value={item.value}>
+                  {item.ten}
+                </Option>
+              );
+            })}
+        </Select>
+      ) : (
+        <Select allowClear={allowClear} placeholder={label}>
+          {dataOption &&
+            Array.isArray(dataOption) &&
+            dataOption.length > 0 &&
+            dataOption.map((item, index) => {
+              return (
+                <Select.Option
+                  value={name === "quyenId" ? item.id : item.value}
+                >
+                  {item.ten}
+                </Select.Option>
+              );
+            })}
+        </Select>
+      )}
     </Form.Item>
   );
 }

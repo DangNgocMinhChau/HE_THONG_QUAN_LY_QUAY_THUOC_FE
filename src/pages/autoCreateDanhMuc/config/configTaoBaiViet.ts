@@ -1,7 +1,6 @@
 import AppModuleInterface from "../../../common/commom_object_config_auto_create/AppModuleInterface";
 import ObjectFormInterface from "../../../common/commom_object_config_auto_create/ObjectFormInterface";
 import { TypeControl } from "../../../common/commom_object_config_auto_create/TypeControl.js";
-
 const defineObjectFormProps = (): ObjectFormInterface[] => ([
     {
         dataField: "id",
@@ -28,7 +27,7 @@ const defineObjectFormProps = (): ObjectFormInterface[] => ([
         renderField: TypeControl.Select,
         validate: true,
         hidden: false,
-        apiSelect:'/quanlytag/getAllSelect'
+        apiSelect:'/quanlytag/getAllSelect',
     },
     {
         dataField: "tieuDe",

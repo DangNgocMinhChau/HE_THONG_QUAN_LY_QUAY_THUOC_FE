@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
-import { Form, TreeSelect } from "antd";
+import { Form, Radio } from "antd";
 import * as actionCRUD from "./../../actions/configCRUDAutoAction/actCRUD";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-const { TreeNode } = TreeSelect;
-
-export default function InputFormSelectMulti({
+export default function InputFormRadio({
   label,
   name,
   width,
@@ -16,15 +14,16 @@ export default function InputFormSelectMulti({
   hasFeedback,
   validateStatus,
   style,
-  showLabel,
-  allowClear,
   value,
-  api,
+  showLabel,
   options,
+  api,
 }) {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(actionCRUD.actFindSelectRequest(api, name));
+    if (api) {
+      dispatch(actionCRUD.actFindSelectRequest(api, name));
+    }
   }, []);
 
   const { tag, quyen, file } = useSelector(
@@ -35,6 +34,7 @@ export default function InputFormSelectMulti({
     }),
     shallowEqual
   );
+
   let optionsApi = [];
   if (name === "tag") {
     optionsApi = tag;
@@ -47,7 +47,6 @@ export default function InputFormSelectMulti({
     optionsApi = file;
   }
   let dataOption = options ? options : optionsApi;
-  console.log(validate);
   return (
     <Form.Item
       label={showLabel ? label : ""}
@@ -56,36 +55,32 @@ export default function InputFormSelectMulti({
       width={width}
       hasFeedback={hasFeedback}
       validateStatus={validateStatus}
-      rules={[
-        {
-          required: validate,
-          message:
-            textValidate !== null &&
-            textValidate !== undefined &&
-            textValidate !== ""
-              ? textValidate
-              : `Bạn chưa nhập   ${label} !`,
-        },
-      ]}
+      rules={
+        validate && [
+          {
+            required: validate,
+            message:
+              textValidate !== null &&
+              textValidate !== undefined &&
+              textValidate !== ""
+                ? textValidate
+                : `Bạn chưa nhập   ${label} !`,
+          },
+        ]
+      }
     >
-      <TreeSelect
-        showSearch
-        style={{ width: "100%" }}
-        placeholder={label}
-        dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
-        placeholder="Please select"
-        allowClear
-        multiple
-        treeDefaultExpandAll
-        onChange={onChange}
-      >
+      <Radio.Group>
         {dataOption &&
           Array.isArray(dataOption) &&
           dataOption.length > 0 &&
           dataOption.map((item, index) => {
-            return <TreeNode value={item.value} title={item.ten} />;
+            return (
+              <Radio key={index} value={item.value}>
+                {item.ten}
+              </Radio>
+            );
           })}
-      </TreeSelect>
+      </Radio.Group>
     </Form.Item>
   );
 }

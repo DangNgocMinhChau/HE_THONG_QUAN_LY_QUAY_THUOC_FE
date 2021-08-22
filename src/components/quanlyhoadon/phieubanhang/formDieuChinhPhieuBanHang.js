@@ -1,18 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Input, Select, Divider, Button, Space } from "antd";
+import { Form, Input, Divider, Button, Space } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import * as actKhoThuoc from "../../../actions/quanlykho/actQuanLyKho";
 import * as message from "../../../constants/Message";
 import { thongBao } from "../../../common/renderThongBao/renderThongBaoCommon";
 import * as actHoaDonHoaDonDaHoanTat from "../../../actions/quanly_hoadon_ban_thanhcong/actQuanLyHoaDonBanThanhCong";
-import {
-  RenderInput,
-  RenderInputNumber,
-  RenderInputSelectSearch,
-  RenderInputTextArea,
-} from "../../../common/renderForm/inputForm";
+import InputFormDefault from "../../../common/renderForm/inputFormDefault";
+import InputFormTextArea from "../../../common/renderForm/inputFormTextArea";
+import InputFormSelect from "../../../common/renderForm/inputFormSelect";
 export default function FormDieuChinhPhieuBanHang({
   onSave,
   cancel,
@@ -157,7 +154,7 @@ export default function FormDieuChinhPhieuBanHang({
                         >
                           <div className="row">
                             <div className="col-md-10">
-                              <RenderInputSelectSearch
+                              <InputFormSelect
                                 {...restField}
                                 label="chọn thuốc"
                                 name={[name, "idThuoc"]}
@@ -166,11 +163,12 @@ export default function FormDieuChinhPhieuBanHang({
                                 onChange={onShowValue}
                                 options={dataListThuoc}
                                 validate={true}
+                                search={true}
                               />
                             </div>
                           </div>
 
-                          <RenderInputNumber
+                          <InputFormDefault
                             {...restField}
                             name={[name, "soLuongMua"]}
                             fieldKey={[fieldKey, "soLuongMua"]}
@@ -178,6 +176,7 @@ export default function FormDieuChinhPhieuBanHang({
                             style={{ width: isVisible ? "150px" : "330px" }}
                             validate={true}
                             label="Số lượng mua"
+                            inputNumber={true}
                           />
 
                           <MinusCircleOutlined onClick={() => remove(name)} />
@@ -196,7 +195,7 @@ export default function FormDieuChinhPhieuBanHang({
             </div>
           </div>
 
-          <RenderInput
+          <InputFormDefault
             label="ngày tao bản ghi"
             name="ngayTaoBanGhi"
             hidden={true}
@@ -206,7 +205,7 @@ export default function FormDieuChinhPhieuBanHang({
           <div className="col-md-2">
             <p>Lý do chỉnh sửa</p>
           </div>
-          <RenderInputTextArea name="noiDungChinhSua" label="Lý do chỉnh sửa" />
+          <InputFormTextArea name="noiDungChinhSua" label="Lý do chỉnh sửa" />
         </div>
         <Form.Item>
           <div className="row">

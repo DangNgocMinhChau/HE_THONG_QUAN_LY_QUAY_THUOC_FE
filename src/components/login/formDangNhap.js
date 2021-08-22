@@ -1,6 +1,6 @@
 import React from "react";
-import { Form, Input, Button, Checkbox, notification, message } from "antd";
-import { RenderInput } from "../../common/renderForm/inputForm";
+import { Form, Button, Checkbox } from "antd";
+import InputFormDefault from "../../common/renderForm/inputFormDefault";
 
 function FormDangNhap({ onFinish, resetMatKhau }) {
   const layout = {
@@ -19,14 +19,14 @@ function FormDangNhap({ onFinish, resetMatKhau }) {
         initialValues={{ remember: true }}
         onFinish={onFinish}
       >
-        <RenderInput
+        <InputFormDefault
           label="Tài khoản"
           name="user"
           validate={true}
           showLabel={true}
         />
 
-        <RenderInput
+        <InputFormDefault
           label="Mật khẩu"
           name="password"
           validate={true}

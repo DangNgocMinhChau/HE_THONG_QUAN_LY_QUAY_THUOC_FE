@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Divider, Button } from "antd";
 import { useForm } from "antd/lib/form/Form";
-import { RenderInput } from "../../common/renderForm/inputForm";
+import InputFormDefault from "../../common/renderForm/inputFormDefault";
 
 function FormThongTinKhachHang({ onSave, cancel, checkEdit }) {
   const [form] = useForm();
@@ -47,14 +47,14 @@ function FormThongTinKhachHang({ onSave, cancel, checkEdit }) {
           <div className="col-md-12 ">
             <Divider plain>Thông tin khách hàng</Divider>
 
-            <RenderInput label="id" name="id" hidden={true} />
+            <InputFormDefault label="id" name="id" hidden={true} />
 
             <div className="row">
               <div className="col-md-2">
                 <p>Tên khách hàng</p>
               </div>
               <div className="col-md-10">
-                <RenderInput
+                <InputFormDefault
                   showLabel={false}
                   label="Tên khách hàng"
                   name="tenKhachHang"
@@ -68,7 +68,7 @@ function FormThongTinKhachHang({ onSave, cancel, checkEdit }) {
                 <p>số điện thoại</p>
               </div>
               <div className="col-md-10">
-                <RenderInput
+                <InputFormDefault
                   showLabel={false}
                   label="số điện thoại"
                   validate={true}
@@ -78,7 +78,7 @@ function FormThongTinKhachHang({ onSave, cancel, checkEdit }) {
               </div>
             </div>
           </div>
-          <RenderInput name="ngayTaoBanGhi" hidden={true} />
+          <InputFormDefault name="ngayTaoBanGhi" hidden={true} />
         </div>
         <Form.Item>
           <div className="row">

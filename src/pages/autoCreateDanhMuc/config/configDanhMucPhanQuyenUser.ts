@@ -40,10 +40,10 @@ const defineObjectFormProps = () : ObjectFormInterface [] => ([
         width: 200,
         sort:true,
         renderField: TypeControl.Input,
-        hidden:false
+        hidden:false,
+        inputNumber:true
     },
 ])
-
 
 export const configDanhMucPhanQuyenUser = (): AppModuleInterface => ({
     appModuleId: "DANHMUC_PHANQUYEN_USER_DMPQUS",
@@ -52,5 +52,6 @@ export const configDanhMucPhanQuyenUser = (): AppModuleInterface => ({
     description:"Phân quyền",
     defineObjectFormProps: defineObjectFormProps(),
     apiCallServer:"quanlyquyen",
-    routerDynamic:true
+    routerDynamic:true,
+    buildModalPage:true
 })

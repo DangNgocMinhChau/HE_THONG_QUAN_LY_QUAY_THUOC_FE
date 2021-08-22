@@ -1,23 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
-  RenderInput,
-  RenderInputDatePicker,
-  RenderInputRadio,
-  RenderInputNumber,
-  RenderInputSelectSearch,
-} from "./../../../common/renderForm/inputForm";
-import {
-  valueRadioDonViTinh,
   optionHinhThucThanhToan,
   optionPhanTramThue,
 } from "./../../../common/data_options_select/optionSelect";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { Form, Input, Divider, Button, Space, Tooltip } from "antd";
+import { MinusCircleOutlined } from "@ant-design/icons";
+import { Form, Button, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "antd/lib/form/Form";
 import moment from "moment";
 import * as acthoadonGTGT from "../../../actions/quanly_hoadon/actHoaDonGTGT";
 import InputFormSelect from "../../../common/renderForm/inputFormSelect";
+import InputFormDefault from "../../../common/renderForm/inputFormDefault";
+import InputFormDatepiker from "../../../common/renderForm/inputFormDatepiker";
 
 export default function FormNhapHoaDonGTGT({
   onSave,
@@ -94,7 +88,7 @@ export default function FormNhapHoaDonGTGT({
                 <h1>HÓA ĐƠN GIÁ TRỊ GIA TĂNG</h1>
                 <h6>(Bản thể hiện của hóa đơn điện tử)</h6>
                 <h6>
-                  <RenderInputDatePicker
+                  <InputFormDatepiker
                     showLabel={false}
                     label="Ngày tháng năm"
                     validate={false}
@@ -105,7 +99,7 @@ export default function FormNhapHoaDonGTGT({
               </div>
               <div className="col-md-2 mt-5">
                 <h6 className="font-size-custom text-justify">
-                  <RenderInput
+                  <InputFormDefault
                     showLabel={true}
                     label="Mẫu số"
                     validate={false}
@@ -113,7 +107,7 @@ export default function FormNhapHoaDonGTGT({
                   />
                 </h6>
                 <h6 className="font-size-custom text-justify">
-                  <RenderInput
+                  <InputFormDefault
                     showLabel={true}
                     label="Ký hiệu"
                     validate={false}
@@ -121,7 +115,7 @@ export default function FormNhapHoaDonGTGT({
                   />
                 </h6>
                 <h6 className="font-size-custom text-justify">
-                  <RenderInput
+                  <InputFormDefault
                     showLabel={true}
                     label="Số"
                     validate={false}
@@ -134,7 +128,7 @@ export default function FormNhapHoaDonGTGT({
         </div>
         <div className="row m-0">
           <div className="col-md-12 text-justify">
-            <RenderInput
+            <InputFormDefault
               showLabel={true}
               label="Họ tên người mua"
               validate={false}
@@ -142,7 +136,7 @@ export default function FormNhapHoaDonGTGT({
             />
           </div>
           <div className="col-md-12 text-justify">
-            <RenderInput
+            <InputFormDefault
               showLabel={true}
               label="Tên đơn vị"
               validate={false}
@@ -150,7 +144,7 @@ export default function FormNhapHoaDonGTGT({
             />
           </div>
           <div className="col-md-12 text-justify">
-            <RenderInput
+            <InputFormDefault
               showLabel={true}
               label="Mã số thuế"
               validate={false}
@@ -158,7 +152,7 @@ export default function FormNhapHoaDonGTGT({
             />
           </div>
           <div className="col-md-12 text-justify">
-            <RenderInput
+            <InputFormDefault
               showLabel={true}
               label="Địa chỉ"
               validate={false}
@@ -176,7 +170,7 @@ export default function FormNhapHoaDonGTGT({
             />
           </div>
           <div className="col-md-6 text-justify">
-            <RenderInput
+            <InputFormDefault
               showLabel={true}
               label="Số tài khoản"
               validate={false}
@@ -222,7 +216,7 @@ export default function FormNhapHoaDonGTGT({
                             align="baseline"
                           >
                             <p>{key + 1}</p>
-                            <RenderInput
+                            <InputFormDefault
                               showLabel={false}
                               label="Tên hàng hoá"
                               validate={false}
@@ -234,7 +228,7 @@ export default function FormNhapHoaDonGTGT({
                               // }}
                             />
 
-                            <RenderInput
+                            <InputFormDefault
                               showLabel={false}
                               label="Số lô"
                               validate={false}
@@ -245,7 +239,7 @@ export default function FormNhapHoaDonGTGT({
                               //   marginLeft: "15px",
                               // }}
                             />
-                            <RenderInput
+                            <InputFormDefault
                               showLabel={false}
                               label="Hạn dùng"
                               validate={false}
@@ -257,7 +251,7 @@ export default function FormNhapHoaDonGTGT({
                               // }}
                             />
 
-                            <RenderInput
+                            <InputFormDefault
                               showLabel={false}
                               label="Đơn vị tính"
                               validate={false}
@@ -268,7 +262,7 @@ export default function FormNhapHoaDonGTGT({
                               //   marginLeft: "15px",
                               // }}
                             />
-                            <RenderInput
+                            <InputFormDefault
                               showLabel={false}
                               label="Số lượng"
                               validate={false}
@@ -279,7 +273,7 @@ export default function FormNhapHoaDonGTGT({
                               //   marginLeft: "15px",
                               // }}
                             />
-                            <RenderInputNumber
+                            <InputFormDefault
                               showLabel={false}
                               label="Đơn giá"
                               validate={false}
@@ -289,8 +283,9 @@ export default function FormNhapHoaDonGTGT({
                               //   width: "240px",
                               //   marginLeft: "15px",
                               // }}
+                              inputNumber={true}
                             />
-                            <RenderInputNumber
+                            <InputFormDefault
                               showLabel={false}
                               label="Thành tiền"
                               validate={false}
@@ -300,6 +295,7 @@ export default function FormNhapHoaDonGTGT({
                               //   width: "260px",
                               //   marginLeft: "15px",
                               // }}
+                              inputNumber={true}
                             />
                             <MinusCircleOutlined onClick={() => remove(name)} />
                           </Space>
@@ -318,12 +314,13 @@ export default function FormNhapHoaDonGTGT({
 
               <tr>
                 <td colSpan={8}>
-                  <RenderInputNumber
+                  <InputFormDefault
                     showLabel={true}
                     label="Cộng tiền hàng"
                     validate={false}
                     name="congTienHang"
                     style={{ width: "1200px" }}
+                    inputNumber={true}
                   />
                 </td>
               </tr>
@@ -341,30 +338,32 @@ export default function FormNhapHoaDonGTGT({
                   style={{ paddingLeft: "6%" }}
                   colSpan={6}
                 >
-                  <RenderInputNumber
+                  <InputFormDefault
                     showLabel={true}
                     label="Tiền thuế GTGT"
                     validate={false}
                     name="tienThueGTGT"
                     style={{ width: "1000px" }}
+                    inputNumber={true}
                   />
                 </td>
               </tr>
               <tr>
                 <td style={{ paddingLeft: "2%" }} colSpan={8}>
-                  <RenderInputNumber
+                  <InputFormDefault
                     showLabel={true}
                     label="Tổng tiền thanh toán"
                     validate={false}
                     name="tongTienThanhToan"
                     style={{ width: "1000px" }}
+                    inputNumber={true}
                   />
                 </td>
                 {/* <td className="text-justify inDam">1.945.030</td> */}
               </tr>
               <tr className="text-justify">
                 <td colSpan={8}>
-                  <RenderInput
+                  <InputFormDefault
                     showLabel={true}
                     label="Số tiền viết bằng chữ"
                     validate={false}
@@ -396,7 +395,7 @@ export default function FormNhapHoaDonGTGT({
               <div className="col-md-4">
                 <div className="col-md-12 ">
                   <div>
-                    <RenderInput
+                    <InputFormDefault
                       showLabel={true}
                       label="Ký bởi"
                       validate={false}
@@ -406,7 +405,7 @@ export default function FormNhapHoaDonGTGT({
                 </div>
                 <div className="col-md-12 mb-5">
                   <div>
-                    <RenderInputDatePicker
+                    <InputFormDatepiker
                       showLabel={true}
                       label="Ký ngày"
                       validate={false}
@@ -414,7 +413,7 @@ export default function FormNhapHoaDonGTGT({
                     />
                   </div>
                 </div>
-                <RenderInput
+                <InputFormDefault
                   showLabel={false}
                   label="id"
                   validate={false}

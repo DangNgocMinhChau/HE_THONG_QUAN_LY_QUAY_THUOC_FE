@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Button } from "antd";
-import { RenderInput } from "../../common/renderForm/inputForm";
+import InputFormDefault from "../../common/renderForm/inputFormDefault";
 
 function FormYeuCauMoKhoaTaiKhoan({ onYeuCauMoKhoa }) {
   const layout = {
@@ -18,14 +18,19 @@ function FormYeuCauMoKhoaTaiKhoan({ onYeuCauMoKhoa }) {
       initialValues={{ remember: true }}
       onFinish={onYeuCauMoKhoa}
     >
-      <RenderInput
+      <InputFormDefault
         showLabel={true}
         label="Tài khoản"
         name="user"
         validate={true}
       />
 
-      <RenderInput showLabel={true} label="CMND" name="cmnd" validate={true} />
+      <InputFormDefault
+        showLabel={true}
+        label="CMND"
+        name="cmnd"
+        validate={true}
+      />
 
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">

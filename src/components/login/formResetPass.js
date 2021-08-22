@@ -1,6 +1,6 @@
 import React from "react";
-import { Form, Input, Button, Checkbox, notification, message } from "antd";
-import { RenderInput } from "../../common/renderForm/inputForm";
+import { Form, Button } from "antd";
+import InputFormDefault from "../../common/renderForm/inputFormDefault";
 
 function FormResetPass({ onResetPass }) {
   const layout = {
@@ -18,16 +18,21 @@ function FormResetPass({ onResetPass }) {
       initialValues={{ remember: true }}
       onFinish={onResetPass}
     >
-      <RenderInput
+      <InputFormDefault
         label="Tài khoản"
         name="user"
         validate={true}
         showLabel={true}
       />
 
-      <RenderInput label="CMND" name="cmnd" validate={true} showLabel={true} />
+      <InputFormDefault
+        label="CMND"
+        name="cmnd"
+        validate={true}
+        showLabel={true}
+      />
 
-      <RenderInput
+      <InputFormDefault
         label="Số điện thoại"
         name="soDienThoai"
         addonBefore="+84"

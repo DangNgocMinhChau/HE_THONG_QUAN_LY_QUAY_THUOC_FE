@@ -1,6 +1,6 @@
 import React from "react";
-import { Form, Input, Button, Checkbox, notification, message } from "antd";
-import { RenderInput } from "../../common/renderForm/inputForm";
+import { Form, Button } from "antd";
+import InputFormDefault from "../../common/renderForm/inputFormDefault";
 
 function FormDoiMatKhau({ onChangePass }) {
   const layout = {
@@ -18,14 +18,14 @@ function FormDoiMatKhau({ onChangePass }) {
       initialValues={{ remember: true }}
       onFinish={onChangePass}
     >
-      <RenderInput
+      <InputFormDefault
         showLabel={true}
         label="Tài khoản"
         name="user"
         validate={true}
       />
 
-      <RenderInput
+      <InputFormDefault
         showLabel={true}
         label="Mật khẩu cũ"
         name="matKhauCu"
@@ -33,7 +33,7 @@ function FormDoiMatKhau({ onChangePass }) {
         password={true}
       />
 
-      <RenderInput
+      <InputFormDefault
         showLabel={true}
         label="Mật khẩu mới"
         name="matKhauMoi"

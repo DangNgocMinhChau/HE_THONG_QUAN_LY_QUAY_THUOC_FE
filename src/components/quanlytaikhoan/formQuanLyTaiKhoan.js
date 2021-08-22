@@ -7,18 +7,12 @@ import * as message from "./../../constants/Message";
 import * as noiDungThongBao from "./../../constants/noiDungThongBao";
 import * as actDanhMuc from "./.././../actions/danhmuc/actQuanLyDanhMuc";
 import * as actQuanLyTaiKhoan from "./.././../actions/quanlytaikhoan/actQuanLyTaiKhoan";
-import {
-  RenderInput,
-  RenderInputDatePicker,
-  RenderInputRadio,
-} from "./../../common/renderForm/inputForm";
 import queryString from "query-string";
-import {
-  optionPhanQuyenAdmin,
-  optionPhanQuyenNoAdmin,
-  valueRadioGioiTinh,
-} from "./../../common/data_options_select/optionSelect.js";
+import { valueRadioGioiTinh } from "./../../common/data_options_select/optionSelect.js";
 import InputFormSelect from "../../common/renderForm/inputFormSelect";
+import InputFormDefault from "../../common/renderForm/inputFormDefault";
+import InputFormDatepiker from "../../common/renderForm/inputFormDatepiker";
+import InputFormRadio from "../../common/renderForm/inputFormRadio";
 
 function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
   const item = useSelector((state) => state.quanlytaikhoan.item);
@@ -105,21 +99,25 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
           </div>
           <div className="col-md-10  m-0 p-0">
             {checkInputImg && (
-              <RenderInput name="img" width="100%" onChange={onChangeAvatar} />
+              <InputFormDefault
+                name="img"
+                width="100%"
+                onChange={onChangeAvatar}
+              />
             )}
           </div>
         </div>
 
         <Divider plain>Tài khoản</Divider>
-        <RenderInput label="id" name="id" hidden={true} />
-        <RenderInput
+        <InputFormDefault label="id" name="id" hidden={true} />
+        <InputFormDefault
           label="Tên người dùng"
           showLabel={true}
           name="tenNguoiDung"
           validate={true}
           textValidate="Vui lòng nhập"
         />
-        <RenderInputDatePicker
+        <InputFormDatepiker
           label="Ngày sinh"
           name="ngaySinh"
           showLabel={true}
@@ -127,16 +125,16 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
           validateStatus="success"
           style={{ width: "100%" }}
         />
-        <RenderInputRadio
+        <InputFormRadio
           label="Giới tính"
           showLabel={true}
           name="gioiTinh"
-          value={valueRadioGioiTinh}
+          options={valueRadioGioiTinh}
         />
 
-        <RenderInput showLabel={true} label="Facebook" name="facebook" />
+        <InputFormDefault showLabel={true} label="Facebook" name="facebook" />
 
-        <RenderInput
+        <InputFormDefault
           name="soDienThoai"
           label="Số điện thoại"
           showLabel={true}
@@ -145,7 +143,7 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
           style={{ width: "100%" }}
         />
 
-        <RenderInput
+        <InputFormDefault
           label="CMND"
           name="cmnd"
           showLabel={true}
@@ -153,7 +151,7 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
           onChange={onChange}
         />
 
-        <RenderInput
+        <InputFormDefault
           showLabel={true}
           label="Tên đăng nhập"
           name="tenDangNhap"
@@ -161,7 +159,7 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
           onChange={checkTaiKhoan}
         />
 
-        <RenderInput
+        <InputFormDefault
           label="Mật khẩu"
           name="matKhau"
           validate={true}
@@ -169,7 +167,7 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
           password={true}
         />
 
-        <RenderInput
+        <InputFormDefault
           label="Xác nhận mật khẩu"
           name="xacNhanMatKhau"
           validate={true}
@@ -192,7 +190,7 @@ function FormQuanLyTaiKhoan({ onSave, form, initialValue, checkCMND }) {
             options={optionQuyen}
           />
         )}
-        <RenderInput name="ngayTaoBanGhi" hidden={true} />
+        <InputFormDefault name="ngayTaoBanGhi" hidden={true} />
       </Form>
     </>
   );

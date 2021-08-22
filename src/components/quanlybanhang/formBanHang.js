@@ -8,13 +8,10 @@ import * as actQuanLyThongTinKhachHang from "./../../actions/quanlythongtinkhach
 import * as actQuanLyBanHang from "./../../actions/quanlybanhang/actQuanLyBanHang";
 import * as message from "./../../constants/Message";
 import { thongBao } from "./../../common/renderThongBao/renderThongBaoCommon";
-import {
-  RenderInput,
-  RenderInputNumber,
-  RenderInputSelectSearch,
-} from "../../common/renderForm/inputForm";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import PhieuBanHang from "./phieuBanHang";
+import InputFormDefault from "../../common/renderForm/inputFormDefault";
+import InputFormSelect from "../../common/renderForm/inputFormSelect";
 function FormBanHang({
   onSave,
   checkEdit,
@@ -193,9 +190,9 @@ function FormBanHang({
             className="test-alight"
           >
             <Divider plain>Phiếu ghi</Divider>
-            <RenderInput label="id" name="id" hidden={true} />
-            <RenderInput label="id" name="idKhachHang" hidden={true} />
-            <RenderInput label="id" name="nguoiTaoId" hidden={true} />
+            <InputFormDefault label="id" name="id" hidden={true} />
+            <InputFormDefault label="id" name="idKhachHang" hidden={true} />
+            <InputFormDefault label="id" name="nguoiTaoId" hidden={true} />
             <div className="row">
               <div className="col-md-6">
                 <div className="row">
@@ -203,7 +200,10 @@ function FormBanHang({
                     <p>Tên khách hàng</p>
                   </div>
                   <div className="col-md-7">
-                    <RenderInput label="Tên khách hàng" name="tenKhachHang" />
+                    <InputFormDefault
+                      label="Tên khách hàng"
+                      name="tenKhachHang"
+                    />
                   </div>
                   {itemThongTinKhachHang !== {} && (
                     <div className="col-md-1">
@@ -234,12 +234,13 @@ function FormBanHang({
                     <p>SĐT</p>
                   </div>
                   <div className="col-md-8">
-                    <RenderInputSelectSearch
+                    <InputFormSelect
                       name="soDienThoaiKhachHang"
                       validate={true}
                       onChange={onChangeSDTKhachHang}
                       label="Tìm số điện thoại khách hàng"
                       options={listThongTinKhachHang}
+                      search={true}
                     />
                   </div>
                 </div>
@@ -264,7 +265,7 @@ function FormBanHang({
                         >
                           <div className="row">
                             <div className="col-md-10">
-                              <RenderInputSelectSearch
+                              <InputFormSelect
                                 {...restField}
                                 name={[name, "idThuoc"]}
                                 fieldKey={[fieldKey, "idThuoc"]}
@@ -275,11 +276,12 @@ function FormBanHang({
                                 onChange={onShowValue}
                                 label="Chọn thuốc"
                                 options={listThuoc}
+                                search={true}
                               />
                             </div>
                           </div>
 
-                          <RenderInputNumber
+                          <InputFormDefault
                             {...restField}
                             label="Số lượng mua"
                             name={[name, "soLuongMua"]}
@@ -287,6 +289,7 @@ function FormBanHang({
                             validate={true}
                             onChange={onShowSoLuong}
                             style={{ width: isVisible ? "150px" : "330px" }}
+                            inputNumber={true}
                           />
                           <MinusCircleOutlined onClick={() => remove(name)} />
                         </Space>
@@ -308,10 +311,11 @@ function FormBanHang({
                     <p>Tiền nhận</p>
                   </div>
                   <div className="col-md-8">
-                    <RenderInputNumber
+                    <InputFormDefault
                       label="Tiền nhận"
                       name="tienNhan"
                       style={{ width: "1000px" }}
+                      inputNumber={true}
                     />
                   </div>
                 </div>
@@ -321,7 +325,7 @@ function FormBanHang({
                 name="ngayTaoBanGhi"
                 hidden={true}
               >
-                <Input />
+                <InputFormDefault />
               </Form.Item>
             </div>
             <Form.Item>

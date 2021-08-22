@@ -2,20 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Divider, Modal, Button } from "antd";
 import { useForm } from "antd/lib/form/Form";
-import {
-  RenderInput,
-  RenderInputDatePicker,
-  RenderInputNumber,
-  RenderInputRadio,
-  RenderInputSelectSearch,
-  RenderInputTextArea,
-} from "../../common/renderForm/inputForm";
-import { optionPhanTramThue } from "./../../common/data_options_select/optionSelect";
 import InputEditor from "../../common/renderForm/inputEditor";
-import InputFormSelectMulti from "../../common/renderForm/inputFormSelectMulti";
 import InputFormSelect from "../../common/renderForm/inputFormSelect";
 import InputFormSelectSearch from "../../common/renderForm/inputFormSelectSearch";
 import InputFormDefault from "../../common/renderForm/inputFormDefault";
+import InputFormTextArea from "../../common/renderForm/inputFormTextArea";
+import InputFormDatepiker from "../../common/renderForm/inputFormDatepiker";
+import InputFormRadio from "../../common/renderForm/inputFormRadio";
 export default function FormConfigCRUD({
   onSave,
   cancel,
@@ -30,7 +23,6 @@ export default function FormConfigCRUD({
 
   const dispatch = useDispatch();
   const initialValue = useSelector((state) => state.config_crud_auto.item);
-  console.log(initialValue);
   if (initialValue !== null) {
     var dataInitialValue = {};
     if (initialValue) {
@@ -108,7 +100,8 @@ export default function FormConfigCRUD({
       setDataEditor("");
     }
   }, []);
-  const renderForm = () => {
+
+  const commonForm = () => {
     return (
       <div className="row m-0 p-0 ">
         <div className="col-md-12 ">
@@ -123,12 +116,13 @@ export default function FormConfigCRUD({
                       <p>{!itemInputForm.hidden && itemInputForm.text}</p>
                     </div>
                     <div className="col-md-10">
-                      <RenderInput
+                      <InputFormDefault
                         showLabel={false}
                         label={itemInputForm.text}
                         name={itemInputForm.dataField}
                         validate={itemInputForm.validate}
                         hidden={itemInputForm.hidden}
+                        inputNumber={itemInputForm.inputNumber}
                       />
                     </div>
                   </div>
@@ -142,7 +136,7 @@ export default function FormConfigCRUD({
                       <p>{!itemInputForm.hidden && itemInputForm.text}</p>
                     </div>
                     <div className="col-md-10">
-                      <RenderInputDatePicker
+                      <InputFormDatepiker
                         showLabel={false}
                         label={itemInputForm.text}
                         name={itemInputForm.dataField}
@@ -161,12 +155,13 @@ export default function FormConfigCRUD({
                       <p>{!itemInputForm.hidden && itemInputForm.text}</p>
                     </div>
                     <div className="col-md-10">
-                      <RenderInputNumber
+                      <InputFormDefault
                         showLabel={false}
                         label={itemInputForm.text}
                         name={itemInputForm.dataField}
                         validate={itemInputForm.validate}
                         hidden={itemInputForm.hidden}
+                        inputNumber={true}
                       />
                     </div>
                   </div>
@@ -179,13 +174,14 @@ export default function FormConfigCRUD({
                       <p>{!itemInputForm.hidden && itemInputForm.text}</p>
                     </div>
                     <div className="col-md-10">
-                      <RenderInputRadio
+                      <InputFormRadio
                         showLabel={false}
                         label={itemInputForm.text}
                         name={itemInputForm.dataField}
                         validate={itemInputForm.validate}
                         hidden={itemInputForm.hidden}
                         value={itemInputForm.dataOption}
+                        api={itemInputForm.apiSelect}
                       />
                     </div>
                   </div>
@@ -219,7 +215,7 @@ export default function FormConfigCRUD({
                       <p>{!itemInputForm.hidden && itemInputForm.text}</p>
                     </div>
                     <div className="col-md-10">
-                      <RenderInputTextArea
+                      <InputFormTextArea
                         showLabel={false}
                         label={itemInputForm.text}
                         name={itemInputForm.dataField}
@@ -230,6 +226,7 @@ export default function FormConfigCRUD({
                   </div>
                 );
               }
+
               if (itemInputForm.renderField === "InputEditor") {
                 return (
                   <div className="row">
@@ -248,23 +245,7 @@ export default function FormConfigCRUD({
                 );
               }
               if (itemInputForm.renderField === "Select") {
-                return Array.isArray(itemInputForm.defaultValue) ? (
-                  <div className="row">
-                    <div className="col-md-2">
-                      <p>{!itemInputForm.hidden && itemInputForm.text}</p>
-                    </div>
-                    <div className="col-md-10">
-                      <InputFormSelectMulti
-                        showLabel={false}
-                        label={itemInputForm.text}
-                        name={itemInputForm.dataField}
-                        validate={itemInputForm.validate}
-                        hidden={itemInputForm.hidden}
-                        api={itemInputForm.apiSelect}
-                      />
-                    </div>
-                  </div>
-                ) : (
+                return (
                   <div className="row">
                     <div className="col-md-2">
                       <p>{!itemInputForm.hidden && itemInputForm.text}</p>
@@ -277,6 +258,8 @@ export default function FormConfigCRUD({
                         validate={itemInputForm.validate}
                         hidden={itemInputForm.hidden}
                         api={itemInputForm.apiSelect}
+                        defaultValue={itemInputForm.defaultValue}
+                        search={itemInputForm.selectSearch}
                       />
                     </div>
                   </div>
@@ -287,6 +270,10 @@ export default function FormConfigCRUD({
         </div>
       </div>
     );
+  };
+
+  const renderForm = () => {
+    return commonForm();
   };
 
   const renderModalFrom = () => {
@@ -301,186 +288,7 @@ export default function FormConfigCRUD({
           <Button onClick={() => form.submit()}>OK</Button>,
         ]}
       >
-        <div style={{ textAlign: "left" }}>
-          <div className="row m-0 p-0 ">
-            <div className="col-md-12 ">
-              <Divider plain>{propsDefineObject.name}</Divider>
-              {/* <RenderInput name="id" hidden={true} /> */}
-              {propsDefineObject.defineObjectFormProps.map(
-                (itemInputForm, indexInputForm) => {
-                  if (itemInputForm.renderField === "Input") {
-                    return (
-                      <div className="row">
-                        <div className="col-md-2">
-                          <p>{!itemInputForm.hidden && itemInputForm.text}</p>
-                        </div>
-                        <div className="col-md-10">
-                          <InputFormDefault
-                            showLabel={false}
-                            label={itemInputForm.text}
-                            name={itemInputForm.dataField}
-                            validate={itemInputForm.validate}
-                            hidden={itemInputForm.hidden}
-                            password={itemInputForm.password}
-                          />
-                        </div>
-                      </div>
-                    );
-                  }
-
-                  if (itemInputForm.renderField === "InputDatePicker") {
-                    return (
-                      <div className="row">
-                        <div className="col-md-2">
-                          <p>{!itemInputForm.hidden && itemInputForm.text}</p>
-                        </div>
-                        <div className="col-md-10">
-                          <RenderInputDatePicker
-                            showLabel={false}
-                            label={itemInputForm.text}
-                            name={itemInputForm.dataField}
-                            validate={itemInputForm.validate}
-                            hidden={itemInputForm.hidden}
-                          />
-                        </div>
-                      </div>
-                    );
-                  }
-
-                  if (itemInputForm.renderField === "InputNumber") {
-                    return (
-                      <div className="row">
-                        <div className="col-md-2">
-                          <p>{!itemInputForm.hidden && itemInputForm.text}</p>
-                        </div>
-                        <div className="col-md-10">
-                          <RenderInputNumber
-                            showLabel={false}
-                            label={itemInputForm.text}
-                            name={itemInputForm.dataField}
-                            validate={itemInputForm.validate}
-                            hidden={itemInputForm.hidden}
-                          />
-                        </div>
-                      </div>
-                    );
-                  }
-
-                  if (itemInputForm.renderField === "InputRadio") {
-                    return (
-                      <div className="row">
-                        <div className="col-md-2">
-                          <p>{!itemInputForm.hidden && itemInputForm.text}</p>
-                        </div>
-                        <div className="col-md-10">
-                          <RenderInputRadio
-                            showLabel={false}
-                            label={itemInputForm.text}
-                            name={itemInputForm.dataField}
-                            validate={itemInputForm.validate}
-                            hidden={itemInputForm.hidden}
-                            value={itemInputForm.dataOption}
-                          />
-                        </div>
-                      </div>
-                    );
-                  }
-
-                  if (itemInputForm.renderField === "InputSelectSearch") {
-                    return (
-                      <div className="row">
-                        <div className="col-md-2">
-                          <p>{!itemInputForm.hidden && itemInputForm.text}</p>
-                        </div>
-                        <div className="col-md-10">
-                          <InputFormSelectSearch
-                            showLabel={false}
-                            label={itemInputForm.text}
-                            name={itemInputForm.dataField}
-                            validate={itemInputForm.validate}
-                            hidden={itemInputForm.hidden}
-                            api={itemInputForm.apiSelect}
-                          />
-                        </div>
-                      </div>
-                    );
-                  }
-
-                  if (itemInputForm.renderField === "InputTextArea") {
-                    return (
-                      <div className="row">
-                        <div className="col-md-2">
-                          <p>{!itemInputForm.hidden && itemInputForm.text}</p>
-                        </div>
-                        <div className="col-md-10">
-                          <RenderInputTextArea
-                            showLabel={false}
-                            label={itemInputForm.text}
-                            name={itemInputForm.dataField}
-                            validate={itemInputForm.validate}
-                            hidden={itemInputForm.hidden}
-                          />
-                        </div>
-                      </div>
-                    );
-                  }
-                  if (itemInputForm.renderField === "InputEditor") {
-                    return (
-                      <div className="row">
-                        <div className="col-md-2">
-                          <p>{!itemInputForm.hidden && itemInputForm.text}</p>
-                        </div>
-                        <div className="col-md-10">
-                          <InputEditor
-                            name={itemInputForm.dataField}
-                            dataEditor={dataEditor}
-                            setDataEditor={setDataEditor}
-                            funcCustomEditor={funcCustomEditor}
-                          />
-                        </div>
-                      </div>
-                    );
-                  }
-                  if (itemInputForm.renderField === "Select") {
-                    return Array.isArray(itemInputForm.defaultValue) ? (
-                      <div className="row">
-                        <div className="col-md-2">
-                          <p>{!itemInputForm.hidden && itemInputForm.text}</p>
-                        </div>
-                        <div className="col-md-10">
-                          <InputFormSelectMulti
-                            showLabel={false}
-                            label={itemInputForm.text}
-                            name={itemInputForm.dataField}
-                            validate={itemInputForm.validate}
-                            hidden={itemInputForm.hidden}
-                            api={itemInputForm.apiSelect}
-                          />
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="row">
-                        <div className="col-md-2">
-                          <p>{!itemInputForm.hidden && itemInputForm.text}</p>
-                        </div>
-                        <div className="col-md-10">
-                          <InputFormSelect
-                            showLabel={false}
-                            label={itemInputForm.text}
-                            name={itemInputForm.dataField}
-                            validate={itemInputForm.validate}
-                            hidden={itemInputForm.hidden}
-                            api={itemInputForm.apiSelect}
-                          />
-                        </div>
-                      </div>
-                    );
-                  }
-                }
-              )}
-            </div>
-          </div>
-        </div>
+        {commonForm()}
       </Modal>
     );
   };
