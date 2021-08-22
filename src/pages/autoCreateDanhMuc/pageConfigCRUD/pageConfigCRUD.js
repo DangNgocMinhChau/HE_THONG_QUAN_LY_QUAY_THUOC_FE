@@ -10,10 +10,7 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
   const [checkDanhSach, setCheckDanhSach] = useState(true);
   const [isVisible, setIsvisible] = useState(false);
   const [checkEdit, setCheckEdit] = useState(false);
-  const [
-    checkShowDanhSachHoaDonTheoKhachHang,
-    setCheckShowDanhSachHoaDonTheoKhachHang,
-  ] = useState(false);
+
   const [idXoa, setIdXoa] = useState([]);
   const dispatch = useDispatch();
 
@@ -72,7 +69,6 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
   function cancel() {
     setCheckDanhSach(true);
     setCheckFormThemMoi(false);
-    setCheckShowDanhSachHoaDonTheoKhachHang(false);
     setIsvisible(false);
   }
 

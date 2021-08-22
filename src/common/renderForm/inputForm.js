@@ -105,7 +105,7 @@ export function RenderInputNumber({
     >
       <InputNumber
         placeholder={label}
-        style={style}
+        style={{ width: "100%" }}
         parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
         formatter={(value) => ` ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         // defaultValue={""}
@@ -241,7 +241,7 @@ export function RenderInputSelectSearch({
       hasFeedback={hasFeedback}
       validateStatus={validateStatus}
       fieldKey={fieldKey}
-      style={style}
+      style={{ width: "100%" }}
       rules={
         validate && [
           {
@@ -318,7 +318,7 @@ export function RenderInputTextArea({
         cols={120}
         onChange={onChange}
         placeholder={label}
-        style={style}
+        style={{ width: "100%" }}
       />
     </Form.Item>
   );

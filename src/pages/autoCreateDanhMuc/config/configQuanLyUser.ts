@@ -167,5 +167,5 @@ export const configQuanLyUser = (): AppModuleInterface => ({
     defineObjectFormProps: defineObjectFormProps(),
     apiCallServer: "quanlytaikhoan",
     routerDynamic: true,
-    buildModalPage:true
+    buildModalPage:false
 })

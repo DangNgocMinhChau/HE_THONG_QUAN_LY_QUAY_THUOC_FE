@@ -127,9 +127,9 @@ export const actFindSelectRequest = (url, fieldRedux) => {
             };
             dataRes.push(itemRes);
           });
-          dispatch(actFindSelect(dataRes, fieldRedux));
+          // dispatch(actFindSelect(dataRes, fieldRedux));
         } else {
-          dispatch(actFindSelect(res.data.result, fieldRedux));
+          // dispatch(actFindSelect(res.data.result, fieldRedux));
         }
       }
     });

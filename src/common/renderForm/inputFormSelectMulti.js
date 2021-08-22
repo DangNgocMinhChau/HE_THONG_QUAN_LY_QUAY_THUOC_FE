@@ -47,7 +47,7 @@ export default function InputFormSelectMulti({
     optionsApi = file;
   }
   let dataOption = options ? options : optionsApi;
-
+  console.log(validate);
   return (
     <Form.Item
       label={showLabel ? label : ""}
@@ -56,19 +56,17 @@ export default function InputFormSelectMulti({
       width={width}
       hasFeedback={hasFeedback}
       validateStatus={validateStatus}
-      rules={
-        validate && [
-          {
-            required: validate,
-            message:
-              textValidate !== null &&
-              textValidate !== undefined &&
-              textValidate !== ""
-                ? textValidate
-                : `Bạn chưa nhập   ${label} !`,
-          },
-        ]
-      }
+      rules={[
+        {
+          required: validate,
+          message:
+            textValidate !== null &&
+            textValidate !== undefined &&
+            textValidate !== ""
+              ? textValidate
+              : `Bạn chưa nhập   ${label} !`,
+        },
+      ]}
     >
       <TreeSelect
         showSearch

@@ -12,7 +12,7 @@ import { renderDateTheoHeThong } from "../../common/convert/renderConvert";
 
 export function actFetchTaiKhoanRequest() {
   return (dispatch) => {
-    return callApi("quanlytaikhoan", "GET", null).then((res) => {
+    return callApi("quanlytaikhoan/find", "GET", null).then((res) => {
       if (res) {
         // const data = res.data.result.filter((item) => item.flag !== false);
         dispatch(actFetchTaiKhoan(res.data.result));

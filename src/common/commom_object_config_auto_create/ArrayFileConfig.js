@@ -4,7 +4,6 @@ import { configDanhMucKhuVucDeThuoc } from "../../pages/autoCreateDanhMuc/config
 import { configDanhMucNhaCungCap } from "../../pages/autoCreateDanhMuc/config/configDanhMucNhaCungCap.ts";
 import { configDanhMucTagBaiViet } from "../../pages/autoCreateDanhMuc/config/configDanhMucTagBaiViet";
 import { configTaoBaiViet } from "../../pages/autoCreateDanhMuc/config/configTaoBaiViet";
-import { configQuanLyUser } from "../../pages/autoCreateDanhMuc/config/configQuanLyUser";
 
 export const arrayFileConfig = [
   configDanhMucPhanQuyenUser(),
@@ -13,5 +12,4 @@ export const arrayFileConfig = [
   configDanhMucNhaCungCap(),
   configDanhMucTagBaiViet(),
   configTaoBaiViet(),
-  configQuanLyUser(),
 ];

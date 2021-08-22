@@ -32,13 +32,14 @@ const defineObjectFormProps = (): ObjectFormInterface[] => ([
     },
     {
         dataField: "tieuDe",
-        text: "Tên ",
-        description: "Tên ",
+        text: "Tiêu đề ",
+        description: "Tiêu đề ",
         defaultValue: "",
         isShow: true,
         isFilter: false,
         width: 200,
         sort: true,
+        validate: true,
         renderField: TypeControl.Input,
         hidden: false
     },
@@ -54,20 +55,20 @@ const defineObjectFormProps = (): ObjectFormInterface[] => ([
         renderField: TypeControl.InputEditor,
         hidden: false
     },
-    {
-        dataField: "file",
-        text: "File ",
-        description: "File",
-        defaultValue: [],
-        isShow: false,
-        isFilter: false,
-        width: 200,
-        sort: true,
-        renderField: TypeControl.Select,
-        validate: true,
-        hidden: false,
-        apiSelect:'files/img'
-    },
+    // {
+    //     dataField: "file",
+    //     text: "File ",
+    //     description: "File",
+    //     defaultValue: [],
+    //     isShow: false,
+    //     isFilter: false,
+    //     width: 200,
+    //     sort: true,
+    //     renderField: TypeControl.Select,
+    //     validate: false,
+    //     hidden: false,
+    //     apiSelect:'files/img'
+    // },
 ])
 
 

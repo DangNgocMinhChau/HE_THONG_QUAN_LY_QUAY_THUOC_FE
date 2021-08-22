@@ -30,6 +30,7 @@ export default function FormConfigCRUD({
 
   const dispatch = useDispatch();
   const initialValue = useSelector((state) => state.config_crud_auto.item);
+  console.log(initialValue);
   if (initialValue !== null) {
     var dataInitialValue = {};
     if (initialValue) {
@@ -74,8 +75,8 @@ export default function FormConfigCRUD({
         value = {
           ...value,
           ...contentEditor,
-          [pFeildTag]: value[pFeildTag].toString(),
-          [pFeildFile]: value[pFeildFile].toString(),
+          [pFeildTag]: value[pFeildTag] && value[pFeildTag].toString(),
+          [pFeildFile]: value[pFeildFile] && value[pFeildFile].toString(),
         };
         onSave(value);
       } else {
