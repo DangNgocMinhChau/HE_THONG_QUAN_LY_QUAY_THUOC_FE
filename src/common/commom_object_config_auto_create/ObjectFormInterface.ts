@@ -21,4 +21,6 @@ export default interface ObjectFormInterface{
     // render Input Number
     inputNumber?:boolean,
     selectSearch?:boolean
+    // mặc định sẽ lấy mã làm value (nếu valueId = true thì value = id )
+    valueId?:boolean
 }

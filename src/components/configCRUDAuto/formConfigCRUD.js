@@ -182,6 +182,7 @@ export default function FormConfigCRUD({
                         hidden={itemInputForm.hidden}
                         value={itemInputForm.dataOption}
                         api={itemInputForm.apiSelect}
+                        valueId={itemInputForm.valueId}
                       />
                     </div>
                   </div>
@@ -260,6 +261,7 @@ export default function FormConfigCRUD({
                         api={itemInputForm.apiSelect}
                         defaultValue={itemInputForm.defaultValue}
                         search={itemInputForm.selectSearch}
+                        valueId={itemInputForm.valueId}
                       />
                     </div>
                   </div>

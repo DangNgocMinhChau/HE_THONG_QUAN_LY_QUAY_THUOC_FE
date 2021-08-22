@@ -23,6 +23,7 @@ export default function InputFormSelect({
   options,
   defaultValue,
   search,
+  valueId = false,
 }) {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -89,7 +90,12 @@ export default function InputFormSelect({
             Array.isArray(dataOption) &&
             dataOption.length > 0 &&
             dataOption.map((item, index) => {
-              return <TreeNode value={item.value} title={item.ten} />;
+              return (
+                <TreeNode
+                  value={valueId ? item.id : item.value}
+                  title={item.ten}
+                />
+              );
             })}
         </TreeSelect>
       ) : search ? (
@@ -107,7 +113,7 @@ export default function InputFormSelect({
             dataOption.length > 0 &&
             dataOption.map((item, index) => {
               return (
-                <Option key={index} value={item.value}>
+                <Option key={index} value={valueId ? item.id : item.value}>
                   {item.ten}
                 </Option>
               );
@@ -120,9 +126,7 @@ export default function InputFormSelect({
             dataOption.length > 0 &&
             dataOption.map((item, index) => {
               return (
-                <Select.Option
-                  value={name === "quyenId" ? item.id : item.value}
-                >
+                <Select.Option value={valueId ? item.id : item.value}>
                   {item.ten}
                 </Select.Option>
               );

@@ -18,6 +18,7 @@ export default function InputFormRadio({
   showLabel,
   options,
   api,
+  valueId = false,
 }) {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -75,7 +76,7 @@ export default function InputFormRadio({
           dataOption.length > 0 &&
           dataOption.map((item, index) => {
             return (
-              <Radio key={index} value={item.value}>
+              <Radio key={index} value={valueId ? item.id : item.value}>
                 {item.ten}
               </Radio>
             );
