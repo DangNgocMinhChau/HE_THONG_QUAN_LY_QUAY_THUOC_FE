@@ -27,7 +27,7 @@ export const actFetchData = (data) => {
 
 export function actFetchNhaCungCapRequest() {
   return (dispatch) => {
-    return callApi("quanlynhacungcap", "GET", null).then((res) => {
+    return callApi("nhacungcap/getAllSelect", "GET", null).then((res) => {
       if (res) {
         dispatch(actFetchNhaCungCap(res.data.result));
       }
@@ -37,7 +37,7 @@ export function actFetchNhaCungCapRequest() {
 
 export const actFetchNhaCungCap = (data) => {
   return {
-    type: Types.FETCH_NHACUNGCAP,
+    type: Types.FETCH_NHACUNGCAP_SELECT,
     data,
   };
 };

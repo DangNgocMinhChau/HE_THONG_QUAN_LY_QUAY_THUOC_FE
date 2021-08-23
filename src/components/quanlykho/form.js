@@ -143,6 +143,7 @@ function FormNhapThuoc({
                     validate
                     options={dataListNhaCungCap}
                     search={true}
+                    valueId={true}
                   />
                 </div>
               </div>

@@ -35,7 +35,7 @@ export default function PageNhapThuoc({ match, location, history }) {
       dataListFile: state.quanly_files.list,
       account_current: state.quanlylogin.account_current,
       itemKhoThuoc: state.khothuoc.item,
-      dataListNhaCungCap: (state) => state.quanlynhacungcap.list,
+      dataListNhaCungCap: state.danhmuc.nhacungcap.list,
     }),
     shallowEqual
   );
