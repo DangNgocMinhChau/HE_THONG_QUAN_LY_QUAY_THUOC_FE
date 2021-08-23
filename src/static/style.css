@@ -492,3 +492,101 @@ img {
 .banner {
   margin-bottom: 25px;
 }
+.img-tintuc-banner {
+  margin-bottom: 20px;
+  width: 100%;
+}
+.title-tintuc-noibat {
+  width: 100%;
+  margin-bottom: 20px;
+  margin-left: 13px;
+  font-family: "Mulish", sans-serif;
+  line-height: 2.5;
+}
+.img-tintuc-first {
+  width: 98%;
+}
+
+.img-tintuc-first {
+  margin-bottom: 10px;
+}
+
+/* Carousel tin tức */
+.first-tintuc-1 {
+  margin-bottom: 25px;
+}
+
+.carousel-img {
+  width: 100%;
+}
+.quangcao-tintuc {
+  width: 100%;
+  margin-bottom: 30px;
+}
+.img-card-tintuc {
+  overflow: hidden;
+}
+.img-card-tintuc .img1 {
+  width: 220px;
+}
+.card-title-tintuc {
+  width: 220px;
+}
+
+.cactin-lienquan {
+  width: 100%;
+  margin-top: 70px;
+  display: flex;
+}
+.cactin-lienquan img {
+  width: 240px;
+  margin-right: 30px;
+}
+.cactin-lienquan p {
+  width: 100%;
+}
+.cactin-lienquan strong {
+  width: 100%;
+}
+.chitiet-tintuc {
+  text-align: right;
+  margin-top: 25px;
+}
+.readmore-tintuc {
+  border-top: 1px dotted #d6d6d6;
+}
+.docthem-tintuc-today {
+  padding-top: 10px;
+}
+.docthem-tintuc-today span {
+  font-size: 12px;
+}
+.docthem-tintuc-today ul li {
+  color: #41455e;
+  font-size: 14px;
+  line-height: 20px;
+  padding-top: 15px;
+}
+.itembb2 {
+  margin-top: 26px;
+}
+.tintuc-dangchuy {
+  width: 100%;
+  font-family: "Mulish", sans-serif;
+  padding-left: 14px;
+  padding-top: 13px;
+}
+.dangchuy-tintucle {
+  width: 100%;
+  display: flex;
+  padding-top: 23px;
+}
+.dangchuy-tintucle-img {
+  width: 150px;
+}
+.dangchuy-tintucle-title {
+  padding-left: 8px;
+}
+.dangchuy-tintucle-title strong {
+  font-size: 14px;
+}
