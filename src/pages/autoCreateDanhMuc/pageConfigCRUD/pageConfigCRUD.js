@@ -5,6 +5,8 @@ import TableConfigCRUD from "../../../components/configCRUDAuto/tableConfigCRUD"
 import FormConfigCRUD from "../../../components/configCRUDAuto/formConfigCRUD";
 import { renderDateTheoHeThong } from "./../../../common/convert/renderConvert";
 import * as actCRUDConfig from "../../../actions/configCRUDAutoAction/actCRUD";
+import queryString from "query-string";
+
 export default function PageConfigCRUD({ propsDefineObject, match }) {
   const [checkFormThemMoi, setCheckFormThemMoi] = useState(false);
   const [checkDanhSach, setCheckDanhSach] = useState(true);
@@ -80,12 +82,24 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
       );
     });
   };
+  let queryStringParam = "";
 
   useEffect(() => {
+    queryStringParam = queryString.stringifyUrl({
+      url: `${propsDefineObject.apiCallServer}/find/page`,
+      query: { page: 1, pageSize: 10 },
+    });
     dispatch(actCRUDConfig.resetList([]));
-    dispatch(actCRUDConfig.actFindRequest(propsDefineObject.apiCallServer));
+    dispatch(actCRUDConfig.actFindRequest(queryStringParam));
   }, []);
 
+  const onChangePage = (page, pageSize) => {
+    queryStringParam = queryString.stringifyUrl({
+      url: `${propsDefineObject.apiCallServer}/find/page`,
+      query: { page: page, pageSize: pageSize },
+    });
+    dispatch(actCRUDConfig.actFindRequest(queryStringParam));
+  };
   return (
     <div className="container-fluid">
       {/* <!-- Page Heading --> */}
@@ -156,6 +170,7 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
                 onEdit={onEdit}
                 data={dataTable}
                 setIdXoa={setIdXoa}
+                onChangePage={onChangePage}
               />
             )}
           </div>

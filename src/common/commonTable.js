@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Table } from "antd";
+import { Pagination, Table } from "antd";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
 export default function CommonTable({
   columns,
   dataSource,
   setIdXoa,
   checkRowSelection = true,
+  onChangePage,
 }) {
   const [selectionType, setSelectionType] = useState();
   const rowSelection = {
@@ -13,6 +15,13 @@ export default function CommonTable({
       setIdXoa(selectedRowKeys);
     },
   };
+  const { pagination } = useSelector(
+    (state) => ({
+      pagination: state.pagination.item,
+    }),
+    shallowEqual
+  );
+
   return (
     <div>
       <Table
@@ -28,23 +37,15 @@ export default function CommonTable({
         columns={columns}
         dataSource={dataSource}
         bordered
-        pagination={{
-          defaultPageSize: 10,
-          showSizeChanger: true,
-          pageSizeOptions: [
-            "10",
-            "20",
-            "30",
-            "40",
-            "50",
-            "60",
-            "70",
-            "80",
-            "90",
-            "100",
-          ],
-        }}
+        pagination={false}
       />
+      <div>
+        <Pagination
+          defaultCurrent={1}
+          total={pagination.total}
+          onChange={(page, PageSize) => onChangePage(page, PageSize)}
+        />
+      </div>
     </div>
   );
 }

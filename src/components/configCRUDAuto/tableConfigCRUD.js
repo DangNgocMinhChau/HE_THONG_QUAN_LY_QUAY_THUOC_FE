@@ -12,6 +12,7 @@ export default function TableConfigCRUD({
   setIdXoa,
   propsDefineObject,
   data,
+  onChangePage,
 }) {
   const renderConfig = (data, record, itemTable) => {
     return (
@@ -108,6 +109,7 @@ export default function TableConfigCRUD({
         columns={renderTable()}
         dataSource={data}
         setIdXoa={setIdXoa}
+        onChangePage={onChangePage}
       />
     </div>
   );

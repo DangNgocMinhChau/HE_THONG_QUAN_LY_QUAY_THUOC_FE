@@ -81,6 +81,7 @@ export const DELETE_CRUD = "DELETE_CRUD";
 export const EDIT_CRUD = "EDIT_CRUD";
 export const UPDATE_CRUD = "UPDATE_CRUD";
 export const SELECT_CRUD = "SELECT_CRUD";
+export const PAGE_PAGINATION = "PAGE_PAGINATION";
 
 // Quaả ly tin tức
 

@@ -12,6 +12,7 @@ import quanlythongtinkhachhang from "./quanlythongtinkhachhang";
 import config_crud_auto from "./config_crud_auto";
 import danhmuc from "./danhmuc";
 import quanlytintuc from "./quanlytintuc";
+import pagination from "./pagination";
 
 const appReducers = combineReducers({
   khothuoc,
@@ -27,6 +28,7 @@ const appReducers = combineReducers({
   config_crud_auto,
   danhmuc,
   quanlytintuc,
+  pagination,
 });
 
 export default appReducers;

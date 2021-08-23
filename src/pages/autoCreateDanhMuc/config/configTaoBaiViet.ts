@@ -43,6 +43,31 @@ const defineObjectFormProps = (): ObjectFormInterface[] => ([
         hidden: false
     },
     {
+        dataField: "imgAvatar",
+        text: "Hình đại diện",
+        description: "Hình đại đại diện",
+        defaultValue: "",
+        isShow: false,
+        isFilter: false,
+        width: 200,
+        sort: true,
+        validate: true,
+        renderField: TypeControl.Input,
+        hidden: false
+    },
+    {
+        dataField: "gioiThieu",
+        text: "Giới thiệu",
+        description: "Giới thiệu",
+        defaultValue: "undefined",
+        isShow: true,
+        isFilter: false,
+        width: 200,
+        sort: true,
+        renderField: TypeControl.InputTextArea,
+        hidden: false
+    },
+    {
         dataField: "noiDung",
         text: "Nội dung ",
         description: "Nội dung ",
@@ -54,6 +79,7 @@ const defineObjectFormProps = (): ObjectFormInterface[] => ([
         renderField: TypeControl.InputEditor,
         hidden: false
     },
+    
     // {
     //     dataField: "file",
     //     text: "File ",

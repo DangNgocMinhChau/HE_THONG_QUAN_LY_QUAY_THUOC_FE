@@ -9,9 +9,10 @@ import { renderDateTheoHeThong } from "../../common/convert/renderConvert";
 
 export const actFindRequest = (url) => {
   return (dispatch) => {
-    return callApi(`${url}/find`, "GET", null).then((res) => {
+    return callApi(`${url}`, "GET", null).then((res) => {
       if (res) {
         dispatch(actFind(res.data.result));
+        dispatch(actPagination(res.data.pagination));
       }
     });
   };
@@ -21,6 +22,13 @@ export const actFind = (data) => {
   return {
     type: Types.FETCH_CRUD,
     data,
+  };
+};
+
+export const actPagination = (value) => {
+  return {
+    type: Types.PAGE_PAGINATION,
+    value,
   };
 };
 
