@@ -78,6 +78,7 @@ export default function InputFormSelectSearch({
       <Select
         allowClear
         showSearch
+        style={{ width: "100%" }}
         onChange={onChange}
         placeholder={label}
         dropdownStyle={{ maxHeight: 400, overflow: "auto" }}

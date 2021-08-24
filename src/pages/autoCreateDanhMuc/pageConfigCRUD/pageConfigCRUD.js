@@ -6,6 +6,14 @@ import FormConfigCRUD from "../../../components/configCRUDAuto/formConfigCRUD";
 import { renderDateTheoHeThong } from "./../../../common/convert/renderConvert";
 import * as actCRUDConfig from "../../../actions/configCRUDAutoAction/actCRUD";
 import queryString from "query-string";
+import { Card, ButtonGroup, ButtonIcon } from "react-rainbow-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlus,
+  faUsers,
+  faEdit,
+  faChessKnight,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function PageConfigCRUD({ propsDefineObject, match }) {
   const [checkFormThemMoi, setCheckFormThemMoi] = useState(false);
@@ -94,7 +102,6 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
   }, []);
 
   const onChangePage = (e, page) => {
-    console.log(page, 10);
     queryStringParam = queryString.stringifyUrl({
       url: `${propsDefineObject.apiCallServer}/find/page`,
       query: { page: page, pageSize: 10 },
@@ -104,78 +111,65 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
   return (
     <div className="container-fluid">
       {/* <!-- Page Heading --> */}
-      <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 className=" mb-0 text-gray-800">{propsDefineObject.name}</h5>
-        <div className="row">
-          <Button
-            size="small"
-            className="m-2"
-            onClick={() => {
-              openForm();
-            }}
-            type="dashed"
-          >
-            <i className="fa fa-plus-square" aria-hidden="true"></i>
-          </Button>
-
-          <Tooltip placement="bottom" title="Xoá nhiều" color="red" key="red">
-            <Button
-              className="m-2 mr-5 "
-              size="small"
-              onClick={() => {
-                handdleXoaNhieu();
-              }}
-              type="dashed"
-              danger={true}
-            >
-              <i
-                className="fa fa-trash-o"
-                style={{ color: "red" }}
-                aria-hidden="true"
-              ></i>
-            </Button>
-          </Tooltip>
-        </div>
+      <div className="rainbow-m-around_large">
+        <Card
+          isLoading
+          icon={
+            <FontAwesomeIcon
+              icon={faUsers}
+              size="lg"
+              className="rainbow-color_brand"
+            />
+          }
+          title={propsDefineObject.name}
+          actions={
+            <ButtonGroup>
+              <ButtonIcon
+                variant="border"
+                icon={<FontAwesomeIcon icon={faPlus} />}
+                onClick={() => {
+                  openForm();
+                }}
+              />
+              <ButtonIcon
+                variant="border"
+                icon={<FontAwesomeIcon icon={faChessKnight} />}
+                onClick={() => {
+                  handdleXoaNhieu();
+                }}
+              />
+            </ButtonGroup>
+          }
+        />
       </div>
-
       <div className="row">
-        {/* <!-- Area Chart --> */}
-        <div className="col-xl-12 col-lg-12">
-          <div className="card-custom shadow mb-4">
-            {/* <!-- Card Header - Dropdown --> */}
-            <div className="card-header-custom py-3 d-flex flex-row align-items-center justify-content-between">
-              <p className="text-card-header">
-                <i
-                  className="color-icon-header-danhsach fa fa-book"
-                  aria-hidden="true"
-                ></i>
-                {propsDefineObject.name}
-              </p>
-            </div>
-            {checkFormThemMoi && (
-              <FormConfigCRUD
-                onSave={onSave}
-                cancel={cancel}
-                checkEdit={checkEdit}
-                checkThemMoi={true}
-                propsDefineObject={propsDefineObject}
-                isVisible={isVisible}
-              />
-            )}
+        <div className="col-md-12 mb-5"></div>
+      </div>
+      <div className="rainbow-p-around_large">
+        <Card>
+          {checkFormThemMoi && (
+            <FormConfigCRUD
+              onSave={onSave}
+              cancel={cancel}
+              checkEdit={checkEdit}
+              checkThemMoi={true}
+              propsDefineObject={propsDefineObject}
+              isVisible={isVisible}
+            />
+          )}
 
-            {checkDanhSach && (
-              <TableConfigCRUD
-                match={match}
-                propsDefineObject={propsDefineObject}
-                onDelete={onDelete}
-                onEdit={onEdit}
-                data={dataTable}
-                setIdXoa={setIdXoa}
-                onChangePage={onChangePage}
-              />
-            )}
-          </div>
-        </div>
+          {checkDanhSach && (
+            <TableConfigCRUD
+              match={match}
+              propsDefineObject={propsDefineObject}
+              onDelete={onDelete}
+              onEdit={onEdit}
+              data={dataTable}
+              setIdXoa={setIdXoa}
+              onChangePage={onChangePage}
+            />
+          )}
+        </Card>
       </div>
     </div>
   );

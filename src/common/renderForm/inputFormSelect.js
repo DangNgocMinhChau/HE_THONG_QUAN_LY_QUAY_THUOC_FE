@@ -101,6 +101,7 @@ export default function InputFormSelect({
         <Select
           allowClear
           showSearch
+          style={{ width: "100%" }}
           onChange={onChange}
           placeholder={label}
           filterOption={(input, option) =>
