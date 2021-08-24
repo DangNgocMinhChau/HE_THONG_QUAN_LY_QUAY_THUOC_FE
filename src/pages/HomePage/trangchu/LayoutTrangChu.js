@@ -1,4 +1,5 @@
 import React from "react";
+import Tolgle from "./../../../common/testGiaodien/tolgle";
 
 function LayoutTrangChu({ children }) {
   return (
@@ -13,6 +14,7 @@ function LayoutTrangChu({ children }) {
             ></i>
           </a>
         </div>
+        <Tolgle />
         {children}
       </div>
     </div>

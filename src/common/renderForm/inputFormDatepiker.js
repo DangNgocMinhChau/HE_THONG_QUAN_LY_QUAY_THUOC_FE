@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Select, Radio, DatePicker, TreeSelect } from "antd";
-
+import { Input } from "react-rainbow-components";
 export default function InputFormDatepiker({
   label,
   name,
@@ -16,7 +16,9 @@ export default function InputFormDatepiker({
   showLabel,
 }) {
   const dateFormat = "DD/MM/YYYY";
-
+  const inputStyles = {
+    width: "100%",
+  };
   return (
     <Form.Item
       label={showLabel ? label : ""}
@@ -39,11 +41,19 @@ export default function InputFormDatepiker({
         ]
       }
     >
-      <DatePicker
+      {/* <DatePicker
         placeholder={label}
         onChange={onChange}
         style={{ width: "100%" }}
         format={dateFormat}
+      /> */}
+      <Input
+        className="rainbow-p-around_medium"
+        style={inputStyles}
+        // bottomHelpText="between 2019-01-01 & 2021-01-01"
+        type="date"
+        max="2021-01-01"
+        min="2019-01-01"
       />
     </Form.Item>
   );

@@ -25,7 +25,6 @@ export default function InputFormSelect({
   search,
   valueId = false,
 }) {
-  console.log(options);
   const dispatch = useDispatch();
   useEffect(() => {
     if (api) {

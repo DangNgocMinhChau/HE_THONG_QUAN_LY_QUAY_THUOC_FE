@@ -1,19 +1,25 @@
 import React, { useState } from "react";
-import { Pagination, Table } from "antd";
+import { Card, Pagination } from "react-rainbow-components";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
+import { Table, Column, MenuItem } from "react-rainbow-components";
 export default function CommonTable({
   columns,
   dataSource,
   setIdXoa,
   checkRowSelection = true,
   onChangePage,
+  onEdit,
+  onDelete,
 }) {
-  const [selectionType, setSelectionType] = useState();
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
       setIdXoa(selectedRowKeys);
     },
+  };
+
+  const handleSelectRow = (value) => {
+    setIdXoa(value);
   };
   const { pagination } = useSelector(
     (state) => ({
@@ -22,28 +28,53 @@ export default function CommonTable({
     shallowEqual
   );
 
+  const [data, setData] = useState(dataSource);
+  const handleSort = (event, field, nextSortDirection) => {
+    // console.log(event, field, nextSortDirection);
+    // const newData = [...dataSource];
+    // const key = (value) => value[field];
+    // const reverse = nextSortDirection === "asc" ? 1 : -1;
+    // const sortedData = newData.sort((aItem, bItem) => {
+    //   const aValue = key(aItem);
+    //   const bValue = key(bItem);
+    //   return reverse * ((aValue > bValue) - (bValue > aValue));
+    // });
+    // setData(sortedData);
+  };
+
+  const handleOnChange = (value, e) => {
+    console.log(value, e);
+  };
   return (
     <div>
       <Table
-        scroll={{ x: "calc(700px + 50%)", y: 1000 }}
-        rowSelection={
-          checkRowSelection
-            ? {
-                type: selectionType,
-                ...rowSelection,
-              }
-            : false
-        }
-        columns={columns}
-        dataSource={dataSource}
-        bordered
-        pagination={false}
-      />
+        id="table-5"
+        keyField="id"
+        showCheckboxColumn
+        data={dataSource}
+        showRowNumberColumn
+        // sortedBy={sortedBy}
+        onSort={handleSort}
+        onRowSelection={(selection) => handleSelectRow(selection)}
+      >
+        {columns.map((item, index) => {
+          return <Column header={item.title} field={item.dataIndex} sortable />;
+        })}
+        <Column type="action">
+          <MenuItem label="Sửa" onClick={(event, data) => onEdit(data.id)} />
+          <MenuItem label="Xóa" onClick={(event, data) => onDelete(data.id)} />
+        </Column>
+      </Table>
       <div>
         <Pagination
-          defaultCurrent={1}
-          total={pagination.total}
-          onChange={(page, PageSize) => onChangePage(page, PageSize)}
+          className="rainbow-m_auto"
+          pages={
+            Math.ceil(pagination && pagination.total / 10) > 0
+              ? Math.ceil(pagination && pagination.total / 10)
+              : 0
+          }
+          activePage={10}
+          onChange={(e, page) => onChangePage(e, page)}
         />
       </div>
     </div>

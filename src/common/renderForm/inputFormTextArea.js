@@ -1,6 +1,6 @@
 import React from "react";
-import { Form, Input } from "antd";
-
+import { Form } from "antd";
+import { Textarea } from "react-rainbow-components";
 export default function InputFormTextArea({
   name,
   label,
@@ -34,12 +34,12 @@ export default function InputFormTextArea({
         ]
       }
     >
-      <Input.TextArea
+      <Textarea
+        id="example-textarea-1"
         rows={4}
-        cols={120}
-        onChange={onChange}
         placeholder={label}
         style={{ width: "100%" }}
+        className="rainbow-m-vertical_x-large rainbow-p-horizontal_medium rainbow-m_auto"
       />
     </Form.Item>
   );

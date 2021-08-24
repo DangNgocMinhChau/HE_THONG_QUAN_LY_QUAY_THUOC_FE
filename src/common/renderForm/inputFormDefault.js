@@ -1,5 +1,8 @@
-import React from "react";
-import { Form, Input, InputNumber, Select } from "antd";
+import React, { useState } from "react";
+import { Form, InputNumber, Select } from "antd";
+import { Input, StrongPasswordInput } from "react-rainbow-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faKey } from "@fortawesome/free-solid-svg-icons";
 export default function InputFormDefault({
   label,
   name,
@@ -16,6 +19,28 @@ export default function InputFormDefault({
   inputNumber = false,
   fieldKey,
 }) {
+  const [value, setValue] = useState("");
+
+  const handleOnChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const getStrength = () => {
+    const { length } = value;
+    if (length === 0) {
+      return undefined;
+    }
+    if (length <= 3) {
+      return "weak";
+    }
+    if (length > 3 && length < 8) {
+      return "average";
+    }
+    return "strong";
+  };
+
+  const passwordState = getStrength();
+
   const renderInput = () => {
     if (inputNumber) {
       return (
@@ -30,18 +55,22 @@ export default function InputFormDefault({
       );
     } else {
       return password ? (
-        <Input.Password
+        <StrongPasswordInput
+          id="strong-password-input-3"
           placeholder={label}
-          style={style}
-          addonBefore={addonBefore}
-          onChange={onChange}
+          bottomHelpText="Mật khẩu nên có ký tự đặc biệt"
+          className="rainbow-m-vertical_x-large rainbow-p-horizontal_medium rainbow-m_auto"
+          style={{ width: "100%" }}
+          value={value}
+          passwordState={passwordState}
+          onChange={handleOnChange}
+          icon={<FontAwesomeIcon icon={faKey} />}
         />
       ) : (
         <Input
+          className="rainbow-p-around_medium"
+          style={{ width: "100%" }}
           placeholder={label}
-          style={style}
-          addonBefore={addonBefore}
-          onChange={onChange}
         />
       );
     }

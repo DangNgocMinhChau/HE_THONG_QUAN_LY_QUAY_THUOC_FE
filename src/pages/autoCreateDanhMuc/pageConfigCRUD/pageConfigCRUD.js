@@ -76,7 +76,7 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
 
   const handdleXoaNhieu = () => {
     idXoa.map((item, index) => {
-      let value = [item];
+      let value = [item.id];
       dispatch(
         actCRUDConfig.actDeleteRequest(propsDefineObject.apiCallServer, value)
       );
@@ -93,10 +93,11 @@ export default function PageConfigCRUD({ propsDefineObject, match }) {
     dispatch(actCRUDConfig.actFindRequest(queryStringParam));
   }, []);
 
-  const onChangePage = (page, pageSize) => {
+  const onChangePage = (e, page) => {
+    console.log(page, 10);
     queryStringParam = queryString.stringifyUrl({
       url: `${propsDefineObject.apiCallServer}/find/page`,
-      query: { page: page, pageSize: pageSize },
+      query: { page: page, pageSize: 10 },
     });
     dispatch(actCRUDConfig.actFindRequest(queryStringParam));
   };

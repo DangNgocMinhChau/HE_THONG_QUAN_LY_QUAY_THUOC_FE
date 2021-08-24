@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Divider, Modal, Button } from "antd";
+import { Form, Divider } from "antd";
+import { Modal, Button } from "react-rainbow-components";
 import { useForm } from "antd/lib/form/Form";
 import InputEditor from "../../common/renderForm/inputEditor";
 import InputFormSelect from "../../common/renderForm/inputFormSelect";
@@ -266,18 +267,29 @@ export default function FormConfigCRUD({
 
   const renderModalFrom = () => {
     return (
-      <Modal
-        title={propsDefineObject.name}
-        visible={isVisible}
-        onCancel={cancel}
-        width={1000}
-        footer={[
-          <Button onClick={() => cancel()}>Hủy</Button>,
-          <Button onClick={() => form.submit()}>OK</Button>,
-        ]}
-      >
-        {commonForm()}
-      </Modal>
+      <div className="rainbow-m-bottom_xx-large rainbow-p-bottom_xx-large">
+        <Modal
+          isOpen={isVisible}
+          onRequestClose={cancel}
+          title={propsDefineObject.name}
+          size="large"
+          footer={
+            <div
+              className="rainbow-flex rainbow-justify_spread"
+              style={{ textAlign: "end" }}
+            >
+              <Button onClick={() => cancel()} label="Hủy" variant="neutral" />
+              <Button
+                onClick={() => form.submit()}
+                label="Ok"
+                variant="brand"
+              />
+            </div>
+          }
+        >
+          {commonForm()}
+        </Modal>
+      </div>
     );
   };
   return (
